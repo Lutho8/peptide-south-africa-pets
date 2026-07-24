@@ -3,5 +3,11 @@
   "framework": "vite",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "rewrites": [{ "source": "/((?!blog/.*\\.html|.*\\.[a-zA-Z0-9]+$).*)", "destination": "/index.html" }]
+  "rewrites": [
+    {
+      "source": "/((?!blog/.*\\.html|.*\\.[a-zA-Z0-9]+$).*)",
+      "destination": "/index.html"
+    }
+  ],
+  "installCommand": "node scripts/normalize-lock-registry.mjs && npm install"
 }

@@ -1,0 +1,255 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 5.9% 10%;
+    --radius: 0.625rem;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+/* ============ PSA PETS design system (design.md) ============ */
+@layer base {
+  :root {
+    --cream: #F7F1E5;
+    --cream-2: #EFE6D4;
+    --sand: #E3D5BC;
+    --espresso: #2B2118;
+    --espresso-70: #5C5044;
+    --amber: #D97E3F;
+    --amber-deep: #B25E26;
+    --clinical: #1E4D3B;
+    --clinical-tint: #DCE8E0;
+    --alert: #A33B2E;
+    --warm-white: #FFFDF9;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  body {
+    background-color: var(--cream);
+    color: var(--espresso);
+    font-family: "Inter", system-ui, sans-serif;
+    letter-spacing: -0.01em;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .font-serif,
+  h1,
+  h2,
+  h3 {
+    font-variation-settings: "SOFT" 60, "WONK" 1;
+  }
+
+  ::selection {
+    background: var(--amber);
+    color: var(--warm-white);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+      animation: none !important;
+    }
+    .coming-soon-pulse {
+      animation: none !important;
+    }
+  }
+}
+
+@layer components {
+  /* Mono overline label — the raw/authentic texture */
+  .mono-label {
+    font-family: "Space Mono", ui-monospace, monospace;
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .mono-data {
+    font-family: "Space Mono", ui-monospace, monospace;
+    font-weight: 400;
+    font-size: 0.8125rem;
+    letter-spacing: 0.02em;
+  }
+
+  .section-pad {
+    padding-top: clamp(5rem, 10vw, 9rem);
+    padding-bottom: clamp(5rem, 10vw, 9rem);
+  }
+
+  .psa-container {
+    width: 100%;
+    max-width: 1320px;
+    margin-inline: auto;
+    padding-inline: 16px;
+  }
+  @media (min-width: 768px) {
+    .psa-container {
+      padding-inline: 24px;
+    }
+  }
+
+  .paper-texture {
+    position: relative;
+  }
+  .paper-texture::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("/texture-paper.png");
+    background-size: 512px;
+    opacity: 0.05;
+    pointer-events: none;
+  }
+
+  /* Announcement marquee */
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: psa-marquee 30s linear infinite;
+  }
+  .marquee-track:hover {
+    animation-play-state: paused;
+  }
+
+  /* COMING SOON quiet heartbeat */
+  .coming-soon-pulse {
+    animation: psa-pulse 2.4s ease-in-out infinite;
+  }
+
+  /* Animated underline for mono text links */
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    transition: background-size 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .link-underline:hover {
+    background-size: 100% 1px;
+  }
+}
+
+@keyframes psa-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes psa-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+
+/* ============ Round 6 — scoped print contracts ============ */
+/*
+ * `printArea()` (src/lib/vetpack.ts) tags <body> with `psa-printing` around
+ * window.print(), so ONLY the element marked `.psa-print-area` (COA document
+ * or vet handout) prints — existing full-page print callers are untouched.
+ * `.psa-print-handout` marks print-only cards hidden on screen.
+ */
+@layer base {
+  /* print-only cards stay hidden on screen AND for unscoped print callers */
+  .psa-print-handout {
+    display: none;
+  }
+
+  @media print {
+    body.psa-printing .psa-print-handout {
+      display: block;
+    }
+
+    body.psa-printing * {
+      visibility: hidden;
+    }
+
+    body.psa-printing .psa-print-area,
+    body.psa-printing .psa-print-area * {
+      visibility: visible;
+    }
+
+    body.psa-printing .psa-print-area {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      background: #fffdf9;
+    }
+  }
+}

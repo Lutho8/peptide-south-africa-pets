@@ -9,5 +9,5 @@
       "destination": "/index.html"
     }
   ],
-  "installCommand": "node scripts/normalize-lock-registry.mjs && npm install"
+  "installCommand": "node scripts/normalize-lock-registry.mjs && npm ci --no-audit --no-fund"
 }

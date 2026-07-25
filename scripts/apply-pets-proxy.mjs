@@ -53,14 +53,38 @@ if (!html.includes(absFavicon)) {
   write(htmlRel, html);
 }
 
-// 5) root public asset references -> asset('/...')
-const exts = '(?:png|jpe?g|webp|gif|svg|mp4|webm|mp3|wav|txt|xml|ico)';
-const attr = new RegExp(`\\b(src|poster)=(["'])(/(?:[^"']*?\\.${exts}))\\2`, 'g');
-const prop = new RegExp(`\\b(image|heroImage|src|poster):\\s*(["'])(/(?:[^"']*?\\.${exts}))\\2`, 'g');
 const walk = (dir) => readdirSync(new URL(`../${dir}`, import.meta.url), { withFileTypes: true }).flatMap((d) => {
   const rel = `${dir}/${d.name}`;
   return d.isDirectory() ? walk(rel) : [rel];
 });
+
+// 4b) main-site-style product imagery for the pets launch shelf
+const productImages = {
+  '/product-bpc157.png': '/product-bpc157-psa.png',
+  '/product-kpv.png': '/product-kpv-psa.png',
+  '/product-recovery.png': '/product-recovery-psa.png',
+  '/product-immune.png': '/product-immune-psa.png',
+  '/product-collagen.png': '/product-collagen-psa.png',
+}
+const dataRel = 'src/lib/data.ts'
+let data = read(dataRel)
+for (const [from, to] of Object.entries(productImages)) {
+  data = data.replaceAll(`'${from}'`, `'${to}'`).replaceAll(`asset('${from}')`, `asset('${to}')`)
+}
+write(dataRel, data)
+
+// 4c) basename-safe links: with basename='/pets', absolute '/pets' would become '/pets/pets'
+for (const rel of walk('src')) {
+  if (!/\.tsx?$/.test(rel)) continue
+  const before = read(rel)
+  const after = before.replaceAll('to="/pets"', 'to="/"').replaceAll("{ to: '/pets'", "{ to: '/'")
+  if (after !== before) write(rel, after)
+}
+
+// 5) root public asset references -> asset('/...')
+const exts = '(?:png|jpe?g|webp|gif|svg|mp4|webm|mp3|wav|txt|xml|ico)';
+const attr = new RegExp(`\\b(src|poster)=(["'])(/(?:[^"']*?\\.${exts}))\\2`, 'g');
+const prop = new RegExp(`\\b(image|heroImage|src|poster):\\s*(["'])(/(?:[^"']*?\\.${exts}))\\2`, 'g');
 let changed = 0;
 for (const rel of walk('src')) {
   if (!/\.tsx?$/.test(rel) || rel === 'src/lib/asset.ts') continue;

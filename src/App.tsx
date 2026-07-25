@@ -7,6 +7,10 @@ import Pets from '@/pages/Pets'
 // funnel/evidence routes load on demand.
 const ProductPage = lazy(() => import('@/pages/ProductPage'))
 const SciencePage = lazy(() => import('@/pages/SciencePage'))
+const CoaPage = lazy(() => import('@/pages/CoaPage'))
+const QueuePage = lazy(() => import('@/pages/QueuePage'))
+const BlogIndexPage = lazy(() => import('@/pages/BlogIndexPage'))
+const BlogArticlePage = lazy(() => import('@/pages/BlogArticlePage'))
 const WaitlistPage = lazy(() => import('@/pages/WaitlistPage'))
 const QuizPage = lazy(() => import('@/pages/QuizPage'))
 
@@ -37,6 +41,38 @@ export default function App() {
           element={
             <Suspense fallback={<RouteFallback />}>
               <SciencePage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="verify"
+          element={
+            <Suspense fallback={<RouteFallback />}>
+              <CoaPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="queue"
+          element={
+            <Suspense fallback={<RouteFallback />}>
+              <QueuePage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="blog"
+          element={
+            <Suspense fallback={<RouteFallback />}>
+              <BlogIndexPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="blog/:slug"
+          element={
+            <Suspense fallback={<RouteFallback />}>
+              <BlogArticlePage />
             </Suspense>
           }
         />

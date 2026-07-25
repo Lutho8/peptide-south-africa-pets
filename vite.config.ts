@@ -4,7 +4,7 @@ import { defineConfig } from "vite"
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/',
+  base: 'https://pets.peptide-south-africa.com/',
   plugins: [react()],
   server: {
     port: 3000,

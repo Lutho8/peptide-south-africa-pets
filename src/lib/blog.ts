@@ -189,7 +189,129 @@ const BPC157: BlogArticle = {
 }
 
 /* ------------------------------------------------------------------ */
-/* 2 · Collagen peptides                                               */
+/* 2 · BPC-157 South Africa                                            */
+/* ------------------------------------------------------------------ */
+
+const BPC157_SOUTH_AFRICA: BlogArticle = {
+  slug: 'bpc-157-south-africa',
+  title: 'BPC-157 South Africa: A Pet Owner\'s Guide to Availability, Regulation and Evidence',
+  metaDescription:
+    'BPC-157 is one of the most searched peptides in South Africa. We explain the SAHPRA status, the real cost of importing, what to ask local sellers, and what the canine evidence actually shows.',
+  keywords: [
+    'BPC-157 South Africa',
+    'BPC-157 for dogs South Africa',
+    'buy BPC-157 South Africa',
+    'SAHPRA BPC-157',
+    'BPC-157 Cape Town',
+    'pet peptides South Africa',
+  ],
+  publishDate: '2026-07-25',
+  modifiedDate: '2026-07-25',
+  readMinutes: 8,
+  heroImage: '/dog-portrait-2.png',
+  heroAlt: 'A South African Boerboel resting against a warm cream background',
+  category: 'South Africa Guides',
+  excerpt:
+    'BPC-157 searches in South Africa usually end at grey-market sellers, import delays or confusing SAHPRA status. Here is what local pet owners actually need to know.',
+  relatedProducts: ['bpc-157', 'recovery-blend', 'mobility-collagen'],
+  meaningBox: {
+    title: 'What this means for your dog',
+    body: 'In South Africa, BPC-157 for pets sits in a regulatory grey zone: not registered as a veterinary medicine, but available as a research or nutritional compound. The honest path is local supply with a certificate of analysis, veterinary guidance and clear expectations — not miracle claims.',
+  },
+  sections: [
+    {
+      id: 'why-sa-searches-matter',
+      heading: 'Why "BPC-157 South Africa" is its own search',
+      paragraphs: [
+        'South African pet owners do not search for BPC-157 in a vacuum. They are usually dealing with a limping Ridgeback, a Boerboel with a tendon strain, or a geriatric cat whose gut never quite recovered after a course of medication. The molecule has a reputation as a soft-tissue and gut "repair" signal, and local searches for it have grown sharply as US pet peptide brands have entered the algorithm.{{cite:1}}',
+        'But the South African market is not the US market. The rand, customs, courier delays and the risk of counterfeit imports change the calculation. A bottle that costs $89 overseas can land here at R2,500–R3,500 after shipping, duties and VAT, with a 2–6 week wait and no local recourse if the vial is wrong. That is why "BPC-157 South Africa" deserves its own answer: the science is the same, but the buying reality is not.',
+      ],
+    },
+    {
+      id: 'sahpra-status',
+      heading: 'What SAHPRA says about BPC-157 for pets',
+      paragraphs: [
+        'As of mid-2026, BPC-157 is not registered with the South African Health Products Regulatory Authority (SAHPRA) as a veterinary medicine, and no peptide product for pets holds SAHPRA approval. That matters less than it sounds, and more than some sellers admit. It means BPC-157 cannot be marketed with disease-treatment claims, but it also means the compound is available in the research and nutritional-compound lane — provided the seller is honest about what it is.',
+        'In practice, most BPC-157 sold in South Africa is imported as a research compound or formulated into a supplement. The regulatory distinction is real: a supplement cannot claim to cure, treat or prevent disease, and any veterinary use is off-label and at the discretion of your vet. PSA PETS develops its BPC-157 formula as a research-grade supplement with batch-level COA documentation precisely because the alternative — imported sprays with vague labels — leaves both pet and owner exposed.',
+      ],
+    },
+    {
+      id: 'import-problem',
+      heading: 'The import problem: cost, customs and counterfeits',
+      paragraphs: [
+        'The most common way South Africans have bought BPC-157 until now is direct import. A 30 ml oral spray or a small vial from a US or European peptide vendor typically lists at $79–$149. By the time it clears customs, the all-in cost is usually R1,800–R3,500, and that assumes it clears at all. Peptide vials and sprays are frequently flagged for inspection, and customs may request a permit, an invoice or a letter from a vet.{{cite:1}}',
+        'Then there is the authenticity problem. The global peptide grey market is saturated with mislabelled, underdosed and contaminated products. Without a certificate of analysis (COA) from an independent lab, you have no way to know whether the liquid contains BPC-157 at the stated concentration, a different peptide entirely, or nothing at all. Buying locally does not eliminate risk, but it does give you a South African supplier, a VAT invoice and someone to hold accountable.',
+      ],
+    },
+    {
+      id: 'evidence-summary',
+      heading: 'What the evidence actually looks like',
+      paragraphs: [
+        'The science does not change because you live in Cape Town rather than California. The only formal dog study remains the 2022 pharmacokinetic trial by He and colleagues, which reported that BPC-157 was well tolerated in six beagles and reached roughly 45–51% intramuscular bioavailability.{{cite:1}} That is an absorption-and-safety finding, not proof that it heals tendons or guts in dogs.',
+        'The rest of the literature is preclinical: rat tendon fibroblast studies, rodent gut-healing models and cell-culture work on angiogenesis.{{cite:2}} It is a consistent but unproven signal. Any South African seller promising cures, guaranteed tendon repair or "works in 48 hours" is selling marketing, not evidence. The honest position — and the one PSA PETS takes — is that BPC-157 is biologically plausible, well tolerated in the one canine PK study, and not yet proven effective in any species.',
+      ],
+    },
+    {
+      id: 'buying-sa',
+      heading: 'How to buy BPC-157 for your pet in South Africa',
+      paragraphs: [
+        'If you and your vet decide to trial BPC-157, use the same due diligence you would apply to any unregulated compound. First, demand a certificate of analysis for the batch you are buying, not a generic lab report from three years ago. The COA should show ≥99% HPLC purity, the correct molecular weight and the batch number on your bottle.',
+        'Second, choose a local supplier with a physical South African address, VAT registration and a returns policy. Third, avoid human peptide products that contain xylitol, flavourings, sweeteners or alcohol bases dangerous to pets. Fourth, start conservatively: half the labelled dose for the first week, one change at a time, and a daily log of appetite, stool, energy and mobility. Finally, never use BPC-157 to delay a vet visit for a serious injury or chronic condition.',
+      ],
+    },
+    {
+      id: 'safety-sa',
+      heading: 'Safety notes for SA pet owners',
+      paragraphs: [
+        'The 2022 beagle study reported good tolerability, but six dogs is not a safety database.{{cite:1}} Be extra cautious with pets on chronic medication, pets with a cancer history (angiogenesis can help wounds and, in theory, tumours), pregnant or lactating animals, and puppies or kittens with immature metabolisms.',
+        'Heat is another South African reality. Peptides are less stable than tablets; store them according to the label, usually refrigerated once reconstituted or opened, and avoid leaving deliveries in a hot car or courier depot for hours. If a shipment arrives warm, cloudy or with a broken seal, do not use it. When in doubt, email the supplier with photos and batch numbers — a reputable local supplier will answer.',
+      ],
+    },
+  ],
+  faq: [
+    {
+      q: 'Is BPC-157 legal in South Africa for pets?',
+      a: 'BPC-157 is not registered as a veterinary medicine with SAHPRA, but it is sold legally as a research or nutritional compound. It cannot be marketed with disease-treatment claims, and any veterinary use is off-label and should be discussed with your vet.',
+    },
+    {
+      q: 'Can I import BPC-157 for my dog?',
+      a: 'You can try, but it is expensive and unreliable. Imports often cost R1,800–R3,500 all-in, take 2–6 weeks, and may be held by customs for inspection. You also lose local consumer protection if the product is wrong or contaminated.',
+    },
+    {
+      q: 'How much does BPC-157 cost in South Africa?',
+      a: 'Grey-market imports typically land at R1,800–R3,500 for a small vial or oral spray. Local pricing varies by purity, batch testing and format. PSA PETS is pricing its BPC-157 formula in rand with VAT included and founding waitlist members will lock the lowest rate.',
+    },
+    {
+      q: 'Is BPC-157 approved by SAHPRA?',
+      a: 'No. As of mid-2026, no BPC-157 product — human or veterinary — is approved by SAHPRA. Any product sold in South Africa is therefore unregistered and should be treated as a research or supplement compound, not a medicine.',
+    },
+    {
+      q: 'What should I ask a local seller before buying BPC-157?',
+      a: 'Ask for the batch-specific COA showing HPLC purity, the supplier\'s South African business registration, storage and handling instructions, a clear ingredient list with no xylitol or pet-toxic additives, and a returns process. If they cannot provide these, shop elsewhere.',
+    },
+  ],
+  citations: [
+    {
+      authors: 'He L, Feng D, Guo H, et al.',
+      title:
+        'Pharmacokinetics, distribution, metabolism, and excretion of body-protective compound 157, a potential drug for treating various wounds, in rats and dogs',
+      journal: 'Frontiers in Pharmacology',
+      year: 2022,
+      url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC9794587/',
+    },
+    {
+      authors: 'Chang CH, Tsai WC, Lin MS, Hsu YH, Pang JH',
+      title:
+        'The promoting effect of pentadecapeptide BPC 157 on tendon healing involves tendon outgrowth, cell survival, and cell migration',
+      journal: 'Journal of Applied Physiology',
+      year: 2011,
+      url: 'https://pubmed.ncbi.nlm.nih.gov/21030672/',
+    },
+  ],
+}
+
+/* ------------------------------------------------------------------ */
+/* 3 · Collagen peptides                                               */
 /* ------------------------------------------------------------------ */
 
 const COLLAGEN: BlogArticle = {
@@ -320,7 +442,7 @@ const COLLAGEN: BlogArticle = {
 }
 
 /* ------------------------------------------------------------------ */
-/* 3 · TB-500                                                          */
+/* 4 · TB-500                                                          */
 /* ------------------------------------------------------------------ */
 
 const TB500: BlogArticle = {
@@ -463,7 +585,7 @@ const TB500: BlogArticle = {
 }
 
 /* ------------------------------------------------------------------ */
-/* 4 · KPV                                                             */
+/* 5 · KPV                                                             */
 /* ------------------------------------------------------------------ */
 
 const KPV: BlogArticle = {
@@ -600,7 +722,7 @@ const KPV: BlogArticle = {
 }
 
 /* ------------------------------------------------------------------ */
-/* 5 · Pet longevity science                                           */
+/* 6 · Pet longevity science                                           */
 /* ------------------------------------------------------------------ */
 
 const LONGEVITY: BlogArticle = {
@@ -753,7 +875,7 @@ const LONGEVITY: BlogArticle = {
 }
 
 /* ------------------------------------------------------------------ */
-/* 6 · Calming peptides (αs1-casozepine)                               */
+/* 7 · Calming peptides (αs1-casozepine)                               */
 /* ------------------------------------------------------------------ */
 
 const CALMING: BlogArticle = {
@@ -895,7 +1017,7 @@ const CALMING: BlogArticle = {
 /* Registry + helpers                                                  */
 /* ------------------------------------------------------------------ */
 
-export const BLOG_ARTICLES: BlogArticle[] = [BPC157, COLLAGEN, TB500, KPV, LONGEVITY, CALMING]
+export const BLOG_ARTICLES: BlogArticle[] = [BPC157, BPC157_SOUTH_AFRICA, COLLAGEN, TB500, KPV, LONGEVITY, CALMING]
 
 export function getArticleBySlug(slug?: string): BlogArticle | undefined {
   if (!slug) return undefined

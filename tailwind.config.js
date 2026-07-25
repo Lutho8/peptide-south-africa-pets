@@ -80,6 +80,8 @@ module.exports = {
       },
       boxShadow: {
         xs: "0 1px 2px 0 rgb(0 0 0 / 0.05)",
+        card: "0 1px 2px 0 rgb(43 33 24 / 0.06), 0 8px 24px -12px rgb(43 33 24 / 0.14)",
+        "card-hover": "0 2px 4px 0 rgb(43 33 24 / 0.08), 0 20px 40px -16px rgb(43 33 24 / 0.22)",
       },
       keyframes: {
         "accordion-down": {

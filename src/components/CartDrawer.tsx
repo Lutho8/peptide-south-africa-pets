@@ -166,7 +166,7 @@ export default function CartDrawer() {
                 </p>
                 <p className="text-sm leading-relaxed text-espresso-70">{t('cart.emptyBody')}</p>
                 <Link
-                  to="/pets#catalog"
+                  to="/pets#launch"
                   onClick={closeCart}
                   className="mt-2 rounded-full bg-amber px-6 py-3 font-serif text-base font-semibold text-warmwhite transition-colors hover:bg-amber-deep"
                 >

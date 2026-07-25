@@ -1,50 +1,53 @@
+import { Link } from 'react-router'
+import { ArrowRight } from 'lucide-react'
 import Hero from '@/pages/pets/Hero'
-import TrustStrip from '@/pages/pets/TrustStrip'
-import CoaStrip from '@/pages/pets/CoaStrip'
-import ProofTicker from '@/pages/pets/ProofTicker'
-import ScienceStory from '@/pages/pets/ScienceStory'
-import PinnedVial from '@/pages/pets/PinnedVial'
-import Catalog from '@/pages/pets/Catalog'
-import PipelineTeaser from '@/pages/pets/PipelineTeaser'
-import Subscriptions from '@/pages/pets/Subscriptions'
+import LaunchCatalog from '@/pages/pets/LaunchCatalog'
+import QuizTeaser from '@/pages/pets/QuizTeaser'
 import GuaranteeBand from '@/pages/pets/GuaranteeBand'
-import FoundingRing from '@/pages/pets/FoundingRing'
-import WaitlistSection from '@/pages/pets/WaitlistSection'
 import Testimonials from '@/pages/pets/Testimonials'
-import Credibility from '@/pages/pets/Credibility'
-import Honesty from '@/pages/pets/Honesty'
-import Faq from '@/pages/pets/Faq'
-import ConversionBar from '@/pages/pets/ConversionBar'
-import ExitToast from '@/pages/pets/ExitToast'
+import WaitlistSection from '@/pages/pets/WaitlistSection'
+import { useConversionCopy } from '@/pages/pets/conversionCopy'
 
 /**
- * /pets landing — all 13 sections (pets.md) plus conversion upgrades:
- * social-proof ticker after the hero, founding-capacity ring before the
- * waitlist, sticky bottom conversion bar, and exit-intent-lite toast.
- * Sections 1–2 (announcement bar, navbar) and 13 (compliance strip, breadcrumb,
- * footer) are global chrome living in Navbar/Footer via Layout.
+ * Slim proof strip — one line of evidence signals plus a door into the full
+ * science library. Long-form education/citations live on /science and the
+ * blog, deliberately out of the primary conversion path.
+ */
+function ProofStrip() {
+  const copy = useConversionCopy()
+  return (
+    <section className="bg-cream py-10">
+      <div className="psa-container flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
+        <p className="mono-label !text-[11px] text-espresso-70">{copy.proofLine}</p>
+        <Link
+          to="/science"
+          className="mono-label link-underline inline-flex items-center gap-2 !text-[11px] text-amber-deep"
+        >
+          {copy.proofLink}
+          <ArrowRight className="h-3.5 w-3.5" />
+        </Link>
+      </div>
+    </section>
+  )
+}
+
+/**
+ * /pets landing — simplified, product-first conversion path:
+ * hero → launch batch shelf → 3-step quiz teaser → proof strip →
+ * guarantee → testimonials → waitlist. Education-heavy sections
+ * (ScienceStory, PipelineTeaser, Subscriptions detail, FAQ, tickers) remain
+ * in the codebase for their routes but no longer clutter the first scroll.
  */
 export default function Pets() {
   return (
     <>
       <Hero />
-      <TrustStrip />
-      <CoaStrip />
-      <ProofTicker />
-      <ScienceStory />
-      <PinnedVial />
-      <Catalog />
-      <PipelineTeaser />
-      <Subscriptions />
+      <LaunchCatalog />
+      <QuizTeaser />
+      <ProofStrip />
       <GuaranteeBand />
-      <FoundingRing />
-      <WaitlistSection />
       <Testimonials />
-      <Credibility />
-      <Honesty />
-      <Faq />
-      <ConversionBar />
-      <ExitToast />
+      <WaitlistSection />
     </>
   )
 }

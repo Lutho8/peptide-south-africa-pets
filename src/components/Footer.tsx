@@ -1,6 +1,7 @@
 import { Link } from 'react-router'
 import { PRODUCTS, waLink } from '@/lib/data'
 import { useI18n } from '@/lib/i18n'
+import { asset } from '@/lib/asset'
 
 /** Section 13 — compliance strip + breadcrumb + footer (design.md §7.3, §7.7, §7.8). */
 export default function Footer() {
@@ -30,11 +31,18 @@ export default function Footer() {
       <footer className="bg-espresso text-cream">
         <div className="psa-container grid gap-10 py-14 md:grid-cols-4">
           <div>
-            <p className="font-serif text-2xl font-semibold">
-              PSA<span className="text-amber">·PETS</span>
+            <p className="flex items-center gap-2.5">
+              <img
+                src={asset('/psa-icon-square.png')}
+                alt=""
+                className="h-9 w-9 rounded-full bg-cream p-0.5"
+              />
+              <span className="font-serif text-2xl font-semibold">
+                PSA<span className="text-amber">·PETS</span>
+              </span>
             </p>
             <p className="mt-3 text-sm leading-relaxed text-cream/70">{t('foot.tagline')}</p>
-            <img src="/coa-stamp.svg" alt="COA verified stamp" className="mt-5 h-20 w-20 opacity-80" />
+            <img src={asset('/coa-stamp.svg')} alt="COA verified stamp" className="mt-5 h-20 w-20 opacity-80" />
           </div>
 
           <div>
@@ -98,7 +106,7 @@ export default function Footer() {
               rel="noreferrer"
               className="mono-label mt-4 inline-flex items-center gap-2 rounded-full bg-clinical px-4 py-2.5 !text-[11px] text-cream transition-colors hover:bg-cream hover:text-clinical"
             >
-              <img src="/icon-whatsapp.svg" alt="" className="h-4 w-4 invert" />
+              <img src={asset('/icon-whatsapp.svg')} alt="" className="h-4 w-4 invert" />
               {t('foot.textUs')}
             </a>
           </div>

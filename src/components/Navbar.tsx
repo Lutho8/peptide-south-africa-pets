@@ -8,10 +8,11 @@ import { TOTAL_WAITING, waLink } from '@/lib/data'
 import { useCartCount, openCart } from '@/lib/cart'
 import { useI18n, LanguageToggle } from '@/lib/i18n'
 import { cn } from '@/lib/utils'
+import { asset } from '@/lib/asset'
 
 /** `key` entries are translated; plain `label` entries (product names) stay as-is. */
 const LINKS: { to: string; key?: string; label?: string }[] = [
-  { to: '/pets', key: 'nav.catalog' },
+  { to: '/', key: 'nav.catalog' },
   { to: '/product/bpc-157', label: 'BPC-157' },
   { to: '/science', key: 'nav.science' },
   { to: '/verify', key: 'nav.verify' },
@@ -110,8 +111,15 @@ export default function Navbar() {
         )}
       >
         <div className="psa-container flex items-center justify-between gap-4">
-          <Link to="/pets" className="font-serif text-2xl font-semibold text-espresso">
-            PSA<span className="text-amber">·PETS</span>
+          <Link to="/" className="flex items-center gap-2.5" aria-label="Peptide South Africa — Pets">
+            <img
+              src={asset('/psa-logo-horizontal.png')}
+              alt="Peptide South Africa"
+              className="h-8 w-auto"
+            />
+            <span className="mono-label rounded-full border border-amber px-2 py-0.5 !text-[10px] text-amber-deep">
+              PETS
+            </span>
           </Link>
 
           <div className="hidden items-center gap-7 md:flex">
@@ -169,7 +177,7 @@ export default function Navbar() {
               aria-label={t('nav.waAria')}
               className="rounded-full border border-clinical/30 p-2 transition-colors hover:bg-clinical-tint"
             >
-              <img src="/icon-whatsapp.svg" alt="" className="h-5 w-5" />
+              <img src={asset('/icon-whatsapp.svg')} alt="" className="h-5 w-5" />
             </a>
           </div>
 
@@ -211,8 +219,15 @@ export default function Navbar() {
             className="fixed inset-0 z-[60] flex flex-col bg-cream p-6 md:hidden"
           >
             <div className="flex items-center justify-between">
-              <span className="font-serif text-2xl font-semibold text-espresso">
-                PSA<span className="text-amber">·PETS</span>
+              <span className="flex items-center gap-2">
+                <img
+                  src={asset('/psa-logo-horizontal.png')}
+                  alt="Peptide South Africa"
+                  className="h-7 w-auto"
+                />
+                <span className="mono-label rounded-full border border-amber px-2 py-0.5 !text-[10px] text-amber-deep">
+                  PETS
+                </span>
               </span>
               <div className="flex items-center gap-3">
                 <LanguageToggle />

@@ -152,7 +152,7 @@ export default function WaitlistForm({ defaultProducts, compact = false, onSucce
       source_site: 'pets.peptide-south-africa.com',
       consent_email: true,
       consent_whatsapp: Boolean(saved.whatsapp),
-      notes: `PSA PETS waitlist: ${saved.products.join(', ')}`,
+      notes: `Peptides4Pets waitlist: ${saved.products.join(', ')}`,
     })
     setSynced(waitlistOk && leadOk)
   }

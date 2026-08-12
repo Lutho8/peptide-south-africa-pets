@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://peptide-south-africa.com/sitemap.xml
+Sitemap: https://pets.peptide-south-africa.com/sitemap.xml

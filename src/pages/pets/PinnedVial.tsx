@@ -115,7 +115,7 @@ export default function PinnedVial() {
         <div className="pv-float relative z-[2]">
           <img
 loading="lazy"             src="/product-bpc157.png"
-            alt="PSA PETS BPC-157 oral drops — amber glass dropper bottle"
+            alt="Peptides4Pets BPC-157 oral drops — amber glass dropper bottle"
             className="pv-bottle h-[340px] w-auto rounded-2xl object-cover md:h-[420px]"
           />
         </div>

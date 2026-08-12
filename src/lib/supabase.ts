@@ -1,5 +1,5 @@
 /**
- * PSA PETS — Supabase backend client.
+ * Peptides4Pets — Supabase backend client.
  *
  * The publishable key is safe for the browser (RLS is insert-only on the
  * pets tables). Env vars override the bundled fallbacks so the static build

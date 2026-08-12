@@ -10,7 +10,7 @@ import CartDrawer from '@/components/CartDrawer'
 import { syncPendingSubmissions } from '@/lib/supabase'
 import { I18nProvider } from '@/lib/i18n'
 
-const SITE_URL = 'https://peptide-south-africa.com'
+const SITE_URL = 'https://pets.peptide-south-africa.com'
 
 /** Sitewide default meta; individual pages (blog, PDPs) override via Helmet. */
 function DefaultMeta({ pathname }: { pathname: string }) {
@@ -20,8 +20,8 @@ function DefaultMeta({ pathname }: { pathname: string }) {
     '@graph': [
       {
         '@type': 'Organization',
-        name: 'PSA PETS',
-        alternateName: 'Peptide South Africa — Pets',
+        name: 'Peptides4Pets',
+        alternateName: 'Peptides4Pets by Peptide South Africa',
         url: SITE_URL,
         logo: `${SITE_URL}/coa-stamp.svg`,
         description:
@@ -30,21 +30,21 @@ function DefaultMeta({ pathname }: { pathname: string }) {
       },
       {
         '@type': 'WebSite',
-        name: 'PSA PETS',
+        name: 'Peptides4Pets',
         url: SITE_URL,
-        publisher: { '@type': 'Organization', name: 'PSA PETS' },
+        publisher: { '@type': 'Organization', name: 'Peptides4Pets' },
       },
     ],
   }
   return (
     <Helmet>
-      <title>PSA PETS — COA-Verified Peptides & Collagen for Dogs, Cats & Horses | South Africa</title>
+      <title>Peptides4Pets — COA-Verified Peptides & Collagen for Dogs, Cats & Horses | South Africa</title>
       <meta
         name="description"
         content="South Africa's first COA-verified pet peptide line: BPC-157, KPV, collagen and more — HPLC-tested, vet-reviewed, VAT included. Join the waitlist."
       />
       <link rel="canonical" href={`${SITE_URL}${pathname === '/' ? '' : pathname}`} />
-      <meta property="og:site_name" content="PSA PETS" />
+      <meta property="og:site_name" content="Peptides4Pets" />
       <meta property="og:type" content="website" />
       <meta property="og:url" content={`${SITE_URL}${pathname === '/' ? '' : pathname}`} />
       <meta name="twitter:card" content="summary_large_image" />

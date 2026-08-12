@@ -111,10 +111,10 @@ export default function Navbar() {
         )}
       >
         <div className="psa-container flex items-center justify-between gap-4">
-          <Link to="/" className="flex items-center gap-2.5" aria-label="Peptide South Africa — Pets">
+          <Link to="/" className="flex items-center gap-2.5" aria-label="Peptides4Pets">
             <img
               src={asset('/psa-logo-horizontal.png')}
-              alt="Peptide South Africa"
+              alt="Peptides4Pets"
               className="h-8 w-auto"
             />
             <span className="mono-label rounded-full border border-amber px-2 py-0.5 !text-[10px] text-amber-deep">
@@ -222,7 +222,7 @@ export default function Navbar() {
               <span className="flex items-center gap-2">
                 <img
                   src={asset('/psa-logo-horizontal.png')}
-                  alt="Peptide South Africa"
+                  alt="Peptides4Pets"
                   className="h-7 w-auto"
                 />
                 <span className="mono-label rounded-full border border-amber px-2 py-0.5 !text-[10px] text-amber-deep">

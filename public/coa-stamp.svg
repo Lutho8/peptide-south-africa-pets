@@ -10,7 +10,7 @@
     <textPath href="#coa-top" startOffset="50%" text-anchor="middle">COA VERIFIED · ≥99% HPLC</textPath>
   </text>
   <text font-family="'Space Mono',monospace" font-size="17" font-weight="700" letter-spacing="4" fill="#1E4D3B">
-    <textPath href="#coa-bot" startOffset="50%" text-anchor="middle">PSA PETS · EVERY BATCH</textPath>
+    <textPath href="#coa-bot" startOffset="50%" text-anchor="middle">Peptides4Pets · EVERY BATCH</textPath>
   </text>
   <g fill="#1E4D3B" opacity="0.9">
     <ellipse cx="120" cy="132" rx="22" ry="17"/>

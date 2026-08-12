@@ -27,6 +27,7 @@ import {
   useLiveWaitlistCount,
 } from '@/lib/supabase';
 import { useI18n } from '@/lib/i18n';
+import Seo from '@/components/Seo';
 import type { Locale } from '@/lib/i18n';
 
 /* ----------------------------- design tokens ---------------------------- */
@@ -263,7 +264,7 @@ function syncFunnelTicket(t: WaitlistTicket, locale: Locale): void {
     source_site: 'pets.peptide-south-africa.com',
     consent_email: true,
     consent_whatsapp: Boolean(t.whatsapp),
-    notes: `PSA PETS waitlist: ${t.products.join(', ')}`,
+    notes: `Peptides4Pets waitlist: ${t.products.join(', ')}`,
   });
 }
 
@@ -488,6 +489,11 @@ export default function WaitlistPage() {
 
   return (
     <main className={`${SANS} min-h-[100dvh] bg-[#F7F1E5] text-[#2B2118] antialiased`}>
+      <Seo
+        title="Join the Peptides4Pets Waitlist"
+        description="Reserve founding-member pricing on COA-verified pet peptides for dogs, cats and horses. No payment today — lock 20% off your first three months at launch."
+        path="/waitlist"
+      />
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       <link
@@ -499,7 +505,7 @@ export default function WaitlistPage() {
       <header className="border-b border-[#E3D5BC] bg-[#F7F1E5]">
         <div className="mx-auto flex h-[64px] max-w-[1320px] items-center justify-between px-6">
           <Link to="/" className={`${SERIF} text-xl font-semibold tracking-[-0.01em]`}>
-            PSA<span className="text-[#D97E3F]">·PETS</span>
+            Peptides4<span className="text-[#D97E3F]">Pets</span>
           </Link>
           <span className={`${MONO} text-[11px] font-bold uppercase tracking-[0.08em] text-[#5C5044]`}>
             STEP {step + 1} OF 4

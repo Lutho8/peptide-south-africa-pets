@@ -1,5 +1,5 @@
 /**
- * PSA PETS — personalization quiz engine (keeps.com-style funnel).
+ * Peptides4Pets — personalization quiz engine (keeps.com-style funnel).
  *
  * Self-contained module owned by the quiz page. Imports the shared catalog
  * read-only from `@/lib/data` and writes to two localStorage contracts:

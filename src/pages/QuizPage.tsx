@@ -21,6 +21,7 @@ import VetPack from '@/components/VetPack'
 import { handoutForProduct } from '@/lib/vetpack'
 import type { VetHandout } from '@/lib/vetpack'
 import { useI18n } from '@/lib/i18n'
+import Seo from '@/components/Seo'
 import {
   generateTicketCode,
   getUtmFromUrl,
@@ -286,7 +287,7 @@ export default function QuizPage() {
         source_site: 'pets.peptide-south-africa.com',
         consent_email: true,
         consent_whatsapp: Boolean(whatsapp.trim()),
-        notes: `PSA PETS waitlist: ${slugs.join(', ')}`,
+        notes: `Peptides4Pets waitlist: ${slugs.join(', ')}`,
       })
     } catch {
       /* funnel must never break on a sync failure */
@@ -772,7 +773,7 @@ export default function QuizPage() {
                 className="mt-0.5 h-4 w-4 shrink-0 accent-clinical"
               />
               <span className="text-sm leading-snug text-espresso-70">
-                I&rsquo;m happy for PSA PETS to contact me about {displayName}&rsquo;s plan
+                I&rsquo;m happy for Peptides4Pets to contact me about {displayName}&rsquo;s plan
                 and pet product launches. POPIA compliant — unsubscribe anytime.
               </span>
             </label>
@@ -1151,6 +1152,11 @@ export default function QuizPage() {
 
   return (
     <div className="paper-texture bg-cream">
+      <Seo
+        title="60-Second Pet Peptide Quiz"
+        description="Answer seven quick questions for a rule-based, vet-reviewed peptide plan for your dog or cat — matched to age, size and concern, with evidence graded honestly."
+        path="/quiz"
+      />
       <div className="mx-auto w-full max-w-2xl px-4 pb-24 pt-8 md:pt-12">
         {step > 0 && step < LAST_STEP && (
           <div className="mb-8">

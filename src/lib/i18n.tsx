@@ -1,5 +1,5 @@
 /**
- * PSA PETS — lightweight EN/AF localization (no external i18n library).
+ * Peptides4Pets — lightweight EN/AF localization (no external i18n library).
  *
  * `I18nProvider` holds the active locale (persisted to localStorage under
  * `psa_pets_locale`, mirrored to `<html lang>`). `useI18n()` exposes
@@ -28,7 +28,7 @@ const en: Dict = {
   'nav.waitingChip': '{count} SA PET OWNERS WAITING',
   'nav.cartAria': 'Open your Launch Box, {count} items',
   'nav.cta': 'Join the waitlist',
-  'nav.waMsg': 'Hi PSA PETS! I have a question about the pet peptide waitlist.',
+  'nav.waMsg': 'Hi Peptides4Pets! I have a question about the pet peptide waitlist.',
   'nav.waAria': 'WhatsApp us',
   'nav.close': '✕ CLOSE',
   'nav.openMenu': 'Open menu',
@@ -88,7 +88,7 @@ const en: Dict = {
   'ss.p1':
     'For decades, longevity research focused on humans. That’s changing. In the US, companies like Loyal are running the largest canine aging study in history — 1,317 dogs across 70 veterinary practices. The demand signal is unmistakable: pet owners want more healthy years with their animals.',
   'ss.p2':
-    'PSA PETS brings that ambition home. We’re adapting the compounds pet owners worldwide already ask for — BPC-157, KPV, collagen peptides — to South African shelves, with South African pricing, VAT included, and a certificate of analysis on every batch.',
+    'Peptides4Pets brings that ambition home. We’re adapting the compounds pet owners worldwide already ask for — BPC-157, KPV, collagen peptides — to South African shelves, with South African pricing, VAT included, and a certificate of analysis on every batch.',
   'ss.stat1.label': 'DOGS',
   'ss.stat1.text': "in Loyal's landmark STAY trial",
   'ss.stat2.label': 'CLINICS',
@@ -207,7 +207,7 @@ const en: Dict = {
   /* ---------------- FAQ ---------------- */
   'faq.titleA': 'Honest',
   'faq.titleEm': 'answers.',
-  'faq.1.q': 'When will PSA PETS launch?',
+  'faq.1.q': 'When will Peptides4Pets launch?',
   'faq.1.a':
     'Mobility Collagen is targeted for Q1 2026; peptide drops follow as quality and regulatory reviews complete. Waitlist members hear first.',
   'faq.2.q': 'Are these products safe for my pet?',
@@ -320,15 +320,15 @@ Object.assign(en, {
   'form.copied': '✓ COPIED',
   'form.shareWa': 'SHARE ON WHATSAPP',
   'form.refWaText':
-    '{name} here — I’ve joined the PSA PETS founding waitlist (COA-verified pet peptides, launching in SA). Use my link and we both move up the queue: {link}',
+    '{name} here — I’ve joined the Peptides4Pets founding waitlist (COA-verified pet peptides, launching in SA). Use my link and we both move up the queue: {link}',
   'form.confirmWa': 'Confirm faster on WhatsApp',
   'form.waMessage':
-    "Hi PSA PETS! I'm {name}, on the waitlist for {products} for my {petType}, {breed}, age {age}. Code {code}.",
+    "Hi Peptides4Pets! I'm {name}, on the waitlist for {products} for my {petType}, {breed}, age {age}. Code {code}.",
   'form.popiaFoot':
     'POPIA COMPLIANT · WE’LL ONLY CONTACT YOU ABOUT PET PRODUCTS · UNSUBSCRIBE ANYTIME',
 
   /* ---------------- Quiz ---------------- */
-  'quiz.overline': 'PSA PETS · PERSONALIZATION QUIZ',
+  'quiz.overline': 'Peptides4Pets · PERSONALIZATION QUIZ',
   'quiz.hookTitle': 'Build your dog’s (or cat’s) peptide plan in 60 seconds.',
   'quiz.hookSub':
     'Seven quick taps. A rule-based, vet-reviewed stack for your pet’s age, size and biggest concern — with the evidence graded honestly.',
@@ -389,7 +389,7 @@ Object.assign(en, {
   'quiz.email': 'EMAIL',
   'quiz.whatsapp': 'WHATSAPP NUMBER',
   'quiz.popia':
-    'I’m happy for PSA PETS to contact me about {name}’s plan and pet product launches. POPIA compliant — unsubscribe anytime.',
+    'I’m happy for Peptides4Pets to contact me about {name}’s plan and pet product launches. POPIA compliant — unsubscribe anytime.',
   'quiz.err.owner': 'TELL US YOUR NAME',
   'quiz.err.email': 'VALID EMAIL REQUIRED',
   'quiz.err.whatsapp': 'SA FORMAT: +27… OR 0… (9 DIGITS)',
@@ -398,13 +398,13 @@ Object.assign(en, {
   'quiz.leadFoot':
     'POPIA COMPLIANT · WE’LL ONLY WHATSAPP/EMAIL YOU ABOUT PET PRODUCTS · NO PAYMENT REQUIRED',
   'quiz.readyLine': 'PLAN READY · {date} · REF {ref}',
-  'quiz.resultsTitle': 'The PSA PETS stack for {name}.',
+  'quiz.resultsTitle': 'The Peptides4Pets stack for {name}.',
   'quiz.results.count': '{count} products',
   'quiz.results.countOne': '1 product',
   'quiz.results.matched': 'matched to {concerns}',
   'quiz.results.wellness': 'everyday wellness',
   'quiz.results.senior': ' — with senior logic applied',
-  'quiz.protocol': 'PSA PETS · PERSONALIZED PROTOCOL',
+  'quiz.protocol': 'Peptides4Pets · PERSONALIZED PROTOCOL',
   'quiz.patient': 'PATIENT',
   'quiz.speciesLabel': 'SPECIES',
   'quiz.breedRow': 'BREED',
@@ -523,7 +523,7 @@ Object.assign(en, {
   'wlp.city.Cape Town': 'Cape Town',
   'wlp.city.Other': 'Other',
   'wlp.popia':
-    "I'm happy for PSA PETS to contact me about pet product launches. POPIA compliant, unsubscribe anytime.",
+    "I'm happy for Peptides4Pets to contact me about pet product launches. POPIA compliant, unsubscribe anytime.",
   'wlp.err.owner': 'TELL US YOUR NAME',
   'wlp.err.email': 'A VALID EMAIL IS REQUIRED',
   'wlp.err.whatsapp': 'SA MOBILE: 9 DIGITS AFTER +27',
@@ -546,7 +546,7 @@ Object.assign(en, {
   'wlp.welcomeBack': 'WELCOME BACK — YOUR TICKET:',
   'wlp.confirmedNamed': "You're in — and so is {name}.",
   'wlp.confirmed': "You're in.",
-  'wlp.ticketTitle': 'PSA PETS · WAITLIST TICKET',
+  'wlp.ticketTitle': 'Peptides4Pets · WAITLIST TICKET',
   'wlp.rowOwner': 'OWNER',
   'wlp.rowPet': 'PET',
   'wlp.rowProducts': 'PRODUCTS',
@@ -564,7 +564,7 @@ Object.assign(en, {
   'wlp.another': 'REGISTER ANOTHER PET →',
   'wlp.foot': "TICKET SAVED ON THIS DEVICE · WE'LL NEVER SPAM · POPIA COMPLIANT",
   'wlp.waMessage':
-    'Hi PSA PETS — confirming my waitlist ticket.\nName: {name}\nPet: {pet}\nProducts: {products}\nCode: {code} · Queue #{queue}',
+    'Hi Peptides4Pets — confirming my waitlist ticket.\nName: {name}\nPet: {pet}\nProducts: {products}\nCode: {code} · Queue #{queue}',
 
   /* ---------------- Product page ---------------- */
   'pdp.notFound.overline': 'CATALOG / NOT FOUND',
@@ -603,7 +603,7 @@ Object.assign(en, {
   'pdp.cmp.overline': 'THE BENCHMARK',
   'pdp.cmp.title': 'Why wait for local?',
   'pdp.cmp.import': 'TYPICAL US IMPORT',
-  'pdp.cmp.psa': 'PSA PETS AT LAUNCH',
+  'pdp.cmp.psa': 'Peptides4Pets AT LAUNCH',
   'pdp.cmp.price': 'PRICE',
   'pdp.cmp.shipping': 'SHIPPING',
   'pdp.cmp.docs': 'DOCUMENTATION',
@@ -638,7 +638,7 @@ Object.assign(en, {
   'foot.questions': 'QUESTIONS? TEXT US',
   'foot.questionsBody': 'One WhatsApp message — real humans, Cape Town hours.',
   'foot.textUs': 'TEXT US',
-  'foot.waMsg': 'Hi PSA PETS! A question about the pet products.',
+  'foot.waMsg': 'Hi Peptides4Pets! A question about the pet products.',
   'foot.bottom': '© {year} PEPTIDE SOUTH AFRICA · PRICES INCLUDE VAT · POPIA COMPLIANT · ≥99% HPLC TESTED',
 })
 
@@ -663,7 +663,7 @@ Object.assign(en, {
     '“6 months ago we were counting the time we had left with him. Now I genuinely believe we have another 3 years. If you have a dog, understand that he’s aging the same way you are. He needs help, but he can’t do the research… you can!”',
   'tm.feat.attr': '— COMMUNITY MEMBER, CAPE TOWN · 70 KG SENIOR BOERBOEL',
   'tm.feat.disclaimer':
-    'SHARED BY A COMMUNITY MEMBER. HORMONE PROTOCOLS REQUIRE VETERINARY SUPERVISION AND BLOODWORK. PSA PETS DOES NOT SELL TESTOSTERONE OR ADVISE ON PRESCRIPTION MEDICINES.',
+    'SHARED BY A COMMUNITY MEMBER. HORMONE PROTOCOLS REQUIRE VETERINARY SUPERVISION AND BLOODWORK. Peptides4Pets DOES NOT SELL TESTOSTERONE OR ADVISE ON PRESCRIPTION MEDICINES.',
   'tm.aiChip': 'AI RE-ENACTMENT',
   'tm.play': 'Play',
   'tm.pause': 'Pause',
@@ -693,10 +693,10 @@ Object.assign(en, {
   'tm.cta': 'Your dog’s comeback starts with 60 seconds →',
 
   /* ---------------- 60-day mobility guarantee band ---------------- */
-  'guar.overline': 'THE PSA PETS PROMISE',
+  'guar.overline': 'THE Peptides4Pets PROMISE',
   'guar.title': 'If you don’t see the difference, you don’t pay.',
   'guar.body':
-    'Every PSA PETS launch product ships with a 60-day mobility guarantee. If your dog’s movement, recovery or spark doesn’t meaningfully improve, we refund every rand. No hoops, no forms — one WhatsApp message.',
+    'Every Peptides4Pets launch product ships with a 60-day mobility guarantee. If your dog’s movement, recovery or spark doesn’t meaningfully improve, we refund every rand. No hoops, no forms — one WhatsApp message.',
   'guar.chip1': '60 DAYS',
   'guar.chip2': 'FULL REFUND',
   'guar.chip3': 'ONE WHATSAPP',
@@ -713,13 +713,13 @@ Object.assign(en, {
   'pipe.sub':
     'Three formulas in active development. Early-list members hear launch dates first — and keep founding pricing.',
   'pipe.badge': 'IN DEVELOPMENT',
-  'pipe.calm.name': 'PSA PETS CALM',
+  'pipe.calm.name': 'Peptides4Pets CALM',
   'pipe.calm.spec': 'SELANK-BASED CALMING BLEND',
   'pipe.calm.desc': 'For storm-shakes, fireworks and separation stress — calm without sedation.',
-  'pipe.immune.name': 'PSA PETS IMMUNE+',
+  'pipe.immune.name': 'Peptides4Pets IMMUNE+',
   'pipe.immune.spec': 'TA-1 + KPV + GHK-CU',
   'pipe.immune.desc': 'The immune-resilience stack for seniors and frequent patients.',
-  'pipe.senior.name': 'PSA PETS SENIOR VITALITY',
+  'pipe.senior.name': 'Peptides4Pets SENIOR VITALITY',
   'pipe.senior.spec': 'LONGEVITY BLEND',
   'pipe.senior.desc': 'Built around canine aging research — for the grey-muzzle years.',
   'pipe.cta': 'JOIN THE EARLY LIST',
@@ -738,7 +738,7 @@ const af: Dict = {
   'nav.waitingChip': '{count} SA-TROETELDIEREËNAARS WAG',
   'nav.cartAria': 'Maak jou Launch Box oop, {count} produkte',
   'nav.cta': 'Sluit aan by die waglys',
-  'nav.waMsg': 'Hallo PSA PETS! Ek het ’n vraag oor die troeteldier-peptiedwaglys.',
+  'nav.waMsg': 'Hallo Peptides4Pets! Ek het ’n vraag oor die troeteldier-peptiedwaglys.',
   'nav.waAria': 'WhatsApp ons',
   'nav.close': '✕ SLUIT',
   'nav.openMenu': 'Maak die kieslys oop',
@@ -798,7 +798,7 @@ const af: Dict = {
   'ss.p1':
     'Vir dekades het langlewendheidnavorsing op mense gefokus. Dit verander. In die VSA bestuur maatskappye soos Loyal die grootste honde-verouderingstudie in die geskiedenis — 1 317 honde oor 70 veeartspraktyke. Die vraagsein is onmiskenbaar: troeteldier-eienaars wil meer gesonde jare saam met hulle diere hê.',
   'ss.p2':
-    'PSA PETS bring daardie ambisie huis toe. Ons pas die verbindings waarvoor troeteldier-eienaars wêreldwyd alreeds vra — BPC-157, KPV, kollageenpeptiede — aan vir Suid-Afrikaanse rakke, met Suid-Afrikaanse pryse, BTW ingesluit, en ’n analisesertifikaat by elke lot.',
+    'Peptides4Pets bring daardie ambisie huis toe. Ons pas die verbindings waarvoor troeteldier-eienaars wêreldwyd alreeds vra — BPC-157, KPV, kollageenpeptiede — aan vir Suid-Afrikaanse rakke, met Suid-Afrikaanse pryse, BTW ingesluit, en ’n analisesertifikaat by elke lot.',
   'ss.stat1.label': 'HONDE',
   'ss.stat1.text': 'in Loyal se baanbreker-STAY-proef',
   'ss.stat2.label': 'KLINIEKE',
@@ -918,7 +918,7 @@ const af: Dict = {
   /* ---------------- FAQ ---------------- */
   'faq.titleA': 'Eerlike',
   'faq.titleEm': 'antwoorde.',
-  'faq.1.q': 'Wanneer lansier PSA PETS?',
+  'faq.1.q': 'Wanneer lansier Peptides4Pets?',
   'faq.1.a':
     'Mobility Collagen word vir die eerste kwartaal van 2026 geteiken; peptieddruppels volg soos kwaliteit- en regulatoriese hersienings afgehandel word. Waglyslede hoor eerste.',
   'faq.2.q': 'Is hierdie produkte veilig vir my troeteldier?',
@@ -1031,15 +1031,15 @@ Object.assign(af, {
   'form.copied': '✓ GEKOPIEER',
   'form.shareWa': 'DEEL OP WHATSAPP',
   'form.refWaText':
-    '{name} hier — ek het by die PSA PETS-stigterswaglys aangesluit (COA-geverifieerde troeteldier-peptiede, binnekort in SA). Gebruik my skakel en ons albei skuif op in die ry: {link}',
+    '{name} hier — ek het by die Peptides4Pets-stigterswaglys aangesluit (COA-geverifieerde troeteldier-peptiede, binnekort in SA). Gebruik my skakel en ons albei skuif op in die ry: {link}',
   'form.confirmWa': 'Bevestig vinniger op WhatsApp',
   'form.waMessage':
-    'Hallo PSA PETS! Ek is {name}, op die waglys vir {products} vir my {petType}, {breed}, {age} jaar oud. Kode {code}.',
+    'Hallo Peptides4Pets! Ek is {name}, op die waglys vir {products} vir my {petType}, {breed}, {age} jaar oud. Kode {code}.',
   'form.popiaFoot':
     'VOLDOEN AAN POPIA · ONS KONTAK JOU NET OOR TROETELDIERPRODUKTE · SKRYF ENIGE TYD UIT',
 
   /* ---------------- Quiz ---------------- */
-  'quiz.overline': 'PSA PETS · PERSONALISASIE-QUIZ',
+  'quiz.overline': 'Peptides4Pets · PERSONALISASIE-QUIZ',
   'quiz.hookTitle': 'Bou jou hond (of kat) se peptiedplan in 60 sekondes.',
   'quiz.hookSub':
     'Sewe vinnige tikke. ’n Reëlgebaseerde, veearts-hersiende stapel vir jou troeteldier se ouderdom, grootte en grootste bekommernis — met die bewyse eerlik gegradeer.',
@@ -1100,7 +1100,7 @@ Object.assign(af, {
   'quiz.email': 'E-POS',
   'quiz.whatsapp': 'WHATSAPP-NOMMER',
   'quiz.popia':
-    'Ek is tevrede dat PSA PETS my oor {name} se plan en troeteldierproduk-bekendstellings kontak. Voldoen aan POPIA — skryf enige tyd uit.',
+    'Ek is tevrede dat Peptides4Pets my oor {name} se plan en troeteldierproduk-bekendstellings kontak. Voldoen aan POPIA — skryf enige tyd uit.',
   'quiz.err.owner': 'VERTEL ONS JOU NAAM',
   'quiz.err.email': 'GELDIGE E-POSADRES NODIG',
   'quiz.err.whatsapp': 'SA-FORMAAT: +27… OF 0… (9 SYFERS)',
@@ -1109,13 +1109,13 @@ Object.assign(af, {
   'quiz.leadFoot':
     'VOLDOEN AAN POPIA · ONS KONTAK JOU NET PER WHATSAPP/E-POS OOR TROETELDIERPRODUKTE · GEEN BETALING NODIG',
   'quiz.readyLine': 'PLAN GEREED · {date} · VERW {ref}',
-  'quiz.resultsTitle': 'Die PSA PETS-stapel vir {name}.',
+  'quiz.resultsTitle': 'Die Peptides4Pets-stapel vir {name}.',
   'quiz.results.count': '{count} produkte',
   'quiz.results.countOne': '1 produk',
   'quiz.results.matched': 'gepas by {concerns}',
   'quiz.results.wellness': 'alledaagse welstand',
   'quiz.results.senior': ' — met senior-logika toegepas',
-  'quiz.protocol': 'PSA PETS · GEPERSONALISEERDE PROTOKOL',
+  'quiz.protocol': 'Peptides4Pets · GEPERSONALISEERDE PROTOKOL',
   'quiz.patient': 'PASIËNT',
   'quiz.speciesLabel': 'SPESIE',
   'quiz.breedRow': 'RAS',
@@ -1235,7 +1235,7 @@ Object.assign(af, {
   'wlp.city.Cape Town': 'Kaapstad',
   'wlp.city.Other': 'Ander',
   'wlp.popia':
-    'Ek is tevrede dat PSA PETS my oor troeteldierproduk-bekendstellings kontak. Voldoen aan POPIA, skryf enige tyd uit.',
+    'Ek is tevrede dat Peptides4Pets my oor troeteldierproduk-bekendstellings kontak. Voldoen aan POPIA, skryf enige tyd uit.',
   'wlp.err.owner': 'VERTEL ONS JOU NAAM',
   'wlp.err.email': '’N GELDIGE E-POSADRES IS NODIG',
   'wlp.err.whatsapp': 'SA-SELFOON: 9 SYFERS NA +27',
@@ -1258,7 +1258,7 @@ Object.assign(af, {
   'wlp.welcomeBack': 'WELKOM TERUG — JOU KAARTJIE:',
   'wlp.confirmedNamed': 'Jy is in — en {name} ook.',
   'wlp.confirmed': 'Jy is in.',
-  'wlp.ticketTitle': 'PSA PETS · WAGLYS-KAARTJIE',
+  'wlp.ticketTitle': 'Peptides4Pets · WAGLYS-KAARTJIE',
   'wlp.rowOwner': 'EIENAAR',
   'wlp.rowPet': 'TROETELDIER',
   'wlp.rowProducts': 'PRODUKTE',
@@ -1276,7 +1276,7 @@ Object.assign(af, {
   'wlp.another': 'REGISTREER NOG ’N TROETELDIER →',
   'wlp.foot': 'KAARTJIE OP HIERDIE TOESTEL GESTOOR · ONS SPAM NOOIT · VOLDOEN AAN POPIA',
   'wlp.waMessage':
-    'Hallo PSA PETS — ek bevestig my waglys-kaartjie.\nNaam: {name}\nTroeteldier: {pet}\nProdukte: {products}\nKode: {code} · Ry #{queue}',
+    'Hallo Peptides4Pets — ek bevestig my waglys-kaartjie.\nNaam: {name}\nTroeteldier: {pet}\nProdukte: {products}\nKode: {code} · Ry #{queue}',
 
   /* ---------------- Product page ---------------- */
   'pdp.notFound.overline': 'KATALOGUS / NIE GEVIND NIE',
@@ -1315,7 +1315,7 @@ Object.assign(af, {
   'pdp.cmp.overline': 'DIE MAATSTAF',
   'pdp.cmp.title': 'Hoekom wag vir plaaslik?',
   'pdp.cmp.import': 'TIPIESE VSA-INVOER',
-  'pdp.cmp.psa': 'PSA PETS BY LANSIERING',
+  'pdp.cmp.psa': 'Peptides4Pets BY LANSIERING',
   'pdp.cmp.price': 'PRYS',
   'pdp.cmp.shipping': 'VERSENDING',
   'pdp.cmp.docs': 'DOKUMENTASIE',
@@ -1350,7 +1350,7 @@ Object.assign(af, {
   'foot.questions': 'VRAE? WHATSAPP ONS',
   'foot.questionsBody': 'Een WhatsApp-boodskap — regte mense, Kaapstad-ure.',
   'foot.textUs': 'STUUR VIR ONS',
-  'foot.waMsg': 'Hallo PSA PETS! ’n Vraag oor die troeteldierprodukte.',
+  'foot.waMsg': 'Hallo Peptides4Pets! ’n Vraag oor die troeteldierprodukte.',
   'foot.bottom':
     '© {year} PEPTIDE SOUTH AFRICA · PRYSE SLUIT BTW IN · VOLDOEN AAN POPIA · ≥99% HPLC-GETOETS',
 })
@@ -1376,7 +1376,7 @@ Object.assign(af, {
     '“6 maande gelede het ons die tyd getel wat ons nog met hom het. Nou glo ek oprecht ons het nog 3 jaar. As jy ’n hond het, verstaan dat hy net soos jy verouder. Hy het hulp nodig, maar hy kan nie self die navorsing doen nie… jy kan!”',
   'tm.feat.attr': '— GEMEENSKAPSLID, KAAPSTAD · 70 KG SENIOR-BOERBOEL',
   'tm.feat.disclaimer':
-    'DEUR ’N GEMEENSKAPSLID GEDEEL. HORMOONPROTOKOLLE VEREIS VEEARTSENYKUNDIGE TOESIG EN BLOEDWERK. PSA PETS VERKOOP NIE TESTOSTERON NIE EN GEE NIE RAAD OOR VOORSKRIFMEDISYNE NIE.',
+    'DEUR ’N GEMEENSKAPSLID GEDEEL. HORMOONPROTOKOLLE VEREIS VEEARTSENYKUNDIGE TOESIG EN BLOEDWERK. Peptides4Pets VERKOOP NIE TESTOSTERON NIE EN GEE NIE RAAD OOR VOORSKRIFMEDISYNE NIE.',
   'tm.aiChip': 'KI-NABOOTSING',
   'tm.play': 'Speel',
   'tm.pause': 'Laat wag',
@@ -1406,10 +1406,10 @@ Object.assign(af, {
   'tm.cta': 'Jou hond se terugkeer begin met 60 sekondes →',
 
   /* ---------------- 60-dae-mobiliteitswaarborgstrook ---------------- */
-  'guar.overline': 'DIE PSA PETS-BELOFTE',
+  'guar.overline': 'DIE Peptides4Pets-BELOFTE',
   'guar.title': 'As jy nie die verskil sien nie, betaal jy nie.',
   'guar.body':
-    'Elke PSA PETS-lanseringsproduk word met ’n 60-dae-mobiliteitswaarborg gestuur. As jou hond se beweging, herstel of vonk nie betekenisvol verbeter nie, betaal ons elke rand terug. Geen hoepels, geen vorms — een WhatsApp-boodskap.',
+    'Elke Peptides4Pets-lanseringsproduk word met ’n 60-dae-mobiliteitswaarborg gestuur. As jou hond se beweging, herstel of vonk nie betekenisvol verbeter nie, betaal ons elke rand terug. Geen hoepels, geen vorms — een WhatsApp-boodskap.',
   'guar.chip1': '60 DAE',
   'guar.chip2': 'VOLLE TERUGBETALING',
   'guar.chip3': 'EEN WHATSAPP',
@@ -1426,13 +1426,13 @@ Object.assign(af, {
   'pipe.sub':
     'Drie formules in aktiewe ontwikkeling. Vroeë-lys-lede hoor lanseringsdatums eerste — en behou stigterspryse.',
   'pipe.badge': 'IN ONTWIKKELING',
-  'pipe.calm.name': 'PSA PETS CALM',
+  'pipe.calm.name': 'Peptides4Pets CALM',
   'pipe.calm.spec': 'SELANK-GEBASEERDE KALMERENDE MENGSEL',
   'pipe.calm.desc': 'Vir storm-bebings, vuurwerke en skeidingstres — kalm sonder verdoving.',
-  'pipe.immune.name': 'PSA PETS IMMUNE+',
+  'pipe.immune.name': 'Peptides4Pets IMMUNE+',
   'pipe.immune.spec': 'TA-1 + KPV + GHK-CU',
   'pipe.immune.desc': 'Die immuunweerstand-stapel vir seniors en gereelde pasiënte.',
-  'pipe.senior.name': 'PSA PETS SENIOR VITALITY',
+  'pipe.senior.name': 'Peptides4Pets SENIOR VITALITY',
   'pipe.senior.spec': 'LANGLEWENDHEID-MENGSEL',
   'pipe.senior.desc': 'Gebou rondom honde-verouderingnavorsing — vir die grys-snuit-jare.',
   'pipe.cta': 'SLUIT BY DIE VROEË LYS AAN',
@@ -1460,9 +1460,9 @@ Object.assign(en, {
     "We couldn't match that number in the pre-launch sample ledger. Message us on WhatsApp and we'll send the certificate directly.",
   'coa.notFound.cta': 'WhatsApp us the batch number',
   'coa.notFound.waMsg':
-    'Hi PSA PETS — please send me the certificate of analysis for batch {batch}.',
+    'Hi Peptides4Pets — please send me the certificate of analysis for batch {batch}.',
   'coa.sampleChip': 'SAMPLE CERTIFICATE — LIVE BATCH DATA ACTIVATES AT LAUNCH',
-  'coa.doc.kicker': 'PSA PETS · THIRD-PARTY VERIFIED',
+  'coa.doc.kicker': 'Peptides4Pets · THIRD-PARTY VERIFIED',
   'coa.doc.title': 'CERTIFICATE OF ANALYSIS',
   'coa.verified': '✓ VERIFIED — ALL SPECIFICATIONS PASSED',
   'coa.row.product': 'PRODUCT',
@@ -1484,7 +1484,7 @@ Object.assign(en, {
   'coas.overline': 'BATCH TRANSPARENCY',
   'coas.title': 'Every batch. Every certificate. Public.',
   'coas.body':
-    'Type the batch number on any PSA PETS label and pull the full certificate of analysis — purity, heavy metals, endotoxins, analyst sign-off. Try it with our launch batch.',
+    'Type the batch number on any Peptides4Pets label and pull the full certificate of analysis — purity, heavy metals, endotoxins, analyst sign-off. Try it with our launch batch.',
   'coas.demo': 'SEE THE SAMPLE CERTIFICATE',
   'coas.verify': 'VERIFY YOUR BATCH →',
 
@@ -1496,7 +1496,7 @@ Object.assign(en, {
   'vetpack.wa': 'SHARE VIA WHATSAPP',
   'vetpack.print': 'PRINT VET HANDOUT',
   'vetpack.close': 'CLOSE',
-  'vetpack.docTitle': 'PSA PETS · VET HANDOUT',
+  'vetpack.docTitle': 'Peptides4Pets · VET HANDOUT',
   'vetpack.docStatus': 'PRE-LAUNCH PRODUCT DOSSIER — NOT A VETERINARY MEDICINE',
   'vetpack.row.product': 'PRODUCT',
   'vetpack.row.compound': 'COMPOUND',
@@ -1518,7 +1518,7 @@ Object.assign(en, {
   'vetpack.waItem':
     '[{n}] {product} ({compound})\nEvidence: {evidence}\nCitation: {citation}\nDosing: {dosing}\nMonitoring: {monitoring}',
   'vetpack.waMsg':
-    'PSA PETS — VET HANDOUT (pre-launch dossier)\n\n{items}\n\nStatus: in development, not yet for sale. Batch COAs publish at launch.\nDetails: {link}',
+    'Peptides4Pets — VET HANDOUT (pre-launch dossier)\n\n{items}\n\nStatus: in development, not yet for sale. Batch COAs publish at launch.\nDetails: {link}',
 
   /* queue dashboard */
   'queue.overline': 'YOUR WAITLIST DASHBOARD',
@@ -1593,9 +1593,9 @@ Object.assign(af, {
     'Ons kon daardie nommer nie in die voorlansiering-voorbeeldgrootboek pas nie. Stuur vir ons ’n WhatsApp en ons stuur die sertifikaat direk.',
   'coa.notFound.cta': 'WhatsApp ons die lotnommer',
   'coa.notFound.waMsg':
-    'Hallo PSA PETS — stuur asseblief die analisesertifikaat vir lot {batch}.',
+    'Hallo Peptides4Pets — stuur asseblief die analisesertifikaat vir lot {batch}.',
   'coa.sampleChip': 'VOORBEELDSERTIFIKAAT — REGTE LOTDATA AKTIWEER BY LANSERING',
-  'coa.doc.kicker': 'PSA PETS · DERDEPARTY-GEVERIFIEERD',
+  'coa.doc.kicker': 'Peptides4Pets · DERDEPARTY-GEVERIFIEERD',
   'coa.doc.title': 'ANALISESERTIFIKAAT',
   'coa.verified': '✓ GEVERIFIEERD — ALLE SPESIFIKASIES GESLAAG',
   'coa.row.product': 'PRODUK',
@@ -1617,7 +1617,7 @@ Object.assign(af, {
   'coas.overline': 'LOT-DEURSIGTIGHEID',
   'coas.title': 'Elke lot. Elke sertifikaat. Openbaar.',
   'coas.body':
-    'Tik die lotnommer op enige PSA PETS-etiket en kry die volle analisesertifikaat — suiwerheid, swaarmetale, endotoksiene, analis se aftekening. Probeer dit met ons lanseringslot.',
+    'Tik die lotnommer op enige Peptides4Pets-etiket en kry die volle analisesertifikaat — suiwerheid, swaarmetale, endotoksiene, analis se aftekening. Probeer dit met ons lanseringslot.',
   'coas.demo': 'SIEN DIE VOORBEELDSERTIFIKAAT',
   'coas.verify': 'VERIFIEER JOU LOT →',
 
@@ -1629,7 +1629,7 @@ Object.assign(af, {
   'vetpack.wa': 'DEEL VIA WHATSAPP',
   'vetpack.print': 'DRUK VEEARTS-STUK',
   'vetpack.close': 'SLUIT',
-  'vetpack.docTitle': 'PSA PETS · VEEARTS-STUK',
+  'vetpack.docTitle': 'Peptides4Pets · VEEARTS-STUK',
   'vetpack.docStatus': 'VOORLANSIERING-PRODUKLEÊR — NIE ’N VEEARTSENYMEDISYNE NIE',
   'vetpack.row.product': 'PRODUK',
   'vetpack.row.compound': 'VERBINDING',
@@ -1651,7 +1651,7 @@ Object.assign(af, {
   'vetpack.waItem':
     '[{n}] {product} ({compound})\nBewys: {evidence}\nSitasie: {citation}\nDosering: {dosing}\nMonitering: {monitoring}',
   'vetpack.waMsg':
-    'PSA PETS — VEEARTS-STUK (voorlansiering-leêr)\n\n{items}\n\nStatus: in ontwikkeling, nog nie te koop nie. Lot-COA’s word by lansering gepubliseer.\nBesonderhede: {link}',
+    'Peptides4Pets — VEEARTS-STUK (voorlansiering-leêr)\n\n{items}\n\nStatus: in ontwikkeling, nog nie te koop nie. Lot-COA’s word by lansering gepubliseer.\nBesonderhede: {link}',
 
   /* ry-kontrolepaneel */
   'queue.overline': 'JOU WAGLYS-KONTROLEPANEEL',

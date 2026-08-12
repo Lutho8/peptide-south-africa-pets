@@ -7,6 +7,7 @@ import GuaranteeBand from '@/pages/pets/GuaranteeBand'
 import Testimonials from '@/pages/pets/Testimonials'
 import WaitlistSection from '@/pages/pets/WaitlistSection'
 import { useConversionCopy } from '@/pages/pets/conversionCopy'
+import Seo from '@/components/Seo'
 
 /**
  * Slim proof strip — one line of evidence signals plus a door into the full
@@ -41,6 +42,11 @@ function ProofStrip() {
 export default function Pets() {
   return (
     <>
+      <Seo
+        title="Peptides4Pets — COA-Verified Peptides & Collagen for Dogs, Cats & Horses"
+        description="South Africa's first COA-verified pet peptide line — research-grade BPC-157, KPV and collagen for dogs, cats and horses. In development; join the waitlist."
+        path=""
+      />
       <Hero />
       <LaunchCatalog />
       <QuizTeaser />

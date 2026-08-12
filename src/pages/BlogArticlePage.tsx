@@ -50,10 +50,10 @@ export default function BlogArticlePage() {
     image: `${SITE_URL}${article.heroImage}`,
     datePublished: article.publishDate,
     dateModified: article.modifiedDate,
-    author: { '@type': 'Organization', name: 'PSA PETS Editorial', url: `${SITE_URL}/blog` },
+    author: { '@type': 'Organization', name: 'Peptides4Pets Editorial', url: `${SITE_URL}/blog` },
     publisher: {
       '@type': 'Organization',
-      name: 'PSA PETS',
+      name: 'Peptides4Pets',
       url: SITE_URL,
       logo: { '@type': 'ImageObject', url: `${SITE_URL}/coa-stamp.svg` },
     },
@@ -76,7 +76,7 @@ export default function BlogArticlePage() {
   return (
     <div className="bg-cream">
       <Helmet>
-        <title>{`${article.title} | PSA PETS Journal`}</title>
+        <title>{`${article.title} | Peptides4Pets Journal`}</title>
         <meta name="description" content={article.metaDescription} />
         <meta name="keywords" content={article.keywords.join(', ')} />
         <link rel="canonical" href={canonical} />

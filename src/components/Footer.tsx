@@ -11,7 +11,7 @@ export default function Footer() {
       {/* §7.7 Compliance Disclaimer Strip */}
       <div className="border-y border-alert bg-cream px-4 py-3 text-center">
         <p className="mono-label !text-[11px] leading-relaxed text-alert">
-          ALL PSA PETS PRODUCTS ARE IN DEVELOPMENT AND NOT YET AVAILABLE FOR SALE · THESE ARE
+          ALL Peptides4Pets PRODUCTS ARE IN DEVELOPMENT AND NOT YET AVAILABLE FOR SALE · THESE ARE
           NOT VETERINARY MEDICINES · NO PET PEPTIDE PRODUCT IS FDA OR SAHPRA APPROVED · ALWAYS
           CONSULT YOUR VETERINARIAN
         </p>
@@ -38,7 +38,7 @@ export default function Footer() {
                 className="h-9 w-9 rounded-full bg-cream p-0.5"
               />
               <span className="font-serif text-2xl font-semibold">
-                PSA<span className="text-amber">·PETS</span>
+                Peptides4<span className="text-amber">Pets</span>
               </span>
             </p>
             <p className="mt-3 text-sm leading-relaxed text-cream/70">{t('foot.tagline')}</p>
@@ -73,7 +73,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link to="/blog" className="text-cream/80 hover:text-amber">
-                  Blog — The PSA PETS Journal
+                  Blog — The Peptides4Pets Journal
                 </Link>
               </li>
               <li>

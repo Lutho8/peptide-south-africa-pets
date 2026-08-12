@@ -8,6 +8,7 @@ import type { Certificate } from '@/lib/coa'
 import { waLink } from '@/lib/data'
 import { printArea } from '@/lib/vetpack'
 import { useI18n } from '@/lib/i18n'
+import Seo from '@/components/Seo'
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
@@ -57,6 +58,11 @@ export default function CoaPage() {
 
   return (
     <div className="bg-cream">
+      <Seo
+        title="Verify a COA — Batch Certificate Lookup"
+        description="Enter any Peptides4Pets batch number to pull its full certificate of analysis: HPLC purity, heavy metals, endotoxins and analyst sign-off. Verified per batch."
+        path="/verify"
+      />
       {/* lookup hero */}
       <section className="section-pad pb-10">
         <div className="psa-container max-w-3xl text-center">

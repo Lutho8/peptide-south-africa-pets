@@ -141,7 +141,7 @@ export function buildReferralLink(code: string): string {
 export function buildReferralWhatsAppLink(code: string, firstName: string): string {
   const link = buildReferralLink(code)
   const text =
-    `${firstName} here — I've joined the PSA PETS founding waitlist (COA-verified pet peptides, ` +
+    `${firstName} here — I've joined the Peptides4Pets founding waitlist (COA-verified pet peptides, ` +
     `launching in SA). Use my link and we both move up the queue: ${link}`
   return `https://wa.me/?text=${encodeURIComponent(text)}`
 }

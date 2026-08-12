@@ -1,5 +1,5 @@
 /**
- * PSA PETS — "Bring your vet" one-tap pack (round 6).
+ * Peptides4Pets — "Bring your vet" one-tap pack (round 6).
  *
  * Builds a compact vet-handout record per product (compound, evidence level,
  * key citation with PMC/DOI link, dosing summary, monitoring notes), plus the

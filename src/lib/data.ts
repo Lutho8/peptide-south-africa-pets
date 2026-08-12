@@ -348,7 +348,7 @@ export const PRODUCT_DETAILS: Record<string, ProductDetail> = {
       ['JOINTS', 'cartilage & mobility support'],
       ['EVIDENCE', 'published canine RCT'],
       ['DAILY', 'one scoop on food'],
-      ['FIRST', 'first PSA PETS launch'],
+      ['FIRST', 'first Peptides4Pets launch'],
     ],
     steps: [
       {
@@ -399,7 +399,7 @@ export const WHATSAPP_NUMBER = '27790000000'
 export function waLink(message: string): string {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`
 }
-// PSA PETS — shared catalog + waitlist data layer.
+// Peptides4Pets — shared catalog + waitlist data layer.
 // Additive module: safe, self-contained exports used by the science &
 // waitlist pages. No side effects on import.
 
@@ -474,7 +474,7 @@ export const PET_PRODUCTS: PetProduct[] = [
   /* ---------- Protocol pipeline (additive, waitlist-only teasers) ---------- */
   {
     slug: 'calm',
-    name: 'PSA PETS Calm',
+    name: 'Peptides4Pets Calm',
     spec: 'SELANK · CALMING BLEND · IN DEVELOPMENT',
     benefit: 'Calming support for storm-shakes, fireworks and separation stress.',
     price: 695,
@@ -485,7 +485,7 @@ export const PET_PRODUCTS: PetProduct[] = [
   },
   {
     slug: 'immune-plus',
-    name: 'PSA PETS Immune+',
+    name: 'Peptides4Pets Immune+',
     spec: 'TA-1 + KPV + GHK-CU · IN DEVELOPMENT',
     benefit: 'The immune-resilience stack for seniors and frequent patients.',
     price: 945,
@@ -496,7 +496,7 @@ export const PET_PRODUCTS: PetProduct[] = [
   },
   {
     slug: 'senior-vitality',
-    name: 'PSA PETS Senior Vitality',
+    name: 'Peptides4Pets Senior Vitality',
     spec: 'LONGEVITY BLEND · IN DEVELOPMENT',
     benefit: 'A longevity blend built around canine aging research.',
     price: 1095,
@@ -697,7 +697,7 @@ export function buildWhatsAppLink(ticket: WaitlistTicket): string {
     .map((slug) => PET_PRODUCTS.find((p) => p.slug === slug)?.name ?? slug)
     .join(', ');
   const text = [
-    `Hi PSA PETS — confirming my waitlist ticket.`,
+    `Hi Peptides4Pets — confirming my waitlist ticket.`,
     `Name: ${ticket.ownerName}`,
     `Pet: ${ticket.petName || '—'}${ticket.breed ? ` (${ticket.breed})` : ''}`,
     `Products: ${productNames || 'Everything'}`,
@@ -805,13 +805,13 @@ export const CITATION_RECORDS: CitationRecord[] = [
     chip: 'BPC-157',
     chipSlug: 'bpc-157',
     summary:
-      "US pet peptide retail pricing of $99–$149/month (Integrative Peptides PetTides) and mainstream media coverage (Men's Health, 2026) indicate established, growing demand — at prices PSA PETS will undercut locally.",
+      "US pet peptide retail pricing of $99–$149/month (Integrative Peptides PetTides) and mainstream media coverage (Men's Health, 2026) indicate established, growing demand — at prices Peptides4Pets will undercut locally.",
     source: 'MARKET & MEDIA RESEARCH 2025–26',
   },
 ];
 
 export const COMPLIANCE_LINE =
-  'ALL PSA PETS PRODUCTS ARE IN DEVELOPMENT AND NOT YET AVAILABLE FOR SALE · THESE ARE NOT VETERINARY MEDICINES · NO PET PEPTIDE PRODUCT IS FDA OR SAHPRA APPROVED · ALWAYS CONSULT YOUR VETERINARIAN';
+  'ALL Peptides4Pets PRODUCTS ARE IN DEVELOPMENT AND NOT YET AVAILABLE FOR SALE · THESE ARE NOT VETERINARY MEDICINES · NO PET PEPTIDE PRODUCT IS FDA OR SAHPRA APPROVED · ALWAYS CONSULT YOUR VETERINARIAN';
 
 /* --------------------- Launch Box cart meta (additive) --------------------- */
 

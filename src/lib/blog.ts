@@ -1,7 +1,7 @@
 /**
- * PSA PETS — Blog engine data layer.
+ * Peptides4Pets — Blog engine data layer.
  *
- * Article registry for /blog. All prose is original PSA PETS editorial
+ * Article registry for /blog. All prose is original Peptides4Pets editorial
  * writing; every factual claim maps to a `citations[]` record with a real,
  * verified external URL (PubMed/PMC/DOI/publisher/trial sponsor).
  *
@@ -59,7 +59,7 @@ export interface BlogArticle {
 
 /** Compliance line rendered at the foot of every article (EN, fixed). */
 export const BLOG_DISCLAIMER =
-  'PSA PETS products are in development and are not veterinary medicines, and nothing on this page is veterinary advice. No pet peptide product is approved by the FDA or SAHPRA. Always consult your veterinarian before starting, stopping or changing anything your pet takes.'
+  'Peptides4Pets products are in development and are not veterinary medicines, and nothing on this page is veterinary advice. No pet peptide product is approved by the FDA or SAHPRA. Always consult your veterinarian before starting, stopping or changing anything your pet takes.'
 
 export const BLOG_TAGLINE =
   'Evidence-first writing on peptides, supplements and longevity science for dogs and cats — graded honestly, cited properly.'
@@ -126,7 +126,7 @@ const BPC157: BlogArticle = {
       heading: 'The honest gaps',
       paragraphs: [
         'Here is what does not exist as of early 2026, and what you should ask any seller — including us — to produce: no randomized, placebo-controlled efficacy trial of BPC-157 in dogs. No published long-term canine safety study. No approved canine dose. No regulatory approval from the FDA, EMA or SAHPRA for any species or any indication.{{cite:1}}',
-        'There is also a quality problem. Because BPC-157 is unregulated, the grey market contains products with the wrong peptide, the wrong dose, or contamination. This is exactly why PSA PETS exists: research-grade synthesis, ≥99% HPLC purity, and a certificate of analysis on every batch — because if the evidence is thin, the molecule itself must at least be what the label says.',
+        'There is also a quality problem. Because BPC-157 is unregulated, the grey market contains products with the wrong peptide, the wrong dose, or contamination. This is exactly why Peptides4Pets exists: research-grade synthesis, ≥99% HPLC purity, and a certificate of analysis on every batch — because if the evidence is thin, the molecule itself must at least be what the label says.',
       ],
     },
     {
@@ -142,7 +142,7 @@ const BPC157: BlogArticle = {
       heading: 'What this means for South African pet owners',
       paragraphs: [
         'Until now, SA owners had two options: import US pet peptide sprays at $99–$149 plus shipping, duties and a 2–6 week customs gamble — or buy from local grey-market sellers with no certificate of analysis. Neither is good enough for an animal you love.',
-        'PSA PETS is building the third option: BPC-157 oral drops manufactured to research grade, HPLC-verified on every batch, dosed by weight band under veterinary review, priced in rand with VAT included — and sold with the evidence ledger attached, including the gaps you have just read. Our BPC-157 formula is in final development now; the waitlist is how you hear first, with founding pricing locked.',
+        'Peptides4Pets is building the third option: BPC-157 oral drops manufactured to research grade, HPLC-verified on every batch, dosed by weight band under veterinary review, priced in rand with VAT included — and sold with the evidence ledger attached, including the gaps you have just read. Our BPC-157 formula is in final development now; the waitlist is how you hear first, with founding pricing locked.',
       ],
     },
   ],
@@ -157,7 +157,7 @@ const BPC157: BlogArticle = {
     },
     {
       q: 'What is the right BPC-157 dose for a dog?',
-      a: 'There is no established veterinary dose — none has been validated in canine efficacy trials. Any dosing guide (including ours at launch) is extrapolated from preclinical work and pharmacokinetic data, which is why every PSA PETS protocol is weight-banded, vet-reviewed and conservative, starting at half dose for week one.',
+      a: 'There is no established veterinary dose — none has been validated in canine efficacy trials. Any dosing guide (including ours at launch) is extrapolated from preclinical work and pharmacokinetic data, which is why every Peptides4Pets protocol is weight-banded, vet-reviewed and conservative, starting at half dose for week one.',
     },
     {
       q: 'Can BPC-157 replace surgery or NSAIDs for my dog?',
@@ -165,7 +165,7 @@ const BPC157: BlogArticle = {
     },
     {
       q: 'Is BPC-157 legal to give my dog in South Africa?',
-      a: 'BPC-157 is not registered with SAHPRA as a veterinary medicine, and no pet peptide product is. It is sold internationally as a research/nutritional compound. PSA PETS products are in development as supplements with full COA documentation; we always recommend involving your veterinarian.',
+      a: 'BPC-157 is not registered with SAHPRA as a veterinary medicine, and no pet peptide product is. It is sold internationally as a research/nutritional compound. Peptides4Pets products are in development as supplements with full COA documentation; we always recommend involving your veterinarian.',
     },
   ],
   citations: [
@@ -232,7 +232,7 @@ const BPC157_SOUTH_AFRICA: BlogArticle = {
       heading: 'What SAHPRA says about BPC-157 for pets',
       paragraphs: [
         'As of mid-2026, BPC-157 is not registered with the South African Health Products Regulatory Authority (SAHPRA) as a veterinary medicine, and no peptide product for pets holds SAHPRA approval. That matters less than it sounds, and more than some sellers admit. It means BPC-157 cannot be marketed with disease-treatment claims, but it also means the compound is available in the research and nutritional-compound lane — provided the seller is honest about what it is.',
-        'In practice, most BPC-157 sold in South Africa is imported as a research compound or formulated into a supplement. The regulatory distinction is real: a supplement cannot claim to cure, treat or prevent disease, and any veterinary use is off-label and at the discretion of your vet. PSA PETS develops its BPC-157 formula as a research-grade supplement with batch-level COA documentation precisely because the alternative — imported sprays with vague labels — leaves both pet and owner exposed.',
+        'In practice, most BPC-157 sold in South Africa is imported as a research compound or formulated into a supplement. The regulatory distinction is real: a supplement cannot claim to cure, treat or prevent disease, and any veterinary use is off-label and at the discretion of your vet. Peptides4Pets develops its BPC-157 formula as a research-grade supplement with batch-level COA documentation precisely because the alternative — imported sprays with vague labels — leaves both pet and owner exposed.',
       ],
     },
     {
@@ -248,7 +248,7 @@ const BPC157_SOUTH_AFRICA: BlogArticle = {
       heading: 'What the evidence actually looks like',
       paragraphs: [
         'The science does not change because you live in Cape Town rather than California. The only formal dog study remains the 2022 pharmacokinetic trial by He and colleagues, which reported that BPC-157 was well tolerated in six beagles and reached roughly 45–51% intramuscular bioavailability.{{cite:1}} That is an absorption-and-safety finding, not proof that it heals tendons or guts in dogs.',
-        'The rest of the literature is preclinical: rat tendon fibroblast studies, rodent gut-healing models and cell-culture work on angiogenesis.{{cite:2}} It is a consistent but unproven signal. Any South African seller promising cures, guaranteed tendon repair or "works in 48 hours" is selling marketing, not evidence. The honest position — and the one PSA PETS takes — is that BPC-157 is biologically plausible, well tolerated in the one canine PK study, and not yet proven effective in any species.',
+        'The rest of the literature is preclinical: rat tendon fibroblast studies, rodent gut-healing models and cell-culture work on angiogenesis.{{cite:2}} It is a consistent but unproven signal. Any South African seller promising cures, guaranteed tendon repair or "works in 48 hours" is selling marketing, not evidence. The honest position — and the one Peptides4Pets takes — is that BPC-157 is biologically plausible, well tolerated in the one canine PK study, and not yet proven effective in any species.',
       ],
     },
     {
@@ -279,7 +279,7 @@ const BPC157_SOUTH_AFRICA: BlogArticle = {
     },
     {
       q: 'How much does BPC-157 cost in South Africa?',
-      a: 'Grey-market imports typically land at R1,800–R3,500 for a small vial or oral spray. Local pricing varies by purity, batch testing and format. PSA PETS is pricing its BPC-157 formula in rand with VAT included and founding waitlist members will lock the lowest rate.',
+      a: 'Grey-market imports typically land at R1,800–R3,500 for a small vial or oral spray. Local pricing varies by purity, batch testing and format. Peptides4Pets is pricing its BPC-157 formula in rand with VAT included and founding waitlist members will lock the lowest rate.',
     },
     {
       q: 'Is BPC-157 approved by SAHPRA?',
@@ -387,7 +387,7 @@ const COLLAGEN: BlogArticle = {
       heading: 'What this means for South African pet owners',
       paragraphs: [
         'Large breeds — Boerboels, Ridgebacks, German Shepherds — are South Africa\'s dogs, and they are exactly the dogs osteoarthritis hits hardest. Imported UC-II and collagen products land here at imported prices; most local joint chews are glucosamine blends with thin evidence.',
-        'Mobility Collagen is the first PSA PETS launch for a reason: it is the compliant lane. Bioactive collagen peptides are nutritional, the canine RCT record is published and open-access, and every tub ships with the study pack your vet can actually read. Founding waitlist members lock 20% off the first three subscription months.',
+        'Mobility Collagen is the first Peptides4Pets launch for a reason: it is the compliant lane. Bioactive collagen peptides are nutritional, the canine RCT record is published and open-access, and every tub ships with the study pack your vet can actually read. Founding waitlist members lock 20% off the first three subscription months.',
       ],
     },
   ],
@@ -501,7 +501,7 @@ const TB500: BlogArticle = {
       heading: 'The pet evidence gap, stated plainly',
       paragraphs: [
         'For dogs and cats specifically, here is the entire efficacy record: there are no published, controlled clinical trials of TB-500 — or of systemic Tβ4 — for any canine or feline condition. Not for tendon injuries, not for post-surgical recovery, not for "overall wellness." The closest adjacent evidence is the general Tβ4 repair literature in rodents and human topical trials,{{cite:1}}{{cite:2}} plus equine anecdote that anti-doping labs treat as a problem to detect, not a therapy to study.{{cite:4}}',
-        'This is why PSA PETS labels the BPC-157 + TB-500 pairing in our Recovery Blend as community practice, not proven therapy. The BPC-157 half has canine pharmacokinetic data; the TB-500 half has none. We say so on the label, and we are saying it again here.',
+        'This is why Peptides4Pets labels the BPC-157 + TB-500 pairing in our Recovery Blend as community practice, not proven therapy. The BPC-157 half has canine pharmacokinetic data; the TB-500 half has none. We say so on the label, and we are saying it again here.',
       ],
     },
     {
@@ -517,7 +517,7 @@ const TB500: BlogArticle = {
       heading: 'What this means for South African pet owners',
       paragraphs: [
         'TB-500 circulates in SA through gym suppliers and grey-market peptide sellers, usually with no COA and no dosing discipline. If your working dog, agility dog or post-surgery patient is being considered for a "Wolverine stack," the South African reality check is this: proven rehab (physio, hydrotherapy, controlled rest) is available locally and works; TB-500 remains an unproven add-on anywhere in the world.',
-        'Our position at PSA PETS is unchanged: we will sell you the molecule with a certificate of analysis and the evidence ledger attached — and the ledger currently reads "preclinical." Founding members get the honest version first.',
+        'Our position at Peptides4Pets is unchanged: we will sell you the molecule with a certificate of analysis and the evidence ledger attached — and the ledger currently reads "preclinical." Founding members get the honest version first.',
       ],
     },
   ],
@@ -661,7 +661,7 @@ const KPV: BlogArticle = {
       heading: 'What this means for South African pet owners',
       paragraphs: [
         'SA\'s climate is hard on sensitive systems: hot summers amplify skin flares, and loadshedding-era diet improvisation (we have all fed what is in the house) does sensitive guts no favours. Local owners currently import KPV from US peptide shops with no COA and no dosing guidance.',
-        'PSA PETS\' KPV Gut & Skin Drops are in development with the same standard as the rest of the line: ≥99% HPLC purity, a certificate of analysis per batch, weight-banded conservative dosing reviewed with veterinarians, and the evidence level printed on the page — preclinical, said plainly. The waitlist hears first.',
+        'Peptides4Pets\' KPV Gut & Skin Drops are in development with the same standard as the rest of the line: ≥99% HPLC purity, a certificate of analysis per batch, weight-banded conservative dosing reviewed with veterinarians, and the evidence level printed on the page — preclinical, said plainly. The waitlist hears first.',
       ],
     },
   ],
@@ -798,7 +798,7 @@ const LONGEVITY: BlogArticle = {
       heading: 'What this means for South African pet owners',
       paragraphs: [
         'None of these trials enrols South African dogs, and FDA-conditional products would take years to reach SAHPRA registration. But the science belongs to everyone: the Dog Aging Project\'s open findings on diet, weight and healthy aging apply equally to a Boerboel in Bloemfontein as to a beagle in Boston.',
-        'PSA PETS is built on this exact thesis — that the pet longevity wave will reach South Africa, and owners here deserve the compounds with the best evidence, at local prices, with the evidence graded honestly. Our Senior Vitality blend is in development around canine aging research; meanwhile, the single most proven longevity "supplement" remains keeping your dog lean — no waitlist required.',
+        'Peptides4Pets is built on this exact thesis — that the pet longevity wave will reach South Africa, and owners here deserve the compounds with the best evidence, at local prices, with the evidence graded honestly. Our Senior Vitality blend is in development around canine aging research; meanwhile, the single most proven longevity "supplement" remains keeping your dog lean — no waitlist required.',
       ],
     },
   ],
@@ -942,7 +942,7 @@ const CALMING: BlogArticle = {
       heading: 'How it compares to selank-type peptides in development',
       paragraphs: [
         'Beyond casozepine sit the "designer" calming peptides — selank being the most discussed. Selank is a synthetic heptapeptide (a tuftsin analog) developed in Russia as an anxiolytic, with small human studies abroad suggesting anti-anxiety and nootropic effects. What it does not have is what casozepine has: placebo-controlled trials in dogs and cats. For pets, selank-type compounds remain investigational — no veterinary pharmacokinetics, no efficacy trials, no established dosing.',
-        'That gap is exactly why the PSA PETS Calm formula is in development rather than on the shelf: the mechanism is promising, the pet evidence is not there yet, and we would rather launch late with data than early with adjectives. When it arrives, it will carry the same honesty label as everything else we make.',
+        'That gap is exactly why the Peptides4Pets Calm formula is in development rather than on the shelf: the mechanism is promising, the pet evidence is not there yet, and we would rather launch late with data than early with adjectives. When it arrives, it will carry the same honesty label as everything else we make.',
       ],
     },
     {
@@ -1032,11 +1032,11 @@ export function getRelatedArticles(article: BlogArticle, count = 2): BlogArticle
   return [...sameCategory, ...rest].slice(0, count)
 }
 
-export const SITE_URL = 'https://peptide-south-africa.com'
+export const SITE_URL = 'https://pets.peptide-south-africa.com'
 
 /** Canonical URL helpers shared by Helmet tags, sitemap and static mirrors. */
 export function articleCanonical(slug: string): string {
   return `${SITE_URL}/blog/${slug}`
 }
 
-export const BLOG_TITLE = 'The PSA PETS Journal'
+export const BLOG_TITLE = 'The Peptides4Pets Journal'

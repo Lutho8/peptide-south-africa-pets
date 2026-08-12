@@ -73,7 +73,7 @@
     @apply bg-background text-foreground;
   }
 }
-/* ============ PSA PETS design system (design.md) ============ */
+/* ============ Peptides4Pets design system (design.md) ============ */
 @layer base {
   :root {
     --cream: #F7F1E5;

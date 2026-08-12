@@ -1,5 +1,5 @@
 /**
- * PSA PETS — batch → Certificate of Analysis lookup (round 6).
+ * Peptides4Pets — batch → Certificate of Analysis lookup (round 6).
  *
  * Self-contained additive module. Today it serves a small SAMPLE certificate
  * dataset so the verification flow is real and testable before launch; every

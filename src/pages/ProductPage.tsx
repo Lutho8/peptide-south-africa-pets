@@ -13,6 +13,7 @@ import CitationAccordion from '@/components/CitationAccordion'
 import WaitlistForm from '@/components/WaitlistForm'
 import AddToBoxButton from '@/components/AddToBoxButton'
 import VetPack from '@/components/VetPack'
+import Seo, { SITE_URL } from '@/components/Seo'
 import { handoutForProduct } from '@/lib/vetpack'
 import { useI18n } from '@/lib/i18n'
 import { cn } from '@/lib/utils'
@@ -35,6 +36,12 @@ export default function ProductPage() {
   if (!product || !detail) {
     return (
       <section className="section-pad bg-cream">
+        <Seo
+          title="Product not found"
+          description="This formula is not in our catalog. Explore Peptides4Pets' COA-verified pet peptide and collagen line for dogs, cats and horses."
+          path={`/product/${slug ?? ''}`}
+          noindex
+        />
         <div className="psa-container max-w-2xl text-center">
           <p className="mono-label text-amber-deep">{t('pdp.notFound.overline')}</p>
           <h1 className="mt-4 font-serif text-4xl font-medium text-espresso">
@@ -52,8 +59,27 @@ export default function ProductPage() {
     )
   }
 
+  const productImage = `${SITE_URL}${product.image}`
+  const productJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: product.name,
+    description: product.benefit,
+    brand: { '@type': 'Brand', name: 'Peptides4Pets' },
+    image: productImage,
+    url: `${SITE_URL}/product/${product.slug}`,
+  }
+
   return (
     <div key={product.slug}>
+      <Seo
+        title={`${product.name} — COA-Verified for SA Pets`}
+        description={`${product.benefit} In development — HPLC-tested with a COA on every batch. Join the Peptides4Pets waitlist. Not yet for sale; consult your vet.`}
+        path={`/product/${product.slug}`}
+        type="product"
+        image={productImage}
+        jsonLd={productJsonLd}
+      />
       <HeroSplit product={product} detail={detail} />
       <BenefitBar detail={detail} />
       <HowItWorks detail={detail} />

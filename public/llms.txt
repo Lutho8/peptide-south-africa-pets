@@ -1,0 +1,28 @@
+# Peptides4Pets
+
+Peptides4Pets is South Africa's first COA-verified pet peptide line —
+research-grade peptides and collagen for dogs, cats and horses.
+
+Status: in development. Products are NOT yet for sale, are NOT veterinary
+medicines, and no pet peptide product is approved by the FDA or SAHPRA.
+Every formula is vet-guided: always consult your veterinarian before
+starting, stopping or changing anything your pet takes.
+
+What we stand for: research-grade synthesis, >=99% HPLC purity, and a
+certificate of analysis (COA) on every batch. Evidence is graded honestly —
+we publish what exists and what doesn't (e.g. collagen peptides have
+published canine RCTs; BPC-157 has canine pharmacokinetic data; KPV and
+TB-500 remain preclinical).
+
+Formulas in development: BPC-157, KPV, Recovery Blend (BPC-157 + TB-500),
+Immune (Thymogen), Mobility Collagen, plus pipeline blends (Calm, Immune+,
+Senior Vitality).
+
+Key pages:
+- /science  — the evidence library, every claim cited
+- /verify   — batch to certificate-of-analysis lookup
+- /blog     — evidence-first writing on pet peptides and longevity
+- /waitlist — join the founding waitlist (no payment; consult your vet)
+
+Domain: https://pets.peptide-south-africa.com
+Parent brand: Peptide South Africa (https://peptide-south-africa.com)

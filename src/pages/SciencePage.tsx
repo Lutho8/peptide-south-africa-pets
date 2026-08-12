@@ -10,6 +10,7 @@ import {
 import type { EvidenceTone } from '@/lib/data';
 import { CITATION_RECORDS, COMPLIANCE_LINE } from '@/lib/data';
 import { useI18n } from '@/lib/i18n';
+import Seo from '@/components/Seo';
 
 /* ----------------------------- design tokens ---------------------------- */
 
@@ -156,6 +157,11 @@ export default function SciencePage() {
 
   return (
     <main className={`${SANS} bg-[#F7F1E5] text-[#2B2118] antialiased`}>
+      <Seo
+        title="The Science & Evidence Library"
+        description="The peer-reviewed evidence behind pet peptides — BPC-157, KPV, TB-500 and collagen — graded honestly for dogs and cats. Every claim cited, every gap named."
+        path="/science"
+      />
       {/* Google Fonts (React 19 hoists these to <head>) */}
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -174,7 +180,7 @@ export default function SciencePage() {
         />
         <div className="relative mx-auto max-w-[860px] px-6 pb-20 pt-24 text-center md:pb-28 md:pt-32">
           <p className={`${MONO} text-xs font-bold uppercase tracking-[0.08em] text-[#B25E26]`}>
-            <TypeOn text="PSA PETS · EVIDENCE LIBRARY" speed={30} />
+            <TypeOn text="Peptides4Pets · EVIDENCE LIBRARY" speed={30} />
           </p>
           <h1
             className={`${SERIF} mt-6 text-[clamp(2.4rem,6vw,4.5rem)] font-medium leading-[1.02] tracking-[-0.02em]`}

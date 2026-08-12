@@ -6,14 +6,14 @@ import { useI18n } from '@/lib/i18n'
 
 const INTRO = {
   en: {
-    overline: 'THE PSA PETS JOURNAL',
+    overline: 'THE Peptides4Pets JOURNAL',
     titleA: 'Evidence-first reading for',
     titleEm: 'people who read labels.',
     quizNote:
       'Every article grades the evidence honestly: published canine data in green, preclinical in amber, and the gaps in plain sight.',
   },
   af: {
-    overline: 'DIE PSA PETS-JOERNAAL',
+    overline: 'DIE Peptides4Pets-JOERNAAL',
     titleA: 'Bewysgedrewe leeswerk vir',
     titleEm: 'mense wat etikette lees.',
     quizNote:
@@ -32,7 +32,7 @@ export default function BlogIndexPage() {
     name: BLOG_TITLE,
     description: BLOG_TAGLINE,
     url: `${SITE_URL}/blog`,
-    publisher: { '@type': 'Organization', name: 'PSA PETS', url: SITE_URL },
+    publisher: { '@type': 'Organization', name: 'Peptides4Pets', url: SITE_URL },
     mainEntity: {
       '@type': 'ItemList',
       itemListElement: BLOG_ARTICLES.map((a, i) => ({
@@ -47,20 +47,20 @@ export default function BlogIndexPage() {
   return (
     <div className="bg-cream">
       <Helmet>
-        <title>{`${BLOG_TITLE} — Peptides for Dogs & Cats, Evidence Graded Honestly | PSA PETS`}</title>
+        <title>{`${BLOG_TITLE} — Peptides for Dogs & Cats, Evidence Graded Honestly | Peptides4Pets`}</title>
         <meta name="description" content={BLOG_TAGLINE} />
         <meta
           name="keywords"
-          content="peptides for dogs, pet supplements South Africa, dog joint supplement evidence, pet longevity science, PSA PETS"
+          content="peptides for dogs, pet supplements South Africa, dog joint supplement evidence, pet longevity science, Peptides4Pets"
         />
         <link rel="canonical" href={`${SITE_URL}/blog`} />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content={`${BLOG_TITLE} | PSA PETS`} />
+        <meta property="og:title" content={`${BLOG_TITLE} | Peptides4Pets`} />
         <meta property="og:description" content={BLOG_TAGLINE} />
         <meta property="og:url" content={`${SITE_URL}/blog`} />
         <meta property="og:image" content={`${SITE_URL}/dog-portrait-1.png`} />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={`${BLOG_TITLE} | PSA PETS`} />
+        <meta name="twitter:title" content={`${BLOG_TITLE} | Peptides4Pets`} />
         <meta name="twitter:description" content={BLOG_TAGLINE} />
         <meta name="twitter:image" content={`${SITE_URL}/dog-portrait-1.png`} />
         <script type="application/ld+json">{JSON.stringify(itemListJsonLd)}</script>

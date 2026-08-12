@@ -1,5 +1,5 @@
 /**
- * PSA PETS — "Launch Box" reservation cart.
+ * Peptides4Pets — "Launch Box" reservation cart.
  *
  * Everything is COMING SOON, so this is a reservation cart: shoppers build a
  * stack at founding-member pricing, then convert through the waitlist (no

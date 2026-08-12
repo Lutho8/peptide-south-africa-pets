@@ -1,5 +1,5 @@
 /**
- * PSA PETS — credibility block constants (round 6).
+ * Peptides4Pets — credibility block constants (round 6).
  *
  * Advisory-vet and partner-lab identity, rendered on the homepage
  * ("REVIEWED BY PEOPLE WHO ANSWER FOR IT."). These are PLACEHOLDERS the
@@ -14,9 +14,9 @@ export const ADVISORY_VET = {
   initials: 'AN',
   title: 'SAVC-Registered Veterinary Advisor',
   reg: 'SAVC Reg. No. — [TO CONFIRM]',
-  bio: 'Small-animal practitioner with a decade in referral medicine. Reviews every PSA PETS dosing chart, evidence grade and honesty note before it ships — and answers for them by name.',
+  bio: 'Small-animal practitioner with a decade in referral medicine. Reviews every Peptides4Pets dosing chart, evidence grade and honesty note before it ships — and answers for them by name.',
   bioAf:
-    'Kleindierpraktisyn met ’n dekade in verwysingsmedisyne. Hersien elke PSA PETS-doseringstabel, bewysgraad en eerlikheidsnota voordat dit versend — en staan daarvoor in naam.',
+    'Kleindierpraktisyn met ’n dekade in verwysingsmedisyne. Hersien elke Peptides4Pets-doseringstabel, bewysgraad en eerlikheidsnota voordat dit versend — en staan daarvoor in naam.',
 }
 
 export const TESTING_LAB = {

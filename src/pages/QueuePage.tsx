@@ -14,6 +14,7 @@ import {
 } from '@/lib/waitlist'
 import { useLiveWaitlistCount } from '@/lib/supabase'
 import { useI18n } from '@/lib/i18n'
+import Seo from '@/components/Seo'
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]
 /** Founding-cap cohort counter — same source as FoundingRing (BPC-157 list). */
@@ -34,7 +35,21 @@ export default function QueuePage() {
   const entries = getWaitlistEntries()
   const entry = entries.length > 0 ? entries[entries.length - 1] : null
 
-  if (!entry) return <JoinCta reduced={!!reduced} />
+  const seo = (
+    <Seo
+      title="Your Waitlist Queue"
+      description="Track your Peptides4Pets founding-member waitlist position, share your referral link to move up the queue, and keep your locked 20% launch pricing."
+      path="/queue"
+    />
+  )
+
+  if (!entry)
+    return (
+      <>
+        {seo}
+        <JoinCta reduced={!!reduced} />
+      </>
+    )
 
   // Same base + RPC count logic as Navbar/FoundingRing, minus referral boosts.
   const position = effectiveQueue(entry) + liveCount
@@ -49,10 +64,11 @@ export default function QueuePage() {
     .map((slug) => PET_PRODUCTS.find((p) => p.slug === slug))
     .filter((p): p is NonNullable<typeof p> => p != null)
 
-  const firstName = entry.name.trim().split(/\s+/)[0] || 'PSA PETS member'
+  const firstName = entry.name.trim().split(/\s+/)[0] || 'Peptides4Pets member'
 
   return (
     <div className="section-pad bg-cream">
+      {seo}
       <div className="psa-container max-w-5xl">
         {/* header */}
         <motion.div

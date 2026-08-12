@@ -105,10 +105,10 @@ function articleJsonLd(a) {
     image: `${SITE_URL}${a.heroImage}`,
     datePublished: a.publishDate,
     dateModified: a.modifiedDate,
-    author: { '@type': 'Organization', name: 'PSA PETS Editorial', url: `${SITE_URL}/blog` },
+    author: { '@type': 'Organization', name: 'Peptides4Pets Editorial', url: `${SITE_URL}/blog` },
     publisher: {
       '@type': 'Organization',
-      name: 'PSA PETS',
+      name: 'Peptides4Pets',
       url: SITE_URL,
       logo: { '@type': 'ImageObject', url: `${SITE_URL}/coa-stamp.svg` },
     },
@@ -184,7 +184,7 @@ function render(a, related) {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>${esc(a.title)} | PSA PETS Journal</title>
+  <title>${esc(a.title)} | Peptides4Pets Journal</title>
   <meta name="description" content="${esc(a.metaDescription)}" />
   <meta name="keywords" content="${esc(a.keywords.join(', '))}" />
   <link rel="canonical" href="${canonical}" />
@@ -221,7 +221,7 @@ function render(a, related) {
     <a class="crumb mono" href="/blog">&larr; All articles</a>
     <div style="margin-top:16px">
       <span class="chip mono">${esc(a.category)}</span>
-      <p class="meta mono">${fmtDate(a.publishDate)} &middot; ${a.readMinutes} min read &middot; Evidence review &middot; PSA PETS Editorial</p>
+      <p class="meta mono">${fmtDate(a.publishDate)} &middot; ${a.readMinutes} min read &middot; Evidence review &middot; Peptides4Pets Editorial</p>
     </div>
     <h1>${esc(a.title)}</h1>
     <img class="hero" src="${a.heroImage}" alt="${esc(a.heroAlt)}" />
@@ -267,7 +267,7 @@ function render(a, related) {
 
   <footer class="site">
     <div class="container mono">
-      <span>PSA PETS &middot; Cape Town, South Africa</span>
+      <span>Peptides4Pets &middot; Cape Town, South Africa</span>
       <span>
         <a href="/pets">Catalog</a>
         <a href="/science">Science</a>

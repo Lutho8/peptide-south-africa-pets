@@ -24,7 +24,7 @@ export const PRODUCTS: Product[] = [
     spec: 'BPC-157 · ORAL DROPS · 30-DAY SUPPLY',
     benefit: 'Mobility, soft-tissue & recovery support for dogs and cats.',
     price: 'FROM R895/MONTH',
-    waiting: 438,
+    waiting: 0,
     image: '/product-bpc157.png',
     citations: [
       {
@@ -53,7 +53,7 @@ export const PRODUCTS: Product[] = [
     spec: 'KPV · ORAL DROPS · 30-DAY SUPPLY',
     benefit: 'Gut lining and skin support for sensitive pets.',
     price: 'FROM R795/MONTH',
-    waiting: 212,
+    waiting: 0,
     image: '/product-kpv.png',
     citations: [
       {
@@ -74,7 +74,7 @@ export const PRODUCTS: Product[] = [
     spec: 'BPC-157 + TB-500 · DROPS · 30-DAY SUPPLY',
     benefit: "The 'Wolverine pairing' for injury rehab and post-surgery support.",
     price: 'FROM R1,195/MONTH',
-    waiting: 301,
+    waiting: 0,
     image: '/product-recovery.png',
     citations: [
       {
@@ -97,7 +97,7 @@ export const PRODUCTS: Product[] = [
     spec: 'THYMOGEN · ORAL DROPS · 30-DAY SUPPLY',
     benefit: 'Immune resilience support for seniors and frequent patients.',
     price: 'FROM R845/MONTH',
-    waiting: 126,
+    waiting: 0,
     image: '/product-immune.png',
     citations: [
       {
@@ -119,7 +119,7 @@ export const PRODUCTS: Product[] = [
     spec: 'BIOACTIVE COLLAGEN PEPTIDES · DAILY SCOOP',
     benefit: 'The compliant lane: published canine RCT evidence behind every tub.',
     price: 'FROM R395/TUB',
-    waiting: 127,
+    waiting: 0,
     image: '/product-collagen.png',
     firstToLaunch: true,
     citations: [
@@ -144,7 +144,8 @@ export const PRODUCTS: Product[] = [
   },
 ]
 
-export const TOTAL_WAITING = PRODUCTS.reduce((sum, p) => sum + p.waiting, 0)
+/** Legacy export retained for compatibility. Public counters come from Supabase. */
+export const TOTAL_WAITING = 0
 
 /* ================= Product detail page extras (additive) ================= */
 
@@ -394,7 +395,7 @@ export function getProductDetail(slug?: string): ProductDetail | undefined {
   return product ? PRODUCT_DETAILS[product.slug] : undefined
 }
 
-export const WHATSAPP_NUMBER = '27790000000'
+export const WHATSAPP_NUMBER = '27721242377'
 
 export function waLink(message: string): string {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`
@@ -427,7 +428,7 @@ export const PET_PRODUCTS: PetProduct[] = [
     benefit: 'Repair & mobility support for joints, tendons and gut lining.',
     price: 895,
     priceUnit: '/MO',
-    waiting: 438,
+    waiting: 0,
     image: '/product-bpc157.png',
   },
   {
@@ -437,7 +438,7 @@ export const PET_PRODUCTS: PetProduct[] = [
     benefit: 'Calms gut inflammation and reactive skin from the inside out.',
     price: 795,
     priceUnit: '/MO',
-    waiting: 212,
+    waiting: 0,
     image: '/product-kpv.png',
   },
   {
@@ -447,7 +448,7 @@ export const PET_PRODUCTS: PetProduct[] = [
     benefit: 'The post-injury pairing — built for comebacks, not cages.',
     price: 1195,
     priceUnit: '/MO',
-    waiting: 301,
+    waiting: 0,
     image: '/product-recovery.png',
   },
   {
@@ -457,7 +458,7 @@ export const PET_PRODUCTS: PetProduct[] = [
     benefit: 'Senior-grade immune support for the grey-muzzle years.',
     price: 845,
     priceUnit: '/MO',
-    waiting: 126,
+    waiting: 0,
     image: '/product-immune.png',
   },
   {
@@ -467,7 +468,7 @@ export const PET_PRODUCTS: PetProduct[] = [
     benefit: 'Force-plate-proven joint support — the everyday foundation.',
     price: 395,
     priceUnit: '/TUB',
-    waiting: 127,
+    waiting: 0,
     image: '/product-collagen.png',
     firstToLaunch: true,
   },
@@ -479,7 +480,7 @@ export const PET_PRODUCTS: PetProduct[] = [
     benefit: 'Calming support for storm-shakes, fireworks and separation stress.',
     price: 695,
     priceUnit: '/MO',
-    waiting: 64,
+    waiting: 0,
     image: '/product-kpv.png',
     comingSoon: true,
   },
@@ -490,7 +491,7 @@ export const PET_PRODUCTS: PetProduct[] = [
     benefit: 'The immune-resilience stack for seniors and frequent patients.',
     price: 945,
     priceUnit: '/MO',
-    waiting: 47,
+    waiting: 0,
     image: '/product-immune.png',
     comingSoon: true,
   },
@@ -501,7 +502,7 @@ export const PET_PRODUCTS: PetProduct[] = [
     benefit: 'A longevity blend built around canine aging research.',
     price: 1095,
     priceUnit: '/MO',
-    waiting: 89,
+    waiting: 0,
     image: '/product-bpc157.png',
     comingSoon: true,
   },
@@ -514,9 +515,9 @@ export function formatZAR(n: number): string {
 /* ------------------------------ Waitlist ------------------------------ */
 
 export const WAITLIST_STORAGE_KEY = 'psa_pets_waitlist';
-/** Sum of the five per-product counters — the public "owners waiting" base. */
-export const WAITLIST_BASE_COUNT = PET_PRODUCTS.reduce((s, p) => s + p.waiting, 0);
-/** PSA WhatsApp business line (placeholder — swap for the live number). */
+// Queue positions are server-issued. Never inflate them with seeded marketing
+// counters: local/offline tickets start at 1 and are replaced by the RPC result.
+export const WAITLIST_BASE_COUNT = 0;
 
 export const PET_TYPES = [
   { id: 'dog', label: 'DOG', icon: '/icon-dog.svg' },

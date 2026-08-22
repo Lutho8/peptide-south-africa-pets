@@ -103,14 +103,26 @@ export function addWaitlistEntry(
   return entry
 }
 
+/** Replace a provisional local ticket with the server-confirmed identity. */
+export function confirmWaitlistEntry(
+  provisionalCode: string,
+  ticketCode: string,
+  queueNumber: number,
+): WaitlistEntry | null {
+  const entries = getWaitlistEntries()
+  const index = entries.findIndex((entry) => entry.code === provisionalCode)
+  if (index < 0) return null
+  const confirmed = { ...entries[index], code: ticketCode, queue: queueNumber }
+  entries[index] = confirmed
+  writeWaitlist(entries.map(entryToTicket))
+  return confirmed
+}
+
 export function liveWaitlistTotal(base: number): number {
   return base + getWaitlistEntries().length
 }
 
-/* -------------------- Referral boost (additive) -------------------- */
-
-/** Simulated queue boost granted when joining via a referral link. */
-export const REFERRAL_BOOST_SPOTS = 3
+/* -------------------------- Referral attribution ------------------------- */
 
 /** Read `?ref=WL-PTD-XXXX` from the current URL (null when absent/invalid). */
 export function getRefFromUrl(): string | null {
@@ -132,7 +144,7 @@ export function getProductFromUrl(): string | null {
   }
 }
 
-/** Shareable referral link for a confirmed member. */
+/** Shareable waitlist link that records the referring ticket at signup. */
 export function buildReferralLink(code: string): string {
   return `${window.location.origin}/pets?ref=${encodeURIComponent(code)}`
 }
@@ -141,23 +153,7 @@ export function buildReferralLink(code: string): string {
 export function buildReferralWhatsAppLink(code: string, firstName: string): string {
   const link = buildReferralLink(code)
   const text =
-    `${firstName} here — I've joined the Peptides4Pets founding waitlist (COA-verified pet peptides, ` +
-    `launching in SA). Use my link and we both move up the queue: ${link}`
+    `${firstName} here — I've joined the Peptides4Pets founding waitlist for the South African launch. ` +
+    `You can join and build your pet's launch plan here: ${link}`
   return `https://wa.me/?text=${encodeURIComponent(text)}`
-}
-
-/** How many entries a given code has referred (local simulation). */
-export function referralCountFor(code: string): number {
-  return getWaitlistEntries().filter((e) => e.ref === code).length
-}
-
-/**
- * Effective queue position after referral boosts.
- * Joining via a ref link grants an immediate boost; each friend who joins via
- * your link bumps you 3 more spots (simulated locally).
- */
-export function effectiveQueue(entry: WaitlistEntry): number {
-  const joinBoost = entry.ref ? REFERRAL_BOOST_SPOTS : 0
-  const shareBoost = referralCountFor(entry.code) * REFERRAL_BOOST_SPOTS
-  return Math.max(1, entry.queue - joinBoost - shareBoost)
 }

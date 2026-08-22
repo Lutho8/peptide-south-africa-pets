@@ -2,9 +2,9 @@ import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ShoppingBag } from 'lucide-react'
-import { getWaitlistEntries, liveWaitlistTotal } from '@/lib/waitlist'
+import { getWaitlistEntries } from '@/lib/waitlist'
 import { useLiveWaitlistCount } from '@/lib/supabase'
-import { TOTAL_WAITING, waLink } from '@/lib/data'
+import { waLink } from '@/lib/data'
 import { useCartCount, openCart } from '@/lib/cart'
 import { useI18n, LanguageToggle } from '@/lib/i18n'
 import { cn } from '@/lib/utils'
@@ -57,15 +57,16 @@ export default function Navbar() {
   )
   const [drawer, setDrawer] = useState(false)
   const navigate = useNavigate()
-  // Marketing base (TOTAL_WAITING) + real Supabase rows + local unsynced entries.
+  // Only the server-confirmed count is shown; seeded catalog numbers are not
+  // presented as real people.
   const liveCount = useLiveWaitlistCount()
-  const total = liveWaitlistTotal(TOTAL_WAITING) + liveCount
+  const total = liveCount
   const counter = useCountUp(total)
   const boxCount = useCartCount()
   const { t } = useI18n()
   // Waitlist pill: members go to their queue dashboard, everyone else joins.
   const isMember = getWaitlistEntries().length > 0
-  const ctaTarget = isMember ? '/queue' : '/waitlist'
+  const ctaTarget = isMember ? '/queue' : '/quiz'
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80)
@@ -141,7 +142,9 @@ export default function Navbar() {
 
           <div className="hidden items-center gap-3 md:flex">
             <span className="mono-label rounded-full border border-amber px-3 py-1.5 !text-[10px] tabular-nums text-amber-deep">
-              {t('nav.waitingChip', { count: counter.toLocaleString('en-ZA') })}
+              {counter > 0
+                ? t('nav.waitingChip', { count: counter.toLocaleString('en-ZA') })
+                : t('nav.waitlistOpen')}
             </span>
             <button
               onClick={openCart}
@@ -260,7 +263,9 @@ export default function Navbar() {
             </div>
             <div className="mt-auto space-y-4">
               <p className="mono-label !text-[11px] text-amber-deep">
-                {t('nav.waitingChip', { count: total.toLocaleString('en-ZA') })}
+                {total > 0
+                  ? t('nav.waitingChip', { count: total.toLocaleString('en-ZA') })
+                  : t('nav.waitlistOpen')}
               </p>
               <button
                 onClick={() => {

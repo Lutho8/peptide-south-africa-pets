@@ -6,10 +6,9 @@ import {
   addWaitlistEntry,
   buildReferralLink,
   buildReferralWhatsAppLink,
-  effectiveQueue,
   getProductFromUrl,
   getRefFromUrl,
-  REFERRAL_BOOST_SPOTS,
+  confirmWaitlistEntry,
 } from '@/lib/waitlist'
 import type { WaitlistEntry } from '@/lib/waitlist'
 import { cartSlugs } from '@/lib/cart'
@@ -67,6 +66,7 @@ export default function WaitlistForm({ defaultProducts, compact = false, onSucce
   const [copied, setCopied] = useState(false)
   // null = sync in flight, true = Supabase + CRM synced, false = queued locally.
   const [synced, setSynced] = useState<boolean | null>(null)
+  const [serverConfirmed, setServerConfirmed] = useState(false)
   // Referral code captured at mount — a "you were referred" credit shows on success.
   const [incomingRef] = useState<string | null>(() => getRefFromUrl())
 
@@ -96,34 +96,35 @@ export default function WaitlistForm({ defaultProducts, compact = false, onSucce
     return Object.keys(next).length === 0
   }
 
-  function onSubmit(e: FormEvent) {
+  async function onSubmit(e: FormEvent) {
     e.preventDefault()
     if (!validate() || submitting) return
     setSubmitting(true)
-    // brief spinner morph before success
-    window.setTimeout(() => {
-      const saved = addWaitlistEntry({
-        name: name.trim(),
-        email: email.trim(),
-        whatsapp: whatsapp.trim(),
-        petType,
-        breed: breed.trim(),
-        petAge,
-        city,
-        products,
-        concern,
-        ref: incomingRef,
-      })
-      setEntry(saved)
-      setSubmitting(false)
-      onSuccess?.(saved)
-      // Dual-write to Supabase (waitlist) + PSA CRM (psa_leads). Fire-and-forget:
-      // failures queue locally and retry on next load — the confirmation always shows.
-      void syncToBackend(saved)
-    }, 800)
+    const saved = addWaitlistEntry({
+      name: name.trim(),
+      email: email.trim(),
+      whatsapp: whatsapp.trim(),
+      petType,
+      breed: breed.trim(),
+      petAge,
+      city,
+      products,
+      concern,
+      ref: incomingRef,
+    })
+    const result = await syncToBackend(saved)
+    setEntry(result.entry)
+    setServerConfirmed(result.serverConfirmed)
+    setSynced(result.synced)
+    setSubmitting(false)
+    onSuccess?.(result.entry)
   }
 
-  async function syncToBackend(saved: WaitlistEntry): Promise<void> {
+  async function syncToBackend(saved: WaitlistEntry): Promise<{
+    entry: WaitlistEntry
+    serverConfirmed: boolean
+    synced: boolean
+  }> {
     const row: PetsWaitlistRow = {
       ticket_code: saved.code,
       owner_name: saved.name,
@@ -142,7 +143,16 @@ export default function WaitlistForm({ defaultProducts, compact = false, onSucce
       consent_popia: true,
       utm: getUtmFromUrl(),
     }
-    const waitlistOk = await submitPetsWaitlist(row)
+    const waitlistResult = await submitPetsWaitlist(row)
+    let finalEntry = saved
+    if (waitlistResult.synced && waitlistResult.queueNumber !== null) {
+      const confirmed = confirmWaitlistEntry(
+        saved.code,
+        waitlistResult.ticketCode,
+        waitlistResult.queueNumber,
+      )
+      if (confirmed) finalEntry = confirmed
+    }
     const leadOk = await upsertPetsLead({
       email: saved.email,
       first_name: saved.name.split(' ')[0] || null,
@@ -154,7 +164,11 @@ export default function WaitlistForm({ defaultProducts, compact = false, onSucce
       consent_whatsapp: Boolean(saved.whatsapp),
       notes: `Peptides4Pets waitlist: ${saved.products.join(', ')}`,
     })
-    setSynced(waitlistOk && leadOk)
+    return {
+      entry: finalEntry,
+      serverConfirmed: waitlistResult.synced,
+      synced: waitlistResult.synced && leadOk,
+    }
   }
 
   async function copyReferralLink(code: string) {
@@ -201,19 +215,21 @@ export default function WaitlistForm({ defaultProducts, compact = false, onSucce
             transition={spring}
             className="rounded-[20px] border border-clinical/30 bg-warmwhite p-8 text-center shadow-[0_20px_50px_-20px_rgba(43,33,24,0.18)]"
           >
-            <p className="mono-label text-clinical">{t('form.confirmed')}</p>
+            <p className="mono-label text-clinical">
+              {serverConfirmed ? t('form.confirmed') : t('form.savedLocal')}
+            </p>
             <h3 className="mt-3 font-serif text-3xl font-semibold text-espresso md:text-4xl">
               {t('form.youreIn', { name: entry.name.split(' ')[0] })}
             </h3>
             <p className="mono-data mt-4 text-espresso">
               {t('form.queueLine', {
-                queue: String(effectiveQueue(entry)).padStart(4, '0'),
+                queue: String(entry.queue).padStart(4, '0'),
                 code: entry.code,
               })}
             </p>
             {entry.ref && (
               <p className="mono-data mt-2 inline-block rounded-full border border-amber/60 bg-amber/10 px-3 py-1 !text-[10px] text-amber-deep">
-                {t('form.referred', { ref: entry.ref, spots: REFERRAL_BOOST_SPOTS })}
+                {t('form.referred', { ref: entry.ref })}
               </p>
             )}
             {synced !== null && (
@@ -230,11 +246,11 @@ export default function WaitlistForm({ defaultProducts, compact = false, onSucce
             )}
             <p className="mt-3 text-sm text-espresso-70">{t('form.foundingNote')}</p>
 
-            {/* Referral boost — move up the queue by sharing */}
+            {/* Shareable attribution link; it does not promise a queue boost. */}
             <div className="mt-6 rounded-2xl border border-clinical/30 bg-clinical-tint/50 p-4 text-left">
               <p className="mono-label !text-[10px] text-clinical">{t('form.refTitle')}</p>
               <p className="mt-1 text-xs leading-relaxed text-espresso-70">
-                {t('form.refBody', { spots: REFERRAL_BOOST_SPOTS })}
+                {t('form.refBody')}
               </p>
               <div className="mt-3 flex flex-col gap-2 sm:flex-row">
                 <input

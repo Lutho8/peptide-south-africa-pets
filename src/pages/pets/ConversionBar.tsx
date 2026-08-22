@@ -2,9 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ShoppingBag } from 'lucide-react'
-import { liveWaitlistTotal } from '@/lib/waitlist'
 import { useLiveWaitlistCount } from '@/lib/supabase'
-import { TOTAL_WAITING } from '@/lib/data'
 import { useCartCount, openCart } from '@/lib/cart'
 import { useI18n } from '@/lib/i18n'
 
@@ -16,8 +14,7 @@ export default function ConversionBar() {
   const { t } = useI18n()
   const [visible, setVisible] = useState(false)
   const boxCount = useCartCount()
-  // Marketing base + real Supabase rows + local unsynced entries.
-  const waiting = liveWaitlistTotal(TOTAL_WAITING) + useLiveWaitlistCount()
+  const waiting = useLiveWaitlistCount()
 
   useEffect(() => {
     const onScroll = () => setVisible(window.scrollY > 640)
@@ -39,8 +36,14 @@ export default function ConversionBar() {
           <div className="psa-container flex items-center justify-between gap-3 py-3">
             <div className="flex min-w-0 items-center gap-4">
               <p className="mono-label hidden !text-[10px] text-espresso-70 sm:block">
-                <span className="tabular-nums text-amber-deep">{waiting.toLocaleString('en-ZA')}</span>
-                {t('cb.waiting').split('{count}')[1]}
+                {waiting > 0 ? (
+                  <>
+                    <span className="tabular-nums text-amber-deep">{waiting.toLocaleString('en-ZA')}</span>
+                    {t('cb.waiting').split('{count}')[1]}
+                  </>
+                ) : (
+                  t('nav.waitlistOpen')
+                )}
               </p>
               <Link
                 to="/quiz"

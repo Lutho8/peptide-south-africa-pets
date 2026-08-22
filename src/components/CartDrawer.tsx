@@ -13,6 +13,7 @@ import {
   CART_OPEN_EVENT,
   CART_CLOSE_EVENT,
   closeCart,
+  addToCart,
 } from '@/lib/cart'
 import { getPetProduct, priceForSlug, BATCH_BY_SLUG, LAUNCH_BATCH } from '@/lib/data'
 import { submitLaunchBox } from '@/lib/supabase'
@@ -63,6 +64,17 @@ export default function CartDrawer() {
   const lines = items
     .map((i) => ({ ...i, product: getPetProduct(i.slug) }))
     .filter((l) => l.product)
+
+  const slugs = new Set(lines.map((line) => line.slug))
+  const addOnSlug = (() => {
+    const candidates = slugs.has('recovery-blend') || slugs.has('bpc-157')
+      ? ['mobility-collagen', 'immune-thymogen']
+      : slugs.has('kpv')
+        ? ['immune-thymogen', 'mobility-collagen']
+        : ['immune-thymogen', 'mobility-collagen']
+    return candidates.find((slug) => !slugs.has(slug)) ?? null
+  })()
+  const addOn = addOnSlug ? getPetProduct(addOnSlug) : null
 
   const subtotal = lines.reduce((sum, l) => sum + priceForSlug(l.slug) * l.qty, 0)
   const discount = subtotal * FOUNDING_DISCOUNT
@@ -241,6 +253,35 @@ export default function CartDrawer() {
                       ))}
                     </AnimatePresence>
                   </ul>
+
+                  {addOn && addOnSlug && (
+                    <div className="mt-4 rounded-2xl border border-clinical/25 bg-clinical-tint/50 p-4">
+                      <p className="mono-label !text-[9px] text-clinical">{t('cart.addOnLabel')}</p>
+                      <div className="mt-2 flex items-center gap-3">
+                        <img
+                          src={addOn.image}
+                          alt=""
+                          className="h-14 w-12 rounded-lg border border-sand object-cover"
+                        />
+                        <div className="min-w-0 flex-1">
+                          <p className="font-serif font-semibold text-espresso">{addOn.name}</p>
+                          <p className="mono-data !text-[10px] text-espresso-70">
+                            {zar(priceForSlug(addOnSlug))}{addOn.priceUnit}
+                          </p>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => addToCart(addOnSlug)}
+                          className="mono-label shrink-0 rounded-full border border-clinical px-3 py-2 !text-[9px] text-clinical transition-colors hover:bg-clinical hover:text-cream"
+                        >
+                          {t('cart.addOnCta')}
+                        </button>
+                      </div>
+                      <p className="mt-2 text-xs leading-relaxed text-espresso-70">
+                        {t('cart.addOnBody')}
+                      </p>
+                    </div>
+                  )}
                 </div>
 
                 {/* ---- totals + free shipping + reserve CTA ---- */}

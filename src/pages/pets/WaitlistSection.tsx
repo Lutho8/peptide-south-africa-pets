@@ -1,60 +1,13 @@
-import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import WaitlistForm from '@/components/WaitlistForm'
-import { PRODUCTS } from '@/lib/data'
+import { useLiveWaitlistCount } from '@/lib/supabase'
 import { useI18n } from '@/lib/i18n'
 import { SectionHeader } from './shared'
-import { cn } from '@/lib/utils'
-
-const SHORT: Record<string, string> = {
-  'bpc-157': 'BPC-157',
-  kpv: 'KPV',
-  'recovery-blend': 'RECOVERY',
-  'immune-thymogen': 'IMMUNE',
-  'mobility-collagen': 'COLLAGEN',
-}
-
-/** Live counters that nudge +1 occasionally with a subtle amber flash. */
-function LiveCounters() {
-  const [counts, setCounts] = useState<Record<string, number>>(() =>
-    Object.fromEntries(PRODUCTS.map((p) => [p.slug, p.waiting])),
-  )
-  const [flash, setFlash] = useState<string | null>(null)
-
-  useEffect(() => {
-    let timer: number
-    const schedule = () => {
-      timer = window.setTimeout(() => {
-        const slug = PRODUCTS[Math.floor(Math.random() * PRODUCTS.length)].slug
-        setCounts((c) => ({ ...c, [slug]: c[slug] + 1 }))
-        setFlash(slug)
-        window.setTimeout(() => setFlash(null), 500)
-        schedule()
-      }, 20000 + Math.random() * 40000)
-    }
-    schedule()
-    return () => window.clearTimeout(timer)
-  }, [])
-
-  return (
-    <div className="mono-data flex flex-wrap gap-x-4 gap-y-2 text-espresso-70">
-      {PRODUCTS.map((p) => (
-        <motion.span
-          key={p.slug}
-          animate={flash === p.slug ? { scale: [1, 1.15, 1], color: '#D97E3F' } : {}}
-          transition={{ duration: 0.4 }}
-          className={cn(flash === p.slug && 'text-amber')}
-        >
-          {SHORT[p.slug]}: {counts[p.slug]}
-        </motion.span>
-      ))}
-    </div>
-  )
-}
 
 /** Section 9 — global waitlist capture. */
 export default function WaitlistSection() {
   const { t } = useI18n()
+  const confirmedJoins = useLiveWaitlistCount()
   return (
     <section id="waitlist" className="paper-texture section-pad bg-cream-2">
       <div className="psa-container relative grid gap-12 lg:grid-cols-12">
@@ -93,7 +46,11 @@ loading="lazy"             src="/dog-portrait-3.png"
           >
             <WaitlistForm />
             <div className="mt-6 border-t border-sand pt-5">
-              <LiveCounters />
+              <p className="mono-data text-espresso-70">
+                {confirmedJoins > 0
+                  ? t('wlp.confirmedJoins', { count: confirmedJoins.toLocaleString('en-ZA') })
+                  : t('nav.waitlistOpen')}
+              </p>
             </div>
           </motion.div>
         </div>

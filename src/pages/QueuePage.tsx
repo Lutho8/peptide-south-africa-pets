@@ -1,31 +1,23 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router'
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import { Check, Copy, Ticket } from 'lucide-react'
-import { PET_PRODUCTS, TOTAL_WAITING } from '@/lib/data'
+import { PET_PRODUCTS } from '@/lib/data'
 import {
-  REFERRAL_BOOST_SPOTS,
   buildReferralLink,
   buildReferralWhatsAppLink,
-  effectiveQueue,
   getWaitlistEntries,
-  liveWaitlistTotal,
-  referralCountFor,
 } from '@/lib/waitlist'
 import { useLiveWaitlistCount } from '@/lib/supabase'
 import { useI18n } from '@/lib/i18n'
 import Seo from '@/components/Seo'
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]
-/** Founding-cap cohort counter — same source as FoundingRing (BPC-157 list). */
 const FOUNDING_CAP = 500
-const FOUNDING_BASE = PET_PRODUCTS.find((p) => p.slug === 'bpc-157')?.waiting ?? 438
 
 /**
  * /queue — living queue dashboard for waitlist members.
- * Position recomputes with the same honest math as the navbar counter
- * (public base + local entries + live Supabase rows via RPC) minus referral
- * boosts (simulated locally, and labeled as such). Non-members get a CTA.
+ * Position comes from the server-issued queue number. Non-members get a CTA.
  */
 export default function QueuePage() {
   const { t } = useI18n()
@@ -38,7 +30,7 @@ export default function QueuePage() {
   const seo = (
     <Seo
       title="Your Waitlist Queue"
-      description="Track your Peptides4Pets founding-member waitlist position, share your referral link to move up the queue, and keep your locked 20% launch pricing."
+      description="Track your server-confirmed Peptides4Pets founding-member waitlist position and keep your launch preferences in one place."
       path="/queue"
     />
   )
@@ -51,13 +43,9 @@ export default function QueuePage() {
       </>
     )
 
-  // Same base + RPC count logic as Navbar/FoundingRing, minus referral boosts.
-  const position = effectiveQueue(entry) + liveCount
-  const totalWaiting = liveWaitlistTotal(TOTAL_WAITING) + liveCount
-  const referredByMe = referralCountFor(entry.code)
-  const spotsGained =
-    (entry.ref ? REFERRAL_BOOST_SPOTS : 0) + referredByMe * REFERRAL_BOOST_SPOTS
-  const claimed = Math.min(FOUNDING_CAP, FOUNDING_BASE + liveCount)
+  const position = entry.queue
+  const totalWaiting = liveCount
+  const claimed = Math.min(FOUNDING_CAP, liveCount)
   const foundingPct = Math.round((claimed / FOUNDING_CAP) * 100)
 
   const products = entry.products
@@ -105,21 +93,6 @@ export default function QueuePage() {
               {t('queue.honest')}
             </p>
 
-            {/* queue movement ticker (simulated locally, labeled) */}
-            <div className="mt-5 rounded-2xl border border-clinical/30 bg-clinical-tint/40 p-4">
-              <div className="flex items-center justify-between gap-2">
-                <p className="mono-label !text-[10px] text-clinical">{t('queue.ticker')}</p>
-                <span className="mono-data !text-[8px] uppercase tracking-[0.08em] text-espresso-70">
-                  {t('queue.sim')}
-                </span>
-              </div>
-              <MovementTicker
-                joinedVia={entry.ref ?? null}
-                referrals={referredByMe}
-                spots={REFERRAL_BOOST_SPOTS}
-                reduced={!!reduced}
-              />
-            </div>
           </motion.div>
 
           <motion.div
@@ -154,11 +127,11 @@ export default function QueuePage() {
               {t('queue.foundingBody', { cap: FOUNDING_CAP })}
             </p>
 
-            {/* referral tools */}
+            {/* share tools */}
             <div className="mt-6 border-t border-dashed border-sand pt-5">
               <p className="mono-label !text-[10px] text-amber-deep">{t('queue.refTitle')}</p>
               <p className="mt-1 text-sm leading-relaxed text-espresso-70">
-                {t('queue.refBody', { spots: REFERRAL_BOOST_SPOTS })}
+                {t('queue.refBody')}
               </p>
               <ReferralTools code={entry.code} firstName={firstName} />
             </div>
@@ -196,12 +169,6 @@ export default function QueuePage() {
                   #{String(position).padStart(4, '0')}
                 </dd>
               </div>
-              {spotsGained > 0 && (
-                <div className="flex items-baseline justify-between gap-4">
-                  <dt className="text-espresso-70">{t('queue.ticker')}</dt>
-                  <dd className="text-right font-bold text-clinical">+{spotsGained}</dd>
-                </div>
-              )}
               <div className="flex items-baseline justify-between gap-4">
                 <dt className="text-espresso-70">{t('wlp.rowCode')}</dt>
                 <dd className="text-right font-bold">{entry.code}</dd>
@@ -245,7 +212,7 @@ export default function QueuePage() {
                       </p>
                     </div>
                     <span className="mono-data shrink-0 !text-[10px] tabular-nums text-amber-deep">
-                      {t('queue.waiting', { count: p.waiting })}
+                      {t('nav.waitlistOpen')}
                     </span>
                   </li>
                 ))}
@@ -258,55 +225,7 @@ export default function QueuePage() {
   )
 }
 
-/* ------------------------- queue movement ticker ------------------------- */
-
-function MovementTicker({
-  joinedVia,
-  referrals,
-  spots,
-  reduced,
-}: {
-  joinedVia: string | null
-  referrals: number
-  spots: number
-  reduced: boolean
-}) {
-  const { t } = useI18n()
-  const events = useMemo(() => {
-    const list: string[] = []
-    if (joinedVia) list.push(t('queue.ticker.join', { ref: joinedVia, spots }))
-    for (let i = 0; i < referrals; i += 1) {
-      list.push(t('queue.ticker.ref', { code: 'WL-PTD-····', spots }))
-    }
-    return list.length > 0 ? list : [t('queue.ticker.idle')]
-  }, [joinedVia, referrals, spots, t])
-
-  const [idx, setIdx] = useState(0)
-  useEffect(() => {
-    if (events.length < 2) return
-    const id = window.setInterval(() => setIdx((i) => (i + 1) % events.length), 2600)
-    return () => window.clearInterval(id)
-  }, [events.length])
-
-  return (
-    <div className="mt-2 min-h-6">
-      <AnimatePresence mode="wait">
-        <motion.p
-          key={idx}
-          initial={reduced ? false : { opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={reduced ? undefined : { opacity: 0, y: -8 }}
-          transition={{ duration: 0.3 }}
-          className="mono-data !text-[11px] uppercase tracking-[0.06em] text-espresso"
-        >
-          {events[idx]}
-        </motion.p>
-      </AnimatePresence>
-    </div>
-  )
-}
-
-/* ------------------------------ referral tools ---------------------------- */
+/* ------------------------------- share tools ----------------------------- */
 
 function ReferralTools({ code, firstName }: { code: string; firstName: string }) {
   const { t } = useI18n()

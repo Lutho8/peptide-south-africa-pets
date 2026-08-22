@@ -26,6 +26,7 @@ import {
   upsertPetsLead,
   useLiveWaitlistCount,
 } from '@/lib/supabase';
+import type { WaitlistSubmissionResult } from '@/lib/supabase';
 import { useI18n } from '@/lib/i18n';
 import Seo from '@/components/Seo';
 import type { Locale } from '@/lib/i18n';
@@ -235,9 +236,12 @@ const STEP_TRANSITION = {
  * CRM (psa_leads). Fire-and-forget — failures queue locally and retry on the
  * next page load; the confirmation step never depends on the network.
  */
-function syncFunnelTicket(t: WaitlistTicket, locale: Locale): void {
+async function syncFunnelTicket(
+  t: WaitlistTicket,
+  locale: Locale,
+): Promise<WaitlistSubmissionResult> {
   const phone = t.whatsapp ? `+27${t.whatsapp}` : null;
-  void submitPetsWaitlist({
+  const result = await submitPetsWaitlist({
     ticket_code: t.code,
     owner_name: t.ownerName,
     email: t.email,
@@ -255,7 +259,7 @@ function syncFunnelTicket(t: WaitlistTicket, locale: Locale): void {
     consent_popia: true,
     utm: getUtmFromUrl(),
   });
-  void upsertPetsLead({
+  await upsertPetsLead({
     email: t.email,
     first_name: t.ownerName.split(' ')[0] || null,
     phone,
@@ -266,6 +270,7 @@ function syncFunnelTicket(t: WaitlistTicket, locale: Locale): void {
     consent_whatsapp: Boolean(t.whatsapp),
     notes: `Peptides4Pets waitlist: ${t.products.join(', ')}`,
   });
+  return result;
 }
 
 export default function WaitlistPage() {
@@ -284,10 +289,10 @@ export default function WaitlistPage() {
   const [errorTick, setErrorTick] = useState(0);
   const [submitting, setSubmitting] = useState(false);
   const [ticket, setTicket] = useState<WaitlistTicket | null>(null);
+  const [serverConfirmed, setServerConfirmed] = useState(false);
   const [welcomeBack, setWelcomeBack] = useState(false);
   const [alreadyRegistered, setAlreadyRegistered] = useState(false);
-  // Real Supabase waitlist rows (RPC, 5-min sessionStorage cache) — queue
-  // positions continue from the marketing base + actual rows.
+  // Real Supabase waitlist rows (RPC, 5-min sessionStorage cache).
   const liveCount = useLiveWaitlistCount();
 
   const patch = (p: Partial<FormState>) => setForm((f) => ({ ...f, ...p }));
@@ -318,9 +323,25 @@ export default function WaitlistPage() {
     const entries = readWaitlist();
     const targetStep = entries.length > 0 ? 3 : 0;
     if (entries.length > 0) {
-      setTicket(entries[entries.length - 1]);
+      const restoredTicket = entries[entries.length - 1];
+      setTicket(restoredTicket);
       setWelcomeBack(true);
       setStep(3);
+      void syncFunnelTicket(restoredTicket, locale).then((confirmation) => {
+        if (!confirmation.synced || confirmation.queueNumber === null) return;
+        const confirmedTicket = {
+          ...restoredTicket,
+          code: confirmation.ticketCode,
+          queue: confirmation.queueNumber,
+        };
+        const refreshed = readWaitlist();
+        const index = refreshed.findIndex((entry) => entry.email === restoredTicket.email);
+        if (index >= 0) refreshed[index] = confirmedTicket;
+        else refreshed.push(confirmedTicket);
+        writeWaitlist(refreshed);
+        setTicket(confirmedTicket);
+        setServerConfirmed(true);
+      });
     }
     try {
       window.history.replaceState({ wlStep: targetStep }, '');
@@ -360,34 +381,6 @@ export default function WaitlistPage() {
     }
   };
 
-  /* ----------------------- live queue counters --------------------------- */
-  const [liveWaiting, setLiveWaiting] = useState<Record<string, number>>(() =>
-    Object.fromEntries(PET_PRODUCTS.map((p) => [p.slug, p.waiting])),
-  );
-  const [flashSlug, setFlashSlug] = useState<string | null>(null);
-  useEffect(() => {
-    if (step !== 2 || reduced) return;
-    let timeout = 0;
-    let flashTimeout = 0;
-    const schedule = () => {
-      timeout = window.setTimeout(
-        () => {
-          const pick = PET_PRODUCTS[Math.floor(Math.random() * PET_PRODUCTS.length)].slug;
-          setLiveWaiting((w) => ({ ...w, [pick]: (w[pick] ?? 0) + 1 }));
-          setFlashSlug(pick);
-          flashTimeout = window.setTimeout(() => setFlashSlug(null), 1800);
-          schedule();
-        },
-        30000 + Math.random() * 40000,
-      );
-    };
-    schedule();
-    return () => {
-      window.clearTimeout(timeout);
-      window.clearTimeout(flashTimeout);
-    };
-  }, [step, reduced]);
-
   /* ------------------------------ validation ------------------------------ */
   const fail = (e: Record<string, string>) => {
     setErrors(e);
@@ -411,60 +404,65 @@ export default function WaitlistPage() {
   };
 
   /* -------------------------------- submit -------------------------------- */
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (form.products.length === 0) {
       fail({ products: t('wlp.err.products') });
       return;
     }
     setSubmitting(true);
-    window.setTimeout(() => {
-      const entries = readWaitlist();
-      const existing = findExistingTicket(entries, form.email, form.whatsapp);
-      let tk: WaitlistTicket;
-      let isNew = false;
-      if (existing) {
-        tk = {
-          ...existing,
-          products: Array.from(new Set([...existing.products, ...form.products])),
-        };
-        const idx = entries.findIndex((x) => x.code === existing.code);
-        if (idx >= 0) entries[idx] = tk;
-        setAlreadyRegistered(true);
-      } else {
-        isNew = true;
-        tk = {
-          code: generateTicketCode(),
-          queue: WAITLIST_BASE_COUNT + liveCount + entries.length + 1,
-          ownerName: form.ownerName.trim(),
-          email: form.email.trim(),
-          whatsapp: form.whatsapp.replace(/\s/g, ''),
-          city: form.city,
-          petTypes: form.petTypes,
-          petName: form.petName.trim(),
-          breed: form.breed.trim(),
-          petAge: form.petAge,
-          concern: form.concern,
-          products: form.products,
-          createdAt: new Date().toISOString(),
-        };
-        entries.push(tk);
-      }
-      writeWaitlist(entries);
-      if (isNew) syncFunnelTicket(tk, locale);
-      try {
-        window.localStorage.removeItem(DRAFT_KEY);
-      } catch {
-        /* ignore */
-      }
-      setTicket(tk);
-      setSubmitting(false);
-      setStep(3);
-      try {
-        window.history.pushState({ wlStep: 3 }, '');
-      } catch {
-        /* ignore */
-      }
-    }, 800);
+    await new Promise<void>((resolve) => window.setTimeout(resolve, 500));
+    const entries = readWaitlist();
+    const existing = findExistingTicket(entries, form.email, form.whatsapp);
+    let tk: WaitlistTicket;
+    if (existing) {
+      tk = {
+        ...existing,
+        products: Array.from(new Set([...existing.products, ...form.products])),
+      };
+      setAlreadyRegistered(true);
+    } else {
+      tk = {
+        code: generateTicketCode(),
+        queue: WAITLIST_BASE_COUNT + liveCount + 1,
+        ownerName: form.ownerName.trim(),
+        email: form.email.trim(),
+        whatsapp: form.whatsapp.replace(/\s/g, ''),
+        city: form.city,
+        petTypes: form.petTypes,
+        petName: form.petName.trim(),
+        breed: form.breed.trim(),
+        petAge: form.petAge,
+        concern: form.concern,
+        products: form.products,
+        createdAt: new Date().toISOString(),
+      };
+    }
+    const confirmation = await syncFunnelTicket(tk, locale);
+    setServerConfirmed(confirmation.synced);
+    if (confirmation.synced && confirmation.queueNumber !== null) {
+      tk = {
+        ...tk,
+        code: confirmation.ticketCode,
+        queue: confirmation.queueNumber,
+      };
+    }
+    const existingIndex = entries.findIndex((entry) => entry.email === tk.email);
+    if (existingIndex >= 0) entries[existingIndex] = tk;
+    else entries.push(tk);
+    writeWaitlist(entries);
+    try {
+      window.localStorage.removeItem(DRAFT_KEY);
+    } catch {
+      /* ignore */
+    }
+    setTicket(tk);
+    setSubmitting(false);
+    setStep(3);
+    try {
+      window.history.pushState({ wlStep: 3 }, '');
+    } catch {
+      /* ignore */
+    }
   };
 
   const resetForAnother = () => {
@@ -875,7 +873,6 @@ export default function WaitlistPage() {
               <div className="mt-10 flex flex-col gap-4">
                 {PET_PRODUCTS.map((p, i) => {
                   const checked = form.products.includes(p.slug);
-                  const waiting = liveWaiting[p.slug] ?? p.waiting;
                   return (
                     <motion.button
                       key={p.slug}
@@ -919,12 +916,11 @@ export default function WaitlistPage() {
                         <span className={`${MONO} mt-1 block text-[11px] tracking-[0.04em] text-[#5C5044]`}>
                           {formatZAR(p.price)}
                           {p.priceUnit} ·{' '}
-                          <motion.span
-                            animate={flashSlug === p.slug ? { color: '#D97E3F' } : { color: '#5C5044' }}
-                            className="font-bold"
-                          >
-                            {t('wlp.waiting', { count: waiting.toLocaleString('en-ZA') })}
-                          </motion.span>
+                          <span className="font-bold">
+                            {liveCount > 0
+                              ? t('wlp.confirmedJoins', { count: liveCount.toLocaleString('en-ZA') })
+                              : t('nav.waitlistOpen')}
+                          </span>
                         </span>
                       </span>
                     </motion.button>
@@ -999,7 +995,7 @@ export default function WaitlistPage() {
             <ConfirmationStep
               key="step-4"
               ticket={ticket}
-
+              serverConfirmed={serverConfirmed}
               welcomeBack={welcomeBack}
               alreadyRegistered={alreadyRegistered}
               reduced={reduced ?? false}
@@ -1034,12 +1030,14 @@ const PLUS_SCATTER: { x: number; y: number; delay: number }[] = [
 
 function ConfirmationStep({
   ticket,
+  serverConfirmed,
   welcomeBack,
   alreadyRegistered,
   reduced,
   onReset,
 }: {
   ticket: WaitlistTicket;
+  serverConfirmed: boolean;
   welcomeBack: boolean;
   alreadyRegistered: boolean;
   reduced: boolean;
@@ -1113,8 +1111,19 @@ function ConfirmationStep({
         </p>
       )}
       <h1 className={`${SERIF} text-[2.5rem] font-medium leading-[1.05] tracking-[-0.02em]`}>
-        {petName ? t('wlp.confirmedNamed', { name: petName }) : t('wlp.confirmed')}
+        {serverConfirmed
+          ? petName
+            ? t('wlp.confirmedNamed', { name: petName })
+            : t('wlp.confirmed')
+          : petName
+            ? t('wlp.savedNamed', { name: petName })
+            : t('wlp.saved')}
       </h1>
+      {!serverConfirmed && (
+        <p className={`${MONO} mx-auto mt-3 max-w-xl text-[10px] uppercase leading-relaxed tracking-[0.08em] text-[#B25E26]`}>
+          {t('wlp.pendingNote')}
+        </p>
+      )}
 
       {/* ticket + scatter */}
       <div className="relative mx-auto mt-10 max-w-[440px]">
@@ -1227,19 +1236,21 @@ function ConfirmationStep({
       </p>
 
       {/* queue dashboard handoff (round 6) */}
-      <motion.div
-        initial={reduced ? false : { opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 2.3 }}
-        className="mt-6"
-      >
-        <Link
-          to="/queue"
-          className={`${MONO} inline-flex items-center gap-2 rounded-full border-2 border-[#1E4D3B] px-6 py-3 text-[11px] font-bold uppercase tracking-[0.08em] text-[#1E4D3B] transition-colors hover:bg-[#1E4D3B] hover:text-[#FFFDF9]`}
+      {serverConfirmed && (
+        <motion.div
+          initial={reduced ? false : { opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 2.3 }}
+          className="mt-6"
         >
-          {t('wlp.dashboard')}
-        </Link>
-      </motion.div>
+          <Link
+            to="/queue"
+            className={`${MONO} inline-flex items-center gap-2 rounded-full border-2 border-[#1E4D3B] px-6 py-3 text-[11px] font-bold uppercase tracking-[0.08em] text-[#1E4D3B] transition-colors hover:bg-[#1E4D3B] hover:text-[#FFFDF9]`}
+          >
+            {t('wlp.dashboard')}
+          </Link>
+        </motion.div>
+      )}
 
       <div className="mt-8 flex flex-col items-center gap-3">
         <Link

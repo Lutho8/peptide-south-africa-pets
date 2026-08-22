@@ -2,13 +2,13 @@ import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router'
 import { AnimatePresence, motion } from 'framer-motion'
 import type { Product } from '@/lib/data'
-import { PRODUCTS, TOTAL_WAITING } from '@/lib/data'
+import { PRODUCTS } from '@/lib/data'
 import ComingSoonBadge from '@/components/ComingSoonBadge'
 import CitationAccordion from '@/components/CitationAccordion'
 import AddToBoxButton from '@/components/AddToBoxButton'
 import { useLiveWaitlistCount } from '@/lib/supabase'
 import { useI18n } from '@/lib/i18n'
-import { SectionHeader, CountUp } from './shared'
+import { SectionHeader } from './shared'
 import { cn } from '@/lib/utils'
 
 /** Section 7 — product catalog with sticky shortlist rail (technique #1). */
@@ -16,7 +16,7 @@ export default function Catalog() {
   const { t } = useI18n()
   const [active, setActive] = useState<Product>(PRODUCTS[0])
   const [docked, setDocked] = useState(false)
-  // Real Supabase waitlist rows on top of the marketing base (TOTAL_WAITING).
+  // Only server-confirmed joins are presented as social proof.
   const liveCount = useLiveWaitlistCount()
   const cardRefs = useRef<(HTMLElement | null)[]>([])
   const railRef = useRef<HTMLDivElement>(null)
@@ -94,20 +94,13 @@ export default function Catalog() {
                     <p className="mt-3 font-serif text-lg font-semibold text-espresso">
                       {active.name}
                     </p>
-                    <p className="mono-data mt-1 text-amber-deep">
-                      {active.waiting} {t('cat.waiting')}
-                    </p>
+                    <p className="mono-data mt-1 text-amber-deep">{t('nav.waitlistOpen')}</p>
                   </motion.div>
                 </AnimatePresence>
                 <p className="mono-data mt-4 border-t border-sand pt-4 text-espresso">
-                  {t('cat.ownersOnLists')
-                    .split('{count}')
-                    .map((part, idx) => (
-                      <span key={idx}>
-                        {idx > 0 && <CountUp key={liveCount} target={TOTAL_WAITING + liveCount} />}
-                        {part}
-                      </span>
-                    ))}
+                  {liveCount > 0
+                    ? t('wlp.confirmedJoins', { count: liveCount.toLocaleString('en-ZA') })
+                    : t('nav.waitlistOpen')}
                 </p>
                 <a
                   href="#waitlist"
@@ -148,9 +141,7 @@ export default function Catalog() {
           <img loading="lazy" src={active.image} alt="" className="h-10 w-10 rounded-md border border-sand object-cover" />
           <div>
             <p className="text-sm font-semibold text-espresso">{active.name}</p>
-            <p className="mono-data !text-[10px] text-amber-deep">
-              {active.waiting} {t('cat.waiting')}
-            </p>
+            <p className="mono-data !text-[10px] text-amber-deep">{t('nav.waitlistOpen')}</p>
           </div>
         </div>
         <AddToBoxButton slug={active.slug} openDrawer={false} />
@@ -210,9 +201,7 @@ function ProductCard({
           </p>
           <div className="mono-data mt-4 flex items-center justify-between">
             <span className="text-espresso">{p.price}</span>
-            <span className="text-amber-deep">
-              <CountUp target={p.waiting} format={false} /> {t('cat.waiting')}
-            </span>
+            <span className="text-amber-deep">{t('nav.waitlistOpen')}</span>
           </div>
           <div className="mt-5 flex flex-wrap items-center gap-3">
             <a

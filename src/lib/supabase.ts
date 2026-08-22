@@ -48,6 +48,12 @@ export interface PetsWaitlistRow {
   quiz_answers?: Record<string, unknown> | null
 }
 
+export interface WaitlistSubmissionResult {
+  synced: boolean
+  ticketCode: string
+  queueNumber: number | null
+}
+
 export interface LaunchBoxItem {
   slug: string
   qty: number
@@ -110,17 +116,15 @@ function queuePendingSync(item: PendingItem): void {
 async function flushOne(item: PendingItem): Promise<boolean> {
   try {
     if (item.kind === 'waitlist') {
-      const { error } = await supabase.from('psa_pets_waitlist').insert(item.payload)
+      const { error } = await supabase.rpc('psa_pets_join_waitlist', waitlistRpcParams(item.payload))
       return !error
     }
     if (item.kind === 'launch_box') {
       const { error } = await supabase.from('psa_pets_launch_box').insert(item.payload)
       return !error
     }
-    const { error } = await supabase
-      .from('psa_leads')
-      .upsert(item.payload, { onConflict: 'email', ignoreDuplicates: true })
-    return !error
+    const { error } = await supabase.from('psa_leads').insert(item.payload)
+    return !error || error.code === '23505'
   } catch {
     return false
   }
@@ -150,16 +154,56 @@ export function syncPendingSubmissions(): void {
 
 /* ------------------------------ submit API ------------------------------ */
 
-/** Insert a waitlist row. Queues for retry on failure; returns success. */
-export async function submitPetsWaitlist(entry: PetsWaitlistRow): Promise<boolean> {
+function waitlistRpcParams(entry: PetsWaitlistRow) {
+  return {
+    p_ticket_code: entry.ticket_code,
+    p_owner_name: entry.owner_name,
+    p_email: entry.email,
+    p_whatsapp: entry.whatsapp ?? null,
+    p_pet_type: entry.pet_type ?? null,
+    p_pet_breed: entry.pet_breed ?? null,
+    p_pet_age: entry.pet_age ?? null,
+    p_city: entry.city ?? null,
+    p_products: entry.products ?? [],
+    p_primary_concern: entry.primary_concern ?? null,
+    p_referred_by: entry.referred_by ?? null,
+    p_source: entry.source ?? 'pets-landing',
+    p_locale: entry.locale ?? 'en',
+    p_consent_popia: entry.consent_popia ?? false,
+    p_utm: entry.utm ?? {},
+    p_quiz_answers: entry.quiz_answers ?? null,
+  }
+}
+
+/**
+ * Join the canonical waitlist through the server-side RPC. The database
+ * deduplicates by normalized email and returns the authoritative ticket and
+ * queue number. Failed requests are queued for retry without inventing a
+ * server confirmation.
+ */
+export async function submitPetsWaitlist(
+  entry: PetsWaitlistRow,
+): Promise<WaitlistSubmissionResult> {
   try {
-    const { error } = await supabase.from('psa_pets_waitlist').insert(entry)
-    if (!error) return true
+    const { data, error } = await supabase.rpc('psa_pets_join_waitlist', waitlistRpcParams(entry))
+    const confirmation = Array.isArray(data) ? data[0] : data
+    if (
+      !error &&
+      confirmation &&
+      typeof confirmation.ticket_code === 'string' &&
+      typeof confirmation.queue_number === 'number'
+    ) {
+      return {
+        synced: true,
+        ticketCode: confirmation.ticket_code,
+        queueNumber: confirmation.queue_number,
+      }
+    }
   } catch {
     /* fall through to queue */
   }
   queuePendingSync({ kind: 'waitlist', payload: entry })
-  return false
+  return { synced: false, ticketCode: entry.ticket_code, queueNumber: null }
 }
 
 /** Insert a Launch Box reservation. Queues for retry on failure. */
@@ -174,13 +218,11 @@ export async function submitLaunchBox(reservation: LaunchBoxRow): Promise<boolea
   return false
 }
 
-/** Upsert the CRM lead (deduped on email). Queues for retry on failure. */
+/** Insert the CRM lead; an existing email is treated as already synced. */
 export async function upsertPetsLead(lead: CrmLeadRow): Promise<boolean> {
   try {
-    const { error } = await supabase
-      .from('psa_leads')
-      .upsert(lead, { onConflict: 'email', ignoreDuplicates: true })
-    if (!error) return true
+    const { error } = await supabase.from('psa_leads').insert(lead)
+    if (!error || error.code === '23505') return true
   } catch {
     /* fall through to queue */
   }
@@ -240,8 +282,7 @@ export async function fetchWaitlistCount(): Promise<number> {
 }
 
 /**
- * React hook — real waitlist row count, fetched on mount (5-min cache).
- * Display as `TOTAL_WAITING + count` (marketing base + actual rows).
+ * React hook — server-confirmed waitlist row count, fetched on mount (5-min cache).
  */
 export function useLiveWaitlistCount(): number {
   const [count, setCount] = useState<number>(() => getCachedWaitlistCount())

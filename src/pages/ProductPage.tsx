@@ -17,6 +17,7 @@ import Seo, { SITE_URL } from '@/components/Seo'
 import { handoutForProduct } from '@/lib/vetpack'
 import { useI18n } from '@/lib/i18n'
 import { cn } from '@/lib/utils'
+import { useLiveWaitlistCount } from '@/lib/supabase'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -85,7 +86,7 @@ export default function ProductPage() {
       <HowItWorks detail={detail} />
       <EvidenceSection product={product} detail={detail} />
       <ComparisonSection product={product} />
-      <WaitlistCapture product={product} detail={detail} />
+      <WaitlistCapture product={product} />
       <RelatedProducts current={product} />
       <PageOutro />
     </div>
@@ -204,9 +205,7 @@ function HeroSplit({ product, detail }: { product: Product; detail: ProductDetai
                   product: product.name.split('(')[0].trim().toUpperCase(),
                 })}
               </a>
-              <span className="mono-data text-amber-deep">
-                {t('pdp.ownersWaiting', { count: product.waiting })}
-              </span>
+              <span className="mono-data text-amber-deep">{t('nav.waitlistOpen')}</span>
             </motion.div>
 
             {/* batch → COA deep link */}
@@ -745,7 +744,7 @@ function ComparisonSection({ product }: { product: Product }) {
 /* Section 7 — per-product waitlist capture                            */
 /* ------------------------------------------------------------------ */
 
-function WaitlistCapture({ product, detail }: { product: Product; detail: ProductDetail }) {
+function WaitlistCapture({ product }: { product: Product }) {
   const { t } = useI18n()
   return (
     <section id="pdp-waitlist" className="paper-texture section-pad bg-cream-2">
@@ -766,7 +765,7 @@ function WaitlistCapture({ product, detail }: { product: Product; detail: Produc
           <p className="mt-4 max-w-md text-lg leading-relaxed text-espresso-70">
             {t('pdp.wl.body')}
           </p>
-          <LiveCounter base={product.waiting} avg={detail.avgPerDay} />
+          <LiveCounter />
         </motion.div>
 
         <motion.div
@@ -783,40 +782,18 @@ function WaitlistCapture({ product, detail }: { product: Product; detail: Produc
   )
 }
 
-/** Live counter: ticks +1 every 30–70s with an amber flash. */
-function LiveCounter({ base, avg }: { base: number; avg: number }) {
-  const [count, setCount] = useState(base)
-  const [flash, setFlash] = useState(false)
+/** Server-confirmed global waitlist count. */
+function LiveCounter() {
+  const count = useLiveWaitlistCount()
   const { t } = useI18n()
-
-  useEffect(() => {
-    let tick = 0
-    let unflash = 0
-    const schedule = () => {
-      tick = window.setTimeout(() => {
-        setCount((c) => c + 1)
-        setFlash(true)
-        unflash = window.setTimeout(() => setFlash(false), 1200)
-        schedule()
-      }, 30000 + Math.random() * 40000)
-    }
-    schedule()
-    return () => {
-      window.clearTimeout(tick)
-      window.clearTimeout(unflash)
-    }
-  }, [])
 
   return (
     <p className="mono-data mt-8 border-t border-sand pt-5 text-espresso">
-      <motion.span
-        animate={{ color: flash ? '#D97E3F' : '#2B2118' }}
-        transition={{ duration: 0.4 }}
-        className="font-bold tabular-nums"
-      >
-        {t('pdp.counter', { count })}
-      </motion.span>
-      <span className="text-espresso-70">{t('pdp.counterAvg', { avg })}</span>
+      <span className="font-bold tabular-nums">
+        {count > 0
+          ? t('wlp.confirmedJoins', { count: count.toLocaleString('en-ZA') })
+          : t('nav.waitlistOpen')}
+      </span>
     </p>
   )
 }
@@ -880,7 +857,7 @@ loading="lazy"                       src={p.image}
                     <p className="mt-1 text-sm italic text-espresso-70">{note}</p>
                     <div className="mono-data mt-3 flex items-center justify-between">
                       <span className="text-espresso">{p.price}</span>
-                      <span className="text-amber-deep">{t('pdp.waiting', { count: p.waiting })}</span>
+                      <span className="text-amber-deep">{t('nav.waitlistOpen')}</span>
                     </div>
                   </div>
                 </Link>

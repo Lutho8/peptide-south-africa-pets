@@ -26,6 +26,7 @@ const en: Dict = {
     'COMING SOON — PEPTIDES FOR PETS · JOIN THE WAITLIST · FOUNDING MEMBERS LOCK 20% OFF FIRST 3 MONTHS · ',
   'nav.dismissAnnouncement': 'Dismiss announcement',
   'nav.waitingChip': '{count} SA PET OWNERS WAITING',
+  'nav.waitlistOpen': 'FOUNDING WAITLIST OPEN',
   'nav.cartAria': 'Open your Launch Box, {count} items',
   'nav.cta': 'Join the waitlist',
   'nav.waMsg': 'Hi Peptides4Pets! I have a question about the pet peptide waitlist.',
@@ -177,16 +178,13 @@ const en: Dict = {
   'sp.overline': 'EARLY BELIEVERS',
   'sp.titleA': 'South African pet owners are',
   'sp.titleEm': 'already in line.',
-  'sp.stats': '1,204 ON THE WAITLIST · 4.9★ PSA STORE RATING · 1,200+ PSA REVIEWS',
-  'sp.1.quote':
-    'My 11-year-old Boerboel struggles on our farm’s steps. If the collagen does half of what the studies say, I’m first in line.',
-  'sp.1.meta': 'ANNERIE V. · PRETORIA · BOERBOEL, AGE 11',
-  'sp.2.quote':
-    'I buy PSA’s human peptides already. COA on every batch is why I trust them with my cat.',
-  'sp.2.meta': 'DANIEL K. · CAPE TOWN · TABBY, AGE 7',
-  'sp.3.quote':
-    'We spent R40k on our Ridgeback’s cruciate surgery. Recovery support can’t come soon enough.',
-  'sp.3.meta': 'SIPHO M. · DURBAN · RIDGEBACK, AGE 4',
+  'sp.stats': 'FOUNDING WAITLIST OPEN · NO PAYMENT · NO COMMITMENT',
+  'sp.1.quote': 'Tell us what your senior dog struggles with most.',
+  'sp.1.meta': '60-SECOND PRODUCT-FIT QUIZ',
+  'sp.2.quote': 'Choose which launch products you want updates about.',
+  'sp.2.meta': 'PERSONALISED WAITLIST',
+  'sp.3.quote': 'Get a server-confirmed queue position after joining.',
+  'sp.3.meta': 'CLEAR CONFIRMATION',
 
   /* ---------------- Honesty ---------------- */
   'hon.overline': 'STRAIGHT TALK',
@@ -263,6 +261,9 @@ Object.assign(en, {
   'cart.reservedTotal': 'RESERVED TOTAL',
   'cart.reserveCta': 'RESERVE WITH WAITLIST — NO PAYMENT YET →',
   'cart.footer': 'VAT INCL · PRICE LOCKED TO YOUR TICKET · CANCEL ANYTIME',
+  'cart.addOnLabel': 'ONE RELEVANT ADD-ON',
+  'cart.addOnCta': 'ADD TO PLAN',
+  'cart.addOnBody': 'One complementary option only — skip it if it is not useful for your pet.',
 
   /* ---------------- Waitlist form ---------------- */
   'form.name': 'YOUR NAME',
@@ -306,21 +307,22 @@ Object.assign(en, {
   'form.err.breed': 'BREED HELPS US DOSE RIGHT',
   'form.err.products': 'PICK AT LEAST ONE PRODUCT',
   'form.confirmed': 'WAITLIST CONFIRMED',
+  'form.savedLocal': 'SAVED ON THIS DEVICE · SYNC PENDING',
   'form.youreIn': "You're in, {name}.",
   'form.queueLine': 'YOU ARE #{queue} IN LINE · CODE {code}',
-  'form.referred': 'VIA {ref} — YOU MOVED UP {spots} SPOTS (SIMULATED LOCALLY)',
+  'form.referred': 'JOINED VIA {ref}',
   'form.synced': 'SYNCED TO PSA CRM ✓',
   'form.syncQueued': 'SAVED LOCALLY — WILL SYNC',
   'form.foundingNote':
     'Founding-member pricing is locked: 20% off your first 3 subscription months at launch.',
-  'form.refTitle': 'MOVE UP THE QUEUE — SHARE YOUR LINK',
-  'form.refBody': 'Every friend who joins with your link bumps you up {spots} more spots.',
+  'form.refTitle': 'SHARE THE FOUNDING WAITLIST',
+  'form.refBody': 'Your link records who referred a new member; queue positions remain server-issued.',
   'form.refAria': 'Your referral link',
   'form.copy': 'COPY LINK',
   'form.copied': '✓ COPIED',
   'form.shareWa': 'SHARE ON WHATSAPP',
   'form.refWaText':
-    '{name} here — I’ve joined the Peptides4Pets founding waitlist (COA-verified pet peptides, launching in SA). Use my link and we both move up the queue: {link}',
+    '{name} here — I’ve joined the Peptides4Pets founding waitlist for the South African launch. You can build your pet’s launch plan here: {link}',
   'form.confirmWa': 'Confirm faster on WhatsApp',
   'form.waMessage':
     "Hi Peptides4Pets! I'm {name}, on the waitlist for {products} for my {petType}, {breed}, age {age}. Code {code}.",
@@ -534,6 +536,7 @@ Object.assign(en, {
   'wlp.s3.titleGeneric': 'What should we put you first in line for?',
   'wlp.firstToLaunch': 'FIRST TO LAUNCH',
   'wlp.waiting': '{count} WAITING',
+  'wlp.confirmedJoins': '{count} CONFIRMED JOINS',
   'wlp.err.products': 'SELECT AT LEAST ONE PRODUCT',
   'wlp.clearAll': 'CLEAR SELECTION',
   'wlp.allProducts': 'KEEP ME POSTED ON EVERYTHING',
@@ -546,6 +549,9 @@ Object.assign(en, {
   'wlp.welcomeBack': 'WELCOME BACK — YOUR TICKET:',
   'wlp.confirmedNamed': "You're in — and so is {name}.",
   'wlp.confirmed': "You're in.",
+  'wlp.savedNamed': '{name} is saved on this device.',
+  'wlp.saved': 'Your details are saved on this device.',
+  'wlp.pendingNote': 'SERVER CONFIRMATION IS STILL PENDING. WE WILL RETRY AUTOMATICALLY ON YOUR NEXT VISIT.',
   'wlp.ticketTitle': 'Peptides4Pets · WAITLIST TICKET',
   'wlp.rowOwner': 'OWNER',
   'wlp.rowPet': 'PET',
@@ -643,53 +649,23 @@ Object.assign(en, {
 })
 
 Object.assign(en, {
-  /* ---------------- Testimonials (video stories) ---------------- */
-  'tm.overline': 'REAL FAMILIES. REAL COMEBACKS.',
-  'tm.title': 'The spark came back.',
+  /* ---------------- Founder story + evidence boundary ---------------- */
+  'tm.overline': 'WHY WE STARTED',
+  'tm.title': 'One senior dog changed the question.',
   'tm.sub':
-    'Member stories from our founding community. Videos marked AI are re-enactments — the words are real.',
-  'tm.feat.kicker': 'FEATURED STORY · SHARED WITH PERMISSION',
+    'A personal experience inspired the work. It is a story, not proof — the evidence and its limits sit alongside it.',
+  'tm.feat.kicker': 'FOUNDER STORY · PERSONAL ANECDOTE',
   'tm.feat.quote1':
-    '“I revived my 14-year-old dog with peptides. 6 months ago, he was slowing down fast. He was limping, achy, getting up slowly, and couldn’t jump on the couch. We honestly didn’t know if we had 6 months left with him. Today, our boy is running, jumping on the patio, going on long walks again, and even his hearing is back.”',
-  'tm.feat.protocolTitle': 'HIS PROTOCOL',
-  'tm.feat.proto1.title': 'BPC-157 + TB-500',
-  'tm.feat.proto1.body': '1–2 mg/day, 5 days on / 2 days off → less limping within weeks.',
-  'tm.feat.proto2.title': 'BIOREGULATOR STACK',
-  'tm.feat.proto2.body': 'For kidney markers — labs monitored, same as his owner’s.',
-  'tm.feat.proto3.title': 'TESTOSTERONE SUPPORT',
-  'tm.feat.proto3.body':
-    'Vet-supervised hormone support for his neutered senior dog — dose titrated under bloodwork. “Shot day is like a revival.”',
-  'tm.feat.quote2':
-    '“6 months ago we were counting the time we had left with him. Now I genuinely believe we have another 3 years. If you have a dog, understand that he’s aging the same way you are. He needs help, but he can’t do the research… you can!”',
-  'tm.feat.attr': '— COMMUNITY MEMBER, CAPE TOWN · 70 KG SENIOR BOERBOEL',
+    '“My 14-year-old dog could barely walk. After we started BPC-157 and TB-500, and later veterinarian-supervised hormone support, he started running again for the first time in two years.”',
+  'tm.feat.attr': '— PEPTIDE SOUTH AFRICA FOUNDER · SENIOR DOG OWNER',
   'tm.feat.disclaimer':
-    'SHARED BY A COMMUNITY MEMBER. HORMONE PROTOCOLS REQUIRE VETERINARY SUPERVISION AND BLOODWORK. Peptides4Pets DOES NOT SELL TESTOSTERONE OR ADVISE ON PRESCRIPTION MEDICINES.',
-  'tm.aiChip': 'AI RE-ENACTMENT',
-  'tm.play': 'Play',
-  'tm.pause': 'Pause',
-  'tm.v1.cap': 'RUNNING AGAIN · WEEK 14',
-  'tm.v2.cap': 'BACK ON THE PATIO · HIS KIDS’ GUARDIAN',
-  'tm.v3.cap': 'LONG WALKS ARE BACK · PROMENADE, CAPE TOWN',
-  'tm.v1.quote': '“Within weeks, less limping. Within months, this.”',
-  'tm.v1.meta': 'L. VAN DER M. · CAPE TOWN · BOERBOEL, 9',
-  'tm.v2.quote': '“The kids got their guardian back.”',
-  'tm.v2.meta': 'S. NAIDOO · DURBAN · BOERBOEL, 11',
-  'tm.v3.quote': '“He pulls me up the promenade hills again.”',
-  'tm.v3.meta': 'J. BOTHA · SEA POINT · LABRADOR, 13',
-  'tm.grid.kicker': 'MORE FROM THE COMMUNITY',
-  'tm.verified': 'COMMUNITY STORY · SHARED WITH PERMISSION',
-  'tm.q1.quote':
-    'The 60-second quiz nailed her stack — collagen plus BPC-157. Six weeks in, our 12-year-old shepherd climbs into the bakkie unassisted again.',
-  'tm.q1.meta': 'MARTHINUS P. · STELLENBOSCH · GERMAN SHEPHERD, 12 · BPC-157 + COLLAGEN',
-  'tm.q2.quote':
-    'I WhatsApped at 21:00 expecting a bot. A real person in Cape Town answered in four minutes and adjusted my dog’s dosing schedule with me.',
-  'tm.q2.meta': 'PRIYA R. · UMHLANGA · CORGI, 8 · RECOVERY BLEND',
-  'tm.q3.quote':
-    'Our vet read the COA before we did. That piece of paper is why we joined — and why we stay.',
-  'tm.q3.meta': 'ANNERIE V. · PRETORIA · BOERBOEL, 11 · MOBILITY COLLAGEN',
-  'tm.q4.quote':
-    'After his cruciate surgery, the Recovery Blend took him from crate rest to beach walks a month ahead of schedule.',
-  'tm.q4.meta': 'SIPHO M. · DURBAN · RIDGEBACK, 4 · RECOVERY BLEND',
+    'ONE OWNER’S EXPERIENCE IS NOT CLINICAL EVIDENCE. BPC-157 AND TB-500 ARE NOT APPROVED CANINE TREATMENTS. HORMONE THERAPY REQUIRES A VETERINARIAN, DIAGNOSIS AND MONITORING.',
+  'tm.evidence.kicker': 'EVIDENCE CHECK',
+  'tm.evidence.title': 'Promising signals, important gaps.',
+  'tm.evidence.rats': 'Rat studies report improved tendon-cell growth, migration and tissue healing signals.',
+  'tm.evidence.beagles': 'A small beagle study examined pharmacokinetics and short-term tolerability — not whether BPC-157 works in dogs.',
+  'tm.evidence.gap': 'Good canine efficacy trials for BPC-157 and TB-500 are still missing.',
+  'tm.evidence.link': 'READ THE SOURCES AND LIMITS',
   'tm.cta': 'Your dog’s comeback starts with 60 seconds →',
 
   /* ---------------- 60-day mobility guarantee band ---------------- */
@@ -736,6 +712,7 @@ const af: Dict = {
     'KOM BINNEKORT — PEPTIEDE VIR TROETELDIERE · SLUIT AAN BY DIE WAGLYS · STIGTERSLEDE SLUT 20% AF OP HUL EERSTE 3 MAANDE VAS · ',
   'nav.dismissAnnouncement': 'Verwyder aankondiging',
   'nav.waitingChip': '{count} SA-TROETELDIEREËNAARS WAG',
+  'nav.waitlistOpen': 'STIGTERSWAGLYS OOP',
   'nav.cartAria': 'Maak jou Launch Box oop, {count} produkte',
   'nav.cta': 'Sluit aan by die waglys',
   'nav.waMsg': 'Hallo Peptides4Pets! Ek het ’n vraag oor die troeteldier-peptiedwaglys.',
@@ -888,16 +865,13 @@ const af: Dict = {
   'sp.overline': 'VROEË ONDERSTEUNERS',
   'sp.titleA': 'Suid-Afrikaanse troeteldier-eienaars is',
   'sp.titleEm': 'al klaar in die ry.',
-  'sp.stats': '1 204 OP DIE WAGLYS · 4.9★ PSA-WINKELGRADERING · 1 200+ PSA-RESENSIES',
-  'sp.1.quote':
-    'My 11 jaar oue Boerboel sukkel met ons plaas se trappe. As die kollageen die helfte doen van wat die studies sê, is ek eerste in die ry.',
-  'sp.1.meta': 'ANNERIE V. · PRETORIA · BOERBOEL, 11 JAAR',
-  'sp.2.quote':
-    'Ek koop al klaar PSA se mens-peptiede. ’n COA by elke lot is hoekom ek hulle met my kat vertrou.',
-  'sp.2.meta': 'DANIEL K. · KAAPSTAD · BRUIKKAT, 7 JAAR',
-  'sp.3.quote':
-    'Ons het R40k aan ons Ridgeback se kruisbandoperasie spandeer. Herstelondersteuning kan nie gou genoeg kom nie.',
-  'sp.3.meta': 'SIPHO M. · DURBAN · RIDGEBACK, 4 JAAR',
+  'sp.stats': 'STIGTERSWAGLYS OOP · GEEN BETALING · GEEN VERPLIGTING',
+  'sp.1.quote': 'Vertel ons waarmee jou seniorhond die meeste sukkel.',
+  'sp.1.meta': '60-SEKONDE-PRODUKPASSING-VASVRA',
+  'sp.2.quote': 'Kies oor watter bekendstellingsprodukte jy nuus wil ontvang.',
+  'sp.2.meta': 'PERSOONLIKE WAGLYS',
+  'sp.3.quote': 'Kry ’n bedienerbevestigde ryposisie nadat jy aansluit.',
+  'sp.3.meta': 'DUIDELIKE BEVESTIGING',
 
   /* ---------------- Honesty ---------------- */
   'hon.overline': 'REGUIT GEPRAAT',
@@ -974,6 +948,9 @@ Object.assign(af, {
   'cart.reservedTotal': 'BESPREEKDE TOTAAL',
   'cart.reserveCta': 'BESPREEK VIA WAGLYS — NOG GEEN BETALING NIE →',
   'cart.footer': 'BTW INGESLUIT · PRYS AAN JOU KAARTJIE VASGESLUIT · KANSELLEER ENIGE TYD',
+  'cart.addOnLabel': 'EEN RELEVANTE BYVOEGING',
+  'cart.addOnCta': 'VOEG BY PLAN',
+  'cart.addOnBody': 'Net een aanvullende opsie — slaan dit oor as dit nie vir jou troeteldier nuttig is nie.',
 
   /* ---------------- Waitlist form ---------------- */
   'form.name': 'JOU NAAM',
@@ -1017,21 +994,22 @@ Object.assign(af, {
   'form.err.breed': 'RAS HELP ONS OM REG TE DOSEER',
   'form.err.products': 'KIES TEN MINSTE EEN PRODUK',
   'form.confirmed': 'WAGLYS BEVESTIG',
+  'form.savedLocal': 'OP HIERDIE TOESTEL GESTOOR · SINCHRONISASIE HANGENDE',
   'form.youreIn': 'Jy is in, {name}.',
   'form.queueLine': 'JY IS #{queue} IN DIE RYG · KODE {code}',
-  'form.referred': 'VIA {ref} — JY HET {spots} PLEKKE OPGESKUIF (PLAASLIK GESIMULEER)',
+  'form.referred': 'VIA {ref} AANGESLUIT',
   'form.synced': 'MET PSA CRM GESINKRONISEER ✓',
   'form.syncQueued': 'PLAASLIK GESTOOR — SAL SINKRONISEER',
   'form.foundingNote':
     'Stigterslidpryse is vasgesluit: 20% af jou eerste 3 intekenmaande by bekendstelling.',
-  'form.refTitle': 'SKUIF VORENTOE IN DIE RYG — DEEL JOU SKAKEL',
-  'form.refBody': 'Elke vriend wat met jou skakel aansluit, skuif jou nog {spots} plekke op.',
+  'form.refTitle': 'DEEL DIE STIGTERSWAGLYS',
+  'form.refBody': 'Jou skakel teken aan wie ’n nuwe lid verwys het; ryposisies word deur die bediener uitgereik.',
   'form.refAria': 'Jou verwysingskakel',
   'form.copy': 'KOPIEER SKAKEL',
   'form.copied': '✓ GEKOPIEER',
   'form.shareWa': 'DEEL OP WHATSAPP',
   'form.refWaText':
-    '{name} hier — ek het by die Peptides4Pets-stigterswaglys aangesluit (COA-geverifieerde troeteldier-peptiede, binnekort in SA). Gebruik my skakel en ons albei skuif op in die ry: {link}',
+    '{name} hier — ek het by die Peptides4Pets-stigterswaglys vir die Suid-Afrikaanse bekendstelling aangesluit. Bou jou troeteldier se bekendstellingsplan hier: {link}',
   'form.confirmWa': 'Bevestig vinniger op WhatsApp',
   'form.waMessage':
     'Hallo Peptides4Pets! Ek is {name}, op die waglys vir {products} vir my {petType}, {breed}, {age} jaar oud. Kode {code}.',
@@ -1246,6 +1224,7 @@ Object.assign(af, {
   'wlp.s3.titleGeneric': 'Waarvoor moet ons jou eerste in die ry plaas?',
   'wlp.firstToLaunch': 'EERSTE OM TE LANSEER',
   'wlp.waiting': '{count} WAG',
+  'wlp.confirmedJoins': '{count} BEVESTIGDE AANSLUITINGS',
   'wlp.err.products': 'KIES TEN MINSTE EEN PRODUK',
   'wlp.clearAll': 'MAAK KEUSE LEEG',
   'wlp.allProducts': 'HOU MY OP HOOGTE VAN ALLES',
@@ -1258,6 +1237,9 @@ Object.assign(af, {
   'wlp.welcomeBack': 'WELKOM TERUG — JOU KAARTJIE:',
   'wlp.confirmedNamed': 'Jy is in — en {name} ook.',
   'wlp.confirmed': 'Jy is in.',
+  'wlp.savedNamed': '{name} is op hierdie toestel gestoor.',
+  'wlp.saved': 'Jou besonderhede is op hierdie toestel gestoor.',
+  'wlp.pendingNote': 'BEDIENERBEVESTIGING HANG NOGENDE. ONS SAL OUTOMATIES WEER PROBEER TYDENS JOU VOLGENDE BESOEK.',
   'wlp.ticketTitle': 'Peptides4Pets · WAGLYS-KAARTJIE',
   'wlp.rowOwner': 'EIENAAR',
   'wlp.rowPet': 'TROETELDIER',
@@ -1356,53 +1338,23 @@ Object.assign(af, {
 })
 
 Object.assign(af, {
-  /* ---------------- Getuigskrifte (videostories) ---------------- */
-  'tm.overline': 'REGTE GESINNE. REGTE TERUGKEER.',
-  'tm.title': 'Die vonk het teruggekom.',
+  /* ---------------- Stigterverhaal + bewysgrens ---------------- */
+  'tm.overline': 'WAAROM ONS BEGIN HET',
+  'tm.title': 'Een seniorhond het die vraag verander.',
   'tm.sub':
-    'Lidverhale uit ons stigtersgemeenskap. Video’s wat as KI gemerk is, is nagebootste tonele — die woorde is eg.',
-  'tm.feat.kicker': 'UITGELIGTE VERHAAL · MET TOESTEMMING GEDEEL',
+    '’n Persoonlike ervaring het die werk geïnspireer. Dit is ’n verhaal, nie bewys nie — die navorsing en sy grense staan langsaan.',
+  'tm.feat.kicker': 'STIGTERVERHAAL · PERSOONLIKE ANEKDOTE',
   'tm.feat.quote1':
-    '“Ek het my 14 jaar oue hond met peptiede laat herleef. 6 maande gelede het hy vinnig agteruitgegaan. Hy het mank geloop, was seer, het stadig opgestaan en kon nie meer op die rusbank spring nie. Ons het eerlikwaar nie geweet of ons nog 6 maande met hom het nie. Vandag hardloop ons seun, spring hy op die stoep, gaan hy weer op lang stappe — en selfs sy gehoor is terug.”',
-  'tm.feat.protocolTitle': 'SY PROTOKOL',
-  'tm.feat.proto1.title': 'BPC-157 + TB-500',
-  'tm.feat.proto1.body': '1–2 mg/dag, 5 dae aan / 2 dae af → minder mank binne weke.',
-  'tm.feat.proto2.title': 'BIOREGULATOR-STAPEL',
-  'tm.feat.proto2.body': 'Vir niermerkers — bloedtoetse gemonitor, net soos sy eienaar s’n.',
-  'tm.feat.proto3.title': 'TESTOSTERON-ONDERSTEUNING',
-  'tm.feat.proto3.body':
-    'Hormoonondersteuning onder veeartsenykundige toesig vir sy gekasteerde seniorhond — dosis aangepas onder bloedwerk. “Inspuitingsdag is soos ’n herlewing.”',
-  'tm.feat.quote2':
-    '“6 maande gelede het ons die tyd getel wat ons nog met hom het. Nou glo ek oprecht ons het nog 3 jaar. As jy ’n hond het, verstaan dat hy net soos jy verouder. Hy het hulp nodig, maar hy kan nie self die navorsing doen nie… jy kan!”',
-  'tm.feat.attr': '— GEMEENSKAPSLID, KAAPSTAD · 70 KG SENIOR-BOERBOEL',
+    '“My 14-jarige hond kon skaars loop. Nadat ons met BPC-157 en TB-500 begin het, en later hormoonondersteuning onder veeartsenykundige toesig, het hy vir die eerste keer in twee jaar weer begin hardloop.”',
+  'tm.feat.attr': '— PEPTIDE SOUTH AFRICA-STIGTER · SENIORHONDEIENAAR',
   'tm.feat.disclaimer':
-    'DEUR ’N GEMEENSKAPSLID GEDEEL. HORMOONPROTOKOLLE VEREIS VEEARTSENYKUNDIGE TOESIG EN BLOEDWERK. Peptides4Pets VERKOOP NIE TESTOSTERON NIE EN GEE NIE RAAD OOR VOORSKRIFMEDISYNE NIE.',
-  'tm.aiChip': 'KI-NABOOTSING',
-  'tm.play': 'Speel',
-  'tm.pause': 'Laat wag',
-  'tm.v1.cap': 'HARDLOOP WEER · WEEK 14',
-  'tm.v2.cap': 'TERUG OP DIE STOEP · SY KINDERS SE BEWAARDER',
-  'tm.v3.cap': 'LANG STAPPE IS TERUG · PROMENADE, KAAPSTAD',
-  'tm.v1.quote': '“Binne weke, minder mank. Binne maande, dit.”',
-  'tm.v1.meta': 'L. VAN DER M. · KAAPSTAD · BOERBOEL, 9',
-  'tm.v2.quote': '“Die kinders het hul bewaarder teruggekry.”',
-  'tm.v2.meta': 'S. NAIDOO · DURBAN · BOERBOEL, 11',
-  'tm.v3.quote': '“Hy trek my weer teen die promenade se heuwels op.”',
-  'tm.v3.meta': 'J. BOTHA · SEEPUNT · LABRADOR, 13',
-  'tm.grid.kicker': 'MEER UIT DIE GEMEENSKAP',
-  'tm.verified': 'GEMEENSKAPSSTORIE · MET TOESTEMMING GEDEEL',
-  'tm.q1.quote':
-    'Die 60-sekonde-quiz het haar stapel reggekry — kollageen plus BPC-157. Ses weke later klim ons 12 jaar oue herdershond weer sonder hulp in die bakkie.',
-  'tm.q1.meta': 'MARTHINUS P. · STELLENBOSCH · DUITSE HERDERSHOND, 12 · BPC-157 + COLLAGEN',
-  'tm.q2.quote':
-    'Ek het 21:00 ge-WhatsApp en ’n bot verwag. ’n Regte mens in Kaapstad het binne vier minute geantwoord en my hond se doseringskedule saam met my aangepas.',
-  'tm.q2.meta': 'PRIYA R. · UMHLANGA · CORGI, 8 · RECOVERY BLEND',
-  'tm.q3.quote':
-    'Ons veearts het die COA voor ons gelees. Daardie stukkie papier is hoekom ons aangesluit het — en hoekom ons bly.',
-  'tm.q3.meta': 'ANNERIE V. · PRETORIA · BOERBOEL, 11 · MOBILITY COLLAGEN',
-  'tm.q4.quote':
-    'Ná sy kruisbandoperasie het die Recovery Blend hom van kratrus na strandstappe geneem — ’n maand voor skedule.',
-  'tm.q4.meta': 'SIPHO M. · DURBAN · RIDGEBACK, 4 · RECOVERY BLEND',
+    'EEN EIENAAR SE ERVARING IS NIE KLINIESE BEWYS NIE. BPC-157 EN TB-500 IS NIE GOEDGEKEURDE BEHANDELINGS VIR HONDE NIE. HORMOONTERAPIE VEREIS ’N VEEARTS, DIAGNOSE EN MONITERING.',
+  'tm.evidence.kicker': 'BEWYSONDERSOEK',
+  'tm.evidence.title': 'Belowende seine, belangrike gapings.',
+  'tm.evidence.rats': 'Rotstudies rapporteer seine van verbeterde tendonselgroei, migrasie en weefselgenesing.',
+  'tm.evidence.beagles': '’n Klein beagle-studie het farmakokinetika en korttermynverdraagsaamheid ondersoek — nie of BPC-157 by honde werk nie.',
+  'tm.evidence.gap': 'Goeie honde-effektiwiteitstudies vir BPC-157 en TB-500 ontbreek steeds.',
+  'tm.evidence.link': 'LEES DIE BRONNE EN GRENSE',
   'tm.cta': 'Jou hond se terugkeer begin met 60 sekondes →',
 
   /* ---------------- 60-dae-mobiliteitswaarborgstrook ---------------- */
@@ -1523,22 +1475,16 @@ Object.assign(en, {
   /* queue dashboard */
   'queue.overline': 'YOUR WAITLIST DASHBOARD',
   'queue.title': 'Your place in line, live.',
-  'queue.sub': 'Your ticket, your referral boosts and the honest counters — all in one spot.',
+  'queue.sub': 'Your server-issued ticket, product preferences and confirmed live count — all in one spot.',
   'queue.position': 'YOUR POSITION',
   'queue.total': '{count} OWNERS IN LINE',
-  'queue.honest':
-    'HONEST COUNT — PUBLIC BASE + LIVE SIGNUPS + REFERRAL BOOSTS (SIMULATED LOCALLY)',
-  'queue.ticker': 'QUEUE MOVEMENT',
-  'queue.sim': 'SIMULATED LOCALLY — LIVE FEED ACTIVATES AT LAUNCH',
-  'queue.ticker.join': 'YOU JOINED VIA {ref} — +{spots} SPOTS',
-  'queue.ticker.ref': '{code} JOINED VIA YOUR LINK — +{spots} SPOTS',
-  'queue.ticker.idle': 'WATCH THIS SPACE — REFERRAL BUMPS SHOW HERE',
+  'queue.honest': 'SERVER-CONFIRMED QUEUE POSITION AND LIVE SIGNUP COUNT',
   'queue.founding': 'ROAD TO FOUNDING {cap}',
   'queue.foundingBody':
     'Founding 20% pricing is capped at the first {cap}. The bar fills with real waitlist joins — no fake countdowns.',
   'queue.claimed': '{claimed} / {cap} CLAIMED',
-  'queue.refTitle': 'MOVE UP THE QUEUE',
-  'queue.refBody': 'Every friend who joins with your link bumps you up {spots} more spots.',
+  'queue.refTitle': 'SHARE THE FOUNDING WAITLIST',
+  'queue.refBody': 'Your link records referral attribution without changing server-issued positions.',
   'queue.copy': 'COPY LINK',
   'queue.copied': '✓ COPIED',
   'queue.shareWa': 'SHARE ON WHATSAPP',
@@ -1656,22 +1602,16 @@ Object.assign(af, {
   /* ry-kontrolepaneel */
   'queue.overline': 'JOU WAGLYS-KONTROLEPANEEL',
   'queue.title': 'Jou plek in die ry, regstreeks.',
-  'queue.sub': 'Jou kaartjie, jou verwysingsbonusse en die eerlike tellers — alles op een plek.',
+  'queue.sub': 'Jou bedieneruitgereikte kaartjie, produkvoorkeure en bevestigde regstreekse telling — alles op een plek.',
   'queue.position': 'JOU POSISIE',
   'queue.total': '{count} EIENAARS IN DIE RY',
-  'queue.honest':
-    'EERLIKE TELLING — OPENBARE BASIS + REGTE AANSLUITINGS + VERWYSINGSBONUSSE (PLAASLIK GESIMULEER)',
-  'queue.ticker': 'RYBEWEGING',
-  'queue.sim': 'PLAASLIK GESIMULEER — REGSTREEKSE VOER AKTIWEER BY LANSERING',
-  'queue.ticker.join': 'JY HET VIA {ref} AANGESLUIT — +{spots} PLEKKE',
-  'queue.ticker.ref': '{code} HET VIA JOU SKAKEL AANGESLUIT — +{spots} PLEKKE',
-  'queue.ticker.idle': 'HOU HIERDIE PLEK DOP — VERWYSINGSBONUSSE VERSKYN HIER',
+  'queue.honest': 'BEDIENERBEVESTIGDE RYPOSISIE EN REGSTREEKSE AANSLUITINGSTELLING',
   'queue.founding': 'PAD NA STIGTERS-{cap}',
   'queue.foundingBody':
     'Stigters-20%-pryse is beperk tot die eerste {cap}. Die balk vul met regte waglys-aansluitings — geen vals aftellers nie.',
   'queue.claimed': '{claimed} / {cap} GEVAT',
-  'queue.refTitle': 'SKUIF VORENTOE IN DIE RY',
-  'queue.refBody': 'Elke vriend wat met jou skakel aansluit, skuif jou nog {spots} plekke op.',
+  'queue.refTitle': 'DEEL DIE STIGTERSWAGLYS',
+  'queue.refBody': 'Jou skakel teken die verwysing aan sonder om bedieneruitgereikte posisies te verander.',
   'queue.copy': 'KOPIEER SKAKEL',
   'queue.copied': '✓ GEKOPIEER',
   'queue.shareWa': 'DEEL OP WHATSAPP',

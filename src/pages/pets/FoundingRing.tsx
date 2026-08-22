@@ -1,34 +1,23 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { useI18n } from '@/lib/i18n'
-import { PET_PRODUCTS, TOTAL_WAITING } from '@/lib/data'
-import { liveWaitlistTotal } from '@/lib/waitlist'
 import { useLiveWaitlistCount } from '@/lib/supabase'
 import { CountUp } from './shared'
 
-// Founding 20% pricing is capped at the first 500; the claimed count is the
-// BPC-157 list — pulled from the same catalog data as the global counter.
-const CLAIMED = PET_PRODUCTS.find((p) => p.slug === 'bpc-157')?.waiting ?? 438
 const CAP = 500
 const R = 52
 const CIRC = 2 * Math.PI * R
 
 /**
- * Urgency, honestly: founding-member capacity counter with a progress ring.
- * The number is the real public counter (438 BPC-157 list), not a fake timer.
+ * Founding-member capacity counter backed only by server-confirmed joins.
  */
 export default function FoundingRing() {
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, margin: '0px 0px -20% 0px' })
   const { t } = useI18n()
-  const pct = CLAIMED / CAP
-
-  // Same totals as the navbar/conversion-bar chip: marketing base + real
-  // Supabase rows + local entries. Standard list = everyone not in the
-  // founding-cap BPC-157 cohort, so the two counters finally agree.
   const liveCount = useLiveWaitlistCount()
-  const totalWaiting = liveWaitlistTotal(TOTAL_WAITING) + liveCount
-  const standardWaiting = Math.max(0, totalWaiting - CLAIMED)
+  const claimed = Math.min(CAP, liveCount)
+  const pct = claimed / CAP
 
   return (
     <section className="bg-cream pb-4 pt-2">
@@ -61,7 +50,7 @@ export default function FoundingRing() {
             </svg>
             <div className="mono-data absolute inset-0 flex flex-col items-center justify-center text-espresso">
               <span className="text-lg font-bold tabular-nums">
-                <CountUp target={CLAIMED} format={false} />
+                <CountUp target={claimed} format={false} />
               </span>
               <span className="!text-[10px] text-espresso-70">/ {CAP}</span>
             </div>
@@ -69,16 +58,18 @@ export default function FoundingRing() {
 
           <div className="text-center sm:text-left">
             <p className="mono-label !text-[11px] text-amber-deep">
-              {CLAIMED} / {CAP} {t('ring.label')}
+              {claimed} / {CAP} {t('ring.label')}
             </p>
             <p className="mt-2 font-serif text-2xl font-semibold leading-snug text-espresso">
-              {t('ring.title', { claimed: CLAIMED, cap: CAP })}
+              {t('ring.title', { claimed, cap: CAP })}
             </p>
             <p className="mt-2 max-w-md text-sm leading-relaxed text-espresso-70">
               {t('ring.body', { cap: CAP })}
             </p>
             <p className="mono-data mt-3 !text-[10px] uppercase tracking-[0.08em] text-espresso-70">
-              {t('ring.standard', { count: standardWaiting.toLocaleString('en-ZA') })}
+              {claimed > 0
+                ? t('wlp.confirmedJoins', { count: claimed.toLocaleString('en-ZA') })
+                : t('nav.waitlistOpen')}
             </p>
           </div>
         </div>

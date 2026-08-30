@@ -1,6 +1,6 @@
 import { memo, useEffect, useMemo, useRef, useState } from 'react'
 import type { ReactNode } from 'react'
-import { Link, useParams } from 'react-router'
+import { Link, useNavigate, useParams } from 'react-router'
 import { AnimatePresence, motion, useInView } from 'framer-motion'
 import type { Variants } from 'framer-motion'
 import gsap from 'gsap'
@@ -8,6 +8,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { FlaskConical, FileCheck2, ShieldCheck } from 'lucide-react'
 import type { Product, ProductDetail } from '@/lib/data'
 import { getProductBySlug, getProductDetail, PRODUCTS, BATCH_BY_SLUG, LAUNCH_BATCH } from '@/lib/data'
+import { addToCart, isCheckoutEligible } from '@/lib/cart'
+import { trackPets } from '@/lib/analytics'
 import ComingSoonBadge from '@/components/ComingSoonBadge'
 import CitationAccordion from '@/components/CitationAccordion'
 import WaitlistForm from '@/components/WaitlistForm'
@@ -75,7 +77,11 @@ export default function ProductPage() {
     <div key={product.slug}>
       <Seo
         title={`${product.name} — COA-Verified for SA Pets`}
-        description={`${product.benefit} In development — HPLC-tested with a COA on every batch. Join the Peptides4Pets waitlist. Not yet for sale; consult your vet.`}
+        description={
+          isCheckoutEligible(product.slug)
+            ? `${product.benefit} Live now — HPLC-tested with a COA on every batch. Secure EFT checkout. A nutritional supplement, not a veterinary medicine; consult your vet.`
+            : `${product.benefit} In development — HPLC-tested with a COA on every batch. Join the Peptides4Pets waitlist. Not yet for sale; consult your vet.`
+        }
         path={`/product/${product.slug}`}
         type="product"
         image={productImage}
@@ -109,6 +115,8 @@ const boxItem: Variants = {
 function HeroSplit({ product, detail }: { product: Product; detail: ProductDetail }) {
   const { t, locale } = useI18n()
   const batch = BATCH_BY_SLUG[product.slug] ?? LAUNCH_BATCH
+  // Live, purchasable product (Mobility Collagen) gets the EFT buy path.
+  const eligible = isCheckoutEligible(product.slug)
   // "Bring your vet" pack — handout rebuilt when the locale flips.
   const handout = useMemo(
     () => handoutForProduct(product.slug, locale),
@@ -159,7 +167,7 @@ function HeroSplit({ product, detail }: { product: Product; detail: ProductDetai
                 variants={boxItem}
                 className="mono-label mt-3 inline-block rounded-full bg-clinical px-3 py-1 !text-[10px] text-cream"
               >
-                {t('pdp.firstLaunch')}
+                {eligible ? t('pdp.liveNowChip') : t('pdp.firstLaunch')}
               </motion.p>
             )}
 
@@ -181,14 +189,16 @@ function HeroSplit({ product, detail }: { product: Product; detail: ProductDetai
               </span>
             </motion.div>
 
-            {/* subscription selector */}
-            <motion.div variants={boxItem} className="mt-6">
-              <PlanSelector detail={detail} />
-            </motion.div>
+            {/* subscription selector — reservation-only until autoship goes live */}
+            {!eligible && (
+              <motion.div variants={boxItem} className="mt-6">
+                <PlanSelector detail={detail} />
+              </motion.div>
+            )}
 
-            {/* disabled buy box — the active path is the Launch Box reservation */}
+            {/* buy box — live EFT for eligible products, reservation otherwise */}
             <motion.div variants={boxItem} className="mt-6">
-              <DisabledBuyButton />
+              {eligible ? <LiveBuyButton slug={product.slug} /> : <DisabledBuyButton />}
             </motion.div>
 
             <motion.div variants={boxItem} className="mt-4 flex flex-wrap items-center gap-4">
@@ -302,7 +312,7 @@ loading="lazy"           src="/coa-stamp.svg"
           aria-hidden
           className="pointer-events-none absolute right-4 top-4 h-20 w-20 -rotate-[8deg] opacity-40"
         />
-        <ComingSoonBadge className="absolute bottom-4 left-4" />
+        <ComingSoonBadge className="absolute bottom-4 left-4" live={isCheckoutEligible(product.slug)} />
         <span className="mono-data pointer-events-none absolute bottom-4 right-4 rounded-full bg-espresso/70 px-2.5 py-1 !text-[10px] text-cream backdrop-blur-sm">
           {shot.caption}
         </span>
@@ -448,6 +458,32 @@ const ShineSweep = memo(function ShineSweep() {
     />
   )
 })
+
+/* ---------------- live buy button (checkout-eligible products) ---------------- */
+
+function LiveBuyButton({ slug }: { slug: string }) {
+  const navigate = useNavigate()
+  const { t } = useI18n()
+
+  function handleBuy() {
+    addToCart(slug)
+    trackPets('pets_collagen_added', { slug })
+    trackPets('pets_checkout_started', { source: 'pdp' })
+    navigate('/checkout')
+  }
+
+  return (
+    <motion.button
+      type="button"
+      onClick={handleBuy}
+      whileTap={{ scale: 0.97 }}
+      transition={SPRING}
+      className="mono-label w-full cursor-pointer rounded-full bg-clinical py-4 !text-[11px] text-cream transition-colors hover:bg-espresso"
+    >
+      {t('pdp.buyNow')}
+    </motion.button>
+  )
+}
 
 /* ---------------- disabled buy button + shake tooltip ---------------- */
 
@@ -849,7 +885,7 @@ loading="lazy"                       src={p.image}
                       alt={p.name}
                       className="aspect-[4/5] w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                     />
-                    <ComingSoonBadge className="absolute bottom-3 left-3" />
+                    <ComingSoonBadge className="absolute bottom-3 left-3" live={isCheckoutEligible(p.slug)} />
                   </div>
                   <div className="p-5">
                     <p className="mono-label !text-[9px] text-espresso-70">{p.spec}</p>

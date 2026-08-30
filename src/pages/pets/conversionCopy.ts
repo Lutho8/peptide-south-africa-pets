@@ -47,7 +47,7 @@ const en: ConversionCopy = {
   heroOverline: 'PEPTIDES4PETS · SOUTH AFRICA',
   heroH1: 'More good years, made simple.',
   heroSub:
-    'Vet-minded peptide protocols for South African dogs and cats. Join the launch waitlist — no payment today.',
+    'Vet-minded peptide protocols for South African dogs and cats. Mobility Collagen is live now — secure EFT checkout; the peptide drops follow.',
   heroCtaQuiz: 'Build my pet’s plan',
   heroCtaShop: 'See launch plans',
   heroTrust1: '≥99% HPLC COA',
@@ -56,13 +56,13 @@ const en: ConversionCopy = {
 
   launchOverline: 'THE LAUNCH BATCH',
   launchTitle: 'Five formulas. One batch.',
-  launchSub: 'Reserve at founding pricing today — nothing is charged until we ship.',
-  launchAdd: 'Reserve for launch',
-  launchAdded: 'Reserved ✓',
+  launchSub: 'Mobility Collagen ships today by secure EFT — reserve the peptide drops at founding pricing.',
+  launchAdd: 'Add',
+  launchAdded: 'Added ✓',
   launchDetails: 'DETAILS →',
   launchCitations: 'KEY EVIDENCE ({count})',
   launchHplc: '≥99% HPLC',
-  launchNote: 'ALL PRODUCTS IN DEVELOPMENT · NOT VETERINARY MEDICINES · CONSULT YOUR VET',
+  launchNote: 'MOBILITY COLLAGEN IS LIVE · PEPTIDES IN DEVELOPMENT · NOT VETERINARY MEDICINES · CONSULT YOUR VET',
 
   qtOverline: '60-SECOND QUIZ',
   qtTitle: 'A plan built for your pet.',
@@ -83,7 +83,7 @@ const af: ConversionCopy = {
   heroOverline: 'PEPTIDES4PETS · SUID-AFRIKA',
   heroH1: 'Meer goeie jare, eenvoudig gemaak.',
   heroSub:
-    'Veearts-gesinde peptiedprotokolle vir Suid-Afrikaanse honde en katte. Sluit aan by die bekendstellingswaglys — geen betaling vandag nie.',
+    'Veearts-gesinde peptiedprotokolle vir Suid-Afrikaanse honde en katte. Mobility Collagen is nou beskikbaar — veilige EFT-betaling; die peptieddruppels volg.',
   heroCtaQuiz: 'Bou my troeteldier se plan',
   heroCtaShop: 'Sien bekendstellingsplanne',
   heroTrust1: '≥99% HPLC-COA',
@@ -93,14 +93,14 @@ const af: ConversionCopy = {
   launchOverline: 'DIE BEKENDSTELLINGSLOT',
   launchTitle: 'Vyf formules. Een lot.',
   launchSub:
-    'Bespreek teen stigterspryse vandag — niks word gevorder voordat ons stuur nie.',
-  launchAdd: 'Bespreek vir bekendstelling',
-  launchAdded: 'Bespreek ✓',
+    'Mobility Collagen word vandag per veilige EFT versend — bespreek die peptieddruppels teen stigterspryse.',
+  launchAdd: 'Voeg by',
+  launchAdded: 'Bygevoeg ✓',
   launchDetails: 'BESONDERHEDE →',
   launchCitations: 'SLEUTELBEWYSE ({count})',
   launchHplc: '≥99% HPLC',
   launchNote:
-    'ALLE PRODUKTE IN ONTWIKKELING · NIE VEEARTSENYMIDDELS NIE · RAADPLEEG JOU VEEARTS',
+    'MOBILITY COLLAGEN IS NOU BESKIKBAAR · PEPTIEDE IN ONTWIKKELING · NIE VEEARTSENYMIDDELS NIE · RAADPLEEG JOU VEEARTS',
 
   qtOverline: '60-SEKONDE-QUIZ',
   qtTitle: '’n Plan gebou vir jou troeteldier.',

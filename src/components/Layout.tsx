@@ -1,6 +1,8 @@
 import { useEffect } from 'react'
 import { Outlet, useLocation } from 'react-router'
 import { Helmet, HelmetProvider } from 'react-helmet-async'
+import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/react'
 import Lenis from 'lenis'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -41,7 +43,7 @@ function DefaultMeta({ pathname }: { pathname: string }) {
       <title>Peptides4Pets — COA-Verified Peptides & Collagen for Dogs, Cats & Horses | South Africa</title>
       <meta
         name="description"
-        content="South Africa's first COA-verified pet peptide line: BPC-157, KPV, collagen and more — HPLC-tested, vet-reviewed, VAT included. Join the waitlist."
+        content="South Africa's COA-verified pet line: Mobility Collagen live now with secure EFT checkout; peptide drops in development — HPLC-tested, vet-reviewed, VAT included."
       />
       <link rel="canonical" href={`${SITE_URL}${pathname === '/' ? '' : pathname}`} />
       <meta property="og:site_name" content="Peptides4Pets" />
@@ -94,6 +96,8 @@ export default function Layout() {
           </main>
           <Footer />
           <CartDrawer />
+          <Analytics />
+          <SpeedInsights />
         </div>
       </I18nProvider>
     </HelmetProvider>

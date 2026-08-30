@@ -44,7 +44,7 @@ export default function Pets() {
     <>
       <Seo
         title="Peptides4Pets — COA-Verified Peptides & Collagen for Dogs, Cats & Horses"
-        description="South Africa's first COA-verified pet peptide line — research-grade BPC-157, KPV and collagen for dogs, cats and horses. In development; join the waitlist."
+        description="South Africa's COA-verified pet line — Mobility Collagen is live now with secure EFT checkout; research-grade BPC-157, KPV and more in development for dogs, cats and horses."
         path=""
       />
       <Hero />

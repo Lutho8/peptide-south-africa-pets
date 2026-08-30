@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import { Check, ChevronDown, Plus } from 'lucide-react'
 import { PET_PRODUCTS, PRODUCT_DETAILS, formatZAR } from '@/lib/data'
 import type { Citation, PetProduct } from '@/lib/data'
-import { addToCart } from '@/lib/cart'
+import { addToCart, isCheckoutEligible } from '@/lib/cart'
 import { useI18n } from '@/lib/i18n'
 import { useConversionCopy } from './conversionCopy'
 import { SectionHeader } from './shared'
@@ -91,9 +91,15 @@ function LaunchCard({ product, index }: { product: PetProduct; index: number }) 
           <VialPlaceholder name={product.name} />
         )}
         <div className="absolute left-3 top-3 flex flex-col items-start gap-1.5">
-          <span className="mono-label coming-soon-pulse rounded-full bg-espresso px-2.5 py-1 !text-[9px] text-cream">
-            {t('badge.comingSoon')}
-          </span>
+          {isCheckoutEligible(product.slug) ? (
+            <span className="mono-label rounded-full bg-clinical px-2.5 py-1 !text-[9px] text-cream">
+              {t('badge.liveNow')}
+            </span>
+          ) : (
+            <span className="mono-label coming-soon-pulse rounded-full bg-espresso px-2.5 py-1 !text-[9px] text-cream">
+              {t('badge.comingSoon')}
+            </span>
+          )}
           <span className="mono-label rounded-full border border-espresso/15 bg-warmwhite/90 px-2.5 py-1 !text-[9px] text-clinical backdrop-blur-sm">
             {copy.launchHplc}
           </span>

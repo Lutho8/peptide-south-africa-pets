@@ -1,5 +1,5 @@
 import { Link } from 'react-router'
-import { PRODUCTS, waLink } from '@/lib/data'
+import { COMPLIANCE_LINE, PRODUCTS, waLink } from '@/lib/data'
 import { useI18n } from '@/lib/i18n'
 import { asset } from '@/lib/asset'
 
@@ -8,13 +8,9 @@ export default function Footer() {
   const { t } = useI18n()
   return (
     <>
-      {/* §7.7 Compliance Disclaimer Strip */}
+      {/* §7.7 Compliance Disclaimer Strip — single source: COMPLIANCE_LINE in lib/data */}
       <div className="border-y border-alert bg-cream px-4 py-3 text-center">
-        <p className="mono-label !text-[11px] leading-relaxed text-alert">
-          ALL Peptides4Pets PRODUCTS ARE IN DEVELOPMENT AND NOT YET AVAILABLE FOR SALE · THESE ARE
-          NOT VETERINARY MEDICINES · NO PET PEPTIDE PRODUCT IS FDA OR SAHPRA APPROVED · ALWAYS
-          CONSULT YOUR VETERINARIAN
-        </p>
+        <p className="mono-label !text-[11px] leading-relaxed text-alert">{COMPLIANCE_LINE}</p>
       </div>
 
       {/* §7.3 Back to main site breadcrumb */}

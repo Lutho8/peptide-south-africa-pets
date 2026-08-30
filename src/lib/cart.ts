@@ -1,9 +1,12 @@
 /**
- * Peptides4Pets — "Launch Box" reservation cart.
+ * Peptides4Pets — "Launch Box" cart.
  *
- * Everything is COMING SOON, so this is a reservation cart: shoppers build a
- * stack at founding-member pricing, then convert through the waitlist (no
- * payment is ever taken).
+ * Mobility Collagen is LIVE and checkout-eligible: it converts through the
+ * secure EFT flow (see lib/eftCheckout.ts). Every other (in-development)
+ * peptide stays a reservation — shoppers build a stack at founding-member
+ * pricing and convert through the waitlist; no payment is ever taken for
+ * those. Client totals are display-only; the server recomputes the amount
+ * in eft-create-order.
  *
  * CONTRACT (the quiz agent builds against this — do not break):
  * - localStorage key: `psa_pets_cart`
@@ -19,13 +22,21 @@ export interface CartItem {
 
 const KEY = 'psa_pets_cart'
 
+/** Slugs allowed into a live EFT order. Everything else is waitlist-only. */
+export const CHECKOUT_ELIGIBLE = new Set(['mobility-collagen'])
+
+/** True when a cart line may go through the live EFT checkout. */
+export function isCheckoutEligible(slug: string): boolean {
+  return CHECKOUT_ELIGIBLE.has(slug)
+}
+
 /** Fired on window after every cart write. */
 export const CART_CHANGE_EVENT = 'psa-cart-change'
 /** UI events — open/close the CartDrawer from anywhere. */
 export const CART_OPEN_EVENT = 'psa-cart-open'
 export const CART_CLOSE_EVENT = 'psa-cart-close'
 
-/** Founding-member discount applied at launch (reservation pricing). */
+/** Reservation-pricing constant for waitlist items; not applied to live EFT orders. */
 export const FOUNDING_DISCOUNT = 0.2
 /** Free-shipping threshold in ZAR. */
 export const FREE_SHIPPING_THRESHOLD = 1500

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 import { AnimatePresence, motion } from 'framer-motion'
 import { X, Minus, Plus, Trash2, PackageOpen } from 'lucide-react'
 import {
@@ -14,9 +14,11 @@ import {
   CART_CLOSE_EVENT,
   closeCart,
   addToCart,
+  isCheckoutEligible,
 } from '@/lib/cart'
 import { getPetProduct, priceForSlug, BATCH_BY_SLUG, LAUNCH_BATCH } from '@/lib/data'
 import { submitLaunchBox } from '@/lib/supabase'
+import { trackPets } from '@/lib/analytics'
 import { useI18n } from '@/lib/i18n'
 import WaitlistForm from '@/components/WaitlistForm'
 import type { WaitlistEntry } from '@/lib/waitlist'
@@ -25,14 +27,17 @@ import { cn } from '@/lib/utils'
 const EASE = [0.16, 1, 0.3, 1] as [number, number, number, number]
 
 /**
- * "Your Launch Box" — the reservation cart drawer.
- * Slides in from the right; checkout converts cart → waitlist (no payment yet).
+ * "Your Launch Box" — the cart drawer.
+ * Slides in from the right. Two exits: checkout-eligible lines (Mobility
+ * Collagen) go to the live EFT checkout; in-development peptides convert
+ * cart → waitlist (no payment is ever taken for those).
  * Global: mounted once in Layout, opened via `openCart()` from anywhere.
  */
 export default function CartDrawer() {
   const [open, setOpen] = useState(false)
   const [reserving, setReserving] = useState(false)
   const items = useCart()
+  const navigate = useNavigate()
   const { t } = useI18n()
 
   useEffect(() => {
@@ -76,11 +81,27 @@ export default function CartDrawer() {
   })()
   const addOn = addOnSlug ? getPetProduct(addOnSlug) : null
 
-  const subtotal = lines.reduce((sum, l) => sum + priceForSlug(l.slug) * l.qty, 0)
+  // Reservation math covers waitlist-bound lines only — the live
+  // (checkout-eligible) product never enters reservation totals or payloads;
+  // its per-line display (priceForSlug × qty) already matches checkout math.
+  const reservedLines = lines.filter((l) => !isCheckoutEligible(l.slug))
+
+  const subtotal = reservedLines.reduce((sum, l) => sum + priceForSlug(l.slug) * l.qty, 0)
   const discount = subtotal * FOUNDING_DISCOUNT
   const total = subtotal - discount
   const shipProgress = Math.min(1, total / FREE_SHIPPING_THRESHOLD)
   const shipRemaining = Math.max(0, FREE_SHIPPING_THRESHOLD - total)
+
+  // Live EFT checkout is enabled only for checkout-eligible lines (Mobility
+  // Collagen). In-development peptides stay on the reservation path.
+  const hasEligible = lines.some((l) => isCheckoutEligible(l.slug))
+  const hasReserved = reservedLines.length > 0
+
+  function goCheckout() {
+    trackPets('pets_checkout_started', { source: 'cart_drawer' })
+    closeCart()
+    navigate('/checkout')
+  }
 
   /**
    * Embedded waitlist reservation succeeded → record the Launch Box in
@@ -89,7 +110,9 @@ export default function CartDrawer() {
    * independently (email is the join key).
    */
   function handleReserved(entry: WaitlistEntry) {
-    const cart = getCart()
+    // Eligible (live) lines check out via EFT — they must not become
+    // reservation rows.
+    const cart = getCart().filter((i) => !isCheckoutEligible(i.slug))
     if (cart.length === 0) return
     const boxSubtotal = cart.reduce((sum, i) => sum + priceForSlug(i.slug) * i.qty, 0)
     void submitLaunchBox({
@@ -284,52 +307,72 @@ export default function CartDrawer() {
                   )}
                 </div>
 
-                {/* ---- totals + free shipping + reserve CTA ---- */}
+                {/* ---- totals + free shipping + CTAs ---- */}
                 <div className="border-t border-sand bg-warmwhite px-6 py-5">
-                  {/* free-shipping progress */}
-                  <div className="mb-4">
-                    <p className="mono-label flex justify-between !text-[10px] text-espresso-70">
-                      <span>
-                        {shipRemaining > 0
-                          ? t('cart.shipRemaining', { amount: zar(shipRemaining) })
-                          : t('cart.shipUnlocked')}
-                      </span>
-                      <span>{zar(FREE_SHIPPING_THRESHOLD)}</span>
-                    </p>
-                    <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-sand">
-                      <motion.div
-                        className={cn(
-                          'h-full rounded-full',
-                          shipRemaining > 0 ? 'bg-amber' : 'bg-clinical',
-                        )}
-                        initial={false}
-                        animate={{ width: `${shipProgress * 100}%` }}
-                        transition={{ duration: 0.5, ease: EASE }}
-                      />
-                    </div>
-                  </div>
+                  {hasReserved && (
+                    <>
+                      {/* free-shipping progress (reservation lines only) */}
+                      <div className="mb-4">
+                        <p className="mono-label flex justify-between !text-[10px] text-espresso-70">
+                          <span>
+                            {shipRemaining > 0
+                              ? t('cart.shipRemaining', { amount: zar(shipRemaining) })
+                              : t('cart.shipUnlocked')}
+                          </span>
+                          <span>{zar(FREE_SHIPPING_THRESHOLD)}</span>
+                        </p>
+                        <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-sand">
+                          <motion.div
+                            className={cn(
+                              'h-full rounded-full',
+                              shipRemaining > 0 ? 'bg-amber' : 'bg-clinical',
+                            )}
+                            initial={false}
+                            animate={{ width: `${shipProgress * 100}%` }}
+                            transition={{ duration: 0.5, ease: EASE }}
+                          />
+                        </div>
+                      </div>
 
-                  <dl className="mono-data space-y-1.5 text-espresso-70">
-                    <div className="flex justify-between">
-                      <dt>{t('cart.subtotal')}</dt>
-                      <dd className="tabular-nums">{zar(subtotal)}</dd>
-                    </div>
-                    <div className="flex justify-between text-clinical">
-                      <dt>{t('cart.founding', { pct: Math.round(FOUNDING_DISCOUNT * 100) })}</dt>
-                      <dd className="tabular-nums">−{zar(discount)}</dd>
-                    </div>
-                    <div className="flex justify-between border-t border-sand pt-2 font-bold text-espresso">
-                      <dt>{t('cart.reservedTotal')}</dt>
-                      <dd className="tabular-nums">{zar(total)}</dd>
-                    </div>
-                  </dl>
+                      <dl className="mono-data space-y-1.5 text-espresso-70">
+                        <div className="flex justify-between">
+                          <dt>{t('cart.subtotal')}</dt>
+                          <dd className="tabular-nums">{zar(subtotal)}</dd>
+                        </div>
+                        <div className="flex justify-between text-clinical">
+                          <dt>{t('cart.founding', { pct: Math.round(FOUNDING_DISCOUNT * 100) })}</dt>
+                          <dd className="tabular-nums">−{zar(discount)}</dd>
+                        </div>
+                        <div className="flex justify-between border-t border-sand pt-2 font-bold text-espresso">
+                          <dt>{t('cart.reservedTotal')}</dt>
+                          <dd className="tabular-nums">{zar(total)}</dd>
+                        </div>
+                      </dl>
+                    </>
+                  )}
 
-                  <button
-                    onClick={() => setReserving(true)}
-                    className="mono-label mt-4 w-full cursor-pointer rounded-full bg-amber py-4 !text-[11px] text-warmwhite transition-colors hover:bg-amber-deep"
-                  >
-                    {t('cart.reserveCta')}
-                  </button>
+                  {hasEligible && (
+                    <>
+                      <button
+                        onClick={goCheckout}
+                        className="mono-label mt-4 w-full cursor-pointer rounded-full bg-clinical py-4 !text-[11px] text-cream transition-colors hover:bg-espresso"
+                      >
+                        {t('cart.checkoutCta')}
+                      </button>
+                      <p className="mono-data mt-2 !text-[9px] uppercase leading-relaxed tracking-[0.06em] text-clinical">
+                        {t('cart.checkoutNote')}
+                      </p>
+                    </>
+                  )}
+
+                  {hasReserved && (
+                    <button
+                      onClick={() => setReserving(true)}
+                      className="mono-label mt-4 w-full cursor-pointer rounded-full bg-amber py-4 !text-[11px] text-warmwhite transition-colors hover:bg-amber-deep"
+                    >
+                      {t('cart.reserveCta')}
+                    </button>
+                  )}
                   <p className="mono-data mt-3 text-center !text-[10px] text-espresso-70">
                     {t('cart.footer')}
                   </p>

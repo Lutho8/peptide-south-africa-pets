@@ -13,6 +13,8 @@ const BlogIndexPage = lazy(() => import('@/pages/BlogIndexPage'))
 const BlogArticlePage = lazy(() => import('@/pages/BlogArticlePage'))
 const WaitlistPage = lazy(() => import('@/pages/WaitlistPage'))
 const QuizPage = lazy(() => import('@/pages/QuizPage'))
+const CheckoutPage = lazy(() => import('@/pages/CheckoutPage'))
+const EftInstructionsPage = lazy(() => import('@/pages/EftInstructionsPage'))
 
 function RouteFallback() {
   return (
@@ -89,6 +91,22 @@ export default function App() {
           element={
             <Suspense fallback={<RouteFallback />}>
               <QuizPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="checkout"
+          element={
+            <Suspense fallback={<RouteFallback />}>
+              <CheckoutPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="checkout/eft-instructions"
+          element={
+            <Suspense fallback={<RouteFallback />}>
+              <EftInstructionsPage />
             </Suspense>
           }
         />

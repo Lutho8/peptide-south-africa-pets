@@ -23,7 +23,7 @@ const en: Dict = {
   'nav.science': 'Science',
   'nav.waitlist': 'Waitlist',
   'nav.marquee':
-    'COMING SOON — PEPTIDES FOR PETS · JOIN THE WAITLIST · FOUNDING MEMBERS LOCK 20% OFF FIRST 3 MONTHS · ',
+    'MOBILITY COLLAGEN NOW LIVE — SECURE EFT CHECKOUT · PEPTIDE DROPS IN DEVELOPMENT — JOIN THE WAITLIST · ',
   'nav.dismissAnnouncement': 'Dismiss announcement',
   'nav.waitingChip': '{count} SA PET OWNERS WAITING',
   'nav.waitlistOpen': 'FOUNDING WAITLIST OPEN',
@@ -207,7 +207,7 @@ const en: Dict = {
   'faq.titleEm': 'answers.',
   'faq.1.q': 'When will Peptides4Pets launch?',
   'faq.1.a':
-    'Mobility Collagen is targeted for Q1 2026; peptide drops follow as quality and regulatory reviews complete. Waitlist members hear first.',
+    'Mobility Collagen is live now — order it today with secure EFT checkout. The peptide drops (BPC-157, KPV, Recovery Blend, Immune) remain in development; waitlist members hear first.',
   'faq.2.q': 'Are these products safe for my pet?',
   'faq.2.a':
     'We publish every citation and every evidence level. Nothing here is a veterinary medicine, and you should consult your vet before starting any supplement.',
@@ -680,7 +680,7 @@ Object.assign(en, {
   'guar.term1': '60 DAYS FROM DELIVERY — MOVEMENT, RECOVERY OR SPARK',
   'guar.term2': 'FULL REFUND, NO FORMS — ONE WHATSAPP MESSAGE',
   'guar.term3': 'APPLIES TO EVERY LAUNCH PRODUCT, EVERY BATCH',
-  'guar.term4': 'PRODUCTS ARE IN DEVELOPMENT — TERMS ACTIVATE AT LAUNCH',
+  'guar.term4': 'MOBILITY COLLAGEN IS LIVE AND COVERED TODAY · PEPTIDE DROPS COVERED FROM LAUNCH',
 
   /* ---------------- Protocol pipeline teaser ---------------- */
   'pipe.overline': 'PROTOCOL PIPELINE',
@@ -709,7 +709,7 @@ const af: Dict = {
   'nav.science': 'Wetenskap',
   'nav.waitlist': 'Waglys',
   'nav.marquee':
-    'KOM BINNEKORT — PEPTIEDE VIR TROETELDIERE · SLUIT AAN BY DIE WAGLYS · STIGTERSLEDE SLUT 20% AF OP HUL EERSTE 3 MAANDE VAS · ',
+    'MOBILITY COLLAGEN NOU BESKIKBAAR — VEILIGE EFT-BETALING · PEPTIEDDRUPPELS IN ONTWIKKELING — SLUIT BY DIE WAGLYS AAN · ',
   'nav.dismissAnnouncement': 'Verwyder aankondiging',
   'nav.waitingChip': '{count} SA-TROETELDIEREËNAARS WAG',
   'nav.waitlistOpen': 'STIGTERSWAGLYS OOP',
@@ -894,7 +894,7 @@ const af: Dict = {
   'faq.titleEm': 'antwoorde.',
   'faq.1.q': 'Wanneer lansier Peptides4Pets?',
   'faq.1.a':
-    'Mobility Collagen word vir die eerste kwartaal van 2026 geteiken; peptieddruppels volg soos kwaliteit- en regulatoriese hersienings afgehandel word. Waglyslede hoor eerste.',
+    'Mobility Collagen is nou beskikbaar — bestel dit vandag met veilige EFT-betaling. Die peptieddruppels (BPC-157, KPV, Recovery Blend, Immune) bly in ontwikkeling; waglyslede hoor eerste.',
   'faq.2.q': 'Is hierdie produkte veilig vir my troeteldier?',
   'faq.2.a':
     'Ons publiseer elke sitasie en elke bewysvlak. Niks hier is ’n veeartsenykundige medisyne nie, en jy moet jou veearts raadpleeg voordat jy enige aanvulling begin.',
@@ -1369,7 +1369,7 @@ Object.assign(af, {
   'guar.term1': '60 DAE VANAF AFLEWERING — BEWEGING, HERSTEL OF VONK',
   'guar.term2': 'VOLLE TERUGBETALING, GEEN VORMS — EEN WHATSAPP-BOODSKAP',
   'guar.term3': 'GELD VIR ELKE LANSERINGSPRODUK, ELKE LOT',
-  'guar.term4': 'PRODUKTE IS IN ONTWIKKELING — VOORWAARDES AKTIWEER BY LANSERING',
+  'guar.term4': 'MOBILITY COLLAGEN IS NOU BESKIKBAAR EN REEDS GEDEK · PEPTIEDDRUPPELS WORD VANAF LANSERING GEDEK',
 
   /* ---------------- Protokol-pyplyn-voorsmakie ---------------- */
   'pipe.overline': 'PROTOKOL-PYPLYN',
@@ -1642,6 +1642,26 @@ Object.assign(af, {
 
   /* voetskrif */
   'foot.verify': 'Verifieer ’n lot (COA)',
+})
+
+Object.assign(en, {
+  /* ---------------- Live-state + EFT (Mobility Collagen) ---------------- */
+  'badge.liveNow': 'LIVE — SHIPS NOW',
+  'pdp.liveNowChip': '★ LIVE NOW — SHIPS IN 2–4 WORKING DAYS',
+  'pdp.buyNow': 'BUY NOW — SECURE EFT CHECKOUT',
+  'cart.checkoutCta': 'CHECKOUT — PAY BY EFT →',
+  'cart.checkoutNote':
+    'MOBILITY COLLAGEN IS LIVE — IT CHECKS OUT NOW BY SECURE EFT. PEPTIDE DROPS STAY RESERVED VIA THE WAITLIST.',
+})
+
+Object.assign(af, {
+  /* ---------------- Regstreekse status + EFT (Mobility Collagen) ---------------- */
+  'badge.liveNow': 'NOU BESKIKBAAR — WORD VERSEND',
+  'pdp.liveNowChip': '★ NOU BESKIKBAAR — VERSEND BINNE 2–4 WERKSDAE',
+  'pdp.buyNow': 'KOOP NOU — VEILIGE EFT-BETALING',
+  'cart.checkoutCta': 'GAAN KASSIE TOE — BETAAL PER EFT →',
+  'cart.checkoutNote':
+    'MOBILITY COLLAGEN IS NOU BESKIKBAAR — DIT WORD DADELIK PER VEILIGE EFT BETAAL. PEPTIEDDRUPPELS BLY PER WAGLYS BESPREEK.',
 })
 
 /* ============================== Provider ============================== */

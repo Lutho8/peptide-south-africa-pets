@@ -1,135 +1,159 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
-    <loc>https://pets.peptide-south-africa.com/</loc>
+    <loc>https://pets.peptide-south-africa.com</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://pets.peptide-south-africa.com/pets</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://pets.peptide-south-africa.com/quiz</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://pets.peptide-south-africa.com/waitlist</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://pets.peptide-south-africa.com/science</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://pets.peptide-south-africa.com/verify</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://pets.peptide-south-africa.com/queue</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en-ZA" href="https://pets.peptide-south-africa.com" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pets.peptide-south-africa.com" />
   </url>
   <url>
     <loc>https://pets.peptide-south-africa.com/blog</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en-ZA" href="https://pets.peptide-south-africa.com/blog" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pets.peptide-south-africa.com/blog" />
+  </url>
+  <url>
+    <loc>https://pets.peptide-south-africa.com/science</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-ZA" href="https://pets.peptide-south-africa.com/science" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pets.peptide-south-africa.com/science" />
+  </url>
+  <url>
+    <loc>https://pets.peptide-south-africa.com/quiz</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-ZA" href="https://pets.peptide-south-africa.com/quiz" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pets.peptide-south-africa.com/quiz" />
+  </url>
+  <url>
+    <loc>https://pets.peptide-south-africa.com/waitlist</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en-ZA" href="https://pets.peptide-south-africa.com/waitlist" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pets.peptide-south-africa.com/waitlist" />
+  </url>
+  <url>
+    <loc>https://pets.peptide-south-africa.com/verify</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en-ZA" href="https://pets.peptide-south-africa.com/verify" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pets.peptide-south-africa.com/verify" />
+  </url>
+  <url>
+    <loc>https://pets.peptide-south-africa.com/editorial-policy</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en-ZA" href="https://pets.peptide-south-africa.com/editorial-policy" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pets.peptide-south-africa.com/editorial-policy" />
   </url>
   <url>
     <loc>https://pets.peptide-south-africa.com/blog/bpc-157-for-dogs-science</loc>
     <lastmod>2026-01-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-ZA" href="https://pets.peptide-south-africa.com/blog/bpc-157-for-dogs-science" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pets.peptide-south-africa.com/blog/bpc-157-for-dogs-science" />
+    <image:image><image:loc>https://pets.peptide-south-africa.com/dog-portrait-2.png</image:loc><image:title>BPC-157 for Dogs: What the Science Actually Says (2026)</image:title></image:image>
+  </url>
+  <url>
+    <loc>https://pets.peptide-south-africa.com/blog/bpc-157-south-africa</loc>
+    <lastmod>2026-09-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-ZA" href="https://pets.peptide-south-africa.com/blog/bpc-157-south-africa" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pets.peptide-south-africa.com/blog/bpc-157-south-africa" />
+    <image:image><image:loc>https://pets.peptide-south-africa.com/dog-portrait-2.png</image:loc><image:title>BPC-157 South Africa: A Pet Owner's Guide to Availability, Regulation and Evidence</image:title></image:image>
   </url>
   <url>
     <loc>https://pets.peptide-south-africa.com/blog/collagen-peptides-dog-joints-evidence</loc>
     <lastmod>2026-01-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-ZA" href="https://pets.peptide-south-africa.com/blog/collagen-peptides-dog-joints-evidence" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pets.peptide-south-africa.com/blog/collagen-peptides-dog-joints-evidence" />
+    <image:image><image:loc>https://pets.peptide-south-africa.com/dog-portrait-1.png</image:loc><image:title>Collagen Peptides for Dog Joints: The Strongest Evidence in Pet Nutrition</image:title></image:image>
   </url>
   <url>
     <loc>https://pets.peptide-south-africa.com/blog/tb-500-thymosin-beta-4-dogs</loc>
     <lastmod>2026-01-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-ZA" href="https://pets.peptide-south-africa.com/blog/tb-500-thymosin-beta-4-dogs" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pets.peptide-south-africa.com/blog/tb-500-thymosin-beta-4-dogs" />
+    <image:image><image:loc>https://pets.peptide-south-africa.com/horse-portrait-1.png</image:loc><image:title>TB-500 and Dogs: Promise vs Proof</image:title></image:image>
   </url>
   <url>
     <loc>https://pets.peptide-south-africa.com/blog/kpv-gut-inflammation-dogs</loc>
     <lastmod>2026-02-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-ZA" href="https://pets.peptide-south-africa.com/blog/kpv-gut-inflammation-dogs" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pets.peptide-south-africa.com/blog/kpv-gut-inflammation-dogs" />
+    <image:image><image:loc>https://pets.peptide-south-africa.com/cat-portrait-1.png</image:loc><image:title>KPV for Dog Gut and Skin: Reading the Preclinical Evidence</image:title></image:image>
   </url>
   <url>
     <loc>https://pets.peptide-south-africa.com/blog/pet-longevity-science-dog-aging</loc>
     <lastmod>2026-02-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-ZA" href="https://pets.peptide-south-africa.com/blog/pet-longevity-science-dog-aging" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pets.peptide-south-africa.com/blog/pet-longevity-science-dog-aging" />
+    <image:image><image:loc>https://pets.peptide-south-africa.com/hero-owner-dog.png</image:loc><image:title>The Science of Pet Longevity: Dog Aging Project, Loyal, and What's Coming</image:title></image:image>
   </url>
   <url>
     <loc>https://pets.peptide-south-africa.com/blog/calming-peptides-casozepine-anxious-dogs</loc>
     <lastmod>2026-02-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-ZA" href="https://pets.peptide-south-africa.com/blog/calming-peptides-casozepine-anxious-dogs" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pets.peptide-south-africa.com/blog/calming-peptides-casozepine-anxious-dogs" />
+    <image:image><image:loc>https://pets.peptide-south-africa.com/dog-portrait-3.png</image:loc><image:title>Calming Peptides: The Milk Protein With Placebo-Controlled Trials</image:title></image:image>
+  </url>
+  <url>
+    <loc>https://pets.peptide-south-africa.com/blog/senior-dog-bpc-157-tb-500-story</loc>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-ZA" href="https://pets.peptide-south-africa.com/blog/senior-dog-bpc-157-tb-500-story" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pets.peptide-south-africa.com/blog/senior-dog-bpc-157-tb-500-story" />
+    <image:image><image:loc>https://pets.peptide-south-africa.com/dog-portrait-1.png</image:loc><image:title>My 14-Year-Old Dog Started Running Again: An Honest Owner's Account of BPC-157 + TB-500</image:title></image:image>
   </url>
   <url>
     <loc>https://pets.peptide-south-africa.com/product/bpc-157</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-ZA" href="https://pets.peptide-south-africa.com/product/bpc-157" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pets.peptide-south-africa.com/product/bpc-157" />
   </url>
   <url>
     <loc>https://pets.peptide-south-africa.com/product/kpv</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-ZA" href="https://pets.peptide-south-africa.com/product/kpv" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pets.peptide-south-africa.com/product/kpv" />
   </url>
   <url>
     <loc>https://pets.peptide-south-africa.com/product/recovery-blend</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-ZA" href="https://pets.peptide-south-africa.com/product/recovery-blend" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pets.peptide-south-africa.com/product/recovery-blend" />
   </url>
   <url>
     <loc>https://pets.peptide-south-africa.com/product/immune-thymogen</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-ZA" href="https://pets.peptide-south-africa.com/product/immune-thymogen" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pets.peptide-south-africa.com/product/immune-thymogen" />
   </url>
   <url>
     <loc>https://pets.peptide-south-africa.com/product/mobility-collagen</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-  </url>
-  <!-- Static, crawler-friendly mirrors of each article (canonical points to the SPA route) -->
-  <url>
-    <loc>https://pets.peptide-south-africa.com/blog/bpc-157-for-dogs-science.html</loc>
-    <lastmod>2026-01-12</lastmod>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://pets.peptide-south-africa.com/blog/collagen-peptides-dog-joints-evidence.html</loc>
-    <lastmod>2026-01-19</lastmod>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://pets.peptide-south-africa.com/blog/tb-500-thymosin-beta-4-dogs.html</loc>
-    <lastmod>2026-01-26</lastmod>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://pets.peptide-south-africa.com/blog/kpv-gut-inflammation-dogs.html</loc>
-    <lastmod>2026-02-02</lastmod>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://pets.peptide-south-africa.com/blog/pet-longevity-science-dog-aging.html</loc>
-    <lastmod>2026-02-09</lastmod>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://pets.peptide-south-africa.com/blog/calming-peptides-casozepine-anxious-dogs.html</loc>
-    <lastmod>2026-02-16</lastmod>
-    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en-ZA" href="https://pets.peptide-south-africa.com/product/mobility-collagen" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pets.peptide-south-africa.com/product/mobility-collagen" />
   </url>
 </urlset>

@@ -99,10 +99,10 @@ const CSS = `
 function articleJsonLd(a) {
   return {
     '@context': 'https://schema.org',
-    '@type': 'Article',
+    '@type': 'BlogPosting',
     headline: a.title,
     description: a.metaDescription,
-    image: `${SITE_URL}${a.heroImage}`,
+    image: { '@type': 'ImageObject', url: `${SITE_URL}${a.heroImage}` },
     datePublished: a.publishDate,
     dateModified: a.modifiedDate,
     author: { '@type': 'Organization', name: 'Peptides4Pets Editorial', url: `${SITE_URL}/blog` },
@@ -115,7 +115,8 @@ function articleJsonLd(a) {
     mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}/blog/${a.slug}` },
     keywords: a.keywords.join(', '),
     articleSection: a.category,
-    inLanguage: 'en',
+    inLanguage: 'en-ZA',
+    citation: a.citations.map((citation) => citation.url),
   }
 }
 
@@ -180,7 +181,7 @@ function render(a, related) {
     .join('\n      ')
 
   return `<!doctype html>
-<html lang="en">
+<html lang="en-ZA">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -188,6 +189,9 @@ function render(a, related) {
   <meta name="description" content="${esc(a.metaDescription)}" />
   <meta name="keywords" content="${esc(a.keywords.join(', '))}" />
   <link rel="canonical" href="${canonical}" />
+  <link rel="alternate" hreflang="en-ZA" href="${canonical}" />
+  <link rel="alternate" hreflang="x-default" href="${canonical}" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
   <meta property="og:type" content="article" />
   <meta property="og:title" content="${esc(a.title)}" />
   <meta property="og:description" content="${esc(a.metaDescription)}" />
@@ -212,7 +216,7 @@ function render(a, related) {
         <a href="/science">Science</a>
         <a href="/blog">Blog</a>
         <a href="/quiz">Quiz</a>
-        <a href="/waitlist">Waitlist</a>
+        <a href="/editorial-policy">Editorial policy</a>
       </nav>
     </div>
   </header>
@@ -273,7 +277,7 @@ function render(a, related) {
         <a href="/science">Science</a>
         <a href="/blog">Journal</a>
         <a href="/verify">Verify a batch</a>
-        <a href="/waitlist">Waitlist</a>
+        <a href="/editorial-policy">Editorial policy</a>
       </span>
     </div>
   </footer>

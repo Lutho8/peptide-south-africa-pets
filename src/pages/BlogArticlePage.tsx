@@ -10,6 +10,7 @@ import {
 } from '@/lib/blog'
 import { ArticleCard, RelatedProductCard } from '@/components/BlogShared'
 import { fmtDate, renderWithCitations, useBlogChrome } from '@/lib/blogChrome'
+import PreferredSourcesButton from '@/components/PreferredSourcesButton'
 
 /** Smooth-scroll handler for the sticky TOC (Lenis owns the scroll loop). */
 function scrollToId(id: string) {
@@ -44,10 +45,13 @@ export default function BlogArticlePage() {
 
   const articleJsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'Article',
+    '@type': 'BlogPosting',
     headline: article.title,
     description: article.metaDescription,
-    image: `${SITE_URL}${article.heroImage}`,
+    image: {
+      '@type': 'ImageObject',
+      url: `${SITE_URL}${article.heroImage}`,
+    },
     datePublished: article.publishDate,
     dateModified: article.modifiedDate,
     author: { '@type': 'Organization', name: 'Peptides4Pets Editorial', url: `${SITE_URL}/blog` },
@@ -60,7 +64,8 @@ export default function BlogArticlePage() {
     mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
     keywords: article.keywords.join(', '),
     articleSection: article.category,
-    inLanguage: 'en',
+    inLanguage: 'en-ZA',
+    citation: article.citations.map((citation) => citation.url),
   }
 
   const faqJsonLd = {
@@ -80,6 +85,9 @@ export default function BlogArticlePage() {
         <meta name="description" content={article.metaDescription} />
         <meta name="keywords" content={article.keywords.join(', ')} />
         <link rel="canonical" href={canonical} />
+        <link rel="alternate" hrefLang="en-ZA" href={canonical} />
+        <link rel="alternate" hrefLang="x-default" href={canonical} />
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
         <meta property="og:type" content="article" />
         <meta property="og:title" content={article.title} />
         <meta property="og:description" content={article.metaDescription} />
@@ -120,6 +128,9 @@ export default function BlogArticlePage() {
           <p className="mono-data mt-4 !text-[11px] text-espresso-70">
             {chrome.byline} · {chrome.published} {fmtDate(article.publishDate)} · {chrome.updated}{' '}
             {fmtDate(article.modifiedDate)}
+          </p>
+          <p className="mt-3 text-sm text-espresso-70">
+            Published under our <Link to="/editorial-policy" className="font-semibold text-clinical underline">editorial and veterinary-content standards</Link>.
           </p>
         </div>
         <div className="psa-container pb-10">
@@ -173,6 +184,7 @@ export default function BlogArticlePage() {
 
         {/* Article body */}
         <article className="max-w-3xl">
+          <PreferredSourcesButton className="mb-8" />
           {article.sections.map((section, sIdx) => (
             <section key={section.id} id={section.id} className="scroll-mt-28">
               <h2 className="mt-10 font-serif text-2xl font-semibold text-espresso first:mt-0 md:text-3xl">

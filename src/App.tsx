@@ -15,6 +15,7 @@ const WaitlistPage = lazy(() => import('@/pages/WaitlistPage'))
 const QuizPage = lazy(() => import('@/pages/QuizPage'))
 const CheckoutPage = lazy(() => import('@/pages/CheckoutPage'))
 const EftInstructionsPage = lazy(() => import('@/pages/EftInstructionsPage'))
+const EditorialPolicyPage = lazy(() => import('@/pages/EditorialPolicyPage'))
 
 function RouteFallback() {
   return (
@@ -107,6 +108,14 @@ export default function App() {
           element={
             <Suspense fallback={<RouteFallback />}>
               <EftInstructionsPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="editorial-policy"
+          element={
+            <Suspense fallback={<RouteFallback />}>
+              <EditorialPolicyPage />
             </Suspense>
           }
         />

@@ -3,6 +3,7 @@ import { BLOG_ARTICLES, BLOG_TAGLINE, BLOG_TITLE, SITE_URL } from '@/lib/blog'
 import { ArticleCard } from '@/components/BlogShared'
 import { useBlogChrome } from '@/lib/blogChrome'
 import { useI18n } from '@/lib/i18n'
+import PreferredSourcesButton from '@/components/PreferredSourcesButton'
 
 const INTRO = {
   en: {
@@ -54,6 +55,10 @@ export default function BlogIndexPage() {
           content="peptides for dogs, pet supplements South Africa, dog joint supplement evidence, pet longevity science, Peptides4Pets"
         />
         <link rel="canonical" href={`${SITE_URL}/blog`} />
+        <link rel="alternate" hrefLang="en-ZA" href={`${SITE_URL}/blog`} />
+        <link rel="alternate" hrefLang="x-default" href={`${SITE_URL}/blog`} />
+        <link rel="alternate" type="application/rss+xml" title="The Peptides4Pets Journal" href={`${SITE_URL}/feed.xml`} />
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content={`${BLOG_TITLE} | Peptides4Pets`} />
         <meta property="og:description" content={BLOG_TAGLINE} />
@@ -79,6 +84,7 @@ export default function BlogIndexPage() {
           <p className="mono-data mt-6 !text-[11px] text-espresso-70">
             {BLOG_ARTICLES.length} ARTICLES · {chrome.byline} · CITED & GRADED
           </p>
+          <PreferredSourcesButton className="mt-8 max-w-4xl" />
         </div>
       </section>
 

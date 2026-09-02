@@ -92,7 +92,7 @@ const BPC157: BlogArticle = {
   relatedProducts: ['bpc-157', 'recovery-blend', 'mobility-collagen'],
   meaningBox: {
     title: 'What this means for your dog',
-    body: 'BPC-157 is biologically plausible and was well tolerated in the only formal dog study published to date — but that study measured how the body handles the molecule, not whether it fixes anything. If you and your vet decide to explore it, treat it as an experiment of one: baseline notes, one change at a time, and a re-check booked before you start.',
+    body: 'BPC-157 is biologically plausible and was tolerated in a small canine pharmacokinetic study, but that study measured how the body handles the molecule — not whether it treats disease. There is no established veterinary dose or canine efficacy evidence, so this article does not provide a protocol.',
   },
   sections: [
     {
@@ -133,7 +133,7 @@ const BPC157: BlogArticle = {
       id: 'safety-guardrails',
       heading: 'Safety notes and sensible guardrails',
       paragraphs: [
-        'The beagle PK data reported good tolerability,{{cite:1}} but "well tolerated in six dogs" is not a safety guarantee for yours. Sensible guardrails if you and your vet decide to trial BPC-157: start low, change nothing else at the same time, and keep a simple daily log (appetite, stool, energy, mobility on a 1–10 scale). Stop and call your vet for vomiting, diarrhoea, lethargy or anything that worries you.',
+        'The beagle PK data reported tolerability at the studied exposures,{{cite:1}} but six laboratory dogs do not establish safety for client-owned animals, long-term use or animals with other conditions. This evidence is not a basis for self-directed administration. A veterinarian should diagnose pain, lameness or gastrointestinal signs and recommend registered care.',
         'Be extra careful with dogs on chronic medication, dogs with cancer history (angiogenesis is a double-edged sword in oncology), pregnant or lactating dogs, and puppies. None of these groups have any data at all. And if your dog is in pain, a limp deserves a diagnosis before a supplement: cruciate tears, hip dysplasia and spinal disease all masquerade as "just getting old."',
       ],
     },
@@ -141,8 +141,8 @@ const BPC157: BlogArticle = {
       id: 'sa-angle',
       heading: 'What this means for South African pet owners',
       paragraphs: [
-        'Until now, SA owners had two options: import US pet peptide sprays at $99–$149 plus shipping, duties and a 2–6 week customs gamble — or buy from local grey-market sellers with no certificate of analysis. Neither is good enough for an animal you love.',
-        'Peptides4Pets is building the third option: BPC-157 oral drops manufactured to research grade, HPLC-verified on every batch, dosed by weight band under veterinary review, priced in rand with VAT included — and sold with the evidence ledger attached, including the gaps you have just read. Our BPC-157 formula is in final development now; the waitlist is how you hear first, with founding pricing locked.',
+        'South African owners may encounter imported or locally marketed peptide products online. SAHPRA warns that BPC-157 is among the unregistered peptides marketed unlawfully and advises the public to avoid unregistered products and unverified online sources.{{cite:3}}',
+        'Peptides4Pets is not presenting BPC-157 as an approved veterinary treatment. Any future product status, formulation or claim must be assessed against the applicable South African requirements before launch; a laboratory certificate alone cannot establish clinical safety, efficacy or legal market status.',
       ],
     },
   ],
@@ -157,7 +157,7 @@ const BPC157: BlogArticle = {
     },
     {
       q: 'What is the right BPC-157 dose for a dog?',
-      a: 'There is no established veterinary dose — none has been validated in canine efficacy trials. Any dosing guide (including ours at launch) is extrapolated from preclinical work and pharmacokinetic data, which is why every Peptides4Pets protocol is weight-banded, vet-reviewed and conservative, starting at half dose for week one.',
+      a: 'There is no established veterinary dose validated by canine efficacy trials. This article therefore does not provide or endorse a dosing protocol. Speak to a veterinarian about registered options for your dog’s diagnosed condition.',
     },
     {
       q: 'Can BPC-157 replace surgery or NSAIDs for my dog?',
@@ -165,7 +165,7 @@ const BPC157: BlogArticle = {
     },
     {
       q: 'Is BPC-157 legal to give my dog in South Africa?',
-      a: 'BPC-157 is not registered with SAHPRA as a veterinary medicine, and no pet peptide product is. It is sold internationally as a research/nutritional compound. Peptides4Pets products are in development as supplements with full COA documentation; we always recommend involving your veterinarian.',
+      a: 'SAHPRA identifies BPC-157 among unregistered peptides marketed unlawfully in South Africa. A “research use” or “supplement” label does not by itself make therapeutic sale or administration lawful. Consult SAHPRA’s veterinary channels and your veterinarian for product-specific guidance.',
     },
   ],
   citations: [
@@ -184,6 +184,13 @@ const BPC157: BlogArticle = {
       journal: 'Journal of Applied Physiology',
       year: 2011,
       url: 'https://pubmed.ncbi.nlm.nih.gov/21030672/',
+    },
+    {
+      authors: 'South African Health Products Regulatory Authority',
+      title: 'Peptide Products — Public Information',
+      journal: 'SAHPRA',
+      year: 2026,
+      url: 'https://www.sahpra.org.za/peptide-products-public-information/',
     },
   ],
 }
@@ -196,17 +203,17 @@ const BPC157_SOUTH_AFRICA: BlogArticle = {
   slug: 'bpc-157-south-africa',
   title: 'BPC-157 South Africa: A Pet Owner\'s Guide to Availability, Regulation and Evidence',
   metaDescription:
-    'BPC-157 is one of the most searched peptides in South Africa. We explain the SAHPRA status, the real cost of importing, what to ask local sellers, and what the canine evidence actually shows.',
+    'A South African evidence and regulatory guide to BPC-157, including SAHPRA’s public warning, the limited canine pharmacokinetic evidence and the claims that remain unsupported.',
   keywords: [
     'BPC-157 South Africa',
     'BPC-157 for dogs South Africa',
-    'buy BPC-157 South Africa',
+    'BPC-157 regulation South Africa',
     'SAHPRA BPC-157',
     'BPC-157 Cape Town',
     'pet peptides South Africa',
   ],
   publishDate: '2026-07-25',
-  modifiedDate: '2026-07-25',
+  modifiedDate: '2026-09-02',
   readMinutes: 8,
   heroImage: '/dog-portrait-2.png',
   heroAlt: 'A South African Boerboel resting against a warm cream background',
@@ -216,31 +223,31 @@ const BPC157_SOUTH_AFRICA: BlogArticle = {
   relatedProducts: ['bpc-157', 'recovery-blend', 'mobility-collagen'],
   meaningBox: {
     title: 'What this means for your dog',
-    body: 'In South Africa, BPC-157 for pets sits in a regulatory grey zone: not registered as a veterinary medicine, but available as a research or nutritional compound. The honest path is local supply with a certificate of analysis, veterinary guidance and clear expectations — not miracle claims.',
+    body: 'SAHPRA explicitly names BPC-157 among unregistered peptides marketed unlawfully in South Africa. A research-use label or certificate of analysis does not establish veterinary approval, clinical effectiveness or lawful therapeutic supply.',
   },
   sections: [
     {
       id: 'why-sa-searches-matter',
       heading: 'Why "BPC-157 South Africa" is its own search',
       paragraphs: [
-        'South African pet owners do not search for BPC-157 in a vacuum. They are usually dealing with a limping Ridgeback, a Boerboel with a tendon strain, or a geriatric cat whose gut never quite recovered after a course of medication. The molecule has a reputation as a soft-tissue and gut "repair" signal, and local searches for it have grown sharply as US pet peptide brands have entered the algorithm.{{cite:1}}',
-        'But the South African market is not the US market. The rand, customs, courier delays and the risk of counterfeit imports change the calculation. A bottle that costs $89 overseas can land here at R2,500–R3,500 after shipping, duties and VAT, with a 2–6 week wait and no local recourse if the vial is wrong. That is why "BPC-157 South Africa" deserves its own answer: the science is the same, but the buying reality is not.',
+        'South African pet owners often reach this search while looking for help with mobility, injury or gastrointestinal symptoms. Those symptoms need a veterinary diagnosis; search popularity and testimonials do not establish that BPC-157 is an appropriate treatment.',
+        'The South African question is primarily regulatory and evidentiary. SAHPRA warns that BPC-157 is among unregistered peptides marketed unlawfully online and through informal channels, and that unregistered peptides can present contamination, interaction and unknown long-term risks.{{cite:3}}',
       ],
     },
     {
       id: 'sahpra-status',
       heading: 'What SAHPRA says about BPC-157 for pets',
       paragraphs: [
-        'As of mid-2026, BPC-157 is not registered with the South African Health Products Regulatory Authority (SAHPRA) as a veterinary medicine, and no peptide product for pets holds SAHPRA approval. That matters less than it sounds, and more than some sellers admit. It means BPC-157 cannot be marketed with disease-treatment claims, but it also means the compound is available in the research and nutritional-compound lane — provided the seller is honest about what it is.',
-        'In practice, most BPC-157 sold in South Africa is imported as a research compound or formulated into a supplement. The regulatory distinction is real: a supplement cannot claim to cure, treat or prevent disease, and any veterinary use is off-label and at the discretion of your vet. Peptides4Pets develops its BPC-157 formula as a research-grade supplement with batch-level COA documentation precisely because the alternative — imported sprays with vague labels — leaves both pet and owner exposed.',
+        'SAHPRA states that products intended to treat, prevent or alter bodily functions must be registered before sale and identifies BPC-157 as an example of an illegally marketed peptide.{{cite:3}} For animals, access to an unregistered veterinary medicine is governed by a specific application pathway; it is not created by a seller calling a product “research” or “nutritional.”{{cite:4}}',
+        'A certificate of analysis can be useful quality documentation, but it cannot prove clinical benefit, long-term safety or regulatory approval. Product-specific status should be verified through SAHPRA’s registered veterinary-product resources or directly with the regulator.',
       ],
     },
     {
       id: 'import-problem',
-      heading: 'The import problem: cost, customs and counterfeits',
+      heading: 'Why online and imported supply raises additional risk',
       paragraphs: [
-        'The most common way South Africans have bought BPC-157 until now is direct import. A 30 ml oral spray or a small vial from a US or European peptide vendor typically lists at $79–$149. By the time it clears customs, the all-in cost is usually R1,800–R3,500, and that assumes it clears at all. Peptide vials and sprays are frequently flagged for inspection, and customs may request a permit, an invoice or a letter from a vet.{{cite:1}}',
-        'Then there is the authenticity problem. The global peptide grey market is saturated with mislabelled, underdosed and contaminated products. Without a certificate of analysis (COA) from an independent lab, you have no way to know whether the liquid contains BPC-157 at the stated concentration, a different peptide entirely, or nothing at all. Buying locally does not eliminate risk, but it does give you a South African supplier, a VAT invoice and someone to hold accountable.',
+        'SAHPRA specifically cautions against peptides obtained through online vendors, social media, gyms and informal suppliers.{{cite:3}} Importation also does not convert an unregistered product into an approved veterinary medicine.',
+        'Identity and contamination are separate from efficacy. Even an authentic, high-purity compound remains unproven for treating canine disease. Conversely, an uploaded COA may not represent the bottle being offered unless the batch and chain of custody can be independently matched.',
       ],
     },
     {
@@ -253,10 +260,10 @@ const BPC157_SOUTH_AFRICA: BlogArticle = {
     },
     {
       id: 'buying-sa',
-      heading: 'How to buy BPC-157 for your pet in South Africa',
+      heading: 'How to verify a veterinary health-product claim',
       paragraphs: [
-        'If you and your vet decide to trial BPC-157, use the same due diligence you would apply to any unregulated compound. First, demand a certificate of analysis for the batch you are buying, not a generic lab report from three years ago. The COA should show ≥99% HPLC purity, the correct molecular weight and the batch number on your bottle.',
-        'Second, choose a local supplier with a physical South African address, VAT registration and a returns policy. Third, avoid human peptide products that contain xylitol, flavourings, sweeteners or alcohol bases dangerous to pets. Fourth, start conservatively: half the labelled dose for the first week, one change at a time, and a daily log of appetite, stool, energy and mobility. Finally, never use BPC-157 to delay a vet visit for a serious injury or chronic condition.',
+        'Ask for the exact South African registration status and indication, then verify it using SAHPRA’s veterinary-product resources rather than relying on a seller’s screenshot. Check whether the cited study involved dogs, measured treatment outcomes, and matches the product and claim being promoted.',
+        'Do not use a human-labelled peptide product in an animal or use online guidance to create a dose. Seek veterinary assessment for injury, pain, mobility change, vomiting, diarrhoea or weight loss; an unregistered peptide should never delay diagnosis or registered treatment.',
       ],
     },
     {
@@ -264,30 +271,30 @@ const BPC157_SOUTH_AFRICA: BlogArticle = {
       heading: 'Safety notes for SA pet owners',
       paragraphs: [
         'The 2022 beagle study reported good tolerability, but six dogs is not a safety database.{{cite:1}} Be extra cautious with pets on chronic medication, pets with a cancer history (angiogenesis can help wounds and, in theory, tumours), pregnant or lactating animals, and puppies or kittens with immature metabolisms.',
-        'Heat is another South African reality. Peptides are less stable than tablets; store them according to the label, usually refrigerated once reconstituted or opened, and avoid leaving deliveries in a hot car or courier depot for hours. If a shipment arrives warm, cloudy or with a broken seal, do not use it. When in doubt, email the supplier with photos and batch numbers — a reputable local supplier will answer.',
+        'Storage instructions cannot cure an unregistered-product problem. If an authorised veterinary product is prescribed or supplied, follow its approved label and the veterinarian’s instructions. Report suspected unlawful supply or adverse effects through the appropriate SAHPRA channels.',
       ],
     },
   ],
   faq: [
     {
       q: 'Is BPC-157 legal in South Africa for pets?',
-      a: 'BPC-157 is not registered as a veterinary medicine with SAHPRA, but it is sold legally as a research or nutritional compound. It cannot be marketed with disease-treatment claims, and any veterinary use is off-label and should be discussed with your vet.',
+      a: 'SAHPRA names BPC-157 among unregistered peptides marketed unlawfully in South Africa. Calling a product “research” or “nutritional” does not itself authorise therapeutic sale or administration. Product-specific questions should be checked with SAHPRA and a veterinarian.',
     },
     {
       q: 'Can I import BPC-157 for my dog?',
-      a: 'You can try, but it is expensive and unreliable. Imports often cost R1,800–R3,500 all-in, take 2–6 weeks, and may be held by customs for inspection. You also lose local consumer protection if the product is wrong or contaminated.',
+      a: 'Importation does not establish veterinary approval or safety. South Africa has formal requirements for access to unregistered veterinary medicines, and SAHPRA warns against unverified online peptide products. Ask SAHPRA or your veterinarian about the applicable product-specific pathway.',
     },
     {
       q: 'How much does BPC-157 cost in South Africa?',
-      a: 'Grey-market imports typically land at R1,800–R3,500 for a small vial or oral spray. Local pricing varies by purity, batch testing and format. Peptides4Pets is pricing its BPC-157 formula in rand with VAT included and founding waitlist members will lock the lowest rate.',
+      a: 'Price is not a reliable indicator of identity, approval, safety or effectiveness. We do not provide purchasing guidance for an unregistered veterinary treatment; verify product status with SAHPRA and discuss registered options with a veterinarian.',
     },
     {
       q: 'Is BPC-157 approved by SAHPRA?',
-      a: 'No. As of mid-2026, no BPC-157 product — human or veterinary — is approved by SAHPRA. Any product sold in South Africa is therefore unregistered and should be treated as a research or supplement compound, not a medicine.',
+      a: 'SAHPRA’s public peptide warning identifies BPC-157 as an unregistered peptide marketed unlawfully. Check the current registered-product resources or contact SAHPRA for a product-specific determination.',
     },
     {
       q: 'What should I ask a local seller before buying BPC-157?',
-      a: 'Ask for the batch-specific COA showing HPLC purity, the supplier\'s South African business registration, storage and handling instructions, a clear ingredient list with no xylitol or pet-toxic additives, and a returns process. If they cannot provide these, shop elsewhere.',
+      a: 'Do not rely on seller assurances. Ask for the exact SAHPRA registration details and independently verify them. A COA or business registration does not establish veterinary approval, clinical safety or effectiveness.',
     },
   ],
   citations: [
@@ -306,6 +313,20 @@ const BPC157_SOUTH_AFRICA: BlogArticle = {
       journal: 'Journal of Applied Physiology',
       year: 2011,
       url: 'https://pubmed.ncbi.nlm.nih.gov/21030672/',
+    },
+    {
+      authors: 'South African Health Products Regulatory Authority',
+      title: 'Peptide Products — Public Information',
+      journal: 'SAHPRA',
+      year: 2026,
+      url: 'https://www.sahpra.org.za/peptide-products-public-information/',
+    },
+    {
+      authors: 'South African Health Products Regulatory Authority',
+      title: 'Guidelines on Access to Unregistered Veterinary Medicines',
+      journal: 'SAHPRA',
+      year: 2022,
+      url: 'https://www.sahpra.org.za/wp-content/uploads/2022/07/SAHPGL-PEM-VET-01_v4-Guidelines-on-Access-to-Unregistered-Veterinary-Medicines.pdf',
     },
   ],
 }
@@ -645,7 +666,7 @@ const KPV: BlogArticle = {
       heading: 'What would need to be proven for dogs',
       paragraphs: [
         'For KPV to move from "interesting" to "indicated" in veterinary medicine, the list is specific: canine pharmacokinetics (is it absorbed orally in dogs, and at what levels?), a dose-finding study, and then a placebo-controlled efficacy trial in client-owned dogs — ideally in the population that needs it most, dogs with chronic enteropathy or food-responsive skin disease. None of these exist yet.{{cite:2}}{{cite:3}}',
-        'Until they do, every KPV product for pets — ours included, once launched — sits in the same honest category: a preclinical compound sold with conservative dosing, batch-level purity verification, and a standing recommendation to loop in your vet.',
+        'Until they do, KPV remains preclinical for pets. A purity result cannot supply the missing canine pharmacokinetic, dose-finding, efficacy and safety evidence, and this article does not provide a veterinary protocol.',
       ],
     },
     {
@@ -661,7 +682,7 @@ const KPV: BlogArticle = {
       heading: 'What this means for South African pet owners',
       paragraphs: [
         'SA\'s climate is hard on sensitive systems: hot summers amplify skin flares, and loadshedding-era diet improvisation (we have all fed what is in the house) does sensitive guts no favours. Local owners currently import KPV from US peptide shops with no COA and no dosing guidance.',
-        'Peptides4Pets\' KPV Gut & Skin Drops are in development with the same standard as the rest of the line: ≥99% HPLC purity, a certificate of analysis per batch, weight-banded conservative dosing reviewed with veterinarians, and the evidence level printed on the page — preclinical, said plainly. The waitlist hears first.',
+        'Peptides4Pets is monitoring this research but does not present KPV as an approved veterinary treatment. Any future product decision must follow the applicable regulatory pathway and cannot be justified by preclinical evidence alone.',
       ],
     },
   ],
@@ -1089,11 +1110,11 @@ const FOUNDER_STORY: BlogArticle = {
     },
     {
       id: 'experiment-responsibly',
-      heading: 'Thousands of owners are not waiting — how to experiment responsibly',
+      heading: 'Why an anecdote should not become a protocol',
       paragraphs: [
-        'I also have to be realistic about where you are, because I was there. Thousands of owners of ageing dogs are not going to wait a decade for the trials to finish, because their dog does not have a decade. If you are going to explore this anyway, the least I can do is tell you how to do it with your eyes open and your vet holding the other end.',
-        'That means: a diagnosis first, not a hunch — a limp or a wobble deserves imaging and a workup, because cruciate tears, spinal disease and even tumours all wear the disguise of "just old." It means involving your vet before you start, not after something goes wrong, especially for any dog on chronic medication or with a cancer history, where the angiogenic mechanism is a genuine concern. It means changing one variable at a time so you can actually learn something, keeping a written baseline and a simple daily log (mobility on a 1–10 scale, appetite, stool, energy), booking a re-check before you begin, and using a product with a batch-level certificate of analysis, because grey-market peptide purity is its own hazard. And it means being willing to stop.',
-        'That is the whole reason Peptides4Pets exists: research-grade synthesis, HPLC-verified purity, a certificate of analysis on every batch, weight-banded conservative dosing reviewed with vets, and — the part almost no one else prints — the evidence ledger attached, gaps included. If the science is thin, the molecule itself must at least be exactly what the label says, and the claims must never outrun the data. My dog is the reason I care. He is not a reason for you to skip your vet.',
+        'Urgency is understandable when an animal is ageing, but it does not make an uncontrolled experiment reliable or safe. This story is preserved as first-person context, not as a recommendation to administer BPC-157, TB-500 or testosterone.',
+        'A limp, wobble or loss of muscle deserves veterinary examination because cruciate injury, spinal disease, endocrine disease and tumours can look like ordinary ageing. Diagnosis and registered care come before supplements or investigational compounds.',
+        'Peptides4Pets publishes the evidence ledger because identity testing and plausible mechanisms cannot substitute for clinical evidence. My dog is the reason I care; he is not a template for another animal.',
       ],
     },
   ],

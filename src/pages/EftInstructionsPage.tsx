@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import type { ReactNode } from 'react'
 import { Link, useLocation } from 'react-router'
 import { Check, Clipboard, Clock3, Landmark, ShieldCheck } from 'lucide-react'
@@ -7,6 +7,7 @@ import type { EftInstructionsState } from '@/lib/eftCheckout'
 import { zar } from '@/lib/cart'
 import { useCheckoutCopy } from '@/pages/checkoutCopy'
 import Seo from '@/components/Seo'
+import { trackPets } from '@/lib/analytics'
 
 /**
  * /checkout/eft-instructions — bank details for the pending EFT order.
@@ -26,6 +27,16 @@ export default function EftInstructionsPage() {
       return null
     }
   })()
+  const trackedOrderId = state?.orderId
+  const trackedAmount = state?.amount
+
+  useEffect(() => {
+    if (!trackedOrderId || trackedAmount == null) return
+    trackPets('pets_eft_instructions_shown', {
+      order_id: trackedOrderId,
+      server_confirmed_amount_zar: trackedAmount,
+    })
+  }, [trackedAmount, trackedOrderId])
 
   if (!state) {
     return (

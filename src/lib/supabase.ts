@@ -12,6 +12,7 @@
  */
 import { useEffect, useState } from 'react'
 import { createClient } from '@supabase/supabase-js'
+import { PETS_RESEARCH_INTEREST_POLICY_VERSION } from '@/lib/petsConsent'
 
 const FALLBACK_URL = 'https://eutszmrsukoqqeilzrbv.supabase.co'
 const FALLBACK_KEY = 'sb_publishable_TUh1vZatXhOirPVOgcllYQ_HC9DCdYr'
@@ -49,6 +50,9 @@ export interface PetsWaitlistRow {
   source?: string | null
   locale?: string | null
   consent_popia?: boolean | null
+  research_information_acknowledged?: boolean | null
+  marketing_consent?: boolean | null
+  consent_version?: string | null
   utm?: Record<string, string> | null
   quiz_answers?: Record<string, unknown> | null
 }
@@ -81,7 +85,7 @@ export interface CrmLeadRow {
   city: string | null
   stage: 'lead'
   source_site: 'pets.peptide-south-africa.com'
-  consent_email: true
+  consent_email: boolean
   consent_whatsapp: boolean
   notes: string
 }
@@ -121,7 +125,7 @@ function queuePendingSync(item: PendingItem): void {
 async function flushOne(item: PendingItem): Promise<boolean> {
   try {
     if (item.kind === 'waitlist') {
-      const { error } = await supabase.rpc('psa_pets_join_waitlist', waitlistRpcParams(item.payload))
+      const { error } = await supabase.rpc('psa_pets_join_waitlist_v2', waitlistRpcParams(item.payload))
       return !error
     }
     if (item.kind === 'launch_box') {
@@ -175,6 +179,11 @@ function waitlistRpcParams(entry: PetsWaitlistRow) {
     p_source: entry.source ?? 'pets-landing',
     p_locale: entry.locale ?? 'en',
     p_consent_popia: entry.consent_popia ?? false,
+    p_research_information_acknowledged:
+      entry.research_information_acknowledged ?? false,
+    p_marketing_consent: entry.marketing_consent ?? false,
+    p_consent_version:
+      entry.consent_version ?? PETS_RESEARCH_INTEREST_POLICY_VERSION,
     p_utm: entry.utm ?? {},
     p_quiz_answers: entry.quiz_answers ?? null,
   }
@@ -190,7 +199,7 @@ export async function submitPetsWaitlist(
   entry: PetsWaitlistRow,
 ): Promise<WaitlistSubmissionResult> {
   try {
-    const { data, error } = await supabase.rpc('psa_pets_join_waitlist', waitlistRpcParams(entry))
+    const { data, error } = await supabase.rpc('psa_pets_join_waitlist_v2', waitlistRpcParams(entry))
     const confirmation = Array.isArray(data) ? data[0] : data
     if (
       !error &&

@@ -21,9 +21,9 @@ export const PRODUCTS: Product[] = [
   {
     slug: 'bpc-157',
     name: 'BPC-157 Oral Drops',
-    spec: 'BPC-157 · ORAL DROPS · 30-DAY SUPPLY',
-    benefit: 'Mobility, soft-tissue & recovery support for dogs and cats.',
-    price: 'FROM R895/MONTH',
+    spec: 'BPC-157 · CANINE PK EVIDENCE PROFILE',
+    benefit: 'Research summary covering canine pharmacokinetics, preclinical signals and evidence gaps.',
+    price: 'RESEARCH PROFILE · NOT FOR SALE',
     waiting: 0,
     image: '/product-bpc157.png',
     citations: [
@@ -50,9 +50,9 @@ export const PRODUCTS: Product[] = [
   {
     slug: 'kpv',
     name: 'KPV Gut & Skin Drops',
-    spec: 'KPV · ORAL DROPS · 30-DAY SUPPLY',
-    benefit: 'Gut lining and skin support for sensitive pets.',
-    price: 'FROM R795/MONTH',
+    spec: 'KPV · PRECLINICAL EVIDENCE PROFILE',
+    benefit: 'Research summary covering preclinical gut and skin literature and the absence of canine trials.',
+    price: 'RESEARCH PROFILE · NOT FOR SALE',
     waiting: 0,
     image: '/product-kpv.png',
     citations: [
@@ -71,9 +71,9 @@ export const PRODUCTS: Product[] = [
   {
     slug: 'recovery-blend',
     name: 'Recovery Blend (BPC-157 + TB-500)',
-    spec: 'BPC-157 + TB-500 · DROPS · 30-DAY SUPPLY',
-    benefit: "The 'Wolverine pairing' for injury rehab and post-surgery support.",
-    price: 'FROM R1,195/MONTH',
+    spec: 'BPC-157 + TB-500 · COMBINATION RESEARCH PROFILE',
+    benefit: 'Evidence map for two experimental compounds, including the lack of canine efficacy trials.',
+    price: 'RESEARCH PROFILE · NOT FOR SALE',
     waiting: 0,
     image: '/product-recovery.png',
     citations: [
@@ -94,9 +94,9 @@ export const PRODUCTS: Product[] = [
   {
     slug: 'immune-thymogen',
     name: 'Immune (Thymogen)',
-    spec: 'THYMOGEN · ORAL DROPS · 30-DAY SUPPLY',
-    benefit: 'Immune resilience support for seniors and frequent patients.',
-    price: 'FROM R845/MONTH',
+    spec: 'THYMOGEN · RESEARCH EVIDENCE PROFILE',
+    benefit: 'Research summary of thymic-peptide literature and current animal-evidence limitations.',
+    price: 'RESEARCH PROFILE · NOT FOR SALE',
     waiting: 0,
     image: '/product-immune.png',
     citations: [
@@ -117,7 +117,7 @@ export const PRODUCTS: Product[] = [
     slug: 'mobility-collagen',
     name: 'Mobility Collagen',
     spec: 'BIOACTIVE COLLAGEN PEPTIDES · DAILY SCOOP',
-    benefit: 'The compliant lane: published canine RCT evidence behind every tub.',
+    benefit: 'Pet nutritional support with published canine evidence and transparent report scope.',
     price: 'FROM R395/TUB',
     waiting: 0,
     image: '/product-collagen.png',
@@ -174,33 +174,33 @@ export interface ProductDetail {
 
 const DROP_STEPS = [
   {
-    title: 'One dropper daily',
-    body: 'Flavourless drops onto food or directly into the mouth. No pills, no wrestling.',
+    title: 'Review the study type',
+    body: 'See what was studied, in which species and what the findings can and cannot establish.',
   },
   {
-    title: 'Every batch verified',
-    body: 'Each lot is HPLC tested to ≥99% purity; the COA ships in the box and lives online.',
+    title: 'Check the evidence gaps',
+    body: 'Canine pharmacokinetic, preclinical and market signals are kept separate from efficacy evidence.',
   },
   {
-    title: 'Vet-reviewed protocol',
-    body: 'Dosing guidance by weight class, written with veterinarians. Bring it to your next check-up.',
+    title: 'Save a research interest',
+    body: 'Join evidence and development updates without receiving an animal-use dose or treatment plan.',
   },
 ]
 
 export const PRODUCT_DETAILS: Record<string, ProductDetail> = {
   'bpc-157': {
     headline:
-      'Mobility, soft-tissue & recovery support for dogs and cats — the compound SA pet owners ask us about most.',
+      'A structured research profile of the compound SA pet owners ask about most — not a product offer or animal-use protocol.',
     estRetail: 'R1,050',
     subPrice: 'R760/MO',
     oneTimePrice: 'R895',
     avgPerDay: 12,
     scaleImage: '/dog-portrait-2.png',
     benefits: [
-      ['MOBILITY', 'comfortable movement'],
-      ['RECOVERY', 'soft-tissue repair support'],
-      ['GUT', 'lining integrity support'],
-      ['SENIORS', 'formulated with aging pets in mind'],
+      ['CANINE DATA', 'pharmacokinetic study'],
+      ['EFFICACY', 'not established'],
+      ['PRECLINICAL', 'signals separated'],
+      ['STATUS', 'research profile only'],
     ],
     steps: DROP_STEPS,
     fullCitations: [
@@ -227,17 +227,17 @@ export const PRODUCT_DETAILS: Record<string, ProductDetail> = {
   },
   kpv: {
     headline:
-      'Gut lining and skin support for sensitive pets — calm tummies, calmer skin, one dropper a day.',
+      'A structured KPV evidence profile covering preclinical research and the current absence of canine efficacy trials.',
     estRetail: 'R940',
     subPrice: 'R676/MO',
     oneTimePrice: 'R795',
     avgPerDay: 6,
     scaleImage: '/cat-portrait-1.png',
     benefits: [
-      ['GUT', 'lining integrity support'],
-      ['SKIN', 'itch & flare support'],
-      ['SENSITIVE', 'gentle daily dosing'],
-      ['CATS', 'formulated for fussy eaters'],
+      ['STUDY TYPE', 'preclinical models'],
+      ['CANINE DATA', 'no efficacy trials'],
+      ['CLAIMS', 'not translated to outcomes'],
+      ['STATUS', 'research profile only'],
     ],
     steps: DROP_STEPS,
     fullCitations: [
@@ -264,26 +264,19 @@ export const PRODUCT_DETAILS: Record<string, ProductDetail> = {
   },
   'recovery-blend': {
     headline:
-      "The 'Wolverine pairing' — BPC-157 + TB-500 for injury rehab, post-surgery support and active dogs.",
+      'A combination research profile separating BPC-157 pharmacokinetic data from unproven TB-500 efficacy claims.',
     estRetail: 'R1,410',
     subPrice: 'R1,016/MO',
     oneTimePrice: 'R1,195',
     avgPerDay: 9,
     scaleImage: '/dog-portrait-2.png',
     benefits: [
-      ['INJURY', 'rehab & post-surgery support'],
-      ['MOBILITY', 'comfortable movement'],
-      ['RECOVERY', 'two-compound pairing'],
-      ['ACTIVE', 'for working & sport dogs'],
+      ['COMBINATION', 'two compounds mapped'],
+      ['CANINE DATA', 'limited to one component'],
+      ['EFFICACY', 'not established'],
+      ['STATUS', 'research profile only'],
     ],
-    steps: [
-      {
-        title: 'Two droppers daily',
-        body: 'One of each formula onto food or directly into the mouth. No pills, no wrestling.',
-      },
-      DROP_STEPS[1],
-      DROP_STEPS[2],
-    ],
+    steps: DROP_STEPS,
     fullCitations: [
       {
         badge: 'COMMUNITY PRACTICE',
@@ -308,17 +301,17 @@ export const PRODUCT_DETAILS: Record<string, ProductDetail> = {
   },
   'immune-thymogen': {
     headline:
-      'Immune resilience support for seniors and frequent patients — the thymic peptide lane.',
+      'A structured evidence profile for Thymogen and related thymic-peptide research, with animal-evidence gaps stated plainly.',
     estRetail: 'R995',
     subPrice: 'R718/MO',
     oneTimePrice: 'R845',
     avgPerDay: 4,
     scaleImage: '/dog-portrait-1.png',
     benefits: [
-      ['IMMUNE', 'resilience support'],
-      ['SENIORS', 'aging immune systems'],
-      ['RECOVERY', 'bounce-back support'],
-      ['VET-GUIDED', 'protocol reviewed by vets'],
+      ['LITERATURE', 'thymic-peptide research'],
+      ['CANINE DATA', 'preliminary'],
+      ['EFFICACY', 'not established'],
+      ['STATUS', 'research profile only'],
     ],
     steps: DROP_STEPS,
     fullCitations: [
@@ -339,7 +332,7 @@ export const PRODUCT_DETAILS: Record<string, ProductDetail> = {
   },
   'mobility-collagen': {
     headline:
-      'The compliant lane: bioactive collagen peptides with published canine RCT evidence behind every tub.',
+      'Bioactive collagen peptides offered as a pet nutritional supplement, with published canine evidence and clear report scope.',
     estRetail: 'R465',
     subPrice: 'R336/MO',
     oneTimePrice: 'R395',
@@ -356,8 +349,14 @@ export const PRODUCT_DETAILS: Record<string, ProductDetail> = {
         title: 'One scoop daily',
         body: 'Bioactive peptides stirred over breakfast. Most dogs think it is part of the meal.',
       },
-      DROP_STEPS[1],
-      DROP_STEPS[2],
+      {
+        title: 'Review the evidence',
+        body: 'Read the cited canine studies and the limits of applying group findings to an individual animal.',
+      },
+      {
+        title: 'Use the labelled serving',
+        body: 'Follow the product label and involve a veterinarian for symptoms, illness, injury or medicine interactions.',
+      },
     ],
     fullCitations: [
       {
@@ -424,8 +423,8 @@ export const PET_PRODUCTS: PetProduct[] = [
   {
     slug: 'bpc-157',
     name: 'BPC-157 Oral Drops',
-    spec: 'BPC-157 · 250MCG · ORAL DROPS',
-    benefit: 'Repair & mobility support for joints, tendons and gut lining.',
+    spec: 'BPC-157 · CANINE PK EVIDENCE PROFILE',
+    benefit: 'Canine pharmacokinetic and preclinical research summary. Not for sale or animal administration.',
     price: 895,
     priceUnit: '/MO',
     waiting: 0,
@@ -434,8 +433,8 @@ export const PET_PRODUCTS: PetProduct[] = [
   {
     slug: 'kpv',
     name: 'KPV Gut & Skin Drops',
-    spec: 'KPV · TRIPEPTIDE · ORAL DROPS',
-    benefit: 'Calms gut inflammation and reactive skin from the inside out.',
+    spec: 'KPV · PRECLINICAL EVIDENCE PROFILE',
+    benefit: 'Preclinical research summary with canine evidence gaps. Not for sale or animal administration.',
     price: 795,
     priceUnit: '/MO',
     waiting: 0,
@@ -444,8 +443,8 @@ export const PET_PRODUCTS: PetProduct[] = [
   {
     slug: 'recovery-blend',
     name: 'Recovery Blend',
-    spec: 'BPC-157 + TB-500 · DUAL BOTTLE SET',
-    benefit: 'The post-injury pairing — built for comebacks, not cages.',
+    spec: 'BPC-157 + TB-500 · COMBINATION RESEARCH PROFILE',
+    benefit: 'Evidence map for two experimental compounds. Not for sale or animal administration.',
     price: 1195,
     priceUnit: '/MO',
     waiting: 0,
@@ -454,8 +453,8 @@ export const PET_PRODUCTS: PetProduct[] = [
   {
     slug: 'immune-thymogen',
     name: 'Immune (Thymogen)',
-    spec: 'THYMOGEN · IMMUNE PEPTIDE · ORAL DROPS',
-    benefit: 'Senior-grade immune support for the grey-muzzle years.',
+    spec: 'THYMOGEN · RESEARCH EVIDENCE PROFILE',
+    benefit: 'Thymic-peptide literature summary. Not for sale or animal administration.',
     price: 845,
     priceUnit: '/MO',
     waiting: 0,
@@ -465,7 +464,7 @@ export const PET_PRODUCTS: PetProduct[] = [
     slug: 'mobility-collagen',
     name: 'Mobility Collagen',
     spec: 'BIOACTIVE COLLAGEN PEPTIDES · DAILY SCOOP',
-    benefit: 'Force-plate-proven joint support — the everyday foundation.',
+    benefit: 'Pet nutritional support informed by published canine mobility research.',
     price: 395,
     priceUnit: '/TUB',
     waiting: 0,

@@ -1,4 +1,4 @@
-import { memo, useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import type { ReactNode } from 'react'
 import { Link, useNavigate, useParams } from 'react-router'
 import { AnimatePresence, motion, useInView } from 'framer-motion'
@@ -13,7 +13,6 @@ import { trackPets } from '@/lib/analytics'
 import ComingSoonBadge from '@/components/ComingSoonBadge'
 import CitationAccordion from '@/components/CitationAccordion'
 import WaitlistForm from '@/components/WaitlistForm'
-import AddToBoxButton from '@/components/AddToBoxButton'
 import VetPack from '@/components/VetPack'
 import Seo, { SITE_URL } from '@/components/Seo'
 import { handoutForProduct } from '@/lib/vetpack'
@@ -62,10 +61,11 @@ export default function ProductPage() {
     )
   }
 
+  const eligible = isCheckoutEligible(product.slug)
   const productImage = `${SITE_URL}${product.image}`
   const productJsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'Product',
+    '@type': eligible ? 'Product' : 'TechArticle',
     name: product.name,
     description: product.benefit,
     brand: { '@type': 'Brand', name: 'Peptides4Pets' },
@@ -76,11 +76,13 @@ export default function ProductPage() {
   return (
     <div key={product.slug}>
       <Seo
-        title={`${product.name} — COA-Verified for SA Pets`}
+        title={eligible
+          ? `${product.name} — Pet Nutritional Supplement`
+          : `${product.name} — Pet Research Evidence Profile`}
         description={
           isCheckoutEligible(product.slug)
             ? `${product.benefit} Live now — HPLC-tested with a COA on every batch. Secure EFT checkout. A nutritional supplement, not a veterinary medicine; consult your vet.`
-            : `${product.benefit} In development — HPLC-tested with a COA on every batch. Join the Peptides4Pets waitlist. Not yet for sale; consult your vet.`
+            : `${product.benefit} Research information only; not for sale or animal administration.`
         }
         path={`/product/${product.slug}`}
         type="product"
@@ -91,7 +93,7 @@ export default function ProductPage() {
       <BenefitBar detail={detail} />
       <HowItWorks detail={detail} />
       <EvidenceSection product={product} detail={detail} />
-      <ComparisonSection product={product} />
+      {eligible && <ComparisonSection product={product} />}
       <WaitlistCapture product={product} />
       <RelatedProducts current={product} />
       <PageOutro />
@@ -178,62 +180,44 @@ function HeroSplit({ product, detail }: { product: Product; detail: ProductDetai
               {detail.headline}
             </motion.p>
 
-            {/* price block */}
             <motion.div variants={boxItem} className="mono-data mt-6 flex flex-wrap items-center gap-3">
-              <span className="text-lg font-bold text-espresso">{product.price}</span>
-              <span className="rounded-full border border-clinical/40 bg-clinical-tint px-2.5 py-0.5 !text-[10px] font-bold text-clinical">
-                {t('pdp.vat')}
-              </span>
-              <span className="text-espresso-70 line-through">
-                {t('pdp.estRetail', { price: detail.estRetail })}
-              </span>
+              {eligible ? (
+                <>
+                  <span className="text-lg font-bold text-espresso">{product.price}</span>
+                  <span className="rounded-full border border-clinical/40 bg-clinical-tint px-2.5 py-0.5 !text-[10px] font-bold text-clinical">
+                    {t('pdp.vat')}
+                  </span>
+                </>
+              ) : (
+                <span className="rounded-full border border-amber/50 bg-amber/10 px-3 py-1 text-amber-deep">
+                  RESEARCH PROFILE · NOT FOR SALE OR ANIMAL ADMINISTRATION
+                </span>
+              )}
             </motion.div>
-
-            {/* subscription selector — reservation-only until autoship goes live */}
-            {!eligible && (
-              <motion.div variants={boxItem} className="mt-6">
-                <PlanSelector detail={detail} />
-              </motion.div>
-            )}
 
             {/* buy box — live EFT for eligible products, reservation otherwise */}
             <motion.div variants={boxItem} className="mt-6">
-              {eligible ? <LiveBuyButton slug={product.slug} /> : <DisabledBuyButton />}
-            </motion.div>
-
-            <motion.div variants={boxItem} className="mt-4 flex flex-wrap items-center gap-4">
-              <AddToBoxButton
-                slug={product.slug}
-                variant="primary"
-                className="px-7 py-3.5 text-lg"
-              />
-              <a
-                href="#pdp-waitlist"
-                className="mono-label link-underline !text-[11px] text-espresso-70"
-              >
-                {t('pdp.orJoin', {
-                  product: product.name.split('(')[0].trim().toUpperCase(),
-                })}
-              </a>
-              <span className="mono-data text-amber-deep">{t('nav.waitlistOpen')}</span>
+              {eligible ? <LiveBuyButton slug={product.slug} /> : <ResearchInterestButton slug={product.slug} />}
             </motion.div>
 
             {/* batch → COA deep link */}
-            <motion.p
-              variants={boxItem}
-              className="mono-data mt-4 !text-[11px] uppercase tracking-[0.06em] text-espresso-70"
-            >
-              {t('pdp.batchLine', { batch })} —{' '}
-              <Link
-                to={`/verify?batch=${batch}`}
-                className="link-underline font-bold text-clinical"
+            {eligible && (
+              <motion.p
+                variants={boxItem}
+                className="mono-data mt-4 !text-[11px] uppercase tracking-[0.06em] text-espresso-70"
               >
-                {t('pdp.viewCoa')}
-              </Link>
-            </motion.p>
+                {t('pdp.batchLine', { batch })} —{' '}
+                <Link
+                  to={`/verify?batch=${batch}`}
+                  className="link-underline font-bold text-clinical"
+                >
+                  {t('pdp.viewCoa')}
+                </Link>
+              </motion.p>
+            )}
 
             {/* bring-your-vet one-tap pack */}
-            {handout && (
+            {eligible && handout && (
               <motion.div variants={boxItem} className="mt-6">
                 <VetPack
                   handouts={[handout]}
@@ -248,7 +232,8 @@ function HeroSplit({ product, detail }: { product: Product; detail: ProductDetai
               className="mono-label mt-8 grid grid-cols-3 gap-3 border-t border-sand pt-5 !text-[10px] text-espresso-70"
             >
               <li className="flex items-center gap-2">
-                <FlaskConical className="h-4 w-4 shrink-0 text-clinical" /> ≥99% HPLC
+                <FlaskConical className="h-4 w-4 shrink-0 text-clinical" />
+                {eligible ? 'REPORT SCOPE' : 'EVIDENCE GRADED'}
               </li>
               <li className="flex items-center gap-2">
                 <FileCheck2 className="h-4 w-4 shrink-0 text-clinical" /> {t('pdp.trust2')}
@@ -379,86 +364,6 @@ function CounterParallax({ children }: { children: ReactNode }) {
   return <div ref={ref}>{children}</div>
 }
 
-/* ---------------- plan selector ---------------- */
-
-function PlanSelector({ detail }: { detail: ProductDetail }) {
-  const [plan, setPlan] = useState<'sub' | 'once'>('sub')
-  const { t } = useI18n()
-
-  const cards = [
-    {
-      id: 'sub' as const,
-      title: t('pdp.plan.sub'),
-      price: detail.subPrice,
-      body: t('pdp.plan.subBody'),
-      shine: true,
-    },
-    {
-      id: 'once' as const,
-      title: t('pdp.plan.once', { price: detail.oneTimePrice }),
-      price: detail.oneTimePrice,
-      body: t('pdp.plan.onceBody'),
-      shine: false,
-    },
-  ]
-
-  return (
-    <div className="grid gap-3 sm:grid-cols-2" role="radiogroup" aria-label={t('pdp.plan.aria')}>
-      {cards.map((c) => {
-        const selected = plan === c.id
-        return (
-          <motion.button
-            key={c.id}
-            type="button"
-            role="radio"
-            aria-checked={selected}
-            onClick={() => setPlan(c.id)}
-            animate={{ scale: selected ? 1.02 : 1 }}
-            transition={SPRING}
-            className={cn(
-              'relative cursor-pointer overflow-hidden rounded-2xl border p-4 text-left transition-colors',
-              selected
-                ? 'border-clinical bg-clinical-tint/70'
-                : 'border-sand bg-warmwhite hover:border-clinical/40',
-            )}
-          >
-            {c.shine && <ShineSweep />}
-            <span className="mono-label absolute right-3 top-3 rounded-full border border-sand bg-cream px-2 py-0.5 !text-[8px] text-espresso-70">
-              {t('pdp.plan.badge')}
-            </span>
-            <span className="flex items-center gap-2">
-              <span
-                className={cn(
-                  'flex h-4 w-4 shrink-0 items-center justify-center rounded-full border-2',
-                  selected ? 'border-clinical' : 'border-sand',
-                )}
-              >
-                {selected && <span className="h-2 w-2 rounded-full bg-clinical" />}
-              </span>
-              <span className="mono-label !text-[10px] text-espresso">{c.title}</span>
-            </span>
-            <span className="mono-data mt-2 block font-bold text-espresso">{c.price}</span>
-            <span className="mt-1 block text-xs leading-relaxed text-espresso-70">{c.body}</span>
-          </motion.button>
-        )
-      })}
-    </div>
-  )
-}
-
-/** Amber shine sweep, looping every ~5s — memoized perpetual micro-component. */
-const ShineSweep = memo(function ShineSweep() {
-  return (
-    <motion.span
-      aria-hidden
-      className="pointer-events-none absolute inset-y-0 left-0 w-1/3 -skew-x-12 bg-gradient-to-r from-transparent via-amber/25 to-transparent"
-      initial={{ x: '-150%' }}
-      animate={{ x: '450%' }}
-      transition={{ duration: 1.1, ease: 'easeInOut', repeat: Infinity, repeatDelay: 3.9 }}
-    />
-  )
-})
-
 /* ---------------- live buy button (checkout-eligible products) ---------------- */
 
 function LiveBuyButton({ slug }: { slug: string }) {
@@ -485,46 +390,14 @@ function LiveBuyButton({ slug }: { slug: string }) {
   )
 }
 
-/* ---------------- disabled buy button + shake tooltip ---------------- */
-
-function DisabledBuyButton() {
-  const [hot, setHot] = useState(false)
-  const { t } = useI18n()
-
+function ResearchInterestButton({ slug }: { slug: string }) {
   return (
-    <div
-      className="relative"
-      onMouseEnter={() => setHot(true)}
-      onMouseLeave={() => setHot(false)}
+    <Link
+      to={`/waitlist?product=${slug}`}
+      className="mono-label block w-full rounded-full border border-espresso/30 py-4 text-center !text-[11px] text-espresso transition-colors hover:border-amber hover:text-amber-deep"
     >
-      <motion.button
-        type="button"
-        aria-disabled="true"
-        onClick={() => {
-          setHot(true)
-          window.setTimeout(() => setHot(false), 1600)
-        }}
-        animate={hot ? { x: [0, -3, 3, -3, 3, 0] } : { x: 0 }}
-        transition={{ duration: 0.3 }}
-        className="mono-label w-full cursor-not-allowed rounded-full bg-sand py-4 !text-[11px] text-espresso-70"
-      >
-        {t('pdp.disabled')}
-      </motion.button>
-      <AnimatePresence>
-        {hot && (
-          <motion.div
-            initial={{ opacity: 0, y: 6 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 6 }}
-            transition={{ duration: 0.2 }}
-            className="pointer-events-none absolute -top-11 left-1/2 z-10 -translate-x-1/2 whitespace-nowrap rounded-xl bg-espresso px-3.5 py-2 text-xs text-cream shadow-[0_20px_50px_-20px_rgba(43,33,24,0.5)]"
-          >
-            {t('pdp.disabledTip')}
-            <span className="absolute -bottom-1 left-1/2 h-2 w-2 -translate-x-1/2 rotate-45 bg-espresso" />
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
+      SAVE THIS RESEARCH INTEREST
+    </Link>
   )
 }
 
@@ -892,8 +765,12 @@ loading="lazy"                       src={p.image}
                     <p className="mt-1.5 font-serif text-xl font-semibold text-espresso">{p.name}</p>
                     <p className="mt-1 text-sm italic text-espresso-70">{note}</p>
                     <div className="mono-data mt-3 flex items-center justify-between">
-                      <span className="text-espresso">{p.price}</span>
-                      <span className="text-amber-deep">{t('nav.waitlistOpen')}</span>
+                      <span className="text-espresso">
+                        {isCheckoutEligible(p.slug) ? p.price : 'RESEARCH PROFILE'}
+                      </span>
+                      <span className="text-amber-deep">
+                        {isCheckoutEligible(p.slug) ? 'LIVE' : 'NOT FOR SALE'}
+                      </span>
                     </div>
                   </div>
                 </Link>

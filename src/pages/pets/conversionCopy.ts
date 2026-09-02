@@ -26,6 +26,8 @@ export interface ConversionCopy {
   /** Contains a `{count}` placeholder — replace at the call site. */
   launchCitations: string
   launchHplc: string
+  launchResearch: string
+  launchResearchStatus: string
   launchNote: string
   /* ---------------- Quiz teaser ---------------- */
   qtOverline: string
@@ -45,76 +47,80 @@ export interface ConversionCopy {
 
 const en: ConversionCopy = {
   heroOverline: 'PEPTIDES4PETS · SOUTH AFRICA',
-  heroH1: 'More good years, made simple.',
+  heroH1: 'Pet research, made clear.',
   heroSub:
-    'Vet-minded peptide protocols for South African dogs and cats. Mobility Collagen is live now — secure EFT checkout; the peptide drops follow.',
-  heroCtaQuiz: 'Build my pet’s plan',
-  heroCtaShop: 'See launch plans',
-  heroTrust1: '≥99% HPLC COA',
-  heroTrust2: '60-day guarantee',
-  heroTrust3: 'Free shipping over R1,500',
+    'Mobility Collagen is live as a pet nutritional supplement. Experimental peptide profiles remain research information only — clearly separated from products offered for animal use.',
+  heroCtaQuiz: 'Explore the research catalogue',
+  heroCtaShop: 'View the catalogue',
+  heroTrust1: 'Evidence graded',
+  heroTrust2: 'Report scope shown',
+  heroTrust3: 'South African fulfilment',
 
   launchOverline: 'THE LAUNCH BATCH',
-  launchTitle: 'Five formulas. One batch.',
-  launchSub: 'Mobility Collagen ships today by secure EFT — reserve the peptide drops at founding pricing.',
+  launchTitle: 'One live product. Four research profiles.',
+  launchSub: 'Mobility Collagen ships today by secure EFT. Experimental peptide pages publish the evidence and gaps but do not offer animal-use products or protocols.',
   launchAdd: 'Add',
   launchAdded: 'Added ✓',
   launchDetails: 'DETAILS →',
   launchCitations: 'KEY EVIDENCE ({count})',
   launchHplc: '≥99% HPLC',
-  launchNote: 'MOBILITY COLLAGEN IS LIVE · PEPTIDES IN DEVELOPMENT · NOT VETERINARY MEDICINES · CONSULT YOUR VET',
+  launchResearch: 'EVIDENCE GRADED',
+  launchResearchStatus: 'RESEARCH PROFILE · NOT FOR SALE',
+  launchNote: 'MOBILITY COLLAGEN IS A NUTRITIONAL SUPPLEMENT · EXPERIMENTAL PEPTIDES ARE RESEARCH INFORMATION ONLY · NO ANIMAL-USE PROTOCOLS',
 
   qtOverline: '60-SECOND QUIZ',
-  qtTitle: 'A plan built for your pet.',
-  qtSub: 'Three quick steps — the quiz does the rest.',
+  qtTitle: 'A clearer research starting point.',
+  qtSub: 'Three quick steps — the navigator organises the evidence.',
   qtStep1Title: 'Tell us about your pet',
   qtStep1Body: 'Species, age, size and what matters most.',
-  qtStep2Title: 'Get a vet-minded stack',
-  qtStep2Body: 'Rule-based recommendations with the evidence graded honestly.',
-  qtStep3Title: 'Reserve launch pricing',
-  qtStep3Body: 'Join the waitlist — no payment today.',
-  qtCta: 'Start the quiz',
+  qtStep2Title: 'Compare evidence profiles',
+  qtStep2Body: 'See study type, evidence gaps and document scope side by side.',
+  qtStep3Title: 'Save research interests',
+  qtStep3Body: 'Join research updates — no payment and no treatment recommendation.',
+  qtCta: 'Open the navigator',
 
-  proofLine: 'PUBLISHED CANINE RCTs · ≥99% HPLC EVERY BATCH · EVERY CLAIM GRADED',
+  proofLine: 'STUDY TYPE SHOWN · REPORT SCOPE DISCLOSED · EVIDENCE GAPS PUBLISHED',
   proofLink: 'READ THE SCIENCE',
 }
 
 const af: ConversionCopy = {
   heroOverline: 'PEPTIDES4PETS · SUID-AFRIKA',
-  heroH1: 'Meer goeie jare, eenvoudig gemaak.',
+  heroH1: 'Troeteldiernavorsing, duidelik gemaak.',
   heroSub:
-    'Veearts-gesinde peptiedprotokolle vir Suid-Afrikaanse honde en katte. Mobility Collagen is nou beskikbaar — veilige EFT-betaling; die peptieddruppels volg.',
-  heroCtaQuiz: 'Bou my troeteldier se plan',
-  heroCtaShop: 'Sien bekendstellingsplanne',
-  heroTrust1: '≥99% HPLC-COA',
-  heroTrust2: '60-dae-waarborg',
-  heroTrust3: 'Gratis aflewering bo R1,500',
+    'Mobility Collagen is beskikbaar as ’n voedingsaanvulling vir troeteldiere. Eksperimentele peptiedprofiele bly slegs navorsingsinligting — duidelik apart van produkte vir gebruik by diere.',
+  heroCtaQuiz: 'Verken die navorsingskatalogus',
+  heroCtaShop: 'Bekyk die katalogus',
+  heroTrust1: 'Bewyse gegradeer',
+  heroTrust2: 'Verslagomvang gewys',
+  heroTrust3: 'Suid-Afrikaanse vervulling',
 
   launchOverline: 'DIE BEKENDSTELLINGSLOT',
-  launchTitle: 'Vyf formules. Een lot.',
+  launchTitle: 'Een lewendige produk. Vier navorsingsprofiele.',
   launchSub:
-    'Mobility Collagen word vandag per veilige EFT versend — bespreek die peptieddruppels teen stigterspryse.',
+    'Mobility Collagen word vandag per veilige EFT versend. Eksperimentele peptiedbladsye publiseer die bewyse en gapings, maar bied nie produkte of protokolle vir diergebruik aan nie.',
   launchAdd: 'Voeg by',
   launchAdded: 'Bygevoeg ✓',
   launchDetails: 'BESONDERHEDE →',
   launchCitations: 'SLEUTELBEWYSE ({count})',
   launchHplc: '≥99% HPLC',
+  launchResearch: 'BEWYSE GEGRADEER',
+  launchResearchStatus: 'NAVORSINGSPROFIEL · NIE TE KOOP NIE',
   launchNote:
-    'MOBILITY COLLAGEN IS NOU BESKIKBAAR · PEPTIEDE IN ONTWIKKELING · NIE VEEARTSENYMIDDELS NIE · RAADPLEEG JOU VEEARTS',
+    'MOBILITY COLLAGEN IS ’N VOEDINGSAANVULLING · EKSPERIMENTELE PEPTIEDE IS SLEGS NAVORSINGSINLIGTING · GEEN DIERGEBRUIKPROTOKOLLE',
 
   qtOverline: '60-SEKONDE-QUIZ',
-  qtTitle: '’n Plan gebou vir jou troeteldier.',
-  qtSub: 'Drie vinnige stappe — die quiz doen die res.',
+  qtTitle: '’n Duideliker navorsingsbeginpunt.',
+  qtSub: 'Drie vinnige stappe — die navigator organiseer die bewyse.',
   qtStep1Title: 'Vertel ons van jou troeteldier',
   qtStep1Body: 'Spesie, ouderdom, grootte en wat die belangrikste is.',
-  qtStep2Title: 'Kry ’n veearts-gesinde stapel',
-  qtStep2Body: 'Reëlgebaseerde aanbevelings met die bewyse eerlik beoordeel.',
-  qtStep3Title: 'Bespreek bekendstellingspryse',
-  qtStep3Body: 'Sluit aan by die waglys — geen betaling vandag nie.',
-  qtCta: 'Begin die quiz',
+  qtStep2Title: 'Vergelyk bewysprofiele',
+  qtStep2Body: 'Sien studietipe, bewysgapings en dokumentomvang langs mekaar.',
+  qtStep3Title: 'Stoor navorsingsbelangstellings',
+  qtStep3Body: 'Sluit aan vir navorsingsopdaterings — geen betaling of behandelingsaanbeveling nie.',
+  qtCta: 'Open die navigator',
 
   proofLine:
-    'GEPUBLISEERDE HONDE-RCT’s · ≥99% HPLC BY ELKE LOT · ELKE EIS BEOORDEEL',
+    'STUDIETIPE GEWYS · VERSLAGOMVANG VERKLAAR · BEWYSGAPINGS GEPUBLISEER',
   proofLink: 'LEES DIE WETENSKAP',
 }
 

@@ -30,6 +30,7 @@ import type { WaitlistSubmissionResult } from '@/lib/supabase';
 import { useI18n } from '@/lib/i18n';
 import Seo from '@/components/Seo';
 import type { Locale } from '@/lib/i18n';
+import { trackPets } from '@/lib/analytics';
 
 /* ----------------------------- design tokens ---------------------------- */
 
@@ -50,6 +51,7 @@ interface FormState {
   whatsapp: string;
   city: string;
   popia: boolean;
+  marketing: boolean;
   products: string[];
 }
 
@@ -64,6 +66,7 @@ const EMPTY_FORM: FormState = {
   whatsapp: '',
   city: '',
   popia: false,
+  marketing: false,
   products: [],
 };
 
@@ -239,6 +242,8 @@ const STEP_TRANSITION = {
 async function syncFunnelTicket(
   t: WaitlistTicket,
   locale: Locale,
+  researchAcknowledged: boolean,
+  marketingConsent: boolean,
 ): Promise<WaitlistSubmissionResult> {
   const phone = t.whatsapp ? `+27${t.whatsapp}` : null;
   const result = await submitPetsWaitlist({
@@ -257,6 +262,8 @@ async function syncFunnelTicket(
     source: 'waitlist-funnel',
     locale,
     consent_popia: true,
+    research_information_acknowledged: researchAcknowledged,
+    marketing_consent: marketingConsent,
     utm: getUtmFromUrl(),
   });
   await upsertPetsLead({
@@ -266,8 +273,8 @@ async function syncFunnelTicket(
     city: t.city || null,
     stage: 'lead',
     source_site: 'pets.peptide-south-africa.com',
-    consent_email: true,
-    consent_whatsapp: Boolean(t.whatsapp),
+    consent_email: marketingConsent,
+    consent_whatsapp: marketingConsent && Boolean(t.whatsapp),
     notes: `Peptides4Pets waitlist: ${t.products.join(', ')}`,
   });
   return result;
@@ -327,21 +334,6 @@ export default function WaitlistPage() {
       setTicket(restoredTicket);
       setWelcomeBack(true);
       setStep(3);
-      void syncFunnelTicket(restoredTicket, locale).then((confirmation) => {
-        if (!confirmation.synced || confirmation.queueNumber === null) return;
-        const confirmedTicket = {
-          ...restoredTicket,
-          code: confirmation.ticketCode,
-          queue: confirmation.queueNumber,
-        };
-        const refreshed = readWaitlist();
-        const index = refreshed.findIndex((entry) => entry.email === restoredTicket.email);
-        if (index >= 0) refreshed[index] = confirmedTicket;
-        else refreshed.push(confirmedTicket);
-        writeWaitlist(refreshed);
-        setTicket(confirmedTicket);
-        setServerConfirmed(true);
-      });
     }
     try {
       window.history.replaceState({ wlStep: targetStep }, '');
@@ -437,7 +429,12 @@ export default function WaitlistPage() {
         createdAt: new Date().toISOString(),
       };
     }
-    const confirmation = await syncFunnelTicket(tk, locale);
+    const confirmation = await syncFunnelTicket(tk, locale, form.popia, form.marketing);
+    trackPets('pets_waitlist_joined', {
+      product_count: form.products.length,
+      marketing_consent: form.marketing,
+      placement: 'waitlist_funnel',
+    });
     setServerConfirmed(confirmation.synced);
     if (confirmation.synced && confirmation.queueNumber !== null) {
       tk = {
@@ -739,6 +736,22 @@ export default function WaitlistPage() {
                       />
                     </label>
                   </ShakeField>
+                </motion.div>
+
+                <motion.div variants={{ hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0 } }}>
+                  <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-[#E3D5BC] bg-[#F7F1E5] p-4">
+                    <input
+                      type="checkbox"
+                      checked={form.marketing}
+                      onChange={(e) => patch({ marketing: e.target.checked })}
+                      className="mt-0.5 h-4 w-4 shrink-0 accent-[#1E4D3B]"
+                    />
+                    <span className="text-sm leading-[1.6] text-[#5C5044]">
+                      {locale === 'af'
+                        ? 'Opsioneel: stuur vir my Peptides4Pets-navorsing- en produkopdaterings. Ek kan enige tyd uitskryf.'
+                        : 'Optional: send me Peptides4Pets research and product updates. I can unsubscribe at any time.'}
+                    </span>
+                  </label>
                 </motion.div>
 
                 <motion.div variants={{ hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0 } }}>

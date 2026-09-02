@@ -16,6 +16,8 @@ const QuizPage = lazy(() => import('@/pages/QuizPage'))
 const CheckoutPage = lazy(() => import('@/pages/CheckoutPage'))
 const EftInstructionsPage = lazy(() => import('@/pages/EftInstructionsPage'))
 const EditorialPolicyPage = lazy(() => import('@/pages/EditorialPolicyPage'))
+const PetsAccountPage = lazy(() => import('@/pages/PetsAccountPage'))
+const PetsLifecyclePage = lazy(() => import('@/pages/PetsLifecyclePage'))
 
 function RouteFallback() {
   return (
@@ -116,6 +118,22 @@ export default function App() {
           element={
             <Suspense fallback={<RouteFallback />}>
               <EditorialPolicyPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="account"
+          element={
+            <Suspense fallback={<RouteFallback />}>
+              <PetsAccountPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="admin/lifecycle"
+          element={
+            <Suspense fallback={<RouteFallback />}>
+              <PetsLifecyclePage />
             </Suspense>
           }
         />

@@ -96,6 +96,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link to="/account" className="text-cream/80 hover:text-amber">
+                  Pets Account
+                </Link>
+              </li>
+              <li>
                 <a
                   href="https://peptide-south-africa.com"
                   className="text-cream/80 hover:text-amber"

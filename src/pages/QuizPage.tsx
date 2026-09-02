@@ -7,7 +7,6 @@ import {
   CONCERN_OPTIONS,
   MAX_CONCERNS,
   PET_TYPE_OPTIONS,
-  addStackToCart,
   buildStack,
   concernLabelLocalized,
   isSenior,
@@ -16,10 +15,6 @@ import {
 } from '@/lib/quiz'
 import type { ConcernId, PetType, QuizAnswers, SizeBand, StackResult } from '@/lib/quiz'
 import { getRefFromUrl } from '@/lib/waitlist'
-import { openCart } from '@/lib/cart'
-import VetPack from '@/components/VetPack'
-import { handoutForProduct } from '@/lib/vetpack'
-import type { VetHandout } from '@/lib/vetpack'
 import { useI18n } from '@/lib/i18n'
 import Seo from '@/components/Seo'
 import {
@@ -29,6 +24,7 @@ import {
   upsertPetsLead,
 } from '@/lib/supabase'
 import { cn } from '@/lib/utils'
+import { trackPets } from '@/lib/analytics'
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]
 const SPRING = { type: 'spring', stiffness: 260, damping: 30 } as const
@@ -62,6 +58,7 @@ export default function QuizPage() {
   const [email, setEmail] = useState('')
   const [whatsapp, setWhatsapp] = useState('')
   const [popia, setPopia] = useState(false)
+  const [marketingConsent, setMarketingConsent] = useState(false)
   const [errors, setErrors] = useState<Record<string, string>>({})
 
   const [encouragement, setEncouragement] = useState<string | null>(null)
@@ -70,8 +67,7 @@ export default function QuizPage() {
   const [leadCaptured, setLeadCaptured] = useState(false)
   /** True when the user bypassed the lead gate ("Show my plan first"). */
   const [skippedGate, setSkippedGate] = useState(false)
-  /** Confirmation toast after "add my stack" (auto-dismisses). */
-  const [toast, setToast] = useState<string | null>(null)
+  const resultTracked = useRef(false)
 
   const senior = isSenior(petType, ageYears)
   const speciesWord = (pt: PetType | null) => t(`quiz.species.${pt ?? 'pet'}`)
@@ -115,7 +111,6 @@ export default function QuizPage() {
   /* ----- guards ----- */
   useEffect(() => {
     if (step === LAST_STEP && !stack) goTo(0, false)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [step, stack])
 
   /* ----- encouragement auto-dismiss ----- */
@@ -125,12 +120,18 @@ export default function QuizPage() {
     return () => window.clearTimeout(t)
   }, [encouragement])
 
-  /* ----- toast auto-dismiss ----- */
   useEffect(() => {
-    if (!toast) return
-    const id = window.setTimeout(() => setToast(null), 4200)
-    return () => window.clearTimeout(id)
-  }, [toast])
+    trackPets('pets_research_navigator_started', { placement: 'quiz' })
+  }, [])
+
+  useEffect(() => {
+    if (step !== LAST_STEP || !stack || resultTracked.current) return
+    resultTracked.current = true
+    trackPets('pets_research_navigator_completed', {
+      profile_count: stack.items.length,
+      marketing_consent: marketingConsent,
+    })
+  }, [marketingConsent, stack, step])
 
   /* ----- answer handlers ----- */
   function selectPetType(pt: PetType) {
@@ -275,6 +276,8 @@ export default function QuizPage() {
         source: 'quiz',
         locale,
         consent_popia: popia,
+        research_information_acknowledged: popia,
+        marketing_consent: marketingConsent,
         utm: getUtmFromUrl(),
         quiz_answers: answers as unknown as Record<string, unknown>,
       })
@@ -285,8 +288,8 @@ export default function QuizPage() {
         city: null,
         stage: 'lead',
         source_site: 'pets.peptide-south-africa.com',
-        consent_email: true,
-        consent_whatsapp: Boolean(whatsapp.trim()),
+        consent_email: marketingConsent,
+        consent_whatsapp: marketingConsent && Boolean(whatsapp.trim()),
         notes: `Peptides4Pets waitlist: ${slugs.join(', ')}`,
       })
     } catch {
@@ -294,34 +297,9 @@ export default function QuizPage() {
     }
   }
 
-  function addMyStack() {
-    if (!stack) return
-    addStackToCart(stack.slugs)
-    // Open the global Launch Box drawer (mounted in Layout) so the user sees
-    // their stack land — no dead-end navigation to a missing anchor.
-    openCart()
-    setToast(t('quiz.stackToast'))
-  }
-
   function joinWaitlist() {
     if (!stack) return
     navigate(`/waitlist?product=${stack.slugs.join(',')}`)
-  }
-
-  /**
-   * Generic, conservative dosing guidance per product, driven by the pet's
-   * size band. Drops: once daily, 5-on/2-off. Collagen: daily scoop. Horses:
-   * vet-guided chart. The full vet-reviewed chart ships with every order.
-   */
-  function doseFor(slug: string): { amount: string; schedule: string } {
-    const band = size ?? 'M'
-    if (petType === 'horse') {
-      return { amount: t('quiz.dose.equine'), schedule: t('quiz.dose.vetGuided') }
-    }
-    if (slug === 'mobility-collagen') {
-      return { amount: t(`quiz.dose.scoop.${band}`), schedule: t('quiz.dose.dailyFood') }
-    }
-    return { amount: t(`quiz.dose.drops.${band}`), schedule: t('quiz.dose.cycle') }
   }
 
   function retake() {
@@ -337,11 +315,12 @@ export default function QuizPage() {
     setEmail('')
     setWhatsapp('')
     setPopia(false)
+    setMarketingConsent(false)
     setErrors({})
     setStack(null)
     setLeadCaptured(false)
     setSkippedGate(false)
-    setToast(null)
+    resultTracked.current = false
     setEncouragement(null)
     goTo(0)
   }
@@ -773,11 +752,25 @@ export default function QuizPage() {
                 className="mt-0.5 h-4 w-4 shrink-0 accent-clinical"
               />
               <span className="text-sm leading-snug text-espresso-70">
-                I&rsquo;m happy for Peptides4Pets to contact me about {displayName}&rsquo;s plan
-                and pet product launches. POPIA compliant — unsubscribe anytime.
+                I understand experimental peptide profiles are research information only,
+                not animal-use products or veterinary treatment, and I accept POPIA-scoped
+                processing of this request.
               </span>
             </label>
             <FieldError msg={errors.popia} />
+            <label className="mt-3 flex cursor-pointer items-start gap-3 rounded-xl border border-sand bg-cream p-3">
+              <input
+                type="checkbox"
+                checked={marketingConsent}
+                onChange={(e) => setMarketingConsent(e.target.checked)}
+                className="mt-0.5 h-4 w-4 shrink-0 accent-clinical"
+              />
+              <span className="text-xs leading-snug text-espresso-70">
+                {locale === 'af'
+                  ? 'Opsioneel: stuur vir my navorsing- en produkopdaterings.'
+                  : 'Optional: send me research and product updates.'}
+              </span>
+            </label>
           </div>
         </div>
         <motion.button
@@ -808,10 +801,6 @@ export default function QuizPage() {
     const today = new Date()
       .toLocaleDateString('en-ZA', { day: '2-digit', month: 'short', year: 'numeric' })
       .toUpperCase()
-    // "Bring your vet" pack — one handout per stacked product.
-    const vetHandouts = stack.items
-      .map((item) => handoutForProduct(item.product.slug, locale))
-      .filter((h): h is VetHandout => h !== null)
     return (
       <div>
         <p className="mono-data text-center text-[11px] uppercase tracking-[0.08em] text-clinical">
@@ -930,7 +919,9 @@ export default function QuizPage() {
                         : item.why}
                     </p>
                     <p className="mono-label mt-2 !text-[11px] text-espresso">
-                      {item.product.price}
+                      {item.product.slug === 'mobility-collagen'
+                        ? item.product.price
+                        : t('quiz.researchOnly')}
                     </p>
                     {item.preclinical && item.honesty && (
                       <p className="mt-2 border-l-2 border-alert pl-2 text-xs leading-snug text-espresso-70">
@@ -956,31 +947,10 @@ export default function QuizPage() {
               )}
             </div>
 
-            {/* dosing guidance — weight-band rows, conservative + generic */}
-            <div className="mt-6 rounded-2xl border border-sand bg-warmwhite p-4">
-              <div className="flex flex-wrap items-center justify-between gap-2">
-                <p className="mono-label !text-[10px] text-clinical">{t('quiz.dose.title')}</p>
-                <span className="mono-data text-[10px] uppercase tracking-[0.08em] text-espresso-70">
-                  {t('quiz.dose.band', { band: size ?? 'M' })}
-                </span>
-              </div>
-              <div className="mono-data mt-3 divide-y divide-sand text-[11px] uppercase tracking-[0.04em] text-espresso">
-                {stack.items.map((item) => {
-                  const dose = doseFor(item.product.slug)
-                  return (
-                    <div key={item.product.slug} className="grid grid-cols-[1fr_auto] gap-x-4 gap-y-1 py-2.5 sm:grid-cols-[1.2fr_1fr_1.2fr]">
-                      <span className="font-bold">{item.product.name}</span>
-                      <span className="text-right text-amber-deep sm:text-left">{dose.amount}</span>
-                      <span className="col-span-2 text-espresso-70 sm:col-span-1">{dose.schedule}</span>
-                    </div>
-                  )
-                })}
-              </div>
-              <p className="mono-data mt-3 border-t border-dashed border-sand pt-3 text-[10px] uppercase leading-relaxed tracking-[0.06em] text-espresso-70">
-                {t('quiz.dose.intro')}
-              </p>
-              <p className="mono-data mt-1 text-[10px] uppercase leading-relaxed tracking-[0.06em] text-clinical">
-                {t('quiz.dose.chart')}
+            <div className="mt-6 rounded-2xl border border-clinical/30 bg-clinical-tint/40 p-4">
+              <p className="mono-label !text-[10px] text-clinical">{t('quiz.boundaryTitle')}</p>
+              <p className="mt-2 text-sm leading-relaxed text-espresso-70">
+                {t('quiz.boundaryBody')}
               </p>
             </div>
 
@@ -999,29 +969,13 @@ export default function QuizPage() {
               onClick={() => window.print()}
               className="mono-label mt-4 inline-flex cursor-pointer items-center gap-2 rounded-full border border-espresso/30 bg-warmwhite px-5 py-2.5 !text-[11px] text-espresso transition-colors hover:border-amber hover:text-amber-deep"
             >
-              {t('quiz.dose.print')} ↓
+              {t('quiz.printProfile')} ↓
             </button>
           </div>
         </div>
 
-        {/* bring-your-vet one-tap pack (WhatsApp share + printable handout) */}
-        <VetPack
-          className="mt-6"
-          handouts={vetHandouts}
-          link={`${window.location.origin}/product/${stack.slugs[0] ?? ''}`}
-        />
-
         {/* CTA row */}
         <div className="mt-8 space-y-3">
-          <motion.button
-            type="button"
-            whileTap={reduced ? undefined : { scale: 0.98 }}
-            transition={SPRING}
-            onClick={addMyStack}
-            className="w-full cursor-pointer rounded-full bg-amber py-4 font-serif text-lg font-semibold text-warmwhite transition-colors hover:bg-amber-deep"
-          >
-            {t('quiz.addStack')}
-          </motion.button>
           <motion.button
             type="button"
             whileTap={reduced ? undefined : { scale: 0.98 }}
@@ -1091,6 +1045,19 @@ export default function QuizPage() {
               </span>
             </label>
             <FieldError msg={errors.popia} />
+            <label className="mt-3 flex cursor-pointer items-start gap-3 rounded-xl border border-sand bg-cream p-3">
+              <input
+                type="checkbox"
+                checked={marketingConsent}
+                onChange={(e) => setMarketingConsent(e.target.checked)}
+                className="mt-0.5 h-4 w-4 shrink-0 accent-clinical"
+              />
+              <span className="text-xs leading-snug text-espresso-70">
+                {locale === 'af'
+                  ? 'Opsioneel: stuur vir my navorsing- en produkopdaterings.'
+                  : 'Optional: send me research and product updates.'}
+              </span>
+            </label>
             <motion.button
               type="submit"
               whileTap={reduced ? undefined : { scale: 0.98 }}
@@ -1222,23 +1189,6 @@ export default function QuizPage() {
         </AnimatePresence>
       </div>
 
-      {/* stack-added toast — points at the open Launch Box drawer */}
-      <div className="pointer-events-none fixed inset-x-0 bottom-6 z-[60] flex justify-center px-4">
-        <AnimatePresence>
-          {toast && (
-            <motion.p
-              role="status"
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 24 }}
-              transition={{ duration: 0.35, ease: EASE }}
-              className="mono-label rounded-full border border-clinical/40 bg-espresso px-5 py-3 !text-[11px] text-cream shadow-[0_20px_50px_-20px_rgba(43,33,24,0.5)]"
-            >
-              {toast}
-            </motion.p>
-          )}
-        </AnimatePresence>
-      </div>
     </div>
   )
 }

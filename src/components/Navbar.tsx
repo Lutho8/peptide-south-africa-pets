@@ -18,6 +18,7 @@ const LINKS: { to: string; key?: string; label?: string }[] = [
   { to: '/verify', key: 'nav.verify' },
   { to: '/blog', key: 'nav.blog' },
   { to: '/waitlist', key: 'nav.waitlist' },
+  { to: '/account', label: 'Account' },
 ]
 
 function useCountUp(target: number, duration = 1200, start = true) {

@@ -34,7 +34,11 @@ export interface CheckoutCopy {
   speciesDog: string
   speciesCat: string
   speciesHorse: string
-  consent: string
+  ageConsent: string
+  nutritionalConsent: string
+  labelUseConsent: string
+  reportScopeConsent: string
+  marketingConsent: string
   validationError: string
   busyLabel: string
   submitPrefix: string
@@ -99,10 +103,16 @@ const en: CheckoutCopy = {
   speciesDog: 'Dog',
   speciesCat: 'Cat',
   speciesHorse: 'Horse',
-  consent:
-    'I confirm the delivery details, accept direct EFT payment terms and understand Mobility Collagen is nutritional support, not veterinary treatment.',
+  ageConsent: 'I confirm that I am 18 years of age or older and authorised to place this order.',
+  nutritionalConsent:
+    'I understand Mobility Collagen is a pet nutritional supplement, not a veterinary medicine or a substitute for veterinary diagnosis or treatment.',
+  labelUseConsent:
+    'I will use the product only as directed on its label and consult a veterinarian for illness, injury, medicine interactions or persistent symptoms.',
+  reportScopeConsent:
+    'I understand published reports describe only the identified sample and test method and do not guarantee an outcome for an individual animal.',
+  marketingConsent: 'Optional: send me Peptides4Pets research and product updates.',
   validationError:
-    'Complete every delivery field, use a four-digit postal code and accept the order terms.',
+    'Complete every delivery field, use a four-digit postal code and accept all required acknowledgements.',
   busyLabel: 'Creating secure order…',
   submitPrefix: 'Place order · get EFT details ·',
   summaryKicker: 'ORDER SUMMARY',
@@ -168,10 +178,16 @@ const af: CheckoutCopy = {
   speciesDog: 'Hond',
   speciesCat: 'Kat',
   speciesHorse: 'Perd',
-  consent:
-    'Ek bevestig die afleweringsbesonderhede, aanvaar die direkte EFT-betalingsvoorwaardes en verstaan dat Mobility Collagen voedingsondersteuning is, nie veeartsenykundige behandeling nie.',
+  ageConsent: 'Ek bevestig dat ek 18 jaar of ouer is en gemagtig is om hierdie bestelling te plaas.',
+  nutritionalConsent:
+    'Ek verstaan dat Mobility Collagen ’n voedingsaanvulling vir troeteldiere is, nie ’n veeartsenymiddel of plaasvervanger vir veeartsenykundige diagnose of behandeling nie.',
+  labelUseConsent:
+    'Ek sal die produk slegs volgens die etiket gebruik en ’n veearts raadpleeg vir siekte, besering, medisyne-interaksies of aanhoudende simptome.',
+  reportScopeConsent:
+    'Ek verstaan gepubliseerde verslae beskryf slegs die geïdentifiseerde monster en toetsmetode en waarborg nie ’n uitkoms vir ’n individuele dier nie.',
+  marketingConsent: 'Opsioneel: stuur vir my Peptides4Pets-navorsing- en produkopdaterings.',
   validationError:
-    'Voltooi elke afleweringsveld, gebruik ’n viersyfer-poskode en aanvaar die bestelvoorwaardes.',
+    'Voltooi elke afleweringsveld, gebruik ’n viersyfer-poskode en aanvaar al die vereiste erkennings.',
   busyLabel: 'Veilige bestelling word geskep…',
   submitPrefix: 'Plaas bestelling · kry EFT-besonderhede ·',
   summaryKicker: 'BESTELLINGOPSOMMING',

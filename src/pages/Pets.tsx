@@ -3,8 +3,6 @@ import { ArrowRight } from 'lucide-react'
 import Hero from '@/pages/pets/Hero'
 import LaunchCatalog from '@/pages/pets/LaunchCatalog'
 import QuizTeaser from '@/pages/pets/QuizTeaser'
-import GuaranteeBand from '@/pages/pets/GuaranteeBand'
-import Testimonials from '@/pages/pets/Testimonials'
 import WaitlistSection from '@/pages/pets/WaitlistSection'
 import { useConversionCopy } from '@/pages/pets/conversionCopy'
 import Seo from '@/components/Seo'
@@ -34,8 +32,8 @@ function ProofStrip() {
 
 /**
  * /pets landing — simplified, product-first conversion path:
- * hero → launch batch shelf → 3-step quiz teaser → proof strip →
- * guarantee → testimonials → waitlist. Education-heavy sections
+ * hero → nutrition/research shelf → catalogue navigator → proof strip → waitlist.
+ * Outcome guarantees and anecdotal treatment stories stay off the commercial path.
  * (ScienceStory, PipelineTeaser, Subscriptions detail, FAQ, tickers) remain
  * in the codebase for their routes but no longer clutter the first scroll.
  */
@@ -43,16 +41,14 @@ export default function Pets() {
   return (
     <>
       <Seo
-        title="Peptides4Pets — COA-Verified Peptides & Collagen for Dogs, Cats & Horses"
-        description="South Africa's COA-verified pet line — Mobility Collagen is live now with secure EFT checkout; research-grade BPC-157, KPV and more in development for dogs, cats and horses."
+        title="Peptides4Pets — Evidence-Led Pet Research & Mobility Collagen"
+        description="Mobility Collagen for South African pets, with transparent documentation. Experimental peptide profiles are research information only and not offered for animal administration."
         path=""
       />
       <Hero />
       <LaunchCatalog />
       <QuizTeaser />
       <ProofStrip />
-      <GuaranteeBand />
-      <Testimonials />
       <WaitlistSection />
     </>
   )

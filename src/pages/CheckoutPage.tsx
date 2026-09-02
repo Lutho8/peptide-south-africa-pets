@@ -9,6 +9,7 @@ import { supabase } from '@/lib/supabase'
 import { EFT_SESSION_KEY, startPetsEftCheckout } from '@/lib/eftCheckout'
 import type { PetsCheckoutForm } from '@/lib/eftCheckout'
 import { trackPets } from '@/lib/analytics'
+import { buildPetsCheckoutConsent } from '@/lib/petsConsent'
 import { useCheckoutCopy } from '@/pages/checkoutCopy'
 import Seo from '@/components/Seo'
 
@@ -31,7 +32,13 @@ export default function CheckoutPage() {
   const [authBusy, setAuthBusy] = useState(false)
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
-  const [consent, setConsent] = useState(false)
+  const [consent, setConsent] = useState({
+    age: false,
+    nutritional: false,
+    labelUse: false,
+    reportScope: false,
+    marketing: false,
+  })
   const [form, setForm] = useState<PetsCheckoutForm>(empty)
   const quantity = items.find((item) => isCheckoutEligible(item.slug))?.qty ?? 0
   // Display-only totals derived from the shared catalog exports; the server
@@ -54,6 +61,9 @@ export default function CheckoutPage() {
   // A new checkout invalidates any previous order's bank details.
   useEffect(() => {
     sessionStorage.removeItem(EFT_SESSION_KEY)
+    trackPets('pets_checkout_started', { item_count: quantity, displayed_total_zar: total })
+    // The cart fingerprint is stable for this page load; totals remain display-only.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const fieldsComplete = useMemo(() => Object.entries(form).every(([, value]) => String(value).trim().length > 0), [form])
@@ -81,13 +91,24 @@ export default function CheckoutPage() {
   async function placeOrder(event: FormEvent) {
     event.preventDefault()
     setError('')
-    if (!fieldsComplete || !/^\d{4}$/.test(form.postalCode) || !consent) {
+    if (
+      !fieldsComplete ||
+      !/^\d{4}$/.test(form.postalCode) ||
+      !consent.age ||
+      !consent.nutritional ||
+      !consent.labelUse ||
+      !consent.reportScope
+    ) {
       setError(copy.validationError)
       return
     }
     setBusy(true)
     try {
-      const state = await startPetsEftCheckout(items, form)
+      const state = await startPetsEftCheckout(
+        items,
+        form,
+        buildPetsCheckoutConsent(consent.marketing),
+      )
       sessionStorage.setItem(EFT_SESSION_KEY, JSON.stringify(state))
       // Only the purchased (eligible) line leaves the box — peptide
       // reservations stay put for the waitlist path.
@@ -182,10 +203,34 @@ export default function CheckoutPage() {
                   <Field label={copy.petName}><input className={inputClass} value={form.petName} onChange={(e) => setForm({ ...form, petName: e.target.value })} /></Field>
                   <Field label={copy.petSpecies}><select className={inputClass} value={form.petSpecies} onChange={(e) => setForm({ ...form, petSpecies: e.target.value as PetsCheckoutForm['petSpecies'] })}><option value="dog">{copy.speciesDog}</option><option value="cat">{copy.speciesCat}</option><option value="horse">{copy.speciesHorse}</option></select></Field>
                 </div>
-                <label className="mt-6 flex cursor-pointer items-start gap-3 rounded-2xl border border-sand bg-cream p-4 text-sm leading-relaxed text-espresso-70">
-                  <input type="checkbox" className="mt-1 accent-clinical" checked={consent} onChange={(e) => setConsent(e.target.checked)} />
-                  <span>{copy.consent}</span>
-                </label>
+                <div className="mt-6 space-y-3 rounded-2xl border border-sand bg-cream p-4">
+                  <ConsentCheck
+                    checked={consent.age}
+                    onChange={(checked) => setConsent((current) => ({ ...current, age: checked }))}
+                    label={copy.ageConsent}
+                  />
+                  <ConsentCheck
+                    checked={consent.nutritional}
+                    onChange={(checked) => setConsent((current) => ({ ...current, nutritional: checked }))}
+                    label={copy.nutritionalConsent}
+                  />
+                  <ConsentCheck
+                    checked={consent.labelUse}
+                    onChange={(checked) => setConsent((current) => ({ ...current, labelUse: checked }))}
+                    label={copy.labelUseConsent}
+                  />
+                  <ConsentCheck
+                    checked={consent.reportScope}
+                    onChange={(checked) => setConsent((current) => ({ ...current, reportScope: checked }))}
+                    label={copy.reportScopeConsent}
+                  />
+                  <ConsentCheck
+                    checked={consent.marketing}
+                    onChange={(checked) => setConsent((current) => ({ ...current, marketing: checked }))}
+                    label={copy.marketingConsent}
+                    optional
+                  />
+                </div>
                 <button
                   type="submit"
                   disabled={busy}
@@ -249,6 +294,33 @@ function Field({ label, wide, children }: { label: string; wide?: boolean; child
     <label className={wide ? 'sm:col-span-2' : ''}>
       <span className="mono-label mb-2 block !text-[9px] text-espresso-70">{label}</span>
       {children}
+    </label>
+  )
+}
+
+function ConsentCheck({
+  checked,
+  onChange,
+  label,
+  optional = false,
+}: {
+  checked: boolean
+  onChange: (checked: boolean) => void
+  label: string
+  optional?: boolean
+}) {
+  return (
+    <label className="flex cursor-pointer items-start gap-3 text-sm leading-relaxed text-espresso-70">
+      <input
+        type="checkbox"
+        className="mt-1 accent-clinical"
+        checked={checked}
+        onChange={(event) => onChange(event.target.checked)}
+      />
+      <span>
+        {label}
+        {!optional && <span className="ml-1 text-alert" aria-label="required">*</span>}
+      </span>
     </label>
   )
 }

@@ -42,6 +42,17 @@ function AddButton({ slug }: { slug: string }) {
   const copy = useConversionCopy()
   const [added, setAdded] = useState(false)
 
+  if (!isCheckoutEligible(slug)) {
+    return (
+      <Link
+        to={`/waitlist?product=${slug}`}
+        className="inline-flex w-full items-center justify-center rounded-xl border border-espresso/25 px-5 py-3.5 font-serif text-base font-bold text-espresso transition-colors hover:border-amber hover:text-amber-deep"
+      >
+        {copy.launchResearchStatus}
+      </Link>
+    )
+  }
+
   function handleAdd() {
     addToCart(slug)
     setAdded(true)
@@ -101,7 +112,7 @@ function LaunchCard({ product, index }: { product: PetProduct; index: number }) 
             </span>
           )}
           <span className="mono-label rounded-full border border-espresso/15 bg-warmwhite/90 px-2.5 py-1 !text-[9px] text-clinical backdrop-blur-sm">
-            {copy.launchHplc}
+            {isCheckoutEligible(product.slug) ? copy.launchHplc : copy.launchResearch}
           </span>
         </div>
       </div>
@@ -113,10 +124,16 @@ function LaunchCard({ product, index }: { product: PetProduct; index: number }) 
           </h3>
           <p className="mt-1 text-sm leading-snug text-espresso-70">{product.benefit}</p>
         </div>
-        <p className="mono-data font-bold text-espresso">
-          {formatZAR(product.price)}
-          <span className="font-normal text-espresso-70">{product.priceUnit}</span>
-        </p>
+        {isCheckoutEligible(product.slug) ? (
+          <p className="mono-data font-bold text-espresso">
+            {formatZAR(product.price)}
+            <span className="font-normal text-espresso-70">{product.priceUnit}</span>
+          </p>
+        ) : (
+          <p className="mono-data !text-[10px] uppercase tracking-[0.06em] text-amber-deep">
+            {copy.launchResearchStatus}
+          </p>
+        )}
 
         <div className="mt-auto pt-2">
           <AddButton slug={product.slug} />

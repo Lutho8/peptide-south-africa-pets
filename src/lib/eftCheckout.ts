@@ -1,5 +1,7 @@
 import { supabase } from '@/lib/supabase'
 import type { CartItem } from '@/lib/cart'
+import type { PetsCheckoutConsent } from '@/lib/petsConsent'
+import { petsSessionId } from '@/lib/analytics'
 
 export const EFT_SESSION_KEY = 'peptides4pets-eft-instructions'
 const EFT_REQUEST_KEY = 'peptides4pets-eft-request'
@@ -49,17 +51,23 @@ function requestId(items: CartItem[], form: PetsCheckoutForm) {
   }
 }
 
-export async function startPetsEftCheckout(items: CartItem[], form: PetsCheckoutForm): Promise<EftInstructionsState> {
+export async function startPetsEftCheckout(
+  items: CartItem[],
+  form: PetsCheckoutForm,
+  consent: PetsCheckoutConsent,
+): Promise<EftInstructionsState> {
   const { data } = await supabase.auth.getSession()
   if (!data.session) throw new Error('Sign in securely before placing the order')
   const id = requestId(items, form)
-  const { data: response, error } = await supabase.functions.invoke('eft-create-order', {
+  const { data: response, error } = await supabase.functions.invoke('pets-eft-create-order', {
+    headers: { 'x-pets-session-id': petsSessionId() },
     body: {
       requestId: id,
       selections: selections(items),
       firstName: form.firstName,
       lastName: form.lastName,
       email: form.email,
+      consent,
       fulfilment: {
         first_name: form.firstName,
         last_name: form.lastName,

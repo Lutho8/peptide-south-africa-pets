@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import type { FormEvent } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { PRODUCTS, waLink } from '@/lib/data'
@@ -16,6 +16,7 @@ import { getUtmFromUrl, submitPetsWaitlist, upsertPetsLead } from '@/lib/supabas
 import type { PetsWaitlistRow } from '@/lib/supabase'
 import { useI18n } from '@/lib/i18n'
 import { cn } from '@/lib/utils'
+import { trackPets } from '@/lib/analytics'
 
 const PET_TYPES = [
   { id: 'dog', icon: '/icon-dog.svg' },
@@ -60,6 +61,8 @@ export default function WaitlistForm({ defaultProducts, compact = false, onSucce
     return PRODUCTS.map((p) => p.slug)
   })
   const [concern, setConcern] = useState('mobility')
+  const [researchAck, setResearchAck] = useState(false)
+  const [marketingConsent, setMarketingConsent] = useState(false)
   const [errors, setErrors] = useState<Errors>({})
   const [submitting, setSubmitting] = useState(false)
   const [entry, setEntry] = useState<WaitlistEntry | null>(null)
@@ -69,6 +72,10 @@ export default function WaitlistForm({ defaultProducts, compact = false, onSucce
   const [serverConfirmed, setServerConfirmed] = useState(false)
   // Referral code captured at mount — a "you were referred" credit shows on success.
   const [incomingRef] = useState<string | null>(() => getRefFromUrl())
+
+  useEffect(() => {
+    trackPets('pets_waitlist_started', { placement: compact ? 'compact' : 'homepage' })
+  }, [compact])
 
   const productNames = useMemo(
     () =>
@@ -92,6 +99,9 @@ export default function WaitlistForm({ defaultProducts, compact = false, onSucce
       next.whatsapp = t('form.err.whatsapp')
     if (breed.trim().length < 2) next.breed = t('form.err.breed')
     if (products.length === 0) next.products = t('form.err.products')
+    if (!researchAck) next.researchAck = locale === 'af'
+      ? 'ERKEN DIE NAVORSINGS- EN POPIA-GRENS'
+      : 'ACKNOWLEDGE THE RESEARCH AND POPIA BOUNDARY'
     setErrors(next)
     return Object.keys(next).length === 0
   }
@@ -116,6 +126,7 @@ export default function WaitlistForm({ defaultProducts, compact = false, onSucce
     setEntry(result.entry)
     setServerConfirmed(result.serverConfirmed)
     setSynced(result.synced)
+    trackPets('pets_waitlist_joined', { product_count: products.length, marketing_consent: marketingConsent })
     setSubmitting(false)
     onSuccess?.(result.entry)
   }
@@ -141,6 +152,8 @@ export default function WaitlistForm({ defaultProducts, compact = false, onSucce
       source: 'waitlist-form',
       locale,
       consent_popia: true,
+      research_information_acknowledged: researchAck,
+      marketing_consent: marketingConsent,
       utm: getUtmFromUrl(),
     }
     const waitlistResult = await submitPetsWaitlist(row)
@@ -160,8 +173,8 @@ export default function WaitlistForm({ defaultProducts, compact = false, onSucce
       city: saved.city || null,
       stage: 'lead',
       source_site: 'pets.peptide-south-africa.com',
-      consent_email: true,
-      consent_whatsapp: Boolean(saved.whatsapp),
+      consent_email: marketingConsent,
+      consent_whatsapp: marketingConsent && Boolean(saved.whatsapp),
       notes: `Peptides4Pets waitlist: ${saved.products.join(', ')}`,
     })
     return {
@@ -447,6 +460,38 @@ export default function WaitlistForm({ defaultProducts, compact = false, onSucce
                 ))}
               </div>
             </Field>
+
+            <div className="space-y-3">
+              <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-sand bg-warmwhite p-4">
+                <input
+                  type="checkbox"
+                  checked={researchAck}
+                  onChange={(event) => setResearchAck(event.target.checked)}
+                  className="mt-0.5 h-4 w-4 shrink-0 accent-clinical"
+                />
+                <span className="text-sm leading-relaxed text-espresso-70">
+                  {locale === 'af'
+                    ? 'Ek verstaan eksperimentele peptiedprofiele is slegs navorsingsinligting, nie produkte vir diergebruik of veeartsenykundige behandeling nie, en aanvaar POPIA-beperkte verwerking van hierdie versoek.'
+                    : 'I understand experimental peptide profiles are research information only, not animal-use products or veterinary treatment, and accept POPIA-scoped processing of this request.'}
+                </span>
+              </label>
+              {errors.researchAck && (
+                <p className="mono-label !text-[10px] text-alert">{errors.researchAck}</p>
+              )}
+              <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-sand bg-cream p-4">
+                <input
+                  type="checkbox"
+                  checked={marketingConsent}
+                  onChange={(event) => setMarketingConsent(event.target.checked)}
+                  className="mt-0.5 h-4 w-4 shrink-0 accent-clinical"
+                />
+                <span className="text-sm leading-relaxed text-espresso-70">
+                  {locale === 'af'
+                    ? 'Opsioneel: stuur vir my Peptides4Pets-navorsing- en produkopdaterings. Ek kan enige tyd uitskryf.'
+                    : 'Optional: send me Peptides4Pets research and product updates. I can unsubscribe at any time.'}
+                </span>
+              </label>
+            </div>
 
             <button
               type="submit"

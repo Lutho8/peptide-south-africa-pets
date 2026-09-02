@@ -11,6 +11,7 @@ import {
 import { ArticleCard, RelatedProductCard } from '@/components/BlogShared'
 import { fmtDate, renderWithCitations, useBlogChrome } from '@/lib/blogChrome'
 import PreferredSourcesButton from '@/components/PreferredSourcesButton'
+import { asset } from '@/lib/asset'
 
 /** Smooth-scroll handler for the sticky TOC (Lenis owns the scroll loop). */
 function scrollToId(id: string) {
@@ -135,7 +136,7 @@ export default function BlogArticlePage() {
         </div>
         <div className="psa-container pb-10">
           <img
-            src={article.heroImage}
+            src={asset(article.heroImage)}
             alt={article.heroAlt}
             className="aspect-[21/9] w-full rounded-3xl border border-sand object-cover"
           />

@@ -1,4 +1,5 @@
 import { Link } from 'react-router'
+import { asset } from '@/lib/asset'
 import { ArrowRight } from 'lucide-react'
 import type { BlogArticle } from '@/lib/blog'
 import { PRODUCTS, getPetProduct } from '@/lib/data'
@@ -51,7 +52,7 @@ export function ArticleCard({ article }: { article: BlogArticle }) {
     >
       <div className="relative aspect-[16/9] overflow-hidden bg-cream-2">
         <img
-          src={article.heroImage}
+          src={asset(article.heroImage)}
           alt={article.heroAlt}
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
           loading="lazy"

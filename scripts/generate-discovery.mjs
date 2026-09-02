@@ -1,20 +1,13 @@
 #!/usr/bin/env node
-import { execFileSync } from 'node:child_process'
-import { rmSync, writeFileSync } from 'node:fs'
+import { writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
-const TMP = join(ROOT, '.tmp-discovery-data.mjs')
 const PUBLIC = join(ROOT, 'public')
 
-execFileSync(join(ROOT, 'node_modules', '.bin', 'esbuild'), [
-  join(ROOT, 'src', 'lib', 'blog.ts'), '--bundle', '--platform=node', '--format=esm',
-  `--outfile=${TMP}`, '--log-level=warning',
-])
-
 const { BLOG_ARTICLES, BLOG_TAGLINE, BLOG_TITLE, SITE_URL } = await import(
-  `${pathToFileURL(TMP).href}?v=${Date.now()}`
+  `${pathToFileURL(join(ROOT, 'src', 'lib', 'blog.ts')).href}?v=${Date.now()}`
 )
 
 const esc = (value) => String(value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
@@ -75,5 +68,4 @@ ${BLOG_ARTICLES.slice().sort((a, b) => b.publishDate.localeCompare(a.publishDate
 </channel></rss>
 `
 writeFileSync(join(PUBLIC, 'feed.xml'), rss)
-rmSync(TMP, { force: true })
 console.log(`Discovery files written: ${urlRows.length} canonical URLs, ${BLOG_ARTICLES.length} feed items, ${fresh.length} news URLs.`)

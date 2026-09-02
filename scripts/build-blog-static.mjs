@@ -10,31 +10,15 @@
  *
  * Run: npm run build:blog   (re-run after any edit to src/lib/blog.ts)
  */
-import { execFileSync } from 'node:child_process'
-import { mkdirSync, writeFileSync, rmSync, existsSync } from 'node:fs'
+import { mkdirSync, writeFileSync, existsSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
-const TMP = join(ROOT, '.tmp-blog-data.mjs')
 const OUT_DIR = join(ROOT, 'public', 'blog')
 
-/* 1 · Bundle src/lib/blog.ts to a plain ESM file node can import. */
-execFileSync(
-  join(ROOT, 'node_modules', '.bin', 'esbuild'),
-  [
-    join(ROOT, 'src', 'lib', 'blog.ts'),
-    '--bundle',
-    '--platform=node',
-    '--format=esm',
-    `--outfile=${TMP}`,
-    '--log-level=warning',
-  ],
-  { stdio: 'inherit' },
-)
-
 const { BLOG_ARTICLES, BLOG_DISCLAIMER, SITE_URL } = await import(
-  `${pathToFileURL(TMP).href}?v=${Date.now()}`
+  `${pathToFileURL(join(ROOT, 'src', 'lib', 'blog.ts')).href}?v=${Date.now()}`
 )
 
 /* 2 · Rendering helpers. */
@@ -298,5 +282,4 @@ for (const a of BLOG_ARTICLES) {
   console.log(`  + public/blog/${a.slug}.html`)
 }
 
-rmSync(TMP, { force: true })
 console.log(`\nbuild-blog-static: ${written} static article mirrors written to public/blog/`)

@@ -35,7 +35,9 @@ export default function Seo({
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
       <link rel="canonical" href={canonical} />
-      <meta name="robots" content={noindex ? 'noindex,follow' : 'index,follow'} />
+      <link rel="alternate" hrefLang="en-ZA" href={canonical} />
+      <link rel="alternate" hrefLang="x-default" href={canonical} />
+      <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large, max-snippet:-1'} />
 
       <meta property="og:type" content={type} />
       <meta property="og:title" content={fullTitle} />

@@ -40,19 +40,6 @@ function DefaultMeta({ pathname }: { pathname: string }) {
   }
   return (
     <Helmet>
-      <title>Peptides4Pets — COA-Verified Peptides & Collagen for Dogs, Cats & Horses | South Africa</title>
-      <meta
-        name="description"
-        content="South Africa's COA-verified pet line: Mobility Collagen live now with secure EFT checkout; peptide drops in development — HPLC-tested, vet-reviewed, VAT included."
-      />
-      <link rel="canonical" href={`${SITE_URL}${pathname === '/' ? '' : pathname}`} />
-      <link rel="alternate" hrefLang="en-ZA" href={`${SITE_URL}${pathname === '/' ? '' : pathname}`} />
-      <link rel="alternate" hrefLang="x-default" href={`${SITE_URL}${pathname === '/' ? '' : pathname}`} />
-      <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
-      <meta property="og:site_name" content="Peptides4Pets" />
-      <meta property="og:type" content="website" />
-      <meta property="og:url" content={`${SITE_URL}${pathname === '/' ? '' : pathname}`} />
-      <meta name="twitter:card" content="summary_large_image" />
       {isHome && <script type="application/ld+json">{JSON.stringify(orgJsonLd)}</script>}
     </Helmet>
   )

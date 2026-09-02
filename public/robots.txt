@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://pets.peptide-south-africa.com/sitemap.xml
+Sitemap: https://pets.peptide-south-africa.com/news-sitemap.xml

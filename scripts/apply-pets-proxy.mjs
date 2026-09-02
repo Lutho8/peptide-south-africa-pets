@@ -87,7 +87,9 @@ const attr = new RegExp(`\\b(src|poster)=(["'])(/(?:[^"']*?\\.${exts}))\\2`, 'g'
 const prop = new RegExp(`\\b(image|heroImage|src|poster):\\s*(["'])(/(?:[^"']*?\\.${exts}))\\2`, 'g');
 let changed = 0;
 for (const rel of walk('src')) {
-  if (!/\.tsx?$/.test(rel) || rel === 'src/lib/asset.ts') continue;
+  // blog.ts is also imported directly by the build-time discovery generators;
+  // keep its public paths framework-neutral and resolve them at render sites.
+  if (!/\.tsx?$/.test(rel) || rel === 'src/lib/asset.ts' || rel === 'src/lib/blog.ts') continue;
   const before = read(rel);
   let s = before;
   s = s.replace(attr, (_m, a, _q, p) => `${a}={asset('${p}')}`);

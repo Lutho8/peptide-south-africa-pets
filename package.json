@@ -5,11 +5,13 @@
   "type": "module",
   "packageManager": "pnpm@10.12.1",
   "scripts": {
+    "prebuild": "npm run build:blog && node scripts/generate-discovery.mjs",
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "build:blog": "node scripts/build-blog-static.mjs"
+    "build:blog": "node scripts/build-blog-static.mjs",
+    "test:seo": "node scripts/check-seo.mjs"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

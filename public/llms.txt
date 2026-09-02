@@ -22,6 +22,8 @@ Key pages:
 - /science  — the evidence library, every claim cited
 - /verify   — batch to certificate-of-analysis lookup
 - /blog     — evidence-first writing on pet peptides and longevity
+- /editorial-policy — sourcing, evidence grading, corrections and commercial disclosure
+- /feed.xml — RSS feed for the Peptides4Pets Journal
 - /waitlist — join the founding waitlist (no payment; consult your vet)
 
 Domain: https://pets.peptide-south-africa.com

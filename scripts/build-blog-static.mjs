@@ -10,31 +10,15 @@
  *
  * Run: npm run build:blog   (re-run after any edit to src/lib/blog.ts)
  */
-import { execFileSync } from 'node:child_process'
-import { mkdirSync, writeFileSync, rmSync, existsSync } from 'node:fs'
+import { mkdirSync, writeFileSync, existsSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
-const TMP = join(ROOT, '.tmp-blog-data.mjs')
 const OUT_DIR = join(ROOT, 'public', 'blog')
 
-/* 1 · Bundle src/lib/blog.ts to a plain ESM file node can import. */
-execFileSync(
-  join(ROOT, 'node_modules', '.bin', 'esbuild'),
-  [
-    join(ROOT, 'src', 'lib', 'blog.ts'),
-    '--bundle',
-    '--platform=node',
-    '--format=esm',
-    `--outfile=${TMP}`,
-    '--log-level=warning',
-  ],
-  { stdio: 'inherit' },
-)
-
 const { BLOG_ARTICLES, BLOG_DISCLAIMER, SITE_URL } = await import(
-  `${pathToFileURL(TMP).href}?v=${Date.now()}`
+  `${pathToFileURL(join(ROOT, 'src', 'lib', 'blog.ts')).href}?v=${Date.now()}`
 )
 
 /* 2 · Rendering helpers. */
@@ -99,10 +83,10 @@ const CSS = `
 function articleJsonLd(a) {
   return {
     '@context': 'https://schema.org',
-    '@type': 'Article',
+    '@type': 'BlogPosting',
     headline: a.title,
     description: a.metaDescription,
-    image: `${SITE_URL}${a.heroImage}`,
+    image: { '@type': 'ImageObject', url: `${SITE_URL}${a.heroImage}` },
     datePublished: a.publishDate,
     dateModified: a.modifiedDate,
     author: { '@type': 'Organization', name: 'Peptides4Pets Editorial', url: `${SITE_URL}/blog` },
@@ -115,7 +99,8 @@ function articleJsonLd(a) {
     mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}/blog/${a.slug}` },
     keywords: a.keywords.join(', '),
     articleSection: a.category,
-    inLanguage: 'en',
+    inLanguage: 'en-ZA',
+    citation: a.citations.map((citation) => citation.url),
   }
 }
 
@@ -180,7 +165,7 @@ function render(a, related) {
     .join('\n      ')
 
   return `<!doctype html>
-<html lang="en">
+<html lang="en-ZA">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -188,6 +173,9 @@ function render(a, related) {
   <meta name="description" content="${esc(a.metaDescription)}" />
   <meta name="keywords" content="${esc(a.keywords.join(', '))}" />
   <link rel="canonical" href="${canonical}" />
+  <link rel="alternate" hreflang="en-ZA" href="${canonical}" />
+  <link rel="alternate" hreflang="x-default" href="${canonical}" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
   <meta property="og:type" content="article" />
   <meta property="og:title" content="${esc(a.title)}" />
   <meta property="og:description" content="${esc(a.metaDescription)}" />
@@ -212,7 +200,7 @@ function render(a, related) {
         <a href="/science">Science</a>
         <a href="/blog">Blog</a>
         <a href="/quiz">Quiz</a>
-        <a href="/waitlist">Waitlist</a>
+        <a href="/editorial-policy">Editorial policy</a>
       </nav>
     </div>
   </header>
@@ -273,7 +261,7 @@ function render(a, related) {
         <a href="/science">Science</a>
         <a href="/blog">Journal</a>
         <a href="/verify">Verify a batch</a>
-        <a href="/waitlist">Waitlist</a>
+        <a href="/editorial-policy">Editorial policy</a>
       </span>
     </div>
   </footer>
@@ -294,5 +282,4 @@ for (const a of BLOG_ARTICLES) {
   console.log(`  + public/blog/${a.slug}.html`)
 }
 
-rmSync(TMP, { force: true })
 console.log(`\nbuild-blog-static: ${written} static article mirrors written to public/blog/`)

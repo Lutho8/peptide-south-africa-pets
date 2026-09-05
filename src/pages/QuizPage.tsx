@@ -236,6 +236,7 @@ export default function QuizPage() {
     // Dual-write the quiz lead to Supabase (waitlist row + CRM). Fire-and-forget:
     // failures are queued locally and never block the plan reveal.
     void syncQuizLead(answers, result.slugs)
+    trackPets('pets_pathway_completed', { source: 'quiz' })
     setLeadCaptured(true)
     return true
   }

@@ -20,6 +20,7 @@ import {
 } from '@/lib/data';
 import type { WaitlistTicket } from '@/lib/data';
 import { getRefFromUrl } from '@/lib/waitlist';
+import { trackPets } from '@/lib/analytics';
 import {
   getUtmFromUrl,
   submitPetsWaitlist,
@@ -455,6 +456,7 @@ export default function WaitlistPage() {
     setTicket(tk);
     setSubmitting(false);
     setStep(3);
+    trackPets('pets_pathway_completed', { source: 'waitlist' });
     try {
       window.history.pushState({ wlStep: 3 }, '');
     } catch {

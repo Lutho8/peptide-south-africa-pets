@@ -2,6 +2,9 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router'
 import './index.css'
 import App from './App.tsx'
+import { initMetaPixel } from './lib/analytics'
+
+initMetaPixel()
 
 const basename =
   window.location.pathname === '/pets' || window.location.pathname.startsWith('/pets/')

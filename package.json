@@ -7,7 +7,7 @@
   "scripts": {
     "prebuild": "npm run build:blog && node scripts/generate-discovery.mjs",
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && node scripts/prerender.mjs",
     "lint": "eslint .",
     "check:boundary": "node scripts/check-research-boundary.mjs",
     "preview": "vite preview",

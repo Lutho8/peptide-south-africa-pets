@@ -221,7 +221,7 @@ function HeroSplit({ product, detail }: { product: Product; detail: ProductDetai
               <motion.div variants={boxItem} className="mt-6">
                 <VetPack
                   handouts={[handout]}
-                  link={`${window.location.origin}/product/${product.slug}`}
+                  link={`${SITE_URL}/product/${product.slug}`}
                 />
               </motion.div>
             )}

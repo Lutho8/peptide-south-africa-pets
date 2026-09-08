@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { Outlet, useLocation } from 'react-router'
-import { Helmet, HelmetProvider } from 'react-helmet-async'
+import { Helmet } from 'react-helmet-async'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/react'
 import Lenis from 'lenis'
@@ -76,20 +76,18 @@ export default function Layout() {
   }, [])
 
   return (
-    <HelmetProvider>
-      <I18nProvider>
-        <div className="min-h-[100dvh] bg-cream">
-          <DefaultMeta pathname={pathname} />
-          <Navbar />
-          <main>
-            <Outlet />
-          </main>
-          <Footer />
-          <CartDrawer />
-          <Analytics />
-          <SpeedInsights />
-        </div>
-      </I18nProvider>
-    </HelmetProvider>
+    <I18nProvider>
+      <div className="min-h-[100dvh] bg-cream">
+        <DefaultMeta pathname={pathname} />
+        <Navbar />
+        <main>
+          <Outlet />
+        </main>
+        <Footer />
+        <CartDrawer />
+        <Analytics />
+        <SpeedInsights />
+      </div>
+    </I18nProvider>
   )
 }

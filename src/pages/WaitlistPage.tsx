@@ -31,7 +31,6 @@ import type { WaitlistSubmissionResult } from '@/lib/supabase';
 import { useI18n } from '@/lib/i18n';
 import Seo from '@/components/Seo';
 import type { Locale } from '@/lib/i18n';
-import { trackPets } from '@/lib/analytics';
 
 /* ----------------------------- design tokens ---------------------------- */
 
@@ -91,10 +90,7 @@ function TypeLine({
 
   useEffect(() => {
     if (!active) return;
-    if (reduced) {
-      setCount(text.length);
-      return;
-    }
+    if (reduced) return;
     let i = 0;
     let interval = 0;
     const timeout = window.setTimeout(() => {
@@ -112,7 +108,7 @@ function TypeLine({
 
   return (
     <span className={className} aria-label={text}>
-      <span aria-hidden>{text.slice(0, count)}</span>
+      <span aria-hidden>{text.slice(0, reduced && active ? text.length : count)}</span>
     </span>
   );
 }
@@ -456,7 +452,7 @@ export default function WaitlistPage() {
     setTicket(tk);
     setSubmitting(false);
     setStep(3);
-    trackPets('pets_pathway_completed', { source: 'waitlist' });
+    trackPets('pets_research_navigator_completed', { source: 'waitlist' });
     try {
       window.history.pushState({ wlStep: 3 }, '');
     } catch {

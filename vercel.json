@@ -3,11 +3,23 @@
   "framework": "vite",
   "buildCommand": "node scripts/apply-pets-proxy.mjs && node scripts/set-site-url.mjs && npm run build",
   "outputDirectory": "dist",
+  "cleanUrls": true,
+  "redirects": [
+    { "source": "/pets", "destination": "/", "permanent": true }
+  ],
   "rewrites": [
-    {
-      "source": "/((?!blog/.*\\.html|.*\\.[a-zA-Z0-9]+$).*)",
-      "destination": "/index.html"
-    }
+    { "source": "/queue", "destination": "/index.html" },
+    { "source": "/checkout", "destination": "/index.html" },
+    { "source": "/checkout/:path*", "destination": "/index.html" },
+    { "source": "/account", "destination": "/index.html" },
+    { "source": "/admin/:path*", "destination": "/index.html" }
+  ],
+  "headers": [
+    { "source": "/queue", "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" }] },
+    { "source": "/checkout/:path*", "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" }] },
+    { "source": "/account", "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" }] },
+    { "source": "/admin/:path*", "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" }] },
+    { "source": "/feed.xml", "headers": [{ "key": "X-Robots-Tag", "value": "noindex, follow" }] }
   ],
   "installCommand": "(corepack enable && corepack prepare pnpm@10.12.1 --activate && pnpm install --ignore-scripts --no-frozen-lockfile) || (npx --yes pnpm@10.12.1 install --ignore-scripts --no-frozen-lockfile)"
 }

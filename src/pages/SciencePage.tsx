@@ -51,10 +51,7 @@ function TypeOn({
 
   useEffect(() => {
     if (!inView) return;
-    if (reduced) {
-      setCount(text.length);
-      return;
-    }
+    if (reduced) return;
     let i = 0;
     let interval = 0;
     const timeout = window.setTimeout(() => {
@@ -72,7 +69,7 @@ function TypeOn({
 
   return (
     <span ref={ref} className={className} aria-label={text}>
-      <span aria-hidden>{text.slice(0, count)}</span>
+      <span aria-hidden>{text.slice(0, reduced && inView ? text.length : count)}</span>
       {!reduced && count < text.length && inView && (
         <span aria-hidden className="animate-pulse">
           ▍

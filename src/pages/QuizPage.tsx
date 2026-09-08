@@ -110,7 +110,9 @@ export default function QuizPage() {
 
   /* ----- guards ----- */
   useEffect(() => {
-    if (step === LAST_STEP && !stack) goTo(0, false)
+    if (step !== LAST_STEP || stack) return
+    const reset = window.setTimeout(() => goTo(0, false), 0)
+    return () => window.clearTimeout(reset)
   }, [step, stack])
 
   /* ----- encouragement auto-dismiss ----- */
@@ -236,7 +238,7 @@ export default function QuizPage() {
     // Dual-write the quiz lead to Supabase (waitlist row + CRM). Fire-and-forget:
     // failures are queued locally and never block the plan reveal.
     void syncQuizLead(answers, result.slugs)
-    trackPets('pets_pathway_completed', { source: 'quiz' })
+    trackPets('pets_research_navigator_completed', { source: 'quiz' })
     setLeadCaptured(true)
     return true
   }

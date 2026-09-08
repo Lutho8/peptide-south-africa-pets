@@ -44,7 +44,7 @@ declare global {
 /** Meta standard-event mapping. Unlisted events fire as trackCustom so they
  * still show up in Events Manager without polluting Meta's standard-event set. */
 const META_STANDARD_EVENT: Partial<Record<PetsEvent, string>> = {
-  pets_pathway_completed: 'Lead',
+  pets_research_navigator_completed: 'Lead',
   pets_checkout_started: 'InitiateCheckout',
   pets_collagen_added: 'AddToCart',
   pets_eft_order_created: 'Purchase',

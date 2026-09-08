@@ -53,7 +53,9 @@ export default function CartDrawer() {
 
   // Reset to the cart view whenever the drawer (re)opens or contents change.
   useEffect(() => {
-    if (!open) setReserving(false)
+    if (open) return
+    const reset = window.setTimeout(() => setReserving(false), 0)
+    return () => window.clearTimeout(reset)
   }, [open])
 
   // Lock body scroll while open.

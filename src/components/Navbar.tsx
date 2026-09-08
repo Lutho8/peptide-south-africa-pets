@@ -23,20 +23,19 @@ const LINKS: { to: string; key?: string; label?: string }[] = [
 
 function useCountUp(target: number, duration = 1200, start = true) {
   const [value, setValue] = useState(0)
+  const [reduced] = useState(() =>
+    typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+  )
   const started = useRef(false)
   useEffect(() => {
     // After the intro animation, track target changes (e.g. real RPC count arriving).
     if (started.current) {
-      setValue(target)
-      return
+      const sync = window.setTimeout(() => setValue(target), 0)
+      return () => window.clearTimeout(sync)
     }
     if (!start) return
     started.current = true
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (reduce) {
-      setValue(target)
-      return
-    }
+    if (reduced) return
     const t0 = performance.now()
     let raf = 0
     const tick = (t: number) => {
@@ -47,15 +46,20 @@ function useCountUp(target: number, duration = 1200, start = true) {
     }
     raf = requestAnimationFrame(tick)
     return () => cancelAnimationFrame(raf)
-  }, [target, duration, start])
-  return value
+  }, [target, duration, start, reduced])
+  return reduced ? target : value
 }
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
-  const [dismissed, setDismissed] = useState(
-    () => sessionStorage.getItem('psa_pets_annbar') === 'off',
-  )
+  const [dismissed, setDismissed] = useState(() => {
+    if (typeof window === 'undefined') return false
+    try {
+      return window.sessionStorage.getItem('psa_pets_annbar') === 'off'
+    } catch {
+      return false
+    }
+  })
   const [drawer, setDrawer] = useState(false)
   const navigate = useNavigate()
   // Only the server-confirmed count is shown; seeded catalog numbers are not

@@ -31,6 +31,11 @@ const BRIDGE_FORBIDDEN_TERMS = [
   /\btreat(s|ment|ed|ing)?\b/i,
   /\bheal(s|ed|ing)?\b/i,
   /guarantee/i,
+  /real recovery/i,
+  /tracked the difference/i,
+  /made .* easier/i,
+  /point you to the right next step/i,
+  /what might help yours/i,
 ]
 for (const term of BRIDGE_FORBIDDEN_TERMS) {
   assert(!term.test(routine), `Bridge page must not contain forbidden term: ${term}`)

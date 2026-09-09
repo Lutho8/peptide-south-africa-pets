@@ -41,23 +41,23 @@ interface Hook {
 const HOOKS: Hook[] = [
   {
     id: 'hook-mobility',
-    headline: 'Real Recovery, Real Routine',
+    headline: "A Dog's Mobility Routine, Observed",
     story:
-      "Watching a dog slow down on stairs is hard to see. We changed our own dog's daily routine and tracked the difference it made. If your dog's mobility has you wondering what's next, our team will talk it through with you on WhatsApp — no pressure, just a conversation.",
+      "Watching a dog slow down on stairs is hard to see. We've been keeping notes on our own dog's daily routine — what we do, and when. If you're curious about your own dog's routine, our team will walk through it with you on WhatsApp — no pressure, just a conversation.",
     ref: 'MOBILITY',
   },
   {
     id: 'hook-comfort',
     headline: 'A Calmer Evening Routine',
     story:
-      "Stiff getting up, slower to settle after a walk — every dog owner recognises it. We put together a routine that's made evenings easier for our dog. Want to know what's in it? Message us on WhatsApp and we'll share exactly what we do.",
+      "Stiff getting up, slower to settle after a walk — every dog owner recognises it. We've been following a routine for our dog's evenings and keeping notes on how it's going. Want to see what's in it? Message us on WhatsApp and we'll share exactly what we do.",
     ref: 'COMFORT',
   },
   {
     id: 'hook-nextstep',
-    headline: "Ask Us What's Next For Your Dog's Mobility",
+    headline: "Ask Us About Your Dog's Mobility Routine",
     story:
-      "Not sure what your dog's mobility routine is missing? Send us a message on WhatsApp — a few quick questions about your dog, then we'll point you to the right next step.",
+      "Not sure what your dog's mobility routine could look like? Send us a message on WhatsApp — a few quick questions about your dog, then we'll talk through the options together.",
     ref: 'NEXTSTEP',
   },
 ]
@@ -162,8 +162,8 @@ export default function RoutinePage() {
   return (
     <HelmetProvider>
       <Seo
-        title="A Dog's Recovery Routine"
-        description="One dog owner's mobility and comfort routine — chat with our team on WhatsApp about what might help yours."
+        title="A Dog's Mobility Routine"
+        description="One dog owner's mobility and comfort routine — chat with our team on WhatsApp about your dog's own routine."
         path="/routine"
         noindex
       />

@@ -5,8 +5,13 @@
 -- - only this internal log was affected).
 --
 -- The original inline `check (event in (...))` constraint has no fixed name
--- to rely on across environments, so locate and drop it generically before
--- re-adding it with an explicit name.
+-- to rely on across environments, so locate it by its actual definition
+-- (not just "some single-column check on event") before dropping and
+-- re-adding it with an explicit name. Matching on conkey/attname alone would
+-- risk dropping a different, unrelated single-column check on `event` if one
+-- is ever added; matching on the known original allow-list values pins this
+-- to the specific enum constraint. Safe to rerun: each run re-verifies the
+-- current constraint's definition before touching it.
 do $$
 declare
   v_constraint_name text;
@@ -18,7 +23,9 @@ begin
   where rel.relname = 'psa_pets_lifecycle_events'
     and con.contype = 'c'
     and att.attname = 'event'
-    and array_length(con.conkey, 1) = 1;
+    and array_length(con.conkey, 1) = 1
+    and pg_get_constraintdef(con.oid) like '%pets_catalog_viewed%'
+    and pg_get_constraintdef(con.oid) like '%pets_reorder_started%';
 
   if v_constraint_name is not null then
     execute format('alter table public.psa_pets_lifecycle_events drop constraint %I', v_constraint_name);

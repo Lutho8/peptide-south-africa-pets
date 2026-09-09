@@ -18,6 +18,7 @@ const EftInstructionsPage = lazy(() => import('@/pages/EftInstructionsPage'))
 const EditorialPolicyPage = lazy(() => import('@/pages/EditorialPolicyPage'))
 const PetsAccountPage = lazy(() => import('@/pages/PetsAccountPage'))
 const PetsLifecyclePage = lazy(() => import('@/pages/PetsLifecyclePage'))
+const RoutinePage = lazy(() => import('@/pages/RoutinePage'))
 
 function RouteFallback() {
   return (
@@ -30,6 +31,17 @@ function RouteFallback() {
 export default function App() {
   return (
     <Routes>
+      {/* Meta ad → bridge → WhatsApp: rendered outside <Layout/> on purpose,
+          so paid traffic never sees a nav/footer link into the rest of the
+          site's product catalogue (see RoutinePage.tsx). */}
+      <Route
+        path="routine"
+        element={
+          <Suspense fallback={<RouteFallback />}>
+            <RoutinePage />
+          </Suspense>
+        }
+      />
       <Route element={<Layout />}>
         <Route index element={<Pets />} />
         <Route path="pets" element={<Pets />} />

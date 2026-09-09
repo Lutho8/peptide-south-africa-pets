@@ -12,11 +12,37 @@ const checkout = read('src/pages/CheckoutPage.tsx')
 const edge = read('supabase/functions/pets-eft-create-order/index.ts')
 const migration = read('supabase/migrations/20260901170000_add_pets_research_commerce_backbone.sql')
 const app = read('src/App.tsx')
+const routine = read('src/pages/RoutinePage.tsx')
 
 const failures = []
 const assert = (condition, message) => {
   if (!condition) failures.push(message)
 }
+
+/** META-PETS-001 guardrails, binding on the Facebook→WhatsApp bridge page. */
+const BRIDGE_FORBIDDEN_TERMS = [
+  /peptide/i,
+  /bpc-157/i,
+  /tb-500/i,
+  /\bkpv\b/i,
+  /ghk-cu/i,
+  /thymosin/i,
+  /\bcure[sd]?\b/i,
+  /\btreat(s|ment|ed|ing)?\b/i,
+  /\bheal(s|ed|ing)?\b/i,
+  /guarantee/i,
+  /real recovery/i,
+  /tracked the difference/i,
+  /made .* easier/i,
+  /point you to the right next step/i,
+  /what might help yours/i,
+]
+for (const term of BRIDGE_FORBIDDEN_TERMS) {
+  assert(!term.test(routine), `Bridge page must not contain forbidden term: ${term}`)
+}
+assert(routine.includes('not veterinary advice'), 'Bridge page must carry the not-veterinary-advice disclaimer')
+assert(!routine.includes('Navbar'), 'Bridge page must stay outside the sitewide Navbar (pathway separation)')
+assert(!routine.includes('Footer'), 'Bridge page must stay outside the sitewide Footer (pathway separation)')
 
 assert(!homepage.includes('GuaranteeBand'), 'Homepage must not render the outcome guarantee')
 assert(!homepage.includes('Testimonials'), 'Homepage must not render treatment-outcome testimonials')

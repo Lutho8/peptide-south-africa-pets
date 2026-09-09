@@ -18,6 +18,8 @@ export type PetsEvent =
   | 'pets_portal_orders_viewed'
   | 'pets_portal_reports_viewed'
   | 'pets_reorder_started'
+  | 'pets_bridge_viewed'
+  | 'pets_whatsapp_click'
 
 const SESSION_KEY = 'psa_pets_analytics_sid'
 
@@ -48,6 +50,8 @@ const META_STANDARD_EVENT: Partial<Record<PetsEvent, string>> = {
   pets_checkout_started: 'InitiateCheckout',
   pets_collagen_added: 'AddToCart',
   pets_eft_order_created: 'Purchase',
+  pets_bridge_viewed: 'ViewContent',
+  pets_whatsapp_click: 'Contact',
 }
 
 let pixelInitAttempted = false

@@ -11,7 +11,7 @@ export const evidenceArticles: BlogArticle[] = [
       "caregiver placebo dogs"
     ],
     "publishDate": "2026-09-09",
-    "modifiedDate": "2026-09-09",
+    "modifiedDate": "2026-09-10",
     "readMinutes": 5,
     "heroImage": "/blog/images/bpc-157-dog-recovery-videos-1200x675.webp",
     "heroWidth": 1200,
@@ -30,7 +30,7 @@ export const evidenceArticles: BlogArticle[] = [
         "heading": "Why these stories feel convincing",
         "paragraphs": [
           "Seeing an older dog move comfortably again is powerful, especially when you are worried about your own pet. It is reasonable to want to understand what changed. But a short clip rarely includes the diagnosis, the complete treatment record, days when the dog struggled or a consistent way of measuring movement.",
-          "This article analyses how to evaluate such claims. It does not present an independently verified case history, a product testimonial or a veterinarian’s review. No owner outcome is being claimed by Peptides4Pets."
+          "This article analyses how to evaluate such claims and now includes three videos submitted by our founder of their own dog. The diary is a personal testimonial with a commercial connection, not an independently verified case history or a veterinarian’s review. The footage does not establish a treatment effect."
         ]
       },
       {

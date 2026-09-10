@@ -1,0 +1,12 @@
+{
+  "slug": "bpc-157-dog-recovery-videos-south-africa",
+  "heading": "Our founder’s dog: a three-clip diary",
+  "intro": "These are videos of our founder’s own dog, supplied by the owner in the sequence below as a personal account of the dog’s progress. This is a founder-submitted testimonial, with a commercial connection to Peptides4Pets; it is not an independently assessed veterinary case study.",
+  "context": "The recording dates, interval between clips, diagnosis and complete treatment history have not been verified. Different settings and selected moments cannot establish improvement or what caused it. Clip 1 includes an injection and is not an untreated baseline or an administration guide. Discuss mobility concerns and treatment decisions with your South African veterinarian.",
+  "editing": "Published in the supplied order. Audio has been removed; the full visual duration of each supplied clip is retained. Videos are compressed for mobile viewing and play only when you choose.",
+  "clips": [
+    { "number": 1, "title": "Handling indoors", "description": "The dog is being handled indoors; an injection is visible. Viewer discretion advised.", "src": "/videos/founder-dog/clip-1.mp4", "poster": "/videos/founder-dog/clip-1.webp" },
+    { "number": 2, "title": "Moving around the room", "description": "The dog is shown standing and moving indoors beside furniture.", "src": "/videos/founder-dog/clip-2.mp4", "poster": "/videos/founder-dog/clip-2.webp" },
+    { "number": 3, "title": "Outdoor and indoor moments", "description": "The supplied compilation includes the dog moving in a garden and scenes inside the home.", "src": "/videos/founder-dog/clip-3.mp4", "poster": "/videos/founder-dog/clip-3.webp" }
+  ]
+}

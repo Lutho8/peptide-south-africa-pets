@@ -31,7 +31,7 @@ const corsHeaders = (request: Request) => {
     "Access-Control-Allow-Origin": ALLOWED_ORIGINS.has(origin)
       ? origin
       : "https://pets.peptide-south-africa.com",
-    "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+    "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type, x-pets-session-id",
     "Access-Control-Allow-Methods": "POST, OPTIONS",
     Vary: "Origin",
   };

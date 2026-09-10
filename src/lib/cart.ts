@@ -52,7 +52,7 @@ export function getCart(): CartItem[] {
         typeof i === 'object' &&
         i !== null &&
         typeof (i as CartItem).slug === 'string' &&
-        typeof (i as CartItem).qty === 'number',
+        Number.isInteger((i as CartItem).qty) && (i as CartItem).qty > 0 && (i as CartItem).qty <= 99 && isCheckoutEligible((i as CartItem).slug),
     )
   } catch {
     return []
@@ -71,13 +71,14 @@ function writeCart(items: CartItem[]): CartItem[] {
 
 /** Add (or increment) a product. Returns the new cart. */
 export function addToCart(slug: string, qty = 1): CartItem[] {
+  if (!isCheckoutEligible(slug) || !Number.isInteger(qty) || qty < 1) return getCart()
   const items = getCart()
   const found = items.find((i) => i.slug === slug)
   if (found) {
     found.qty = Math.min(99, found.qty + qty)
     return writeCart([...items])
   }
-  return writeCart([...items, { slug, qty: Math.max(1, qty) }])
+  return writeCart([...items, { slug, qty: Math.min(99, qty) }])
 }
 
 export function removeFromCart(slug: string): CartItem[] {
@@ -86,6 +87,7 @@ export function removeFromCart(slug: string): CartItem[] {
 
 /** Set an exact quantity; qty <= 0 removes the line. */
 export function setQty(slug: string, qty: number): CartItem[] {
+  if (!isCheckoutEligible(slug) || !Number.isInteger(qty)) return getCart()
   if (qty <= 0) return removeFromCart(slug)
   const items = getCart()
   const found = items.find((i) => i.slug === slug)

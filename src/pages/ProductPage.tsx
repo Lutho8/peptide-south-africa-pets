@@ -12,13 +12,11 @@ import { addToCart, isCheckoutEligible } from '@/lib/cart'
 import { trackPets } from '@/lib/analytics'
 import ComingSoonBadge from '@/components/ComingSoonBadge'
 import CitationAccordion from '@/components/CitationAccordion'
-import WaitlistForm from '@/components/WaitlistForm'
 import VetPack from '@/components/VetPack'
 import Seo, { SITE_URL } from '@/components/Seo'
 import { handoutForProduct } from '@/lib/vetpack'
 import { useI18n } from '@/lib/i18n'
 import { cn } from '@/lib/utils'
-import { useLiveWaitlistCount } from '@/lib/supabase'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -94,7 +92,6 @@ export default function ProductPage() {
       <HowItWorks detail={detail} />
       <EvidenceSection product={product} detail={detail} />
       {eligible && <ComparisonSection product={product} />}
-      <WaitlistCapture product={product} />
       <RelatedProducts current={product} />
       <PageOutro />
     </div>
@@ -197,7 +194,7 @@ function HeroSplit({ product, detail }: { product: Product; detail: ProductDetai
 
             {/* buy box — live EFT for eligible products, reservation otherwise */}
             <motion.div variants={boxItem} className="mt-6">
-              {eligible ? <LiveBuyButton slug={product.slug} /> : <ResearchInterestButton slug={product.slug} />}
+              {eligible ? <LiveBuyButton slug={product.slug} /> : <ResearchInterestButton />}
             </motion.div>
 
             {/* batch → COA deep link */}
@@ -390,13 +387,13 @@ function LiveBuyButton({ slug }: { slug: string }) {
   )
 }
 
-function ResearchInterestButton({ slug }: { slug: string }) {
+function ResearchInterestButton() {
   return (
     <Link
-      to={`/waitlist?product=${slug}`}
+      to="/blog/bpc-157-tb-500-kpv-pet-evidence-south-africa"
       className="mono-label block w-full rounded-full border border-espresso/30 py-4 text-center !text-[11px] text-espresso transition-colors hover:border-amber hover:text-amber-deep"
     >
-      SAVE THIS RESEARCH INTEREST
+      READ THE EVIDENCE
     </Link>
   )
 }
@@ -653,61 +650,6 @@ function ComparisonSection({ product }: { product: Product }) {
 /* Section 7 — per-product waitlist capture                            */
 /* ------------------------------------------------------------------ */
 
-function WaitlistCapture({ product }: { product: Product }) {
-  const { t } = useI18n()
-  return (
-    <section id="pdp-waitlist" className="paper-texture section-pad bg-cream-2">
-      <div className="psa-container relative grid gap-12 lg:grid-cols-2">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.7, ease: EASE_OUT }}
-          className="self-center"
-        >
-          <p className="mono-label text-amber-deep">
-            {t('pdp.wl.overline', { product: product.name.toUpperCase() })}
-          </p>
-          <h2 className="mt-4 font-serif text-[clamp(2.2rem,4.5vw,4rem)] font-medium leading-[1.02] text-espresso">
-            {t('pdp.wl.title', { product: product.name.split('(')[0].trim() })}
-          </h2>
-          <p className="mt-4 max-w-md text-lg leading-relaxed text-espresso-70">
-            {t('pdp.wl.body')}
-          </p>
-          <LiveCounter />
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ delay: 0.1, duration: 0.7, ease: EASE_OUT }}
-          className="rounded-[20px] border border-sand bg-warmwhite p-6 shadow-[0_20px_50px_-20px_rgba(43,33,24,0.18)] md:p-8"
-        >
-          <WaitlistForm defaultProducts={[product.slug]} compact />
-        </motion.div>
-      </div>
-    </section>
-  )
-}
-
-/** Server-confirmed global waitlist count. */
-function LiveCounter() {
-  const count = useLiveWaitlistCount()
-  const { t } = useI18n()
-
-  return (
-    <p className="mono-data mt-8 border-t border-sand pt-5 text-espresso">
-      <span className="font-bold tabular-nums">
-        {count > 0
-          ? t('wlp.confirmedJoins', { count: count.toLocaleString('en-ZA') })
-          : t('nav.waitlistOpen')}
-      </span>
-    </p>
-  )
-}
-
-/* ------------------------------------------------------------------ */
 /* Section 8 — related products                                        */
 /* ------------------------------------------------------------------ */
 

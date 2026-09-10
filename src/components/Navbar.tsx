@@ -1,9 +1,7 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ShoppingBag } from 'lucide-react'
-import { getWaitlistEntries } from '@/lib/waitlist'
-import { useLiveWaitlistCount } from '@/lib/supabase'
 import { waLink } from '@/lib/data'
 import { useCartCount, openCart } from '@/lib/cart'
 import { useI18n, LanguageToggle } from '@/lib/i18n'
@@ -17,38 +15,9 @@ const LINKS: { to: string; key?: string; label?: string }[] = [
   { to: '/science', key: 'nav.science' },
   { to: '/verify', key: 'nav.verify' },
   { to: '/blog', key: 'nav.blog' },
-  { to: '/waitlist', key: 'nav.waitlist' },
+  { to: '/product/mobility-collagen', label: 'Mobility Collagen' },
   { to: '/account', label: 'Account' },
 ]
-
-function useCountUp(target: number, duration = 1200, start = true) {
-  const [value, setValue] = useState(0)
-  const [reduced] = useState(() =>
-    typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches,
-  )
-  const started = useRef(false)
-  useEffect(() => {
-    // After the intro animation, track target changes (e.g. real RPC count arriving).
-    if (started.current) {
-      const sync = window.setTimeout(() => setValue(target), 0)
-      return () => window.clearTimeout(sync)
-    }
-    if (!start) return
-    started.current = true
-    if (reduced) return
-    const t0 = performance.now()
-    let raf = 0
-    const tick = (t: number) => {
-      const p = Math.min(1, (t - t0) / duration)
-      const eased = 1 - Math.pow(1 - p, 3)
-      setValue(Math.round(target * eased))
-      if (p < 1) raf = requestAnimationFrame(tick)
-    }
-    raf = requestAnimationFrame(tick)
-    return () => cancelAnimationFrame(raf)
-  }, [target, duration, start, reduced])
-  return reduced ? target : value
-}
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
@@ -62,16 +31,9 @@ export default function Navbar() {
   })
   const [drawer, setDrawer] = useState(false)
   const navigate = useNavigate()
-  // Only the server-confirmed count is shown; seeded catalog numbers are not
-  // presented as real people.
-  const liveCount = useLiveWaitlistCount()
-  const total = liveCount
-  const counter = useCountUp(total)
   const boxCount = useCartCount()
   const { t } = useI18n()
-  // Waitlist pill: members go to their queue dashboard, everyone else joins.
-  const isMember = getWaitlistEntries().length > 0
-  const ctaTarget = isMember ? '/queue' : '/quiz'
+  const ctaTarget = '/product/mobility-collagen'
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80)
@@ -147,9 +109,7 @@ export default function Navbar() {
 
           <div className="hidden items-center gap-3 md:flex">
             <span className="mono-label rounded-full border border-amber px-3 py-1.5 !text-[10px] tabular-nums text-amber-deep">
-              {counter > 0
-                ? t('nav.waitingChip', { count: counter.toLocaleString('en-ZA') })
-                : t('nav.waitlistOpen')}
+              {t('badge.liveNow')}
             </span>
             <button
               onClick={openCart}
@@ -175,7 +135,7 @@ export default function Navbar() {
               onClick={() => navigate(ctaTarget)}
               className="cursor-pointer rounded-full bg-amber px-5 py-2.5 font-serif text-base font-semibold text-warmwhite transition-colors hover:bg-amber-deep"
             >
-              {isMember ? t('nav.myQueue') : t('nav.cta')}
+              {t('nav.shopNow')}
             </button>
             <LanguageToggle />
             <a
@@ -268,9 +228,7 @@ export default function Navbar() {
             </div>
             <div className="mt-auto space-y-4">
               <p className="mono-label !text-[11px] text-amber-deep">
-                {total > 0
-                  ? t('nav.waitingChip', { count: total.toLocaleString('en-ZA') })
-                  : t('nav.waitlistOpen')}
+                {t('badge.liveNow')}
               </p>
               <button
                 onClick={() => {
@@ -279,7 +237,7 @@ export default function Navbar() {
                 }}
                 className="w-full cursor-pointer rounded-full bg-amber py-4 font-serif text-lg font-semibold text-warmwhite"
               >
-                {isMember ? t('nav.myQueue') : t('nav.cta')}
+                {t('nav.shopNow')}
               </button>
             </div>
           </motion.div>

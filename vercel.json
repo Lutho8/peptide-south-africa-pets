@@ -5,6 +5,8 @@
   "outputDirectory": "dist",
   "cleanUrls": true,
   "redirects": [
+    { "source": "/blog/senior-dog-bpc-157-tb-500-story", "destination": "/blog/bpc-157-dog-recovery-videos-south-africa", "permanent": true },
+    { "source": "/waitlist", "destination": "/product/mobility-collagen", "permanent": true },
     { "source": "/pets", "destination": "/", "permanent": true }
   ],
   "rewrites": [

@@ -58,7 +58,7 @@ const en: ConversionCopy = {
 
   launchOverline: 'THE LAUNCH BATCH',
   launchTitle: 'One live product. Four research profiles.',
-  launchSub: 'Mobility Collagen ships today by secure EFT. Experimental peptide pages publish the evidence and gaps but do not offer animal-use products or protocols.',
+  launchSub: 'Order Mobility Collagen by EFT for delivery in South Africa. Experimental peptide pages publish the evidence and gaps but do not offer animal-use products or protocols.',
   launchAdd: 'Add',
   launchAdded: 'Added ✓',
   launchDetails: 'DETAILS →',
@@ -97,7 +97,7 @@ const af: ConversionCopy = {
   launchOverline: 'DIE BEKENDSTELLINGSLOT',
   launchTitle: 'Een lewendige produk. Vier navorsingsprofiele.',
   launchSub:
-    'Mobility Collagen word vandag per veilige EFT versend. Eksperimentele peptiedbladsye publiseer die bewyse en gapings, maar bied nie produkte of protokolle vir diergebruik aan nie.',
+    'Bestel Mobility Collagen per EFT vir aflewering in Suid-Afrika. Eksperimentele peptiedbladsye publiseer die bewyse en gapings, maar bied nie produkte of protokolle vir diergebruik aan nie.',
   launchAdd: 'Voeg by',
   launchAdded: 'Bygevoeg ✓',
   launchDetails: 'BESONDERHEDE →',

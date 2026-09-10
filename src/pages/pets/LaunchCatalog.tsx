@@ -45,7 +45,7 @@ function AddButton({ slug }: { slug: string }) {
   if (!isCheckoutEligible(slug)) {
     return (
       <Link
-        to={`/waitlist?product=${slug}`}
+        to={`/product/${slug}`}
         className="inline-flex w-full items-center justify-center rounded-xl border border-espresso/25 px-5 py-3.5 font-serif text-base font-bold text-espresso transition-colors hover:border-amber hover:text-amber-deep"
       >
         {copy.launchResearchStatus}
@@ -108,7 +108,7 @@ function LaunchCard({ product, index }: { product: PetProduct; index: number }) 
             </span>
           ) : (
             <span className="mono-label coming-soon-pulse rounded-full bg-espresso px-2.5 py-1 !text-[9px] text-cream">
-              {t('badge.comingSoon')}
+              {copy.launchResearch}
             </span>
           )}
           <span className="mono-label rounded-full border border-espresso/15 bg-warmwhite/90 px-2.5 py-1 !text-[9px] text-clinical backdrop-blur-sm">

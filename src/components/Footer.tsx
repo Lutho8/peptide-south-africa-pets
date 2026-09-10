@@ -91,8 +91,8 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <Link to="/waitlist" className="text-cream/80 hover:text-amber">
-                  {t('foot.waitlist')}
+                <Link to="/product/mobility-collagen" className="text-cream/80 hover:text-amber">
+                  {t('nav.shopNow')}
                 </Link>
               </li>
               <li>

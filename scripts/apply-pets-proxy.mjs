@@ -7,7 +7,10 @@ import { readFileSync, readdirSync, writeFileSync } from 'node:fs';
 
 const read = (rel) => readFileSync(new URL(`../${rel}`, import.meta.url), 'utf8');
 const write = (rel, s) => writeFileSync(new URL(`../${rel}`, import.meta.url), s);
-const ORIGIN = process.env.VITE_ASSET_ORIGIN || 'https://pets.peptide-south-africa.com';
+const ORIGIN = process.env.VITE_ASSET_ORIGIN ||
+  (process.env.VERCEL_ENV === 'preview' && process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : 'https://pets.peptide-south-africa.com');
 
 // 1) asset helper
 write('src/lib/asset.ts', `/**

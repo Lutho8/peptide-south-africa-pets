@@ -16,7 +16,6 @@ const staticRoutes = [
   ['/blog', 'weekly', '0.9'],
   ['/science', 'monthly', '0.8'],
   ['/quiz', 'monthly', '0.8'],
-  ['/waitlist', 'monthly', '0.7'],
   ['/verify', 'monthly', '0.6'],
   ['/editorial-policy', 'monthly', '0.6'],
 ]

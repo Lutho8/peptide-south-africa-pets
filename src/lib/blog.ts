@@ -11,6 +11,8 @@
  * (scripts/build-blog-static.mjs) understand this token.
  */
 
+import { evidenceArticles } from './evidenceArticles.ts'
+
 export interface BlogCitation {
   /** Authors, e.g. "He L, Feng D, Guo H, et al." */
   authors: string
@@ -44,6 +46,8 @@ export interface BlogArticle {
   modifiedDate: string
   readMinutes: number
   heroImage: string
+  heroWidth?: number
+  heroHeight?: number
   heroAlt: string
   category: string
   /** 1–2 sentence teaser for cards / OG. */
@@ -59,7 +63,7 @@ export interface BlogArticle {
 
 /** Compliance line rendered at the foot of every article (EN, fixed). */
 export const BLOG_DISCLAIMER =
-  'Peptides4Pets products are in development and are not veterinary medicines, and nothing on this page is veterinary advice. No pet peptide product is approved by the FDA or SAHPRA. Always consult your veterinarian before starting, stopping or changing anything your pet takes.'
+  'Educational information for South African pet owners, not veterinary advice. Mobility Collagen is offered as a nutritional supplement; experimental peptide profiles are not treatment recommendations. Ask your veterinarian about the evidence and South African authorisation for any proposed medicine.'
 
 export const BLOG_TAGLINE =
   'Evidence-first writing on peptides, supplements and longevity science for dogs and cats — graded honestly, cited properly.'
@@ -1038,141 +1042,13 @@ const CALMING: BlogArticle = {
 /* Registry + helpers                                                  */
 /* ------------------------------------------------------------------ */
 
-const FOUNDER_STORY: BlogArticle = {
-  slug: 'senior-dog-bpc-157-tb-500-story',
-  title:
-    "My 14-Year-Old Dog Started Running Again: An Honest Owner's Account of BPC-157 + TB-500",
-  metaDescription:
-    "A first-hand owner's story of a 14-year-old dog who could barely walk, started BPC-157 + TB-500 (and later TRT), and began running again — told honestly as one anecdote, then measured against what the animal research actually shows.",
-  keywords: [
-    'BPC-157 TB-500 dog story',
-    'senior dog peptides experience',
-    'BPC-157 old dog mobility',
-    'TB-500 dog recovery anecdote',
-    'peptides for old dogs',
-    'Wolverine stack senior dog',
-  ],
-  publishDate: '2026-08-12',
-  modifiedDate: '2026-08-12',
-  readMinutes: 10,
-  heroImage: '/dog-portrait-1.png',
-  heroAlt: 'An alert senior dog standing steadily on a warm cream background',
-  category: 'Compound Deep-Dives',
-  excerpt:
-    'This is the one thing the rest of this site does not have: a personal account. One old dog, two years, and a change I did not expect — told as an anecdote, not as proof, and held against what the research does and does not show.',
-  relatedProducts: ['recovery-blend', 'bpc-157', 'mobility-collagen'],
-  meaningBox: {
-    title: 'What this means for your dog',
-    body: 'This is a single owner story, not evidence — one dog, no control group, no way to separate the peptides from the dozen other things that changed. It is here because it is honest, and because it is why Peptides4Pets exists. Read it as motivation to have a real conversation with your vet, never as a protocol. No published randomized canine efficacy trial exists for either compound, and one good outcome cannot prove anything.',
-  },
-  sections: [
-    {
-      id: 'why-this-story',
-      heading: 'Why we are telling you a story instead of a study',
-      paragraphs: [
-        'Every other article on this site opens with the evidence and stays there. This one is different, and I want to be honest about why before you read a word of it. My name is on this company. The reason Peptides4Pets exists is not a market gap I spotted on a spreadsheet — it is a fourteen-year-old dog who could barely make it to the end of the garden, and what happened over the two years after we started him on peptides with our vet.',
-        'I am going to tell you exactly what I saw. Then I am going to do the thing most peptide sellers never do: turn around and argue against my own story, because a single anecdote — especially the founder\'s — is the weakest form of evidence there is. If you leave this page trusting the science more than my dog, I will have done my job.',
-      ],
-    },
-    {
-      id: 'the-anecdote',
-      heading: 'The anecdote (and it is only that)',
-      paragraphs: [
-        'By fourteen, our dog had the walk that senior big dogs get: back end low, a wobble on the tiles, a long pause at the bottom of the steps deciding whether the trip up was worth it. Some mornings he did not get up for his breakfast until it had been sitting out an hour. The vet\'s assessment was the unremarkable, heartbreaking one so many owners hear — advanced osteoarthritis, age-related muscle loss, "he\'s a good age, keep him comfortable."',
-        'We were already doing the proven, boring things: weight kept lean, a joint diet, controlled lead walks, anti-inflammatories when the vet approved them. With our vet fully in the loop, we added a BPC-157 and TB-500 course — the pairing people online call the "recovery stack" — and later, again under veterinary supervision and monitoring, a course of testosterone replacement (TRT) for the muscle wastage. I am deliberately not giving you doses, brands, schedules or a protocol, because this was one supervised experiment on one old dog and it is not a template for yours.',
-        'What I can tell you is what I watched. Over the first couple of months the changes were small enough that I distrusted them — he cleared the steps without the pause, he shifted weight more evenly when he stood. Over the following year the muscle over his hips visibly filled back in. And somewhere around the two-year mark I stood in a field and watched a sixteen-year-old dog break into an actual run — not a stiff trot, a run — after something in the long grass. I cried, and I am not going to pretend I did not.',
-      ],
-    },
-    {
-      id: 'against-my-own-story',
-      heading: 'Now let me argue against my own story',
-      paragraphs: [
-        'Here is everything wrong with what you just read, and you should hold all of it at once. There was no control group — I will never know how he would have aged without the peptides. There was no blinding — I desperately wanted it to work, and owners who want a result reliably see one, which is exactly why placebo-controlled trials exist. We changed several things at once — diet, exercise, anti-inflammatories, BPC-157, TB-500 and TRT — so I cannot attribute the change to any single one, and the muscle regained is at least as easily explained by the TRT and the training as by either peptide.',
-        'Regression to the mean is real too: dogs have good spells and bad spells, and if you start something during a bad spell, the natural swing back toward better looks like a cure. And survivorship is baked into every testimonial you will ever read, including this one — the owners whose dogs did not improve, or who declined anyway, mostly do not write it up. My dog is an n of 1, and n of 1 is not data. It is a reason to ask better questions, nothing more.',
-      ],
-    },
-    {
-      id: 'what-research-shows',
-      heading: 'What the research actually shows — graded honestly',
-      paragraphs: [
-        'So what does the real evidence say about the two compounds in that stack? For BPC-157, the strongest canine-relevant data is a 2022 pharmacokinetic study in rats and six beagle dogs, which reported roughly 45–51% intramuscular bioavailability and good tolerability at the doses tested.{{cite:1}} Read that carefully: it establishes that dogs can absorb and tolerate the molecule. It does not measure whether anything gets better — it was never designed to.',
-        'The mechanistic case sits in preclinical work. In rat tendon models, BPC-157 promoted tendon fibroblast outgrowth, survival and migration — three ingredients of soft-tissue repair.{{cite:2}} A Sikirić-group study in rats reported improved ligament healing with the peptide as well.{{cite:3}} These are real, peer-reviewed findings — in rodents, with induced acute injuries, not in an ageing dog with chronic degenerative disease. That gap matters more than owners want it to.',
-        'For TB-500 the honest grade is lower still. There are no controlled canine efficacy trials, and most of the regenerative literature people cite actually belongs to the full-length parent molecule (thymosin beta-4), not to the TB-500 fragment. So in my own dog\'s stack, one half had canine pharmacokinetic data and the other half had essentially none — and neither had efficacy data. I only understood that clearly after the fact, which is part of why this company grades everything out loud.',
-      ],
-    },
-    {
-      id: 'the-limits',
-      heading: 'The limits, stated as plainly as I can',
-      paragraphs: [
-        'Let me put the boundary in one line so it cannot be missed: anecdote is not evidence, and as of August 2026 there are no published randomized, placebo-controlled efficacy trials of BPC-157 or TB-500 in dogs for any condition. Not for arthritis, not for mobility, not for "senior vitality." Everything beyond the beagle pharmacokinetic study is extrapolation from rodents, cell cultures and stories like mine.',
-        'That means nobody — not me, not any seller — can honestly promise you what happened to my dog will happen to yours. It might not. It might be that my dog was going to have a good two years regardless. If a brand tells you peptides will make your old dog run again, they are selling you my emotions, not your dog\'s odds. The correct expectation is uncertainty, and the correct posture is caution.',
-      ],
-    },
-    {
-      id: 'experiment-responsibly',
-      heading: 'Why an anecdote should not become a protocol',
-      paragraphs: [
-        'Urgency is understandable when an animal is ageing, but it does not make an uncontrolled experiment reliable or safe. This story is preserved as first-person context, not as a recommendation to administer BPC-157, TB-500 or testosterone.',
-        'A limp, wobble or loss of muscle deserves veterinary examination because cruciate injury, spinal disease, endocrine disease and tumours can look like ordinary ageing. Diagnosis and registered care come before supplements or investigational compounds.',
-        'Peptides4Pets publishes the evidence ledger because identity testing and plausible mechanisms cannot substitute for clinical evidence. My dog is the reason I care; he is not a template for another animal.',
-      ],
-    },
-  ],
-  faq: [
-    {
-      q: 'Does this story prove BPC-157 and TB-500 work in dogs?',
-      a: 'No. It is a single, unblinded, uncontrolled anecdote about one dog on several interventions at once — diet, exercise, anti-inflammatories, BPC-157, TB-500 and later TRT — so no effect can be attributed to any one of them. It is presented as one owner\'s honest experience, not as evidence. There are no published randomized canine efficacy trials for either peptide.',
-    },
-    {
-      q: 'Why would you publish an anecdote on an evidence-first site?',
-      a: 'Because it is honest about why the company exists, and because pretending we had no personal stake would itself be dishonest. We publish it clearly labelled as an anecdote, immediately argue against it, and grade the actual research beside it — so you can weigh the science more heavily than the story, which is exactly what we want you to do.',
-    },
-    {
-      q: 'What does the real evidence say about these two peptides for dogs?',
-      a: 'BPC-157 has one canine pharmacokinetic study (six beagles, roughly 45–51% intramuscular bioavailability, well tolerated) plus rodent tendon and ligament repair data — absorption and mechanism, not proven efficacy. TB-500 has no controlled canine trials at all, and much of its cited literature belongs to the parent molecule thymosin beta-4. Both remain unproven for efficacy in dogs.',
-    },
-    {
-      q: 'My old dog can barely walk. Should I try this?',
-      a: 'Talk to your vet first — a mobility problem needs a diagnosis before a supplement, because arthritis, cruciate injury, spinal disease and tumours can look identical from the outside. If you and your vet decide to trial anything, treat it as a supervised experiment of one: baseline notes, one change at a time, a re-check booked, and a willingness to stop. Never use peptides to delay proper veterinary care.',
-    },
-    {
-      q: 'Are BPC-157 and TB-500 approved or safe for senior dogs?',
-      a: 'Neither is approved as a veterinary medicine by the FDA or SAHPRA, and there are no long-term canine safety studies. The beagle pharmacokinetic study reported good tolerability for BPC-157 at the doses tested, but that is not a safety guarantee — particularly for dogs on chronic medication, with a cancer history, or that are pregnant or lactating, where there is no data. Veterinary supervision is non-negotiable.',
-    },
-  ],
-  citations: [
-    {
-      authors: 'He L, Feng D, Guo H, et al.',
-      title:
-        'Pharmacokinetics, distribution, metabolism, and excretion of body-protective compound 157, a potential drug for treating various wounds, in rats and dogs',
-      journal: 'Frontiers in Pharmacology',
-      year: 2022,
-      url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC9794587/',
-    },
-    {
-      authors: 'Chang CH, Tsai WC, Lin MS, Hsu YH, Pang JH',
-      title:
-        'The promoting effect of pentadecapeptide BPC 157 on tendon healing involves tendon outgrowth, cell survival, and cell migration',
-      journal: 'Journal of Applied Physiology',
-      year: 2011,
-      url: 'https://pubmed.ncbi.nlm.nih.gov/21030672/',
-    },
-    {
-      authors: 'Cerovecki T, Bojanic I, Brcic L, et al.',
-      title: 'Pentadecapeptide BPC 157 (PL 14736) improves ligament healing in the rat',
-      journal: 'Journal of Orthopaedic Research',
-      year: 2010,
-      url: 'https://pubmed.ncbi.nlm.nih.gov/20225319/',
-    },
-  ],
-}
 
 
 /* ------------------------------------------------------------------ */
 /* Registry + helpers                                                  */
 /* ------------------------------------------------------------------ */
 
-export const BLOG_ARTICLES: BlogArticle[] = [BPC157, BPC157_SOUTH_AFRICA, COLLAGEN, TB500, KPV, LONGEVITY, CALMING, FOUNDER_STORY]
+export const BLOG_ARTICLES: BlogArticle[] = [...evidenceArticles, BPC157, BPC157_SOUTH_AFRICA, COLLAGEN, TB500, KPV, LONGEVITY, CALMING]
 
 export function getArticleBySlug(slug?: string): BlogArticle | undefined {
   if (!slug) return undefined

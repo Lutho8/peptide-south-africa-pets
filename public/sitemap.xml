@@ -29,13 +29,6 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pets.peptide-south-africa.com/quiz" />
   </url>
   <url>
-    <loc>https://pets.peptide-south-africa.com/waitlist</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en-ZA" href="https://pets.peptide-south-africa.com/waitlist" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://pets.peptide-south-africa.com/waitlist" />
-  </url>
-  <url>
     <loc>https://pets.peptide-south-africa.com/verify</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -48,6 +41,24 @@
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="en-ZA" href="https://pets.peptide-south-africa.com/editorial-policy" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pets.peptide-south-africa.com/editorial-policy" />
+  </url>
+  <url>
+    <loc>https://pets.peptide-south-africa.com/blog/bpc-157-dog-recovery-videos-south-africa</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-ZA" href="https://pets.peptide-south-africa.com/blog/bpc-157-dog-recovery-videos-south-africa" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pets.peptide-south-africa.com/blog/bpc-157-dog-recovery-videos-south-africa" />
+    <image:image><image:loc>https://pets.peptide-south-africa.com/blog/images/bpc-157-dog-recovery-videos-1200x675.webp</image:loc><image:title>BPC-157 Dog Recovery Videos: What South African Owners Can—and Cannot—Conclude</image:title></image:image>
+  </url>
+  <url>
+    <loc>https://pets.peptide-south-africa.com/blog/bpc-157-tb-500-kpv-pet-evidence-south-africa</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-ZA" href="https://pets.peptide-south-africa.com/blog/bpc-157-tb-500-kpv-pet-evidence-south-africa" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pets.peptide-south-africa.com/blog/bpc-157-tb-500-kpv-pet-evidence-south-africa" />
+    <image:image><image:loc>https://pets.peptide-south-africa.com/blog/images/pet-peptide-evidence-1200x675.webp</image:loc><image:title>BPC-157, TB-500 and KPV for Pets: An Evidence Checklist for South Africa</image:title></image:image>
   </url>
   <url>
     <loc>https://pets.peptide-south-africa.com/blog/bpc-157-for-dogs-science</loc>
@@ -111,15 +122,6 @@
     <xhtml:link rel="alternate" hreflang="en-ZA" href="https://pets.peptide-south-africa.com/blog/calming-peptides-casozepine-anxious-dogs" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pets.peptide-south-africa.com/blog/calming-peptides-casozepine-anxious-dogs" />
     <image:image><image:loc>https://pets.peptide-south-africa.com/dog-portrait-3.png</image:loc><image:title>Calming Peptides: The Milk Protein With Placebo-Controlled Trials</image:title></image:image>
-  </url>
-  <url>
-    <loc>https://pets.peptide-south-africa.com/blog/senior-dog-bpc-157-tb-500-story</loc>
-    <lastmod>2026-08-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en-ZA" href="https://pets.peptide-south-africa.com/blog/senior-dog-bpc-157-tb-500-story" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://pets.peptide-south-africa.com/blog/senior-dog-bpc-157-tb-500-story" />
-    <image:image><image:loc>https://pets.peptide-south-africa.com/dog-portrait-1.png</image:loc><image:title>My 14-Year-Old Dog Started Running Again: An Honest Owner's Account of BPC-157 + TB-500</image:title></image:image>
   </url>
   <url>
     <loc>https://pets.peptide-south-africa.com/product/bpc-157</loc>

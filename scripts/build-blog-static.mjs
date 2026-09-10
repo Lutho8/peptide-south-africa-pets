@@ -86,7 +86,7 @@ function articleJsonLd(a) {
     '@type': 'BlogPosting',
     headline: a.title,
     description: a.metaDescription,
-    image: { '@type': 'ImageObject', url: `${SITE_URL}${a.heroImage}` },
+    image: { '@type': 'ImageObject', url: `${SITE_URL}${a.heroImage}`, width: a.heroWidth, height: a.heroHeight },
     datePublished: a.publishDate,
     dateModified: a.modifiedDate,
     author: { '@type': 'Organization', name: 'Peptides4Pets Editorial', url: `${SITE_URL}/blog` },

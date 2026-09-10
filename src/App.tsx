@@ -1,5 +1,5 @@
 import { Suspense, lazy } from 'react'
-import { Routes, Route } from 'react-router'
+import { Routes, Route, Navigate } from 'react-router'
 import Layout from '@/components/Layout'
 import Pets from '@/pages/Pets'
 
@@ -11,7 +11,6 @@ const CoaPage = lazy(() => import('@/pages/CoaPage'))
 const QueuePage = lazy(() => import('@/pages/QueuePage'))
 const BlogIndexPage = lazy(() => import('@/pages/BlogIndexPage'))
 const BlogArticlePage = lazy(() => import('@/pages/BlogArticlePage'))
-const WaitlistPage = lazy(() => import('@/pages/WaitlistPage'))
 const QuizPage = lazy(() => import('@/pages/QuizPage'))
 const CheckoutPage = lazy(() => import('@/pages/CheckoutPage'))
 const EftInstructionsPage = lazy(() => import('@/pages/EftInstructionsPage'))
@@ -85,7 +84,7 @@ export default function App() {
           path="waitlist"
           element={
             <Suspense fallback={<RouteFallback />}>
-              <WaitlistPage />
+              <Navigate to="/product/mobility-collagen" replace />
             </Suspense>
           }
         />

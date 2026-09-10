@@ -22,6 +22,7 @@ const en: Dict = {
   'nav.catalog': 'Catalog',
   'nav.science': 'Science',
   'nav.waitlist': 'Waitlist',
+  'nav.shopNow': 'Shop now',
   'nav.marquee':
     'MOBILITY COLLAGEN NOW LIVE — SECURE EFT CHECKOUT · EXPERIMENTAL PEPTIDES — RESEARCH INFORMATION ONLY · ',
   'nav.dismissAnnouncement': 'Dismiss announcement',
@@ -44,7 +45,7 @@ const en: Dict = {
     'South Africa’s first COA-verified pet peptide line — research-grade peptides and collagen for dogs, cats and horses, with a batch number on every label. Launching soon.',
   'hero.ctaQuiz': 'Take the 60-second pet quiz',
   'hero.ctaWaitlist': 'Join the waitlist',
-  'hero.trust': '≥99% HPLC · COA EVERY BATCH · VAT INCL · FREE SHIPPING OVER R1,500',
+  'hero.trust': '≥99% HPLC · COA EVERY BATCH · PRICES IN ZAR · FREE SHIPPING OVER R1,500',
   'hero.anno.recovery': 'RECOVERY → WOLVERINE BLEND',
   'hero.anno.senior': 'SENIOR YEARS → IMMUNE',
   'hero.anno.joints': 'JOINTS & MOBILITY → COLLAGEN + BPC-157',
@@ -61,7 +62,7 @@ const en: Dict = {
   'trust.2.text': 'Certificate of Analysis, every product',
   'trust.3.label': 'VET-REVIEWED PROTOCOLS',
   'trust.3.text': 'Dosing guidance written with veterinarians',
-  'trust.4.label': 'PRICES INCLUDE VAT',
+  'trust.4.label': 'PRICES IN ZAR',
   'trust.4.text': 'No surprises at launch',
   'trust.5.label': 'POPIA COMPLIANT',
   'trust.5.text': 'Your data stays yours',
@@ -89,7 +90,7 @@ const en: Dict = {
   'ss.p1':
     'For decades, longevity research focused on humans. That’s changing. In the US, companies like Loyal are running the largest canine aging study in history — 1,317 dogs across 70 veterinary practices. The demand signal is unmistakable: pet owners want more healthy years with their animals.',
   'ss.p2':
-    'Peptides4Pets brings that ambition home. We’re adapting the compounds pet owners worldwide already ask for — BPC-157, KPV, collagen peptides — to South African shelves, with South African pricing, VAT included, and a certificate of analysis on every batch.',
+    'Peptides4Pets brings that ambition home. We’re adapting the compounds pet owners worldwide already ask for — BPC-157, KPV, collagen peptides — to South African shelves, with South African pricing, price in ZAR, and a certificate of analysis on every batch.',
   'ss.stat1.label': 'DOGS',
   'ss.stat1.text': "in Loyal's landmark STAY trial",
   'ss.stat2.label': 'CLINICS',
@@ -149,7 +150,7 @@ const en: Dict = {
   'subs.perk1.title': 'Every autoship order',
   'subs.perk1.body': 'The Chewy and PetTides standard — 10–15% off, every month, no codes.',
   'subs.perk2.title': 'Free shipping',
-  'subs.perk2.body': 'Free delivery over R1,500, VAT always included, anywhere in SA.',
+  'subs.perk2.body': 'Free delivery over R1,500, prices in ZAR, anywhere in SA.',
   'subs.perk3.title': 'Pause or cancel anytime',
   'subs.perk3.body': 'One WhatsApp message pauses, skips or cancels. No phone trees, no guilt.',
   'subs.multipet.chip': 'MULTI-PET BUNDLE · +5% OFF PER PET',
@@ -219,7 +220,7 @@ const en: Dict = {
     'Formulas are being developed for dogs and cats first, with equine dosing under veterinary review.',
   'faq.5.q': 'How do subscriptions work?',
   'faq.5.a':
-    'Monthly autoship at 15% off, free shipping over R1,500, VAT included, pause or cancel anytime via WhatsApp.',
+    'Monthly autoship at 15% off, free shipping over R1,500, price in ZAR, pause or cancel anytime via WhatsApp.',
   'faq.6.q': 'Is my data safe?',
   'faq.6.a':
     "Yes. We're POPIA compliant and only contact you about pet products you asked about.",
@@ -260,7 +261,7 @@ Object.assign(en, {
   'cart.founding': 'FOUNDING MEMBER −{pct}%',
   'cart.reservedTotal': 'RESERVED TOTAL',
   'cart.reserveCta': 'RESERVE WITH WAITLIST — NO PAYMENT YET →',
-  'cart.footer': 'VAT INCL · PRICE LOCKED TO YOUR TICKET · CANCEL ANYTIME',
+  'cart.footer': 'PRICES IN ZAR · PRICE LOCKED TO YOUR TICKET · CANCEL ANYTIME',
   'cart.addOnLabel': 'ONE RELEVANT ADD-ON',
   'cart.addOnCta': 'ADD TO PLAN',
   'cart.addOnBody': 'One complementary option only — skip it if it is not useful for your pet.',
@@ -584,7 +585,7 @@ Object.assign(en, {
   'pdp.notFound.cta': 'Back to the catalog',
   'pdp.crumb': 'CATALOG',
   'pdp.firstLaunch': '★ FIRST TO LAUNCH — EST. Q1 2026',
-  'pdp.vat': 'VAT INCLUDED',
+  'pdp.vat': 'PRICED IN SOUTH AFRICAN RAND',
   'pdp.estRetail': 'EST. RETAIL {price}',
   'pdp.plan.sub': 'MONTHLY AUTOSHIP — 15% OFF',
   'pdp.plan.subBody': 'Pause or cancel via WhatsApp · free shipping over R1,500',
@@ -623,7 +624,7 @@ Object.assign(en, {
   'pdp.cmp.imp2': '2–6 weeks, customs risk',
   'pdp.cmp.imp3': 'Varies by seller',
   'pdp.cmp.imp4': 'Email, US hours',
-  'pdp.cmp.psa1': '{price}, VAT included',
+  'pdp.cmp.psa1': '{price}, price in ZAR',
   'pdp.cmp.psa2': 'Local courier, free over R1,500',
   'pdp.cmp.psa3': 'COA on every batch, ≥99% HPLC',
   'pdp.cmp.psa4': 'WhatsApp, SA hours',
@@ -650,28 +651,25 @@ Object.assign(en, {
   'foot.questionsBody': 'One WhatsApp message — real humans, Cape Town hours.',
   'foot.textUs': 'TEXT US',
   'foot.waMsg': 'Hi Peptides4Pets! A question about the pet products.',
-  'foot.bottom': '© {year} PEPTIDE SOUTH AFRICA · PRICES INCLUDE VAT · POPIA COMPLIANT · ≥99% HPLC TESTED',
+  'foot.bottom': '© {year} PEPTIDE SOUTH AFRICA · PRICES IN ZAR · POPIA COMPLIANT · ≥99% HPLC TESTED',
 })
 
 Object.assign(en, {
   /* ---------------- Founder story + evidence boundary ---------------- */
-  'tm.overline': 'WHY WE STARTED',
-  'tm.title': 'One senior dog changed the question.',
-  'tm.sub':
-    'A personal experience inspired the work. It is a story, not proof — the evidence and its limits sit alongside it.',
-  'tm.feat.kicker': 'FOUNDER STORY · PERSONAL ANECDOTE',
-  'tm.feat.quote1':
-    '“My 14-year-old dog could barely walk. After we started BPC-157 and TB-500, and later veterinarian-supervised hormone support, he started running again for the first time in two years.”',
-  'tm.feat.attr': '— PEPTIDE SOUTH AFRICA FOUNDER · SENIOR DOG OWNER',
-  'tm.feat.disclaimer':
-    'ONE OWNER’S EXPERIENCE IS NOT CLINICAL EVIDENCE. BPC-157 AND TB-500 ARE NOT APPROVED CANINE TREATMENTS. HORMONE THERAPY REQUIRES A VETERINARIAN, DIAGNOSIS AND MONITORING.',
+  'tm.overline': 'EVIDENCE EXPLAINED',
+  'tm.title': 'What a recovery story can tell us.',
+  'tm.sub': 'Read the study design and evidence gaps before drawing a treatment conclusion.',
+  'tm.feat.kicker': 'EDITORIAL EVIDENCE GUIDE',
+  'tm.feat.quote1': 'A recovery video is an observation. It cannot establish what caused the change.',
+  'tm.feat.attr': 'PEPTIDES4PETS EDITORIAL',
+  'tm.feat.disclaimer': 'No verified patient story is presented. Consult a South African veterinarian.',
   'tm.evidence.kicker': 'EVIDENCE CHECK',
   'tm.evidence.title': 'Promising signals, important gaps.',
   'tm.evidence.rats': 'Rat studies report improved tendon-cell growth, migration and tissue healing signals.',
   'tm.evidence.beagles': 'A small beagle study examined pharmacokinetics and short-term tolerability — not whether BPC-157 works in dogs.',
   'tm.evidence.gap': 'Good canine efficacy trials for BPC-157 and TB-500 are still missing.',
   'tm.evidence.link': 'READ THE SOURCES AND LIMITS',
-  'tm.cta': 'Your dog’s comeback starts with 60 seconds →',
+  'tm.cta': 'Read the evidence guide',
 
   /* ---------------- 60-day mobility guarantee band ---------------- */
   'guar.overline': 'THE Peptides4Pets PROMISE',
@@ -713,6 +711,7 @@ const af: Dict = {
   'nav.catalog': 'Katalogus',
   'nav.science': 'Wetenskap',
   'nav.waitlist': 'Waglys',
+  'nav.shopNow': 'Koop nou',
   'nav.marquee':
     'MOBILITY COLLAGEN NOU BESKIKBAAR — VEILIGE EFT-BETALING · EKSPERIMENTELE PEPTIEDE — SLEGS NAVORSINGSINLIGTING · ',
   'nav.dismissAnnouncement': 'Verwyder aankondiging',
@@ -735,7 +734,7 @@ const af: Dict = {
     'Suid-Afrika se eerste COA-geverifieerde troeteldier-peptiedreeks — navorsingsgraad-peptiede en kollageen vir honde, katte en perde, met ’n lotnommer op elke etiket. Binnekort beskikbaar.',
   'hero.ctaQuiz': 'Doen die 60-sekonde troeteldierquiz',
   'hero.ctaWaitlist': 'Sluit aan by die waglys',
-  'hero.trust': '≥99% HPLC · COA BY ELKE LOT · BTW INGESLUIT · GRATIS AFLEWERING BO R1,500',
+  'hero.trust': '≥99% HPLC · COA BY ELKE LOT · PRYSE IN RAND · GRATIS AFLEWERING BO R1,500',
   'hero.anno.recovery': 'HERSTEL → WOLVERINE BLEND',
   'hero.anno.senior': 'SENIORJARE → IMMUNE',
   'hero.anno.joints': 'GEWRIGTE & MOBILITEIT → COLLAGEN + BPC-157',
@@ -752,7 +751,7 @@ const af: Dict = {
   'trust.2.text': 'Analisesertifikaat met elke produk',
   'trust.3.label': 'PROTOKOLLE DEUR VEEARTSE HERSIEN',
   'trust.3.text': 'Doseringsriglyne saam met veeartse geskryf',
-  'trust.4.label': 'PRYSE SLUIT BTW IN',
+  'trust.4.label': 'PRYSE IN RAND',
   'trust.4.text': 'Geen verrassings by bekendstelling nie',
   'trust.5.label': 'VOLDOEN AAN POPIA',
   'trust.5.text': 'Jou data bly joune',
@@ -780,7 +779,7 @@ const af: Dict = {
   'ss.p1':
     'Vir dekades het langlewendheidnavorsing op mense gefokus. Dit verander. In die VSA bestuur maatskappye soos Loyal die grootste honde-verouderingstudie in die geskiedenis — 1 317 honde oor 70 veeartspraktyke. Die vraagsein is onmiskenbaar: troeteldier-eienaars wil meer gesonde jare saam met hulle diere hê.',
   'ss.p2':
-    'Peptides4Pets bring daardie ambisie huis toe. Ons pas die verbindings waarvoor troeteldier-eienaars wêreldwyd alreeds vra — BPC-157, KPV, kollageenpeptiede — aan vir Suid-Afrikaanse rakke, met Suid-Afrikaanse pryse, BTW ingesluit, en ’n analisesertifikaat by elke lot.',
+    'Peptides4Pets bring daardie ambisie huis toe. Ons pas die verbindings waarvoor troeteldier-eienaars wêreldwyd alreeds vra — BPC-157, KPV, kollageenpeptiede — aan vir Suid-Afrikaanse rakke, met Suid-Afrikaanse pryse, pryse in rand, en ’n analisesertifikaat by elke lot.',
   'ss.stat1.label': 'HONDE',
   'ss.stat1.text': 'in Loyal se baanbreker-STAY-proef',
   'ss.stat2.label': 'KLINIEKE',
@@ -840,7 +839,7 @@ const af: Dict = {
   'subs.perk1.title': 'Elke outomatiese bestelling',
   'subs.perk1.body': 'Die Chewy- en PetTides-standaard — 10–15% af, elke maand, geen kodes nie.',
   'subs.perk2.title': 'Gratis aflewering',
-  'subs.perk2.body': 'Gratis aflewering bo R1,500, BTW altyd ingesluit, oral in SA.',
+  'subs.perk2.body': 'Gratis aflewering bo R1,500, pryse in rand, oral in SA.',
   'subs.perk3.title': 'Laat wag of kanselleer enige tyd',
   'subs.perk3.body':
     'Een WhatsApp-boodskap laat wag, slaan oor of kanselleer. Geen keuselys-hell, geen skuldgevoel nie.',
@@ -911,7 +910,7 @@ const af: Dict = {
     'Formules word eers vir honde en katte ontwikkel, met perdedosering onder veeartsenykundige hersiening.',
   'faq.5.q': 'Hoe werk intekeninge?',
   'faq.5.a':
-    'Maandelikse outomatiese aflewering teen 15% af, gratis aflewering bo R1,500, BTW ingesluit, laat wag of kanselleer enige tyd via WhatsApp.',
+    'Maandelikse outomatiese aflewering teen 15% af, gratis aflewering bo R1,500, pryse in rand, laat wag of kanselleer enige tyd via WhatsApp.',
   'faq.6.q': 'Is my data veilig?',
   'faq.6.a':
     'Ja. Ons voldoen aan POPIA en kontak jou net oor troeteldierprodukte waarna jy gevra het.',
@@ -952,7 +951,7 @@ Object.assign(af, {
   'cart.founding': 'STIGTERSLID −{pct}%',
   'cart.reservedTotal': 'BESPREEKDE TOTAAL',
   'cart.reserveCta': 'BESPREEK VIA WAGLYS — NOG GEEN BETALING NIE →',
-  'cart.footer': 'BTW INGESLUIT · PRYS AAN JOU KAARTJIE VASGESLUIT · KANSELLEER ENIGE TYD',
+  'cart.footer': 'PRYSE IN RAND · PRYS AAN JOU KAARTJIE VASGESLUIT · KANSELLEER ENIGE TYD',
   'cart.addOnLabel': 'EEN RELEVANTE BYVOEGING',
   'cart.addOnCta': 'VOEG BY PLAN',
   'cart.addOnBody': 'Net een aanvullende opsie — slaan dit oor as dit nie vir jou troeteldier nuttig is nie.',
@@ -1277,7 +1276,7 @@ Object.assign(af, {
   'pdp.notFound.cta': 'Terug na die katalogus',
   'pdp.crumb': 'KATALOGUS',
   'pdp.firstLaunch': '★ EERSTE OM TE LANSEER — VERWAG K1 2026',
-  'pdp.vat': 'BTW INGESLUIT',
+  'pdp.vat': 'PRYSE IN SUID-AFRIKAANSE RAND',
   'pdp.estRetail': 'GERAAMDE KLEINHANDEL {price}',
   'pdp.plan.sub': 'MAANDELIKSE OUTOSHIP — 15% AF',
   'pdp.plan.subBody': 'Laat wag of kanselleer via WhatsApp · gratis aflewering bo R1,500',
@@ -1316,7 +1315,7 @@ Object.assign(af, {
   'pdp.cmp.imp2': '2–6 weke, doeane-risiko',
   'pdp.cmp.imp3': 'Verskil per verkoper',
   'pdp.cmp.imp4': 'E-pos, VSA-ure',
-  'pdp.cmp.psa1': '{price}, BTW ingesluit',
+  'pdp.cmp.psa1': '{price}, pryse in rand',
   'pdp.cmp.psa2': 'Plaaslike koerier, gratis bo R1,500',
   'pdp.cmp.psa3': 'COA by elke lot, ≥99% HPLC',
   'pdp.cmp.psa4': 'WhatsApp, SA-ure',
@@ -1344,28 +1343,25 @@ Object.assign(af, {
   'foot.textUs': 'STUUR VIR ONS',
   'foot.waMsg': 'Hallo Peptides4Pets! ’n Vraag oor die troeteldierprodukte.',
   'foot.bottom':
-    '© {year} PEPTIDE SOUTH AFRICA · PRYSE SLUIT BTW IN · VOLDOEN AAN POPIA · ≥99% HPLC-GETOETS',
+    '© {year} PEPTIDE SOUTH AFRICA · PRYSE IN RAND · VOLDOEN AAN POPIA · ≥99% HPLC-GETOETS',
 })
 
 Object.assign(af, {
   /* ---------------- Stigterverhaal + bewysgrens ---------------- */
-  'tm.overline': 'WAAROM ONS BEGIN HET',
-  'tm.title': 'Een seniorhond het die vraag verander.',
-  'tm.sub':
-    '’n Persoonlike ervaring het die werk geïnspireer. Dit is ’n verhaal, nie bewys nie — die navorsing en sy grense staan langsaan.',
-  'tm.feat.kicker': 'STIGTERVERHAAL · PERSOONLIKE ANEKDOTE',
-  'tm.feat.quote1':
-    '“My 14-jarige hond kon skaars loop. Nadat ons met BPC-157 en TB-500 begin het, en later hormoonondersteuning onder veeartsenykundige toesig, het hy vir die eerste keer in twee jaar weer begin hardloop.”',
-  'tm.feat.attr': '— PEPTIDE SOUTH AFRICA-STIGTER · SENIORHONDEIENAAR',
-  'tm.feat.disclaimer':
-    'EEN EIENAAR SE ERVARING IS NIE KLINIESE BEWYS NIE. BPC-157 EN TB-500 IS NIE GOEDGEKEURDE BEHANDELINGS VIR HONDE NIE. HORMOONTERAPIE VEREIS ’N VEEARTS, DIAGNOSE EN MONITERING.',
+  'tm.overline': 'EVIDENCE EXPLAINED',
+  'tm.title': 'What a recovery story can tell us.',
+  'tm.sub': 'Read the study design and evidence gaps before drawing a treatment conclusion.',
+  'tm.feat.kicker': 'EDITORIAL EVIDENCE GUIDE',
+  'tm.feat.quote1': 'A recovery video is an observation. It cannot establish what caused the change.',
+  'tm.feat.attr': 'PEPTIDES4PETS EDITORIAL',
+  'tm.feat.disclaimer': 'No verified patient story is presented. Consult a South African veterinarian.',
   'tm.evidence.kicker': 'BEWYSONDERSOEK',
   'tm.evidence.title': 'Belowende seine, belangrike gapings.',
   'tm.evidence.rats': 'Rotstudies rapporteer seine van verbeterde tendonselgroei, migrasie en weefselgenesing.',
   'tm.evidence.beagles': '’n Klein beagle-studie het farmakokinetika en korttermynverdraagsaamheid ondersoek — nie of BPC-157 by honde werk nie.',
   'tm.evidence.gap': 'Goeie honde-effektiwiteitstudies vir BPC-157 en TB-500 ontbreek steeds.',
   'tm.evidence.link': 'LEES DIE BRONNE EN GRENSE',
-  'tm.cta': 'Jou hond se terugkeer begin met 60 sekondes →',
+  'tm.cta': 'Read the evidence guide',
 
   /* ---------------- 60-dae-mobiliteitswaarborgstrook ---------------- */
   'guar.overline': 'DIE Peptides4Pets-BELOFTE',

@@ -105,10 +105,10 @@ export default function Hero() {
             className="mt-8 flex flex-wrap items-center gap-4"
           >
             <Link
-              to="/quiz"
+              to="/product/mobility-collagen"
               className="rounded-full bg-amber px-8 py-4 font-serif text-lg font-semibold text-warmwhite transition-colors hover:bg-amber-deep"
             >
-              {copy.heroCtaQuiz}
+              {t('nav.shopNow')}
             </Link>
             <a
               href="#launch"

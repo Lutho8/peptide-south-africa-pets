@@ -52,6 +52,8 @@ export default function BlogArticlePage() {
     image: {
       '@type': 'ImageObject',
       url: `${SITE_URL}${article.heroImage}`,
+      width: article.heroWidth,
+      height: article.heroHeight,
     },
     datePublished: article.publishDate,
     dateModified: article.modifiedDate,

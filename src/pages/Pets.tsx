@@ -3,7 +3,8 @@ import { ArrowRight } from 'lucide-react'
 import Hero from '@/pages/pets/Hero'
 import LaunchCatalog from '@/pages/pets/LaunchCatalog'
 import QuizTeaser from '@/pages/pets/QuizTeaser'
-import WaitlistSection from '@/pages/pets/WaitlistSection'
+import { BLOG_ARTICLES } from '@/lib/blog'
+import { ArticleCard } from '@/components/BlogShared'
 import { useConversionCopy } from '@/pages/pets/conversionCopy'
 import Seo from '@/components/Seo'
 
@@ -49,7 +50,7 @@ export default function Pets() {
       <LaunchCatalog />
       <QuizTeaser />
       <ProofStrip />
-      <WaitlistSection />
+      <section className="psa-container py-16"><h2 className="font-serif text-3xl">The South African pet journal</h2><p className="mt-3 text-espresso-70">Evidence and practical questions to discuss with your veterinarian.</p><div className="mt-8 grid gap-6 md:grid-cols-2">{BLOG_ARTICLES.slice(0, 2).map(article => <ArticleCard key={article.slug} article={article} />)}</div><Link to="/blog" className="mt-6 inline-block underline">Read all articles</Link></section>
     </>
   )
 }

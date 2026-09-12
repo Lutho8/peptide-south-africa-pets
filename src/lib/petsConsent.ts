@@ -1,4 +1,4 @@
-export const PETS_CHECKOUT_POLICY_VERSION = 'pets-checkout-2026-09-01'
+export const PETS_CHECKOUT_POLICY_VERSION = 'pets-checkout-2026-09-12'
 export const PETS_REPORT_SCOPE_VERSION = 'pets-report-scope-2026-09-01'
 export const PETS_RESEARCH_INTEREST_POLICY_VERSION = 'pets-research-interest-2026-09-01'
 

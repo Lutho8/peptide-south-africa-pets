@@ -33,9 +33,12 @@ export interface EftInstructionsState {
 }
 
 function selections(items: CartItem[]) {
-  const lines = items.filter((item) => item.slug === 'mobility-collagen')
-  if (lines.length !== 1 || lines[0].qty < 1) throw new Error('Your order is empty')
-  return [{ kind: 'item' as const, slug: 'pets-mobility-collagen', quantity: lines[0].qty }]
+  if (items.length < 1) throw new Error('Your order is empty')
+  return items.map((item) => ({
+    kind: 'item' as const,
+    slug: `pets-${item.slug}`,
+    quantity: item.qty,
+  }))
 }
 
 function requestId(items: CartItem[], form: PetsCheckoutForm) {

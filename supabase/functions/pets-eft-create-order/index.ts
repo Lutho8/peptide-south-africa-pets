@@ -1,20 +1,26 @@
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { createClient } from "npm:@supabase/supabase-js@2.57.4";
 
-const UNIT_PRICE = 395;
+const PRODUCTS = new Map([
+  ["pets-bpc-157", { slug: "bpc-157", name: "BPC-157 Oral Drops", unitPrice: 895 }],
+  ["pets-kpv", { slug: "kpv", name: "KPV Gut & Skin Drops", unitPrice: 795 }],
+  ["pets-recovery-blend", { slug: "recovery-blend", name: "Recovery Blend (BPC-157 + TB-500)", unitPrice: 1195 }],
+  ["pets-immune-thymogen", { slug: "immune-thymogen", name: "Immune (Thymogen)", unitPrice: 845 }],
+  ["pets-mobility-collagen", { slug: "mobility-collagen", name: "Mobility Collagen", unitPrice: 395 }],
+]);
 const SHIPPING_PRICE = 89;
 const FREE_SHIPPING_THRESHOLD = 1500;
 const CURRENCY = "ZAR";
-const POLICY_VERSION = "pets-checkout-2026-09-01";
+const POLICY_VERSION = "pets-checkout-2026-09-12";
 const REPORT_SCOPE_VERSION = "pets-report-scope-2026-09-01";
 
 const CONSENT_STATEMENTS = {
   age:
     "I confirm that I am 18 years of age or older and authorised to place this order.",
   nutritionalScope:
-    "I understand Mobility Collagen is a pet nutritional supplement, not a veterinary medicine or a substitute for veterinary diagnosis or treatment.",
+    "I understand Mobility Collagen is a pet nutritional supplement, while experimental peptide items are research products only and not for animal administration.",
   labelUse:
-    "I will use the product only as directed on its label and will consult a veterinarian for illness, injury, medicine interactions or persistent symptoms.",
+    "I will follow each product label and will not administer a research-only peptide product to an animal.",
   reportScope:
     "I understand that any published report describes only the identified sample and test method and does not guarantee an outcome for an individual animal.",
 };
@@ -98,28 +104,39 @@ function validConsent(value: CheckoutConsent | undefined): value is Required<Che
 
 function quote(body: CheckoutBody) {
   const lines = body.selections;
-  if (!Array.isArray(lines) || lines.length !== 1) {
-    throw new Error("Your Pets order must contain Mobility Collagen only.");
+  if (!Array.isArray(lines) || lines.length < 1 || lines.length > PRODUCTS.size) {
+    throw new Error("Your Pets order is empty or contains too many product lines.");
   }
-  const line = lines[0];
-  if (
-    line.kind !== "item" ||
-    line.slug !== "pets-mobility-collagen" ||
-    !Number.isInteger(line.quantity) ||
-    Number(line.quantity) < 1 ||
-    Number(line.quantity) > 20
-  ) {
-    throw new Error("Your Pets order contains an invalid product or quantity.");
-  }
-  const quantity = Number(line.quantity);
-  const subtotal = quantity * UNIT_PRICE;
+  const seen = new Set<string>();
+  const items = lines.map((line) => {
+    const product = typeof line.slug === "string" ? PRODUCTS.get(line.slug) : undefined;
+    if (
+      line.kind !== "item" || !product || seen.has(product.slug) ||
+      !Number.isInteger(line.quantity) || Number(line.quantity) < 1 || Number(line.quantity) > 20
+    ) {
+      throw new Error("Your Pets order contains an invalid product or quantity.");
+    }
+    seen.add(product.slug);
+    const quantity = Number(line.quantity);
+    return {
+      storefront: "pets.peptide-south-africa.com",
+      slug: `pets-${product.slug}`,
+      name: product.name,
+      quantity,
+      unit_price: product.unitPrice,
+      line_total: product.unitPrice * quantity,
+    };
+  });
+  const quantity = items.reduce((sum, item) => sum + item.quantity, 0);
+  const subtotal = items.reduce((sum, item) => sum + item.line_total, 0);
   const shipping = subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : SHIPPING_PRICE;
   return {
+    items,
     quantity,
     subtotal,
     shipping,
     total: subtotal + shipping,
-    description: `Peptides4Pets: Mobility Collagen x${quantity}`,
+    description: `Peptides4Pets: ${items.map((item) => `${item.name} x${item.quantity}`).join(", ")}`,
   };
 }
 
@@ -219,16 +236,7 @@ Deno.serve(async (request: Request) => {
         postal_code: postalCode,
         country: "ZA",
       },
-      order_items: [
-        {
-          storefront: "pets.peptide-south-africa.com",
-          slug: "pets-mobility-collagen",
-          name: "Mobility Collagen",
-          quantity: priced.quantity,
-          unit_price: UNIT_PRICE,
-          line_total: priced.subtotal,
-        },
-      ],
+      order_items: priced.items,
     };
 
     let { data: order, error: orderError } = await admin

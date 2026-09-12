@@ -47,7 +47,6 @@ const META_STANDARD_EVENT: Partial<Record<PetsEvent, string>> = {
   pets_research_navigator_completed: 'Lead',
   pets_checkout_started: 'InitiateCheckout',
   pets_collagen_added: 'AddToCart',
-  pets_eft_order_created: 'Purchase',
 }
 
 let pixelInitAttempted = false
@@ -105,7 +104,7 @@ export function trackPets(
     // Measurement must never interrupt the research journey or checkout.
   }
 
-  if (name === 'pets_auth_started' || name === 'pets_eft_order_created') return
+  if (name === 'pets_auth_started') return
   void (async () => {
     try {
       const { data } = await supabase.auth.getSession()

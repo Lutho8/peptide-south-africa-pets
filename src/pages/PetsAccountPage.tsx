@@ -17,7 +17,7 @@ interface PetsOrder {
   order_description: string | null
   payment_provider: string
   shipping_method: string | null
-  order_items: Array<{ name?: string; quantity?: number }> | null
+  order_items: Array<{ slug?: string; name?: string; quantity?: number }> | null
 }
 
 interface PetDetail {
@@ -129,8 +129,14 @@ export default function PetsAccountPage() {
   }
 
   function reorder(order: PetsOrder) {
-    const quantity = order.order_items?.[0]?.quantity ?? 1
-    addToCart('mobility-collagen', quantity)
+    let quantity = 0
+    for (const item of order.order_items ?? []) {
+      const slug = item.slug?.startsWith('pets-') ? item.slug.slice(5) : null
+      if (!slug) continue
+      const itemQuantity = item.quantity ?? 1
+      addToCart(slug, itemQuantity)
+      quantity += itemQuantity
+    }
     trackPets('pets_reorder_started', { order_id: order.id, item_count: quantity })
     navigate('/checkout')
   }
@@ -198,7 +204,7 @@ export default function PetsAccountPage() {
           {!loading && orders.length === 0 && (
             <div className="mt-5 rounded-[20px] border border-sand bg-warmwhite p-8">
               <h2 className="font-serif text-2xl font-semibold text-espresso">No Pets orders yet.</h2>
-              <p className="mt-2 text-espresso-70">Mobility Collagen is the only current checkout product. Experimental peptide pages remain research profiles only.</p>
+              <p className="mt-2 text-espresso-70">All five published catalogue products are available through secure EFT checkout. Experimental peptide listings remain research profiles and are not for animal administration.</p>
               <Link to="/#launch" className="mono-label mt-5 inline-flex items-center gap-2 !text-[10px] text-amber-deep">VIEW CATALOGUE <ArrowRight className="h-4 w-4" /></Link>
             </div>
           )}

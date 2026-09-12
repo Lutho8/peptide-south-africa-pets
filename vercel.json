@@ -10,11 +10,11 @@
     { "source": "/pets", "destination": "/", "permanent": true }
   ],
   "rewrites": [
-    { "source": "/queue", "destination": "/index.html" },
-    { "source": "/checkout", "destination": "/index.html" },
-    { "source": "/checkout/:path*", "destination": "/index.html" },
-    { "source": "/account", "destination": "/index.html" },
-    { "source": "/admin/:path*", "destination": "/index.html" }
+    { "source": "/queue", "destination": "/" },
+    { "source": "/checkout", "destination": "/" },
+    { "source": "/checkout/:path*", "destination": "/" },
+    { "source": "/account", "destination": "/" },
+    { "source": "/admin/:path*", "destination": "/" }
   ],
   "headers": [
     { "source": "/queue", "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" }] },

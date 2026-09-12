@@ -24,4 +24,12 @@ for (const slug of ['pets-bpc-157', 'pets-kpv', 'pets-recovery-blend', 'pets-imm
   assert.match(edge, new RegExp(`\\["${slug}"`), `${slug} must be server-priced`)
 }
 assert.doesNotMatch(edge, /UNIT_PRICE/, 'Single-product price authority must be removed')
+const vercel = JSON.parse(readFileSync('vercel.json', 'utf8'))
+for (const source of ['/checkout', '/checkout/:path*']) {
+  assert.deepEqual(
+    vercel.rewrites.find(rewrite => rewrite.source === source),
+    { source, destination: '/' },
+    `${source} must rewrite to the clean root document`,
+  )
+}
 console.log('Full-catalog cart eligibility, quantity, server pricing and checkout CORS checks passed.')

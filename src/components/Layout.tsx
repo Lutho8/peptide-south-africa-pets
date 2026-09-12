@@ -9,6 +9,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import CartDrawer from '@/components/CartDrawer'
+import CookieConsent from '@/components/CookieConsent'
 import { syncPendingSubmissions } from '@/lib/supabase'
 import { I18nProvider } from '@/lib/i18n'
 
@@ -85,6 +86,7 @@ export default function Layout() {
         </main>
         <Footer />
         <CartDrawer />
+        <CookieConsent />
         <Analytics />
         <SpeedInsights />
       </div>

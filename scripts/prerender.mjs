@@ -5,7 +5,7 @@ import { pathToFileURL } from 'node:url'
 
 const DIST = resolve('dist')
 const TMP = resolve('.ssr-tmp')
-const staticRoutes = ['/', '/blog', '/science', '/quiz', '/verify', '/editorial-policy']
+const staticRoutes = ['/', '/blog', '/science', '/quiz', '/verify', '/editorial-policy', '/cookies', '/privacy', '/terms', '/returns']
 const productRoutes = ['bpc-157', 'kpv', 'recovery-blend', 'immune-thymogen', 'mobility-collagen'].map(
   (slug) => `/product/${slug}`,
 )

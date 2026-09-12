@@ -77,6 +77,10 @@ export default function Footer() {
                   Editorial Policy
                 </Link>
               </li>
+              <li><Link to="/cookies" className="text-cream/80 hover:text-amber">Cookie Policy</Link></li>
+              <li><Link to="/privacy" className="text-cream/80 hover:text-amber">Privacy Policy</Link></li>
+              <li><Link to="/terms" className="text-cream/80 hover:text-amber">Terms &amp; Conditions</Link></li>
+              <li><Link to="/returns" className="text-cream/80 hover:text-amber">Returns &amp; Refunds</Link></li>
               <li>
                 <Link to="/#faq" className="text-cream/80 hover:text-amber">
                   FAQ
@@ -114,6 +118,7 @@ export default function Footer() {
           <div className="rounded-2xl border border-cream/15 bg-cream/5 p-5">
             <p className="mono-label !text-[11px] text-cream/60">{t('foot.questions')}</p>
             <p className="mt-2 text-sm text-cream/80">{t('foot.questionsBody')}</p>
+            <a href="mailto:orders@peptide-south-africa.com" className="mt-3 block text-sm text-amber hover:underline">orders@peptide-south-africa.com</a>
             <a
               href={waLink(t('foot.waMsg'))}
               target="_blank"

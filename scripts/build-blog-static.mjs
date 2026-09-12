@@ -229,7 +229,7 @@ function render(a, related) {
     </aside>
 
     <article>
-      ${a.slug === dogDiary.slug ? `<section id="founder-dog-diary"><h2>${esc(dogDiary.heading)}</h2><p>${esc(dogDiary.intro)}</p><p>${esc(dogDiary.context)}</p><ol>${dogDiary.clips.map(c => `<li><figure><figcaption><h3>${c.number}. ${esc(c.title)}</h3><p>${esc(c.description)}</p></figcaption><video controls playsinline preload="none" poster="${c.poster}" aria-label="Clip ${c.number}: ${esc(c.title)}" style="width:100%;max-height:520px;background:#000"><source src="${c.src}" type="video/mp4"><a href="${c.src}">Open clip ${c.number}</a></video></figure></li>`).join('')}</ol><p>${esc(dogDiary.editing)}</p></section>` : ''}
+${a.slug === dogDiary.slug ? `      <section id="founder-dog-diary"><h2>${esc(dogDiary.heading)}</h2><p>${esc(dogDiary.intro)}</p><p>${esc(dogDiary.context)}</p><ol>${dogDiary.clips.map(c => `<li><figure><figcaption><h3>${c.number}. ${esc(c.title)}</h3><p>${esc(c.description)}</p></figcaption><video controls playsinline preload="none" poster="${c.poster}" aria-label="Clip ${c.number}: ${esc(c.title)}" style="width:100%;max-height:520px;background:#000"><source src="${c.src}" type="video/mp4"><a href="${c.src}">Open clip ${c.number}</a></video></figure></li>`).join('')}</ol><p>${esc(dogDiary.editing)}</p></section>` : ''}
       ${sections}
 
       <div class="disclaimer mono">${esc(BLOG_DISCLAIMER)}</div>
@@ -248,7 +248,7 @@ function render(a, related) {
 
       <div class="cta-row" style="margin-top:32px">
         <a class="btn" href="/quiz">Take the 60-second pet quiz</a>
-        <a class="btn ghost" href="/waitlist">Join the waitlist</a>
+        <a class="btn ghost" href="/#launch">Shop the catalogue</a>
       </div>
 
       <h2>Keep reading</h2>

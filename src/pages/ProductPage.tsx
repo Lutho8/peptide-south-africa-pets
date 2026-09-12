@@ -74,13 +74,13 @@ export default function ProductPage() {
   return (
     <div key={product.slug}>
       <Seo
-        title={eligible
+        title={product.slug === 'mobility-collagen'
           ? `${product.name} — Pet Nutritional Supplement`
-          : `${product.name} — Pet Research Evidence Profile`}
+          : `${product.name} — Research Profile`}
         description={
-          isCheckoutEligible(product.slug)
+          product.slug === 'mobility-collagen'
             ? `${product.benefit} Live now — HPLC-tested with a COA on every batch. Secure EFT checkout. A nutritional supplement, not a veterinary medicine; consult your vet.`
-            : `${product.benefit} Research information only; not for sale or animal administration.`
+            : `${product.benefit} Available through secure EFT checkout as a research product; not for animal administration.`
         }
         path={`/product/${product.slug}`}
         type="product"
@@ -114,7 +114,7 @@ const boxItem: Variants = {
 function HeroSplit({ product, detail }: { product: Product; detail: ProductDetail }) {
   const { t, locale } = useI18n()
   const batch = BATCH_BY_SLUG[product.slug] ?? LAUNCH_BATCH
-  // Live, purchasable product (Mobility Collagen) gets the EFT buy path.
+  // Every published catalogue product gets the EFT buy path.
   const eligible = isCheckoutEligible(product.slug)
   // "Bring your vet" pack — handout rebuilt when the locale flips.
   const handout = useMemo(
@@ -178,23 +178,21 @@ function HeroSplit({ product, detail }: { product: Product; detail: ProductDetai
             </motion.p>
 
             <motion.div variants={boxItem} className="mono-data mt-6 flex flex-wrap items-center gap-3">
-              {eligible ? (
-                <>
-                  <span className="text-lg font-bold text-espresso">{product.price}</span>
-                  <span className="rounded-full border border-clinical/40 bg-clinical-tint px-2.5 py-0.5 !text-[10px] font-bold text-clinical">
-                    {t('pdp.vat')}
-                  </span>
-                </>
-              ) : (
-                <span className="rounded-full border border-amber/50 bg-amber/10 px-3 py-1 text-amber-deep">
-                  RESEARCH PROFILE · NOT FOR SALE OR ANIMAL ADMINISTRATION
-                </span>
-              )}
+              <span className="text-lg font-bold text-espresso">{product.price}</span>
+              <span className="rounded-full border border-clinical/40 bg-clinical-tint px-2.5 py-0.5 !text-[10px] font-bold text-clinical">
+                {t('pdp.vat')}
+              </span>
             </motion.div>
+
+            {product.slug !== 'mobility-collagen' && (
+              <motion.p variants={boxItem} className="mono-data mt-3 rounded-xl border border-amber/50 bg-amber/10 px-3 py-2 !text-[10px] uppercase text-amber-deep">
+                RESEARCH PROFILE · NOT FOR ANIMAL ADMINISTRATION
+              </motion.p>
+            )}
 
             {/* buy box — live EFT for eligible products, reservation otherwise */}
             <motion.div variants={boxItem} className="mt-6">
-              {eligible ? <LiveBuyButton slug={product.slug} /> : <ResearchInterestButton />}
+              <LiveBuyButton slug={product.slug} />
             </motion.div>
 
             {/* batch → COA deep link */}
@@ -384,17 +382,6 @@ function LiveBuyButton({ slug }: { slug: string }) {
     >
       {t('pdp.buyNow')}
     </motion.button>
-  )
-}
-
-function ResearchInterestButton() {
-  return (
-    <Link
-      to="/blog/bpc-157-tb-500-kpv-pet-evidence-south-africa"
-      className="mono-label block w-full rounded-full border border-espresso/30 py-4 text-center !text-[11px] text-espresso transition-colors hover:border-amber hover:text-amber-deep"
-    >
-      READ THE EVIDENCE
-    </Link>
   )
 }
 
@@ -711,7 +698,7 @@ loading="lazy"                       src={p.image}
                         {isCheckoutEligible(p.slug) ? p.price : 'RESEARCH PROFILE'}
                       </span>
                       <span className="text-amber-deep">
-                        {isCheckoutEligible(p.slug) ? 'LIVE' : 'NOT FOR SALE'}
+                        LIVE
                       </span>
                     </div>
                   </div>

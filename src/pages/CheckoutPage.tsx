@@ -3,8 +3,8 @@ import type { FormEvent, ReactNode } from 'react'
 import { Navigate, useNavigate } from 'react-router'
 import type { User } from '@supabase/supabase-js'
 import { ArrowRight, CheckCircle2, Landmark, LoaderCircle, LockKeyhole, Mail, ShieldCheck } from 'lucide-react'
-import { FREE_SHIPPING_THRESHOLD, isCheckoutEligible, removeFromCart, useCart, zar } from '@/lib/cart'
-import { priceForSlug } from '@/lib/data'
+import { FREE_SHIPPING_THRESHOLD, clearCart, useCart, zar } from '@/lib/cart'
+import { getProductBySlug, priceForSlug } from '@/lib/data'
 import { supabase } from '@/lib/supabase'
 import { EFT_SESSION_KEY, startPetsEftCheckout } from '@/lib/eftCheckout'
 import type { PetsCheckoutForm } from '@/lib/eftCheckout'
@@ -17,10 +17,8 @@ const provinces = ['Eastern Cape', 'Free State', 'Gauteng', 'KwaZulu-Natal', 'Li
 const empty: PetsCheckoutForm = { firstName: '', lastName: '', email: '', phone: '', addressLine1: '', city: '', province: 'Western Cape', postalCode: '', petName: '', petSpecies: 'dog' }
 
 /**
- * /checkout — secure EFT order for the live, checkout-eligible product
- * (Mobility Collagen). Totals here are display-only; eft-create-order
- * recomputes the amount server-side. In-development peptides never reach
- * this page — they stay on the waitlist reservation path.
+ * /checkout — secure multi-product EFT order. Totals here are display-only;
+ * pets-eft-create-order recomputes every line server-side.
  */
 export default function CheckoutPage() {
   const items = useCart()
@@ -40,11 +38,15 @@ export default function CheckoutPage() {
     marketing: false,
   })
   const [form, setForm] = useState<PetsCheckoutForm>(empty)
-  const quantity = items.find((item) => isCheckoutEligible(item.slug))?.qty ?? 0
+  const quantity = items.reduce((sum, item) => sum + item.qty, 0)
+  const cartLines = items.map((item) => ({
+    ...item,
+    product: getProductBySlug(item.slug),
+    lineTotal: item.qty * priceForSlug(item.slug),
+  }))
   // Display-only totals derived from the shared catalog exports; the server
   // recomputes the amount in eft-create-order (flat shipping R89 there).
-  const unitPrice = priceForSlug('mobility-collagen')
-  const subtotal = quantity * unitPrice
+  const subtotal = cartLines.reduce((sum, item) => sum + item.lineTotal, 0)
   const shipping = subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : 89
   const total = subtotal + shipping
 
@@ -110,10 +112,8 @@ export default function CheckoutPage() {
         buildPetsCheckoutConsent(consent.marketing),
       )
       sessionStorage.setItem(EFT_SESSION_KEY, JSON.stringify(state))
-      // Only the purchased (eligible) line leaves the box — peptide
-      // reservations stay put for the waitlist path.
-      removeFromCart('mobility-collagen')
-      trackPets('pets_eft_order_created', { value: state.amount, currency: 'ZAR' })
+      clearCart()
+      trackPets('pets_eft_order_created', { order_id: state.orderId, item_count: quantity })
       navigate('/checkout/eft-instructions', { state })
     } catch (reason) {
       setError(reason instanceof Error ? reason.message : 'EFT checkout could not be started')
@@ -257,15 +257,19 @@ export default function CheckoutPage() {
 
           <aside className="h-fit rounded-[20px] bg-espresso p-6 text-cream sm:p-8 lg:sticky lg:top-24">
             <p className="mono-label !text-[10px] text-amber">{copy.summaryKicker}</p>
-            <div className="mt-7 flex gap-4">
-              <img src="/product-collagen.png" alt="" className="h-24 w-24 rounded-2xl border border-cream/15 object-cover" />
-              <div>
-                <h2 className="font-serif text-2xl font-semibold">{copy.productName}</h2>
-                <p className="mono-data mt-2 !text-[11px] uppercase tracking-[0.06em] text-cream/60">
-                  {copy.quantity.replace('{qty}', String(quantity))}
-                </p>
-                <p className="mono-data mt-2 font-bold">{zar(subtotal)}</p>
-              </div>
+            <div className="mt-7 space-y-4">
+              {cartLines.map((item) => (
+                <div key={item.slug} className="flex gap-4">
+                  <img src={item.product?.image ?? '/product-collagen.png'} alt="" className="h-20 w-20 rounded-2xl border border-cream/15 object-cover" />
+                  <div className="min-w-0">
+                    <h2 className="font-serif text-xl font-semibold">{item.product?.name ?? item.slug}</h2>
+                    <p className="mono-data mt-1 !text-[11px] uppercase tracking-[0.06em] text-cream/60">
+                      {copy.quantity.replace('{qty}', String(item.qty))}
+                    </p>
+                    <p className="mono-data mt-1 font-bold">{zar(item.lineTotal)}</p>
+                  </div>
+                </div>
+              ))}
             </div>
             <dl className="mt-7 space-y-3 border-t border-cream/10 pt-6 text-sm">
               <div className="flex justify-between text-cream/60">

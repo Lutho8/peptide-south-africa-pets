@@ -49,7 +49,7 @@ const en: ConversionCopy = {
   heroOverline: 'PEPTIDES4PETS · SOUTH AFRICA',
   heroH1: 'Pet research, made clear.',
   heroSub:
-    'Mobility Collagen is live as a pet nutritional supplement. Experimental peptide profiles remain research information only — clearly separated from products offered for animal use.',
+    'All five published catalogue products are in stock. Mobility Collagen is a pet nutritional supplement; experimental peptides are research products only and not for animal administration.',
   heroCtaQuiz: 'Explore the research catalogue',
   heroCtaShop: 'View the catalogue',
   heroTrust1: 'Evidence graded',
@@ -57,16 +57,16 @@ const en: ConversionCopy = {
   heroTrust3: 'South African fulfilment',
 
   launchOverline: 'THE LAUNCH BATCH',
-  launchTitle: 'One live product. Four research profiles.',
-  launchSub: 'Order Mobility Collagen by EFT for delivery in South Africa. Experimental peptide pages publish the evidence and gaps but do not offer animal-use products or protocols.',
+  launchTitle: 'Five products. All in stock.',
+  launchSub: 'Order any published catalogue product by secure EFT for delivery in South Africa. Experimental peptides remain research products only and are not for animal administration.',
   launchAdd: 'Add',
   launchAdded: 'Added ✓',
   launchDetails: 'DETAILS →',
   launchCitations: 'KEY EVIDENCE ({count})',
   launchHplc: '≥99% HPLC',
   launchResearch: 'EVIDENCE GRADED',
-  launchResearchStatus: 'RESEARCH PROFILE · NOT FOR SALE',
-  launchNote: 'MOBILITY COLLAGEN IS A NUTRITIONAL SUPPLEMENT · EXPERIMENTAL PEPTIDES ARE RESEARCH INFORMATION ONLY · NO ANIMAL-USE PROTOCOLS',
+  launchResearchStatus: 'RESEARCH PROFILE · NOT FOR ANIMAL ADMINISTRATION',
+  launchNote: 'ALL FIVE PRODUCTS IN STOCK · SECURE EFT CHECKOUT · EXPERIMENTAL PEPTIDES ARE RESEARCH PRODUCTS ONLY · NOT FOR ANIMAL ADMINISTRATION',
 
   qtOverline: '60-SECOND QUIZ',
   qtTitle: 'A clearer research starting point.',
@@ -87,7 +87,7 @@ const af: ConversionCopy = {
   heroOverline: 'PEPTIDES4PETS · SUID-AFRIKA',
   heroH1: 'Troeteldiernavorsing, duidelik gemaak.',
   heroSub:
-    'Mobility Collagen is beskikbaar as ’n voedingsaanvulling vir troeteldiere. Eksperimentele peptiedprofiele bly slegs navorsingsinligting — duidelik apart van produkte vir gebruik by diere.',
+    'Al vyf gepubliseerde katalogusprodukte is in voorraad. Mobility Collagen is ’n voedingsaanvulling; eksperimentele peptiede is slegs navorsingsprodukte en nie vir toediening aan diere nie.',
   heroCtaQuiz: 'Verken die navorsingskatalogus',
   heroCtaShop: 'Bekyk die katalogus',
   heroTrust1: 'Bewyse gegradeer',
@@ -95,18 +95,18 @@ const af: ConversionCopy = {
   heroTrust3: 'Suid-Afrikaanse vervulling',
 
   launchOverline: 'DIE BEKENDSTELLINGSLOT',
-  launchTitle: 'Een lewendige produk. Vier navorsingsprofiele.',
+  launchTitle: 'Vyf produkte. Almal in voorraad.',
   launchSub:
-    'Bestel Mobility Collagen per EFT vir aflewering in Suid-Afrika. Eksperimentele peptiedbladsye publiseer die bewyse en gapings, maar bied nie produkte of protokolle vir diergebruik aan nie.',
+    'Bestel enige gepubliseerde katalogusproduk per veilige EFT vir aflewering in Suid-Afrika. Eksperimentele peptiede bly slegs navorsingsprodukte en is nie vir toediening aan diere nie.',
   launchAdd: 'Voeg by',
   launchAdded: 'Bygevoeg ✓',
   launchDetails: 'BESONDERHEDE →',
   launchCitations: 'SLEUTELBEWYSE ({count})',
   launchHplc: '≥99% HPLC',
   launchResearch: 'BEWYSE GEGRADEER',
-  launchResearchStatus: 'NAVORSINGSPROFIEL · NIE TE KOOP NIE',
+  launchResearchStatus: 'NAVORSINGSPROFIEL · NIE VIR TOEDIENING AAN DIERE NIE',
   launchNote:
-    'MOBILITY COLLAGEN IS ’N VOEDINGSAANVULLING · EKSPERIMENTELE PEPTIEDE IS SLEGS NAVORSINGSINLIGTING · GEEN DIERGEBRUIKPROTOKOLLE',
+    'AL VYF PRODUKTE IN VOORRAAD · VEILIGE EFT-BETALING · EKSPERIMENTELE PEPTIEDE IS SLEGS NAVORSINGSPRODUKTE · NIE VIR TOEDIENING AAN DIERE NIE',
 
   qtOverline: '60-SEKONDE-QUIZ',
   qtTitle: '’n Duideliker navorsingsbeginpunt.',

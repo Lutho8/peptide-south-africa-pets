@@ -105,9 +105,9 @@ const en: CheckoutCopy = {
   speciesHorse: 'Horse',
   ageConsent: 'I confirm that I am 18 years of age or older and authorised to place this order.',
   nutritionalConsent:
-    'I understand Mobility Collagen is a pet nutritional supplement, not a veterinary medicine or a substitute for veterinary diagnosis or treatment.',
+    'I understand Mobility Collagen is a pet nutritional supplement, while experimental peptide items are research products only and not for animal administration.',
   labelUseConsent:
-    'I will use the product only as directed on its label and consult a veterinarian for illness, injury, medicine interactions or persistent symptoms.',
+    'I will follow each product label and will not administer a research-only peptide product to an animal.',
   reportScopeConsent:
     'I understand published reports describe only the identified sample and test method and do not guarantee an outcome for an individual animal.',
   marketingConsent: 'Optional: send me Peptides4Pets research and product updates.',
@@ -116,7 +116,7 @@ const en: CheckoutCopy = {
   busyLabel: 'Creating secure order…',
   submitPrefix: 'Place order · get EFT details ·',
   summaryKicker: 'ORDER SUMMARY',
-  productName: 'Mobility Collagen',
+  productName: 'Peptides4Pets order',
   quantity: 'Quantity {qty}',
   courier: 'Local courier',
   courierFree: 'Free',
@@ -180,9 +180,9 @@ const af: CheckoutCopy = {
   speciesHorse: 'Perd',
   ageConsent: 'Ek bevestig dat ek 18 jaar of ouer is en gemagtig is om hierdie bestelling te plaas.',
   nutritionalConsent:
-    'Ek verstaan dat Mobility Collagen ’n voedingsaanvulling vir troeteldiere is, nie ’n veeartsenymiddel of plaasvervanger vir veeartsenykundige diagnose of behandeling nie.',
+    'Ek verstaan dat Mobility Collagen ’n voedingsaanvulling vir troeteldiere is, terwyl eksperimentele peptieditems slegs navorsingsprodukte is en nie vir toediening aan diere nie.',
   labelUseConsent:
-    'Ek sal die produk slegs volgens die etiket gebruik en ’n veearts raadpleeg vir siekte, besering, medisyne-interaksies of aanhoudende simptome.',
+    'Ek sal elke produketiket volg en sal nie ’n navorsingspeptiedproduk aan ’n dier toedien nie.',
   reportScopeConsent:
     'Ek verstaan gepubliseerde verslae beskryf slegs die geïdentifiseerde monster en toetsmetode en waarborg nie ’n uitkoms vir ’n individuele dier nie.',
   marketingConsent: 'Opsioneel: stuur vir my Peptides4Pets-navorsing- en produkopdaterings.',
@@ -191,7 +191,7 @@ const af: CheckoutCopy = {
   busyLabel: 'Veilige bestelling word geskep…',
   submitPrefix: 'Plaas bestelling · kry EFT-besonderhede ·',
   summaryKicker: 'BESTELLINGOPSOMMING',
-  productName: 'Mobility Collagen',
+  productName: 'Peptides4Pets-bestelling',
   quantity: 'Hoeveelheid {qty}',
   courier: 'Plaaslike koerier',
   courierFree: 'Gratis',

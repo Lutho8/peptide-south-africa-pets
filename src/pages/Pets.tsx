@@ -50,6 +50,14 @@ export default function Pets() {
       <LaunchCatalog />
       <QuizTeaser />
       <ProofStrip />
+      <section className="psa-container py-10">
+        <div className="rounded-3xl border border-sand bg-warmwhite p-7">
+          <p className="mono-label text-clinical !text-[11px]">FROM OUR FOUNDER</p>
+          <h2 className="mt-3 font-serif text-3xl">One dog. Three clips. An honest account.</h2>
+          <p className="mt-3 max-w-2xl text-espresso-70">Meet our founder’s dog through three owner-submitted videos, with context on what personal observations can—and cannot—tell us.</p>
+          <a href="/blog/bpc-157-dog-recovery-videos-south-africa#founder-dog-diary" className="mt-5 inline-block font-semibold text-clinical underline">Watch the three-clip diary →</a>
+        </div>
+      </section>
       <section className="psa-container py-16"><h2 className="font-serif text-3xl">The South African pet journal</h2><p className="mt-3 text-espresso-70">Evidence and practical questions to discuss with your veterinarian.</p><div className="mt-8 grid gap-6 md:grid-cols-2">{BLOG_ARTICLES.slice(0, 2).map(article => <ArticleCard key={article.slug} article={article} />)}</div><Link to="/blog" className="mt-6 inline-block underline">Read all articles</Link></section>
     </>
   )

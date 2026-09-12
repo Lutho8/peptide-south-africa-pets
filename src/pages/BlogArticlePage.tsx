@@ -12,6 +12,8 @@ import { ArticleCard, RelatedProductCard } from '@/components/BlogShared'
 import { fmtDate, renderWithCitations, useBlogChrome } from '@/lib/blogChrome'
 import PreferredSourcesButton from '@/components/PreferredSourcesButton'
 import { asset } from '@/lib/asset'
+import FounderDogDiary from '@/components/FounderDogDiary'
+import dogDiary from '@/lib/founderDogVideos.json'
 
 /** Smooth-scroll handler for the sticky TOC (Lenis owns the scroll loop). */
 function scrollToId(id: string) {
@@ -187,6 +189,7 @@ export default function BlogArticlePage() {
 
         {/* Article body */}
         <article className="max-w-3xl">
+          {article.slug === dogDiary.slug && <FounderDogDiary />}
           <PreferredSourcesButton className="mb-8" />
           {article.sections.map((section, sIdx) => (
             <section key={section.id} id={section.id} className="scroll-mt-28">

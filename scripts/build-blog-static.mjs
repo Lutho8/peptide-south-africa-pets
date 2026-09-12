@@ -10,7 +10,7 @@
  *
  * Run: npm run build:blog   (re-run after any edit to src/lib/blog.ts)
  */
-import { mkdirSync, writeFileSync, existsSync } from 'node:fs'
+import { mkdirSync, writeFileSync, existsSync, readFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 
@@ -20,6 +20,8 @@ const OUT_DIR = join(ROOT, 'public', 'blog')
 const { BLOG_ARTICLES, BLOG_DISCLAIMER, SITE_URL } = await import(
   `${pathToFileURL(join(ROOT, 'src', 'lib', 'blog.ts')).href}?v=${Date.now()}`
 )
+
+const dogDiary = JSON.parse(readFileSync(join(ROOT, 'src/lib/founderDogVideos.json'), 'utf8'))
 
 /* 2 · Rendering helpers. */
 const esc = (s) =>
@@ -227,6 +229,7 @@ function render(a, related) {
     </aside>
 
     <article>
+      ${a.slug === dogDiary.slug ? `<section id="founder-dog-diary"><h2>${esc(dogDiary.heading)}</h2><p>${esc(dogDiary.intro)}</p><p>${esc(dogDiary.context)}</p><ol>${dogDiary.clips.map(c => `<li><figure><figcaption><h3>${c.number}. ${esc(c.title)}</h3><p>${esc(c.description)}</p></figcaption><video controls playsinline preload="none" poster="${c.poster}" aria-label="Clip ${c.number}: ${esc(c.title)}" style="width:100%;max-height:520px;background:#000"><source src="${c.src}" type="video/mp4"><a href="${c.src}">Open clip ${c.number}</a></video></figure></li>`).join('')}</ol><p>${esc(dogDiary.editing)}</p></section>` : ''}
       ${sections}
 
       <div class="disclaimer mono">${esc(BLOG_DISCLAIMER)}</div>

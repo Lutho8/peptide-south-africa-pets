@@ -1,6 +1,111 @@
 import type { BlogArticle } from './blog.ts'
 
 export const evidenceArticles: BlogArticle[] = [
+{
+  "slug": "rabies-vaccination-south-africa-september-2026",
+  "title": "Rabies in South Africa: Three Checks Before World Rabies Day 2026",
+  "metaDescription": "A South African guide to pet rabies records, veterinary advice and urgent exposure care, based on the NICD’s September 2026 message and WHO guidance.",
+  "keywords": [
+    "rabies vaccination South Africa",
+    "World Rabies Day 2026",
+    "dog cat vaccination records"
+  ],
+  "publishDate": "2026-09-12",
+  "modifiedDate": "2026-09-12",
+  "readMinutes": 4,
+  "heroImage": "/blog/images/rabies-south-africa-2026-1200x675.webp",
+  "heroWidth": 1200,
+  "heroHeight": 675,
+  "heroAlt": "Editorial illustration of a dog and cat beside a pet health booklet in navy and teal",
+  "category": "Preventive Care",
+  "excerpt": "A vaccination record, a veterinary contact and an exposure plan serve different purposes. Here is how to put all three in place before 28 September.",
+  "relatedProducts": [],
+  "meaningBox": {
+    "title": "An exposure needs action now",
+    "body": "After a potentially rabid animal bite or scratch, wash the wound with soap and running water for at least 15 minutes and seek medical care immediately. Do not wait for symptoms or a vaccination campaign."
+  },
+  "sections": [
+    {
+      "id": "why-now",
+      "heading": "Why revisit rabies this September?",
+      "paragraphs": [
+        "The NICD published its World Rabies Day message on 2 September 2026, ahead of the observance on 28 September. It asks South African owners and professionals to work together on prevention. Its practical emphasis is vaccination and timely care after exposure.{{cite:1}}",
+        "This is Peptides4Pets editorial analysis of published guidance, checked on 12 September 2026. We have not conducted interviews, gathered local case counts or obtained veterinary review. Our contribution is a three-part planning framework: verify the pet’s record, identify professional help and know the human exposure response."
+      ]
+    },
+    {
+      "id": "record",
+      "heading": "Check 1: Read the record, not your memory",
+      "paragraphs": [
+        "The NICD says dogs and cats must be vaccinated against rabies. Its September guidance distinguishes the legal three-year booster requirement after the initial course from strongly advised annual vaccination in high-risk areas. It also advises use of South African-registered rabies vaccines through registered veterinary professionals.{{cite:1}}",
+        "Put each animal’s vaccination card in one place. Write down the last recorded date, the administering practice and any next appointment. If a card is missing, ask the practice for its record rather than reconstructing a date. Take the documents to your vet and ask which schedule applies to that animal. A calendar reminder is useful only after that question is answered."
+      ]
+    },
+    {
+      "id": "contact",
+      "heading": "Check 2: Know whom you will contact",
+      "paragraphs": [
+        "The NICD directs owners to state or private veterinarians, animal health technicians and welfare organisations, and links to provincial veterinary contacts and the veterinary facility register. It also warns that movement of unvaccinated, incubating animals between provinces can spread rabies.{{cite:1}}",
+        "Our practical suggestion: save your usual veterinary practice and an after-hours contact in your phone. Before travelling with a pet, ask the practice to review the record. Confirm campaign dates and availability locally; this article does not claim that a particular clinic has free stock or appointments."
+      ]
+    },
+    {
+      "id": "exposure",
+      "heading": "Check 3: Separate pet prevention from human emergency care",
+      "paragraphs": [
+        "WHO recommends immediate medical assessment after a potentially rabid animal bite or scratch. Wash wounds with soap and running water for at least 15 minutes. Post-exposure care can include a course of human rabies vaccine and, when indicated, rabies immunoglobulin or monoclonal antibodies. A clinician decides the appropriate care; do not wait for symptoms.{{cite:3}}",
+        "Saliva contacting broken skin or the eyes or mouth can also be an exposure. WHO distinguishes these situations from a lick on intact skin. If you are unsure what contact occurred, seek professional assessment. Previous human pre-exposure vaccination does not remove the need to seek post-exposure care.{{cite:2}}",
+        "The NICD’s September message specifies at least 10 minutes of wound washing; WHO specifies at least 15. This guide uses WHO’s longer minimum. Both sources call for immediate medical attention.{{cite:1}}{{cite:2}}"
+      ]
+    },
+    {
+      "id": "evidence",
+      "heading": "Keep the evidence categories separate",
+      "paragraphs": [
+        "Animal vaccination is prevention at the animal source; human post-exposure prophylaxis addresses a person’s exposure. These are different interventions with different recipients. Neither a pet’s wellness routine nor a video of apparently normal behaviour answers whether an exposed person needs treatment.{{cite:2}}",
+        "We do not recommend experimental peptides, including BPC-157, TB-500 or KPV, for rabies prevention or treatment. No evidence reviewed for this article establishes such a role. Preclinical findings about unrelated outcomes are not evidence of rabies protection. A product marketed for research or general wellness must not displace the prevention and emergency-care pathways described here.",
+        "The useful outcome of this checklist is modest and concrete: a readable record, a reachable professional and a household that knows whom to call. There is no purchase required to use it."
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Should I wait until World Rabies Day to act after an exposure?",
+      "a": "No. Wash the wound and seek medical care immediately after a possible exposure; do not wait for 28 September or for symptoms."
+    },
+    {
+      "q": "Is this a personalised vaccination schedule?",
+      "a": "No. Bring your dog’s or cat’s record to a registered veterinary professional to confirm the schedule for that animal and local risk."
+    },
+    {
+      "q": "Does this article recommend peptides for rabies?",
+      "a": "No. It does not establish any role for experimental peptides in rabies prevention or treatment."
+    }
+  ],
+  "citations": [
+    {
+      "authors": "National Institute for Communicable Diseases",
+      "title": "World Rabies Day 2026: We are stronger together (2 September 2026)",
+      "journal": "NICD",
+      "year": 2026,
+      "url": "https://www.nicd.ac.za/world-rabies-day-2026-we-are-stronger-together/"
+    },
+    {
+      "authors": "World Health Organization",
+      "title": "Rabies fact sheet (5 June 2024)",
+      "journal": "WHO",
+      "year": 2024,
+      "url": "https://www.who.int/news-room/fact-sheets/detail/rabies"
+    },
+    {
+      "authors": "World Health Organization",
+      "title": "Rabies health topic: prevention and treatment",
+      "journal": "WHO",
+      "year": 2026,
+      "url": "https://www.who.int/health-topics/rabies/"
+    }
+  ]
+},
   {
     "slug": "bpc-157-dog-recovery-videos-south-africa",
     "title": "BPC-157 Dog Recovery Videos: What South African Owners Can—and Cannot—Conclude",

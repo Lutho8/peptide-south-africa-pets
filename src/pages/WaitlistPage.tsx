@@ -876,7 +876,7 @@ export default function WaitlistPage() {
                   ? t('wlp.s3.titleNamed', { name: form.petName.trim() })
                   : paramProducts.length > 0
                     ? t('wlp.s3.titleProduct', {
-                        product: paramProducts[0].name.replace(/ Oral Drops| Gut & Skin Drops/, ''),
+                        product: paramProducts[0].name.replace(/ Research Vial/, ''),
                       })
                     : t('wlp.s3.titleGeneric')}
               </h1>

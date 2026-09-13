@@ -25,7 +25,7 @@ const content: Record<Policy, { title: string; sections: Array<[string, string]>
     title: 'Terms and Conditions',
     sections: [
       ['Use of this store', 'By using Peptides4Pets or placing an order, you agree to these terms. You must provide accurate information and use the site lawfully. Product availability and prices may change before an order is accepted.'],
-      ['Research boundary', 'Products marked RESEARCH PROFILE · NOT FOR SALE OR ANIMAL ADMINISTRATION are supplied only under that stated research profile. Website content is educational and is not veterinary or medical advice. Mobility Collagen is presented separately as a nutritional product.'],
+      ['Research boundary', 'Products marked RESEARCH MATERIAL · ANIMAL EVIDENCE GRADED are supplied with their study type and evidence limits stated clearly. Website content is educational and is not veterinary or medical advice. Mobility Collagen is presented separately as a nutritional product.'],
       ['Orders and EFT payment', 'Checkout is EFT-only. An order remains pending until the matching funds are received and reconciled. Incorrect, duplicate, overpaid, underpaid or unidentified transfers may delay fulfilment.'],
       ['Delivery and liability', 'Dispatch and delivery estimates are not guarantees. To the extent permitted by South African law, we are not liable for indirect loss and do not guarantee a particular research, health or performance outcome.'],
       ['Governing law', 'These terms are governed by South African law. Consumer rights that cannot legally be excluded remain unaffected.'],

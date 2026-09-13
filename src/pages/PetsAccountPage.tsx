@@ -204,7 +204,7 @@ export default function PetsAccountPage() {
           {!loading && orders.length === 0 && (
             <div className="mt-5 rounded-[20px] border border-sand bg-warmwhite p-8">
               <h2 className="font-serif text-2xl font-semibold text-espresso">No Pets orders yet.</h2>
-              <p className="mt-2 text-espresso-70">All five published catalogue products are available through secure EFT checkout. Experimental peptide listings remain research profiles and are not for animal administration.</p>
+              <p className="mt-2 text-espresso-70">All five published catalogue products are available through secure EFT checkout. Experimental peptide listings are sealed research vials with evidence grades and study limits shown clearly.</p>
               <Link to="/#launch" className="mono-label mt-5 inline-flex items-center gap-2 !text-[10px] text-amber-deep">VIEW CATALOGUE <ArrowRight className="h-4 w-4" /></Link>
             </div>
           )}

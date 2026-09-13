@@ -80,7 +80,7 @@ export default function ProductPage() {
         description={
           product.slug === 'mobility-collagen'
             ? `${product.benefit} Live now — HPLC-tested with a COA on every batch. Secure EFT checkout. A nutritional supplement, not a veterinary medicine; consult your vet.`
-            : `${product.benefit} Available through secure EFT checkout as a research product; not for animal administration.`
+            : `${product.benefit} Available through secure EFT checkout as a sealed research vial, with animal evidence and current gaps stated clearly.`
         }
         path={`/product/${product.slug}`}
         type="product"
@@ -186,7 +186,7 @@ function HeroSplit({ product, detail }: { product: Product; detail: ProductDetai
 
             {product.slug !== 'mobility-collagen' && (
               <motion.p variants={boxItem} className="mono-data mt-3 rounded-xl border border-amber/50 bg-amber/10 px-3 py-2 !text-[10px] uppercase text-amber-deep">
-                RESEARCH PROFILE · NOT FOR ANIMAL ADMINISTRATION
+                RESEARCH MATERIAL · ANIMAL EVIDENCE GRADED
               </motion.p>
             )}
 
@@ -695,7 +695,7 @@ loading="lazy"                       src={p.image}
                     <p className="mt-1 text-sm italic text-espresso-70">{note}</p>
                     <div className="mono-data mt-3 flex items-center justify-between">
                       <span className="text-espresso">
-                        {isCheckoutEligible(p.slug) ? p.price : 'RESEARCH PROFILE'}
+                        {isCheckoutEligible(p.slug) ? p.price : 'RESEARCH DETAILS'}
                       </span>
                       <span className="text-amber-deep">
                         LIVE

@@ -43,7 +43,7 @@ export default function Pets() {
     <>
       <Seo
         title="Peptides4Pets — Evidence-Led Pet Research & Mobility Collagen"
-        description="Mobility Collagen for South African pets, with transparent documentation. Experimental peptide profiles are research information only and not offered for animal administration."
+        description="Mobility Collagen and sealed peptide research vials for South African customers, with transparent documentation, animal-study context and evidence limits."
         path=""
       />
       <Hero />

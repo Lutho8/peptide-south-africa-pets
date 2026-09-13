@@ -258,7 +258,7 @@ export const evidenceArticles: BlogArticle[] = [
         "heading": "BPC-157: dog exposure is different from dog benefit",
         "paragraphs": [
           "BPC-157 has published rat-and-dog pharmacokinetic research. Its existence does not establish that a retail formulation improves an injured pet’s mobility.{{cite:1}} A useful next question is whether a controlled study measures a meaningful outcome in the relevant clinical population.",
-          "Do not treat oral drops, injectable preparations and a study formulation as interchangeable. Evidence should match the actual compound, route and formulation being claimed."
+          "Do not treat a dry research vial, any reconstituted preparation and a study formulation as interchangeable. Evidence should match the actual compound, route and formulation being claimed."
         ]
       },
       {
@@ -293,7 +293,7 @@ export const evidenceArticles: BlogArticle[] = [
         "heading": "What this means when ordering in South Africa",
         "paragraphs": [
           "For an unregistered veterinary medicine, SAHPRA’s application guideline is a relevant starting point for the veterinarian—not a blanket permission for consumer sales.{{cite:3}} The exact product and proposed use need to be considered through the appropriate local pathway.",
-          "Ask your vet what established options are appropriate, how progress will be measured and when to return. Ask any supplier for clear rand pricing, actual availability, delivery terms and documentation. A business should be able to distinguish what can be ordered now from a research profile without taking money for an unavailable treatment."
+          "Ask your vet what established options are appropriate, how progress will be measured and when to return. Ask any supplier for clear rand pricing, actual availability, delivery terms and documentation. A business should state the product form, evidence grade and fulfilment timing before taking payment."
         ]
       },
       {

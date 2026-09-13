@@ -14,6 +14,11 @@ const consent = read('src/lib/petsConsent.ts')
 const edge = read('supabase/functions/pets-eft-create-order/index.ts')
 const migration = read('supabase/migrations/20260901170000_add_pets_research_commerce_backbone.sql')
 const app = read('src/App.tsx')
+const catalog = read('src/lib/data.ts')
+const coa = read('src/lib/coa.ts')
+const productPage = read('src/pages/ProductPage.tsx')
+const checkoutCopy = read('src/pages/checkoutCopy.ts')
+const publicCopy = [heroCopy, catalog, coa, productPage, checkoutCopy].join('\n')
 
 const failures = []
 const assert = (condition, message) => {
@@ -33,8 +38,17 @@ assert(edge.includes('["pets-bpc-157"'), 'BPC-157 must be server-priced before c
 for (const slug of ['bpc-157', 'kpv', 'recovery-blend', 'immune-thymogen', 'mobility-collagen']) {
   assert(cart.includes(`'${slug}'`), `${slug} must be checkout eligible`)
 }
-assert(consent.includes('pets-checkout-2026-09-12'), 'Checkout consent version must match the full-catalog policy')
-assert(edge.includes('pets-checkout-2026-09-12'), 'Server consent version must match the storefront')
+assert(consent.includes('pets-checkout-2026-09-13'), 'Checkout consent version must match the current policy')
+assert(edge.includes('pets-checkout-2026-09-13'), 'Server consent version must match the storefront')
+assert(edge.includes('selections: body.selections'), 'Pets EFT handoff must forward server-priceable cart selections')
+assert(edge.includes('requestId,'), 'Pets EFT handoff must forward the idempotency request ID')
+assert(edge.includes('orderId: order.id'), 'Pets EFT handoff must settle the existing Pets order rather than create a duplicate')
+assert(edge.includes('apikey: serviceRoleKey'), 'Pets EFT handoff must use the trusted server-to-server settlement credential')
+assert(!/oral drops|gut & skin drops|not for animal administration|not for sale/i.test(publicCopy), 'Published storefront copy must use vial form and current availability language')
+for (const label of ['BPC-157 Research Vial', 'KPV Gut & Skin Research Vial']) {
+  assert(catalog.includes(label), `${label} must remain the canonical catalogue name`)
+  assert(coa.includes(label), `${label} must remain aligned in sample COA data`)
+}
 assert(checkout.includes('clearCart()'), 'Successful multi-product checkout must clear the purchased cart')
 assert(!checkout.includes("currency: 'ZAR'"), 'Order creation must not emit client-side Purchase revenue')
 assert(edge.includes('pets-eft-create-order'), 'Pets order endpoint must remain isolated from the storefront client')

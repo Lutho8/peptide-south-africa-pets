@@ -18,7 +18,7 @@ export interface Certificate {
   productSlug: string
   /** Display product name (matches the label). */
   productName: string
-  /** Mono spec row, e.g. 'BPC-157 · 250MCG · ORAL DROPS'. */
+  /** Mono spec row, e.g. 'BPC-157 · LYOPHILISED POWDER · SEALED VIAL'. */
   spec: string
   /** ISO manufacturing date, displayed as-is. */
   mfgDate: string
@@ -34,7 +34,7 @@ export interface Certificate {
   endotoxin: string
   /** Microbial screen result. */
   microbial: string
-  /** Net content confirmation, e.g. '30 mL ± 2%'. */
+  /** Pack-format confirmation for the sample record. */
   netContent: string
   /** Analyst sign-off line. */
   analyst: string
@@ -49,8 +49,8 @@ export const SAMPLE_CERTIFICATES: Certificate[] = [
   {
     batch: 'PTD-2026-007',
     productSlug: 'bpc-157',
-    productName: 'BPC-157 Oral Drops',
-    spec: 'BPC-157 · 250MCG · ORAL DROPS',
+    productName: 'BPC-157 Research Vial',
+    spec: 'BPC-157 · SYNTHETIC LYOPHILISED POWDER · SEALED VIAL',
     mfgDate: '2026-01-12',
     expiryDate: '2028-01-11',
     lab: 'MICROCHEM ANALYTICAL (PTY) LTD · CAPE TOWN · SANAS T0814 [SAMPLE]',
@@ -58,15 +58,15 @@ export const SAMPLE_CERTIFICATES: Certificate[] = [
     heavyMetals: 'PASS — Pb / As / Cd / Hg BELOW LOQ (ICP-MS)',
     endotoxin: '<0.05 EU/MG — PASS (LAL)',
     microbial: 'PASS — NO GROWTH (TAMC / TYMC)',
-    netContent: '30 ML ± 2%',
+    netContent: '1 SEALED RESEARCH VIAL',
     analyst: 'T. MOKOENA, PR.SCI.NAT. — REVIEWED & RELEASED [SAMPLE]',
     sample: true,
   },
   {
     batch: 'PTD-2026-005',
     productSlug: 'kpv',
-    productName: 'KPV Gut & Skin Drops',
-    spec: 'KPV · TRIPEPTIDE · ORAL DROPS',
+    productName: 'KPV Gut & Skin Research Vial',
+    spec: 'KPV · SYNTHETIC LYOPHILISED POWDER · SEALED VIAL',
     mfgDate: '2026-01-09',
     expiryDate: '2028-01-08',
     lab: 'MICROCHEM ANALYTICAL (PTY) LTD · CAPE TOWN · SANAS T0814 [SAMPLE]',
@@ -74,7 +74,7 @@ export const SAMPLE_CERTIFICATES: Certificate[] = [
     heavyMetals: 'PASS — Pb / As / Cd / Hg BELOW LOQ (ICP-MS)',
     endotoxin: '<0.05 EU/MG — PASS (LAL)',
     microbial: 'PASS — NO GROWTH (TAMC / TYMC)',
-    netContent: '30 ML ± 2%',
+    netContent: '1 SEALED RESEARCH VIAL',
     analyst: 'T. MOKOENA, PR.SCI.NAT. — REVIEWED & RELEASED [SAMPLE]',
     sample: true,
   },
@@ -82,7 +82,7 @@ export const SAMPLE_CERTIFICATES: Certificate[] = [
     batch: 'PTD-2026-006',
     productSlug: 'recovery-blend',
     productName: 'Recovery Blend (BPC-157 + TB-500)',
-    spec: 'BPC-157 + TB-500 · DUAL BOTTLE SET',
+    spec: 'BPC-157 + TB-500 · LYOPHILISED POWDER · SEALED VIAL',
     mfgDate: '2026-01-10',
     expiryDate: '2028-01-09',
     lab: 'MICROCHEM ANALYTICAL (PTY) LTD · CAPE TOWN · SANAS T0814 [SAMPLE]',
@@ -90,7 +90,7 @@ export const SAMPLE_CERTIFICATES: Certificate[] = [
     heavyMetals: 'PASS — Pb / As / Cd / Hg BELOW LOQ (ICP-MS)',
     endotoxin: '<0.05 EU/MG — PASS (LAL)',
     microbial: 'PASS — NO GROWTH (TAMC / TYMC)',
-    netContent: '2 × 30 ML ± 2%',
+    netContent: '1 SEALED RESEARCH VIAL',
     analyst: 'T. MOKOENA, PR.SCI.NAT. — REVIEWED & RELEASED [SAMPLE]',
     sample: true,
   },

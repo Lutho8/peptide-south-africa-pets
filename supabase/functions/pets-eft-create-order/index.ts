@@ -2,8 +2,8 @@ import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { createClient } from "npm:@supabase/supabase-js@2.57.4";
 
 const PRODUCTS = new Map([
-  ["pets-bpc-157", { slug: "bpc-157", name: "BPC-157 Oral Drops", unitPrice: 895 }],
-  ["pets-kpv", { slug: "kpv", name: "KPV Gut & Skin Drops", unitPrice: 795 }],
+  ["pets-bpc-157", { slug: "bpc-157", name: "BPC-157 Research Vial", unitPrice: 895 }],
+  ["pets-kpv", { slug: "kpv", name: "KPV Gut & Skin Research Vial", unitPrice: 795 }],
   ["pets-recovery-blend", { slug: "recovery-blend", name: "Recovery Blend (BPC-157 + TB-500)", unitPrice: 1195 }],
   ["pets-immune-thymogen", { slug: "immune-thymogen", name: "Immune (Thymogen)", unitPrice: 845 }],
   ["pets-mobility-collagen", { slug: "mobility-collagen", name: "Mobility Collagen", unitPrice: 395 }],
@@ -11,16 +11,16 @@ const PRODUCTS = new Map([
 const SHIPPING_PRICE = 89;
 const FREE_SHIPPING_THRESHOLD = 1500;
 const CURRENCY = "ZAR";
-const POLICY_VERSION = "pets-checkout-2026-09-12";
+const POLICY_VERSION = "pets-checkout-2026-09-13";
 const REPORT_SCOPE_VERSION = "pets-report-scope-2026-09-01";
 
 const CONSENT_STATEMENTS = {
   age:
     "I confirm that I am 18 years of age or older and authorised to place this order.",
   nutritionalScope:
-    "I understand Mobility Collagen is a pet nutritional supplement, while experimental peptide items are research products only and not for animal administration.",
+    "I understand Mobility Collagen is a pet nutritional supplement, while experimental peptide items are sealed research materials with evidence limits stated on each product page.",
   labelUse:
-    "I will follow each product label and will not administer a research-only peptide product to an animal.",
+    "I will follow the supplied product documentation and involve a registered veterinarian in animal-care decisions.",
   reportScope:
     "I understand that any published report describes only the identified sample and test method and does not guarantee an outcome for an individual animal.",
 };
@@ -136,7 +136,7 @@ function quote(body: CheckoutBody) {
     subtotal,
     shipping,
     total: subtotal + shipping,
-    description: `Peptides4Pets: ${items.map((item) => `${item.name} x${item.quantity}`).join(", ")}`,
+    description: items.map((item) => `${item.slug} x${item.quantity}`).join(", ").slice(0, 500),
   };
 }
 
@@ -368,14 +368,15 @@ Deno.serve(async (request: Request) => {
 
     const settlementResponse = await fetch(`${supabaseUrl}/functions/v1/eft-create-order`, {
       method: "POST",
-      headers: { Authorization: authHeader, apikey: anonKey, "Content-Type": "application/json" },
+      headers: { Authorization: authHeader, apikey: serviceRoleKey, "Content-Type": "application/json" },
       body: JSON.stringify({
+        requestId,
         orderId: order.id,
-        amount: priced.total,
-        itemName: priced.description.slice(0, 100),
+        selections: body.selections,
         firstName,
         lastName,
         email,
+        fulfilment: body.fulfilment,
       }),
     });
     const settlement = (await settlementResponse.json().catch(() => null)) as

@@ -223,7 +223,7 @@ export function buildStack(a: QuizAnswers): StackResult {
       case 'gut':
         push(
           'kpv',
-          `Gut-lining support for ${name}'s sensitive system — one dropper a day.`,
+          `Gut-lining research context for ${name}'s sensitive system, with the evidence limits stated plainly.`,
           'quiz.why.kpv.gut',
         )
         break

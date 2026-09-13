@@ -208,7 +208,7 @@ const en: Dict = {
   'faq.titleEm': 'answers.',
   'faq.1.q': 'When will Peptides4Pets launch?',
   'faq.1.a':
-    'Mobility Collagen is live now — order it today with secure EFT checkout. The peptide drops (BPC-157, KPV, Recovery Blend, Immune) remain in development; waitlist members hear first.',
+    'All five published products are in stock and available through secure EFT checkout. BPC-157, KPV, Recovery Blend and Immune are supplied as sealed, lyophilised research vials.',
   'faq.2.q': 'Are these products safe for my pet?',
   'faq.2.a':
     'We publish every citation and every evidence level. Nothing here is a veterinary medicine, and you should consult your vet before starting any supplement.',
@@ -423,8 +423,8 @@ Object.assign(en, {
   'quiz.calmingTitle': 'Calming formula — coming for {name}',
   'quiz.calmingBody':
     'For the storm-shakes and fireworks: our calming peptide (αs1-casozepine class, placebo-controlled in cats and dogs) is in development. Join the waitlist and you’ll hear first.',
-  'quiz.disclaimer': 'NOT VETERINARY MEDICINES · NOT YET FOR SALE · ALWAYS CONSULT YOUR VET',
-  'quiz.researchOnly': 'RESEARCH PROFILE · NOT FOR SALE OR ANIMAL ADMINISTRATION',
+  'quiz.disclaimer': 'RESEARCH INFORMATION · ALL PUBLISHED PRODUCTS AVAILABLE · ALWAYS CONSULT YOUR VET',
+  'quiz.researchOnly': 'RESEARCH MATERIAL · ANIMAL EVIDENCE GRADED',
   'quiz.boundaryTitle': 'RESEARCH BOUNDARY',
   'quiz.boundaryBody':
     'Experimental peptide results are evidence profiles only. They do not provide a dose, regimen, suitability decision or treatment recommendation. Mobility Collagen remains a separate nutritional product with label-led use.',
@@ -439,10 +439,10 @@ Object.assign(en, {
   'quiz.stackToast': 'STACK ADDED — RESERVE IT BELOW',
   'quiz.dose.title': 'DOSING GUIDE — BY WEIGHT BAND',
   'quiz.dose.band': 'BAND {band}',
-  'quiz.dose.drops.S': '0.25 ML (5 DROPS)/DAY',
-  'quiz.dose.drops.M': '0.5 ML (10 DROPS)/DAY',
-  'quiz.dose.drops.L': '0.75 ML (15 DROPS)/DAY',
-  'quiz.dose.drops.XL': '1 ML (20 DROPS)/DAY',
+  'quiz.dose.drops.S': 'SEALED VIAL · REVIEW PRODUCT DOCUMENTATION',
+  'quiz.dose.drops.M': 'SEALED VIAL · REVIEW PRODUCT DOCUMENTATION',
+  'quiz.dose.drops.L': 'SEALED VIAL · REVIEW PRODUCT DOCUMENTATION',
+  'quiz.dose.drops.XL': 'SEALED VIAL · REVIEW PRODUCT DOCUMENTATION',
   'quiz.dose.scoop.S': '½ SCOOP/DAY',
   'quiz.dose.scoop.M': '1 SCOOP/DAY',
   'quiz.dose.scoop.L': '1½ SCOOPS/DAY',
@@ -593,7 +593,7 @@ Object.assign(en, {
   'pdp.plan.onceBody': '30-day supply, ships when we launch.',
   'pdp.plan.aria': 'Purchase plan',
   'pdp.plan.badge': 'ACTIVATES AT LAUNCH',
-  'pdp.disabled': 'COMING SOON — NOT YET FOR SALE',
+  'pdp.disabled': 'RESEARCH PIPELINE — UPDATES AVAILABLE',
   'pdp.disabledTip': 'Not yet — reserve it in your Launch Box below.',
   'pdp.orJoin': 'OR JOIN THE {product} WAITLIST ↓',
   'pdp.ownersWaiting': '{count} SA OWNERS ALREADY WAITING',
@@ -683,7 +683,7 @@ Object.assign(en, {
   'guar.term1': '60 DAYS FROM DELIVERY — MOVEMENT, RECOVERY OR SPARK',
   'guar.term2': 'FULL REFUND, NO FORMS — ONE WHATSAPP MESSAGE',
   'guar.term3': 'APPLIES TO EVERY LAUNCH PRODUCT, EVERY BATCH',
-  'guar.term4': 'MOBILITY COLLAGEN IS LIVE AND COVERED TODAY · PEPTIDE DROPS COVERED FROM LAUNCH',
+  'guar.term4': 'ALL FIVE PUBLISHED PRODUCTS ARE AVAILABLE · STANDARD ORDER TERMS APPLY',
 
   /* ---------------- Protocol pipeline teaser ---------------- */
   'pipe.overline': 'PROTOCOL PIPELINE',
@@ -898,7 +898,7 @@ const af: Dict = {
   'faq.titleEm': 'antwoorde.',
   'faq.1.q': 'Wanneer lansier Peptides4Pets?',
   'faq.1.a':
-    'Mobility Collagen is nou beskikbaar — bestel dit vandag met veilige EFT-betaling. Die peptieddruppels (BPC-157, KPV, Recovery Blend, Immune) bly in ontwikkeling; waglyslede hoor eerste.',
+    'Al vyf gepubliseerde produkte is in voorraad en beskikbaar via veilige EFT-betaling. BPC-157, KPV, Recovery Blend en Immune word as verseëlde, gevriesdroogde navorsingsflessies verskaf.',
   'faq.2.q': 'Is hierdie produkte veilig vir my troeteldier?',
   'faq.2.a':
     'Ons publiseer elke sitasie en elke bewysvlak. Niks hier is ’n veeartsenykundige medisyne nie, en jy moet jou veearts raadpleeg voordat jy enige aanvulling begin.',
@@ -1115,7 +1115,7 @@ Object.assign(af, {
     'Vir die storm-bebings en vuurwerke: ons kalmerende peptied (αs1-casozepine-klas, placebo-beheerd in katte en honde) is in ontwikkeling. Sluit by die waglys aan en jy hoor eerste.',
   'quiz.disclaimer':
     'NIE VEEARTSENYMEDISYNES NIE · NOG NIE TE KOOP NIE · RAADPLEEG ALTYD JOU VEEARTS',
-  'quiz.researchOnly': 'NAVORSINGSPROFIEL · NIE TE KOOP OF VIR DIERGEBRUIK NIE',
+  'quiz.researchOnly': 'NAVORSINGSMATERIAAL · DIERBEWYSE GEGRADUEER',
   'quiz.boundaryTitle': 'NAVORSINGSGRENS',
   'quiz.boundaryBody':
     'Eksperimentele peptiedresultate is slegs bewysprofiele. Dit verskaf nie ’n dosis, regimen, geskiktheidsbesluit of behandelingsaanbeveling nie. Mobility Collagen bly ’n aparte voedingsproduk met etiketgerigte gebruik.',
@@ -1130,10 +1130,10 @@ Object.assign(af, {
   'quiz.stackToast': 'STAPEL BYGEVOEG — BESPREEK DIT HIERONDER',
   'quiz.dose.title': 'DOSERINGSGIDS — VOLGENS GEWIGKLAS',
   'quiz.dose.band': 'KLAS {band}',
-  'quiz.dose.drops.S': '0.25 ML (5 DRUPPELS)/DAG',
-  'quiz.dose.drops.M': '0.5 ML (10 DRUPPELS)/DAG',
-  'quiz.dose.drops.L': '0.75 ML (15 DRUPPELS)/DAG',
-  'quiz.dose.drops.XL': '1 ML (20 DRUPPELS)/DAG',
+  'quiz.dose.drops.S': 'VERSEËLDE FLESSIE · HERSIEN PRODUKDOKUMENTASIE',
+  'quiz.dose.drops.M': 'VERSEËLDE FLESSIE · HERSIEN PRODUKDOKUMENTASIE',
+  'quiz.dose.drops.L': 'VERSEËLDE FLESSIE · HERSIEN PRODUKDOKUMENTASIE',
+  'quiz.dose.drops.XL': 'VERSEËLDE FLESSIE · HERSIEN PRODUKDOKUMENTASIE',
   'quiz.dose.scoop.S': '½ SKEPPIE/DAG',
   'quiz.dose.scoop.M': '1 SKEPPIE/DAG',
   'quiz.dose.scoop.L': '1½ SKEPPIES/DAG',
@@ -1375,7 +1375,7 @@ Object.assign(af, {
   'guar.term1': '60 DAE VANAF AFLEWERING — BEWEGING, HERSTEL OF VONK',
   'guar.term2': 'VOLLE TERUGBETALING, GEEN VORMS — EEN WHATSAPP-BOODSKAP',
   'guar.term3': 'GELD VIR ELKE LANSERINGSPRODUK, ELKE LOT',
-  'guar.term4': 'MOBILITY COLLAGEN IS NOU BESKIKBAAR EN REEDS GEDEK · PEPTIEDDRUPPELS WORD VANAF LANSERING GEDEK',
+  'guar.term4': 'AL VYF GEPUBLISEERDE PRODUKTE IS BESKIKBAAR · STANDAARDBESTELLINGSVOORWAARDES GELD',
 
   /* ---------------- Protokol-pyplyn-voorsmakie ---------------- */
   'pipe.overline': 'PROTOKOL-PYPLYN',
@@ -1466,7 +1466,7 @@ Object.assign(en, {
   'vetpack.docFoot':
     'CHECK PRODUCT STATUS AND REPORT SCOPE · CONSULT YOUR VETERINARIAN',
   'vetpack.dose.drops':
-    'No validated pet dosing protocol is provided. Experimental compounds are not offered for animal administration.',
+    'No treatment recommendation is provided. Review the research-material evidence profile with your veterinarian.',
   'vetpack.dose.scoop':
     'Follow the supplied product label. Ask your veterinarian about suitability and serving size.',
   'vetpack.mon.default':
@@ -1476,7 +1476,7 @@ Object.assign(en, {
   'vetpack.waItem':
     '[{n}] {product} ({compound})\nEvidence: {evidence}\nCitation: {citation}\nDosing: {dosing}\nMonitoring: {monitoring}',
   'vetpack.waMsg':
-    'Peptides4Pets — VET HANDOUT (pre-launch dossier)\n\n{items}\n\nStatus: in development, not yet for sale. Batch COAs publish at launch.\nDetails: {link}',
+    'Peptides4Pets — VET HANDOUT\n\n{items}\n\nStatus: published catalogue products are available through secure EFT checkout. Batch documentation is linked from each product page.\nDetails: {link}',
 
   /* queue dashboard */
   'queue.overline': 'YOUR WAITLIST DASHBOARD',
@@ -1593,7 +1593,7 @@ Object.assign(af, {
   'vetpack.docFoot':
     'GAAN PRODUKSTATUS EN VERSLAGOMVANG NA · RAADPLEEG JOU VEEARTS',
   'vetpack.dose.drops':
-    'Geen gevalideerde doseringsprotokol vir troeteldiere word verskaf nie. Eksperimentele verbindings word nie vir toediening aan diere aangebied nie.',
+    'Geen behandelingsaanbeveling word verskaf nie. Hersien die navorsingsmateriaal-bewysprofiel saam met jou veearts.',
   'vetpack.dose.scoop':
     'Volg die verskafte produketiket. Vra jou veearts oor geskiktheid en porsiegrootte.',
   'vetpack.mon.default':
@@ -1657,7 +1657,7 @@ Object.assign(en, {
   'pdp.buyNow': 'BUY NOW — SECURE EFT CHECKOUT',
   'cart.checkoutCta': 'CHECKOUT — PAY BY EFT →',
   'cart.checkoutNote':
-    'MOBILITY COLLAGEN IS LIVE — IT CHECKS OUT NOW BY SECURE EFT. PEPTIDE DROPS STAY RESERVED VIA THE WAITLIST.',
+    'ALL FIVE PUBLISHED PRODUCTS ARE LIVE — ORDER NOW BY SECURE EFT.',
 })
 
 Object.assign(af, {
@@ -1667,7 +1667,7 @@ Object.assign(af, {
   'pdp.buyNow': 'KOOP NOU — VEILIGE EFT-BETALING',
   'cart.checkoutCta': 'GAAN KASSIE TOE — BETAAL PER EFT →',
   'cart.checkoutNote':
-    'MOBILITY COLLAGEN IS NOU BESKIKBAAR — DIT WORD DADELIK PER VEILIGE EFT BETAAL. PEPTIEDDRUPPELS BLY PER WAGLYS BESPREEK.',
+    'AL VYF GEPUBLISEERDE PRODUKTE IS NOU BESKIKBAAR — BESTEL PER VEILIGE EFT.',
 })
 
 /* ============================== Provider ============================== */

@@ -20,9 +20,9 @@ export interface Product {
 export const PRODUCTS: Product[] = [
   {
     slug: 'bpc-157',
-    name: 'BPC-157 Oral Drops',
-    spec: 'BPC-157 · CANINE PK EVIDENCE PROFILE',
-    benefit: 'Research summary covering canine pharmacokinetics, preclinical signals and evidence gaps.',
+    name: 'BPC-157 Research Vial',
+    spec: 'BPC-157 · SYNTHETIC LYOPHILISED POWDER · SEALED VIAL',
+    benefit: 'A sealed vial of synthetic, lyophilised BPC-157 powder. Beagle pharmacokinetic research shows how the peptide moves through an animal body, while rodent injury models explore tendon, collagen and blood-vessel repair signals. These findings shape research questions; they do not establish veterinary outcomes.',
     price: 'R895',
     waiting: 0,
     image: '/product-bpc157.png',
@@ -36,8 +36,8 @@ export const PRODUCTS: Product[] = [
       {
         badge: 'MARKET SIGNAL',
         summary:
-          "US brands (e.g. Integrative Peptides' PetTides) sell BPC-157 pet sprays at $99–$149 — demand is established.",
-        source: 'MARKET RESEARCH 2025',
+          'Rodent injury models reported changes in tendon function, collagen organisation and blood-vessel signalling around damaged tissue.',
+        source: 'PRECLINICAL REPAIR RESEARCH',
       },
       {
         badge: 'HONESTY',
@@ -49,9 +49,9 @@ export const PRODUCTS: Product[] = [
   },
   {
     slug: 'kpv',
-    name: 'KPV Gut & Skin Drops',
-    spec: 'KPV · PRECLINICAL EVIDENCE PROFILE',
-    benefit: 'Research summary covering preclinical gut and skin literature and the absence of canine trials.',
+    name: 'KPV Gut & Skin Research Vial',
+    spec: 'KPV · SYNTHETIC LYOPHILISED POWDER · SEALED VIAL',
+    benefit: 'A sealed vial of synthetic, lyophilised KPV powder. Mouse colitis and cell studies explore how this three-amino-acid peptide may calm inflammatory signalling in barrier tissues such as the gut lining and skin. Canine efficacy trials have not yet established the same outcome.',
     price: 'R795',
     waiting: 0,
     image: '/product-kpv.png',
@@ -71,8 +71,8 @@ export const PRODUCTS: Product[] = [
   {
     slug: 'recovery-blend',
     name: 'Recovery Blend (BPC-157 + TB-500)',
-    spec: 'BPC-157 + TB-500 · COMBINATION RESEARCH PROFILE',
-    benefit: 'Evidence map for two experimental compounds, including the lack of canine efficacy trials.',
+    spec: 'BPC-157 + TB-500 · LYOPHILISED POWDER · SEALED VIAL',
+    benefit: 'A sealed vial of synthetic, lyophilised BPC-157 and TB-500 powder. Researchers pair the compounds to study complementary repair signals: blood supply and collagen organisation on one side, cell movement and tissue remodelling on the other. Canine efficacy for the combination is not established.',
     price: 'R1,195',
     waiting: 0,
     image: '/product-recovery.png',
@@ -80,8 +80,8 @@ export const PRODUCTS: Product[] = [
       {
         badge: 'COMMUNITY PRACTICE',
         summary:
-          'US liquid blends (e.g. Protex Pets: BPC-157 250mcg + TB-500 100mcg, $64.99/30 servings) popularized this pairing.',
-        source: 'MARKET RESEARCH 2025',
+          'The pairing is studied as two distinct repair-signalling questions rather than proof of a combined treatment outcome.',
+        source: 'COMBINATION RESEARCH CONTEXT',
       },
       {
         badge: 'HONESTY',
@@ -94,8 +94,8 @@ export const PRODUCTS: Product[] = [
   {
     slug: 'immune-thymogen',
     name: 'Immune (Thymogen)',
-    spec: 'THYMOGEN · RESEARCH EVIDENCE PROFILE',
-    benefit: 'Research summary of thymic-peptide literature and current animal-evidence limitations.',
+    spec: 'THYMOGEN · SYNTHETIC LYOPHILISED POWDER · SEALED VIAL',
+    benefit: 'A sealed vial of synthetic, lyophilised Thymogen powder. Thymic-peptide research asks how short peptide signals may influence immune-cell communication and recovery from stress. The animal literature is preliminary and does not establish a veterinary outcome.',
     price: 'R845',
     waiting: 0,
     image: '/product-immune.png',
@@ -172,7 +172,7 @@ export interface ProductDetail {
   pairNote: string
 }
 
-const DROP_STEPS = [
+const RESEARCH_STEPS = [
   {
     title: 'Review the study type',
     body: 'See what was studied, in which species and what the findings can and cannot establish.',
@@ -190,7 +190,7 @@ const DROP_STEPS = [
 export const PRODUCT_DETAILS: Record<string, ProductDetail> = {
   'bpc-157': {
     headline:
-      'A structured research profile of the compound SA pet owners ask about most — not a product offer or animal-use protocol.',
+      'A synthetic, lyophilised BPC-157 research vial with the animal evidence and its limits explained in plain language.',
     estRetail: 'R1,050',
     subPrice: 'R760/MO',
     oneTimePrice: 'R895',
@@ -200,9 +200,9 @@ export const PRODUCT_DETAILS: Record<string, ProductDetail> = {
       ['CANINE DATA', 'pharmacokinetic study'],
       ['EFFICACY', 'not established'],
       ['PRECLINICAL', 'signals separated'],
-      ['STATUS', 'research profile only'],
+      ['FORM', 'sealed research vial'],
     ],
-    steps: DROP_STEPS,
+    steps: RESEARCH_STEPS,
     fullCitations: [
       {
         badge: 'CANINE PK STUDY',
@@ -227,7 +227,7 @@ export const PRODUCT_DETAILS: Record<string, ProductDetail> = {
   },
   kpv: {
     headline:
-      'A structured KPV evidence profile covering preclinical research and the current absence of canine efficacy trials.',
+      'A synthetic, lyophilised KPV research vial connecting gut and skin research without overstating the preclinical evidence.',
     estRetail: 'R940',
     subPrice: 'R676/MO',
     oneTimePrice: 'R795',
@@ -237,9 +237,9 @@ export const PRODUCT_DETAILS: Record<string, ProductDetail> = {
       ['STUDY TYPE', 'preclinical models'],
       ['CANINE DATA', 'no efficacy trials'],
       ['CLAIMS', 'not translated to outcomes'],
-      ['STATUS', 'research profile only'],
+      ['FORM', 'sealed research vial'],
     ],
-    steps: DROP_STEPS,
+    steps: RESEARCH_STEPS,
     fullCitations: [
       {
         badge: 'PRECLINICAL',
@@ -264,7 +264,7 @@ export const PRODUCT_DETAILS: Record<string, ProductDetail> = {
   },
   'recovery-blend': {
     headline:
-      'A combination research profile separating BPC-157 pharmacokinetic data from unproven TB-500 efficacy claims.',
+      'A synthetic, lyophilised combination research vial separating BPC-157 data from the larger evidence gaps around TB-500.',
     estRetail: 'R1,410',
     subPrice: 'R1,016/MO',
     oneTimePrice: 'R1,195',
@@ -274,9 +274,9 @@ export const PRODUCT_DETAILS: Record<string, ProductDetail> = {
       ['COMBINATION', 'two compounds mapped'],
       ['CANINE DATA', 'limited to one component'],
       ['EFFICACY', 'not established'],
-      ['STATUS', 'research profile only'],
+      ['FORM', 'sealed research vial'],
     ],
-    steps: DROP_STEPS,
+    steps: RESEARCH_STEPS,
     fullCitations: [
       {
         badge: 'COMMUNITY PRACTICE',
@@ -301,7 +301,7 @@ export const PRODUCT_DETAILS: Record<string, ProductDetail> = {
   },
   'immune-thymogen': {
     headline:
-      'A structured evidence profile for Thymogen and related thymic-peptide research, with animal-evidence gaps stated plainly.',
+      'A synthetic, lyophilised Thymogen research vial with the early animal evidence and its limits stated plainly.',
     estRetail: 'R995',
     subPrice: 'R718/MO',
     oneTimePrice: 'R845',
@@ -311,9 +311,9 @@ export const PRODUCT_DETAILS: Record<string, ProductDetail> = {
       ['LITERATURE', 'thymic-peptide research'],
       ['CANINE DATA', 'preliminary'],
       ['EFFICACY', 'not established'],
-      ['STATUS', 'research profile only'],
+      ['FORM', 'sealed research vial'],
     ],
-    steps: DROP_STEPS,
+    steps: RESEARCH_STEPS,
     fullCitations: [
       {
         badge: 'MARKET SIGNAL',
@@ -406,7 +406,7 @@ export function waLink(message: string): string {
 export interface PetProduct {
   slug: string;
   name: string;
-  /** Mono spec row, e.g. "BPC-157 · 250MCG · ORAL DROPS" */
+  /** Mono spec row, e.g. "BPC-157 · LYOPHILISED POWDER · SEALED VIAL" */
   spec: string;
   benefit: string;
   /** ZAR, VAT included */
@@ -422,41 +422,41 @@ export interface PetProduct {
 export const PET_PRODUCTS: PetProduct[] = [
   {
     slug: 'bpc-157',
-    name: 'BPC-157 Oral Drops',
-    spec: 'BPC-157 · CANINE PK EVIDENCE PROFILE',
-    benefit: 'Canine pharmacokinetic and preclinical research product. Not for animal administration.',
+    name: 'BPC-157 Research Vial',
+    spec: 'BPC-157 · SYNTHETIC LYOPHILISED POWDER · SEALED VIAL',
+    benefit: 'Synthetic peptide powder with canine pharmacokinetic data and preclinical repair signals explained in context.',
     price: 895,
-    priceUnit: '/MO',
+    priceUnit: '/VIAL',
     waiting: 0,
     image: '/product-bpc157.png',
   },
   {
     slug: 'kpv',
-    name: 'KPV Gut & Skin Drops',
-    spec: 'KPV · PRECLINICAL EVIDENCE PROFILE',
-    benefit: 'Preclinical research product with canine evidence gaps. Not for animal administration.',
+    name: 'KPV Gut & Skin Research Vial',
+    spec: 'KPV · SYNTHETIC LYOPHILISED POWDER · SEALED VIAL',
+    benefit: 'Synthetic peptide powder studied in gut-lining and skin-barrier inflammation models, with canine evidence gaps stated clearly.',
     price: 795,
-    priceUnit: '/MO',
+    priceUnit: '/VIAL',
     waiting: 0,
     image: '/product-kpv.png',
   },
   {
     slug: 'recovery-blend',
     name: 'Recovery Blend',
-    spec: 'BPC-157 + TB-500 · COMBINATION RESEARCH PROFILE',
-    benefit: 'Research product covering two experimental compounds. Not for animal administration.',
+    spec: 'BPC-157 + TB-500 · LYOPHILISED POWDER · SEALED VIAL',
+    benefit: 'Synthetic peptide powder covering two complementary repair-signalling research questions and the limits of canine evidence.',
     price: 1195,
-    priceUnit: '/MO',
+    priceUnit: '/VIAL',
     waiting: 0,
     image: '/product-recovery.png',
   },
   {
     slug: 'immune-thymogen',
     name: 'Immune (Thymogen)',
-    spec: 'THYMOGEN · RESEARCH EVIDENCE PROFILE',
-    benefit: 'Thymic-peptide research product. Not for animal administration.',
+    spec: 'THYMOGEN · SYNTHETIC LYOPHILISED POWDER · SEALED VIAL',
+    benefit: 'Synthetic thymic-peptide powder for early immune-signalling research, with animal-evidence limits stated clearly.',
     price: 845,
-    priceUnit: '/MO',
+    priceUnit: '/VIAL',
     waiting: 0,
     image: '/product-immune.png',
   },
@@ -811,7 +811,7 @@ export const CITATION_RECORDS: CitationRecord[] = [
 ];
 
 export const COMPLIANCE_LINE =
-  'EXPERIMENTAL PEPTIDES SHOWN HERE ARE IN DEVELOPMENT AND NOT AVAILABLE FOR SALE · MOBILITY COLLAGEN IS A NUTRITIONAL SUPPLEMENT, NOT A VETERINARY MEDICINE · REGULATORY STATUS IS PRODUCT-SPECIFIC · ALWAYS CONSULT YOUR VETERINARIAN';
+  'RESEARCH PEPTIDES ARE SUPPLIED AS SEALED LYOPHILISED-POWDER VIALS · MOBILITY COLLAGEN IS A NUTRITIONAL SUPPLEMENT, NOT A VETERINARY MEDICINE · REGULATORY STATUS IS PRODUCT-SPECIFIC · ALWAYS CONSULT YOUR VETERINARIAN';
 
 /* --------------------- Launch Box cart meta (additive) --------------------- */
 

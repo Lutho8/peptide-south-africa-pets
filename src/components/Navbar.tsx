@@ -11,6 +11,7 @@ import { asset } from '@/lib/asset'
 /** `key` entries are translated; plain `label` entries (product names) stay as-is. */
 const LINKS: { to: string; key?: string; label?: string }[] = [
   { to: '/', key: 'nav.catalog' },
+  { to: '/dog-owners', label: 'Dog owners' },
   { to: '/product/bpc-157', label: 'BPC-157' },
   { to: '/science', key: 'nav.science' },
   { to: '/verify', key: 'nav.verify' },

@@ -16,6 +16,21 @@ const { BLOG_ARTICLES } = await import(
 const blogRoutes = BLOG_ARTICLES.map((article) => `/blog/${article.slug}`)
 const routes = [...staticRoutes, ...productRoutes, ...blogRoutes]
 
+// React 19 hoists document metadata out of the component tree during streaming,
+// so react-helmet-async can leave its server context empty. Capture those tags
+// from the rendered stream and move them into <head> before writing each page.
+function extractPrerenderHead(html) {
+  const tags = []
+  const body = html.replace(
+    /<title>.*?<\/title>|<meta\s[^>]*\/>|<link\s[^>]*\/>|<script\s+type="application\/ld\+json">[\s\S]*?<\/script>/gi,
+    (tag) => {
+      tags.push(tag)
+      return ''
+    },
+  )
+  return { body, tags }
+}
+
 await build({
   logLevel: 'error',
   publicDir: false,
@@ -36,11 +51,14 @@ let ok = 0
 for (const route of routes) {
   try {
     const { html, head } = await render(route)
+    const extracted = extractPrerenderHead(html)
     let page = template.replace(
       '<div id="root"></div>',
-      `<div id="root" data-prerender-path="${route}">${html}</div>`,
+      `<div id="root" data-prerender-path="${route}">${extracted.body}</div>`,
     )
-    const headTags = [head.title, head.meta, head.link, head.script].filter(Boolean).join('\n    ')
+    const headTags = [head.title, head.meta, head.link, head.script, ...extracted.tags]
+      .filter(Boolean)
+      .join('\n    ')
     if (headTags) {
       page = page.replace(/<title>.*?<\/title>/s, '')
       page = page.replace(/\n?\s*<link rel="canonical"[^>]*>/gi, '')

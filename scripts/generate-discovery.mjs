@@ -13,6 +13,7 @@ const { BLOG_ARTICLES, BLOG_TAGLINE, BLOG_TITLE, SITE_URL } = await import(
 const esc = (value) => String(value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
 const staticRoutes = [
   ['', 'weekly', '1.0'],
+  ['/dog-owners', 'monthly', '0.9'],
   ['/blog', 'weekly', '0.9'],
   ['/science', 'monthly', '0.8'],
   ['/quiz', 'monthly', '0.8'],

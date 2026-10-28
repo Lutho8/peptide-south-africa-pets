@@ -167,11 +167,4 @@
     <xhtml:link rel="alternate" hreflang="en-ZA" href="https://pets.peptide-south-africa.com/product/immune-thymogen" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pets.peptide-south-africa.com/product/immune-thymogen" />
   </url>
-  <url>
-    <loc>https://pets.peptide-south-africa.com/product/mobility-collagen</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en-ZA" href="https://pets.peptide-south-africa.com/product/mobility-collagen" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://pets.peptide-south-africa.com/product/mobility-collagen" />
-  </url>
 </urlset>

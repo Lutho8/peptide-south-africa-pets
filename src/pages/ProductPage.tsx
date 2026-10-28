@@ -38,7 +38,7 @@ export default function ProductPage() {
       <section className="section-pad bg-cream">
         <Seo
           title="Product not found"
-          description="This formula is not in our catalog. Explore Peptides4Pets' COA-verified pet peptide and collagen line for dogs, cats and horses."
+          description="This formula is not in our catalogue. Explore the existing Peptides4Pets research vials and evidence limits."
           path={`/product/${slug ?? ''}`}
           noindex
         />

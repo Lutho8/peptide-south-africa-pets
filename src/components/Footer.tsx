@@ -77,6 +77,8 @@ export default function Footer() {
                   Editorial Policy
                 </Link>
               </li>
+              <li><Link to="/affiliate" className="text-cream/80 hover:text-amber">Partner with us</Link></li>
+              <li><Link to="/affiliate/dashboard" className="text-cream/80 hover:text-amber">Pets partner dashboard</Link></li>
               <li><Link to="/cookies" className="text-cream/80 hover:text-amber">Cookie Policy</Link></li>
               <li><Link to="/privacy" className="text-cream/80 hover:text-amber">Privacy Policy</Link></li>
               <li><Link to="/terms" className="text-cream/80 hover:text-amber">Terms &amp; Conditions</Link></li>
@@ -95,7 +97,7 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <Link to="/product/mobility-collagen" className="text-cream/80 hover:text-amber">
+                <Link to="/product/bpc-157" className="text-cream/80 hover:text-amber">
                   {t('nav.shopNow')}
                 </Link>
               </li>

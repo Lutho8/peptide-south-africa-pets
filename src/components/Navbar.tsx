@@ -16,7 +16,8 @@ const LINKS: { to: string; key?: string; label?: string }[] = [
   { to: '/science', key: 'nav.science' },
   { to: '/verify', key: 'nav.verify' },
   { to: '/blog', key: 'nav.blog' },
-  { to: '/product/mobility-collagen', label: 'Mobility Collagen' },
+  { to: '/product/bpc-157', label: 'Research vials' },
+  { to: '/affiliate', label: 'Partner with us' },
   { to: '/account', label: 'Account' },
 ]
 
@@ -34,7 +35,7 @@ export default function Navbar() {
   const navigate = useNavigate()
   const boxCount = useCartCount()
   const { t } = useI18n()
-  const ctaTarget = '/product/mobility-collagen'
+  const ctaTarget = '/product/bpc-157'
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80)
@@ -185,7 +186,7 @@ export default function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[60] flex flex-col bg-cream p-6 md:hidden"
+            className="fixed inset-0 z-[60] flex flex-col overflow-y-auto bg-cream p-6 md:hidden"
           >
             <div className="flex items-center justify-between">
               <span className="flex items-center gap-2">

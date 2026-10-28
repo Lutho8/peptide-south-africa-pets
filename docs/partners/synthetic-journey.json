@@ -1,0 +1,21 @@
+{
+  "synthetic": true,
+  "productionWrites": 0,
+  "application": "3af62ac4-867c-4a4f-8dae-81a83bd91318",
+  "enrolment": "10334f43-4b36-4151-9474-207b25148c7f",
+  "order": "218c41af-eac6-42ca-a078-706f526144e8",
+  "amount": 984,
+  "ledger": [
+    {
+      "order_id": "218c41af-eac6-42ca-a078-706f526144e8",
+      "amount_cents": 17900,
+      "status": "pending_validation",
+      "event_type": "commission"
+    }
+  ],
+  "evidence": [
+    "real application -> staff approval -> real magic-link login -> agreement -> refresh -> decoded personal QR",
+    "real customer QR -> consent cookie -> authenticated checkout -> partial deposit R0 -> verified local deposit R179 pending -> replay still R179 -> owning browser dashboard"
+  ],
+  "pageErrors": []
+}

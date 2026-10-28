@@ -58,14 +58,17 @@ export async function startPetsEftCheckout(
   items: CartItem[],
   form: PetsCheckoutForm,
   consent: PetsCheckoutConsent,
+  partnerCode?: string,
 ): Promise<EftInstructionsState> {
   const { data } = await supabase.auth.getSession()
   if (!data.session) throw new Error('Sign in securely before placing the order')
   const id = requestId(items, form)
-  const { data: response, error } = await supabase.functions.invoke('pets-eft-create-order', {
-    headers: { 'x-pets-session-id': petsSessionId() },
-    body: {
+  const result = await fetch('/api/pets-checkout', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', authorization: `Bearer ${data.session.access_token}`, 'x-pets-session-id': petsSessionId() },
+    body: JSON.stringify({
       requestId: id,
+      partnerCode: partnerCode?.trim() || undefined,
       selections: selections(items),
       firstName: form.firstName,
       lastName: form.lastName,
@@ -83,16 +86,10 @@ export async function startPetsEftCheckout(
         pet_name: form.petName,
         pet_species: form.petSpecies,
       },
-    },
+    }),
   })
-  if (error) {
-    const context = (error as { context?: Response }).context
-    if (context) {
-      const payload = await context.clone().json().catch(() => null)
-      if (payload?.error) throw new Error(payload.error)
-    }
-    throw new Error(error.message || 'EFT checkout could not be started')
-  }
+  const response = await result.json().catch(() => null)
+  if (!result.ok) throw new Error(response?.error || 'EFT checkout could not be started')
   if (!response?.order_id || !response?.payment_reference || !response?.bank || !Number.isFinite(response?.amount)) {
     throw new Error('The payment service returned an invalid response')
   }

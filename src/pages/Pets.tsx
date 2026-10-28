@@ -42,14 +42,15 @@ export default function Pets() {
   return (
     <>
       <Seo
-        title="Peptides4Pets — Evidence-Led Pet Research & Mobility Collagen"
-        description="Mobility Collagen and sealed peptide research vials for South African customers, with transparent documentation, animal-study context and evidence limits."
+        title="Peptides4Pets — Evidence-Led Peptide Research Vials"
+        description="Sealed peptide research vials for South African customers, with transparent documentation, animal-study context and evidence limits."
         path=""
       />
       <Hero />
       <LaunchCatalog />
       <QuizTeaser />
       <ProofStrip />
+      <section className="psa-container py-12"><div className="rounded-3xl p-8" style={{ background: '#e8f7f5', color: '#082b57' }}><p className="mono-label">PETS BUSINESS PARTNERS</p><h2 className="mt-3 font-serif text-4xl">Add value beyond grooming.</h2><p className="mt-4 max-w-2xl">Help clients find clear peptide research, evidence limits and questions for their veterinarian. Explore our dedicated programme for groomers, dog spas and approved non-clinical pet-care businesses.</p><Link to="/affiliate" className="mt-5 inline-block font-semibold underline">Partner with us</Link></div></section>
       <section className="psa-container py-10">
         <div className="rounded-3xl border border-sand bg-warmwhite p-7">
           <p className="mono-label text-clinical !text-[11px]">FROM OUR FOUNDER</p>

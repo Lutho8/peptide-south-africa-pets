@@ -105,7 +105,7 @@ const en: CheckoutCopy = {
   speciesHorse: 'Horse',
   ageConsent: 'I confirm that I am 18 years of age or older and authorised to place this order.',
   nutritionalConsent:
-    'I understand Mobility Collagen is a pet nutritional supplement, while experimental peptide items are sealed research materials with evidence limits stated on each product page.',
+    'I understand these peptide vials are sealed research materials with evidence limits stated on each product page.',
   labelUseConsent:
     'I will follow the supplied product documentation and involve a registered veterinarian in animal-care decisions.',
   reportScopeConsent:
@@ -180,7 +180,7 @@ const af: CheckoutCopy = {
   speciesHorse: 'Perd',
   ageConsent: 'Ek bevestig dat ek 18 jaar of ouer is en gemagtig is om hierdie bestelling te plaas.',
   nutritionalConsent:
-    'Ek verstaan dat Mobility Collagen ’n voedingsaanvulling vir troeteldiere is, terwyl eksperimentele peptieditems verseëlde navorsingsmateriaal is met bewysbeperkings op elke produkblad.',
+    'Ek verstaan dat hierdie peptiedflessies verseëlde navorsingsmateriaal is met bewysbeperkings op elke produkblad.',
   labelUseConsent:
     'Ek sal die verskafte produkdokumentasie volg en ’n geregistreerde veearts by diereversorgingsbesluite betrek.',
   reportScopeConsent:

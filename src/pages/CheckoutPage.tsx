@@ -29,6 +29,7 @@ export default function CheckoutPage() {
   const [magicSent, setMagicSent] = useState(false)
   const [authBusy, setAuthBusy] = useState(false)
   const [busy, setBusy] = useState(false)
+  const [partnerCode, setPartnerCode] = useState('')
   const [error, setError] = useState('')
   const [consent, setConsent] = useState({
     age: false,
@@ -203,7 +204,8 @@ export default function CheckoutPage() {
                   <Field label={copy.petName}><input className={inputClass} value={form.petName} onChange={(e) => setForm({ ...form, petName: e.target.value })} /></Field>
                   <Field label={copy.petSpecies}><select className={inputClass} value={form.petSpecies} onChange={(e) => setForm({ ...form, petSpecies: e.target.value as PetsCheckoutForm['petSpecies'] })}><option value="dog">{copy.speciesDog}</option><option value="cat">{copy.speciesCat}</option><option value="horse">{copy.speciesHorse}</option></select></Field>
                 </div>
-                <div className="mt-6 space-y-3 rounded-2xl border border-sand bg-cream p-4">
+                <div className="mt-6"><Field label="Pets partner code (optional)"><input className={inputClass} maxLength={64} value={partnerCode} onChange={e => setPartnerCode(e.target.value.toUpperCase())} autoComplete="off" /></Field><p className="mt-2 text-sm">Enter a Pets business code to credit a qualifying referral. Optional referral cookies are not required. Eligibility is checked before payment.</p></div>
+                  <div className="mt-6 space-y-3 rounded-2xl border border-sand bg-cream p-4">
                   <ConsentCheck
                     checked={consent.age}
                     onChange={(checked) => setConsent((current) => ({ ...current, age: checked }))}

@@ -6,19 +6,18 @@ const PRODUCTS = new Map([
   ["pets-kpv", { slug: "kpv", name: "KPV Gut & Skin Research Vial", unitPrice: 795 }],
   ["pets-recovery-blend", { slug: "recovery-blend", name: "Recovery Blend (BPC-157 + TB-500)", unitPrice: 1195 }],
   ["pets-immune-thymogen", { slug: "immune-thymogen", name: "Immune (Thymogen)", unitPrice: 845 }],
-  ["pets-mobility-collagen", { slug: "mobility-collagen", name: "Mobility Collagen", unitPrice: 395 }],
 ]);
 const SHIPPING_PRICE = 89;
 const FREE_SHIPPING_THRESHOLD = 1500;
 const CURRENCY = "ZAR";
-const POLICY_VERSION = "pets-checkout-2026-09-13";
+const POLICY_VERSION = "pets-checkout-2026-10-28";
 const REPORT_SCOPE_VERSION = "pets-report-scope-2026-09-01";
 
 const CONSENT_STATEMENTS = {
   age:
     "I confirm that I am 18 years of age or older and authorised to place this order.",
   nutritionalScope:
-    "I understand Mobility Collagen is a pet nutritional supplement, while experimental peptide items are sealed research materials with evidence limits stated on each product page.",
+    "I understand these peptide vials are sealed research materials with evidence limits stated on each product page.",
   labelUse:
     "I will follow the supplied product documentation and involve a registered veterinarian in animal-care decisions.",
   reportScope:
@@ -61,6 +60,7 @@ type CheckoutConsent = {
 };
 
 type CheckoutBody = {
+  partnerAttribution?: { code?: unknown; campaign?: unknown; method?: unknown; click_id?: unknown };
   requestId?: unknown;
   selections?: Array<{ kind?: unknown; slug?: unknown; quantity?: unknown }>;
   firstName?: unknown;
@@ -155,7 +155,8 @@ Deno.serve(async (request: Request) => {
     const supabaseUrl = Deno.env.get("SUPABASE_URL");
     const anonKey = Deno.env.get("SUPABASE_ANON_KEY");
     const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
-    if (!supabaseUrl || !anonKey || !serviceRoleKey) throw new Error("Missing server configuration");
+    const checkoutStoreSecret = Deno.env.get("CHECKOUT_STORE_SECRET");
+    if (!supabaseUrl || !anonKey || !serviceRoleKey || !checkoutStoreSecret) throw new Error("Missing server configuration");
 
     const token = authHeader.slice("Bearer ".length);
     const authClient = createClient(supabaseUrl, anonKey, {
@@ -366,9 +367,38 @@ Deno.serve(async (request: Request) => {
       ]);
     }
 
+    // Freeze programme identity and approved terms before payment instructions.
+    // The database revalidates the partner, click evidence, source order and
+    // product allowlist. Browser-supplied amounts/rates/programmes are not used.
+    if (body.partnerAttribution != null) {
+      const referral = body.partnerAttribution;
+      const code = typeof referral.code === "string" ? referral.code.trim().toUpperCase() : "";
+      const campaign = referral.campaign == null ? null : cleanText(referral.campaign, 64);
+      const method = referral.method;
+      if (!/^PETS-[A-Z0-9_-]{3,70}$/.test(code) ||
+          !["entered_code", "referral_click", "qr"].includes(String(method)) ||
+          (referral.campaign != null && (!campaign || !/^[a-z0-9][a-z0-9_-]{0,63}$/.test(campaign))) ||
+          (method !== "entered_code" && (typeof referral.click_id !== "string" || !/^[0-9a-f-]{36}$/i.test(referral.click_id)))) {
+        return json(request, { error: "Invalid Pets partner referral.", code: "PARTNER_CODE_INVALID" }, 400);
+      }
+      const { data: programme, error: programmeError } = await admin.from("partner_programmes")
+        .select("id").eq("programme_key", "pets_b2b").eq("storefront", "pets").eq("financial_activation", true).maybeSingle();
+      if (programmeError || !programme) return json(request, { error: "Pets referrals are not active.", code: "PARTNER_UNAVAILABLE" }, 409);
+      const { data: policy, error: policyError } = await admin.from("partner_policies")
+        .select("policy_version").eq("programme_id", programme.id).eq("active", true).not("approved_at", "is", null).maybeSingle();
+      if (policyError || !policy) return json(request, { error: "Pets referral terms are not available.", code: "PARTNER_UNAVAILABLE" }, 409);
+      const { error: attributionError } = await admin.rpc("freeze_partner_attribution", {
+        p_order_id: order.id, p_programme_key: "pets_b2b", p_referral_code: code,
+        p_campaign_key: campaign, p_method: method, p_storefront: "pets",
+        p_commissionable_value_cents: Math.round(priced.subtotal * 100),
+        p_policy_version: policy.policy_version, p_click_id: method === "entered_code" ? null : referral.click_id,
+      });
+      if (attributionError) return json(request, { error: "Pets referral could not be saved. Correct or remove the code and retry.", code: "PARTNER_UNAVAILABLE" }, 409);
+    }
+
     const settlementResponse = await fetch(`${supabaseUrl}/functions/v1/eft-create-order`, {
       method: "POST",
-      headers: { Authorization: authHeader, apikey: serviceRoleKey, "Content-Type": "application/json" },
+      headers: { Authorization: authHeader, apikey: serviceRoleKey, "Content-Type": "application/json", "x-checkout-store-secret": checkoutStoreSecret },
       body: JSON.stringify({
         requestId,
         orderId: order.id,

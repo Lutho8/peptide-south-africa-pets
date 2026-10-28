@@ -2,6 +2,11 @@ import { Suspense, lazy } from 'react'
 import { Routes, Route, Navigate } from 'react-router'
 import Layout from '@/components/Layout'
 import Pets from '@/pages/Pets'
+import PetsEntryPage from '@/pages/PetsEntryPage'
+const PartnerPage = lazy(() => import('@/pages/PartnerPage'))
+const PartnerTermsPage = lazy(() => import('@/pages/PartnerTermsPage'))
+const PartnerDashboardPage = lazy(() => import('@/pages/PartnerDashboardPage'))
+const PartnerReferralPage = lazy(() => import('@/pages/PartnerReferralPage'))
 
 // Route-level code splitting — the landing page stays eager (LCP), the
 // funnel/evidence routes load on demand.
@@ -32,7 +37,11 @@ export default function App() {
   return (
     <Routes>
       <Route element={<Layout />}>
-        <Route index element={<Pets />} />
+        <Route index element={<PetsEntryPage />} />
+        <Route path="affiliate" element={<Suspense fallback={<RouteFallback />}><PartnerPage /></Suspense>} />
+        <Route path="affiliate/terms" element={<Suspense fallback={<RouteFallback />}><PartnerTermsPage /></Suspense>} />
+        <Route path="affiliate/dashboard" element={<Suspense fallback={<RouteFallback />}><PartnerDashboardPage /></Suspense>} />
+        <Route path="r/pets/:code" element={<Suspense fallback={<RouteFallback />}><PartnerReferralPage /></Suspense>} />
         <Route path="pets" element={<Pets />} />
         <Route
           path="product/:slug"

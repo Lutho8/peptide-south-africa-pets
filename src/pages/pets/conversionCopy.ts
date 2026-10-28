@@ -49,7 +49,7 @@ const en: ConversionCopy = {
   heroOverline: 'PEPTIDES4PETS · SOUTH AFRICA',
   heroH1: 'Pet research, made clear.',
   heroSub:
-    'All five published catalogue products are in stock. Mobility Collagen is a pet nutritional supplement; experimental peptides are sealed research vials with animal evidence and study limits shown clearly.',
+    'Explore four existing sealed peptide research vials, with animal evidence and study limits shown clearly.',
   heroCtaQuiz: 'Explore the research catalogue',
   heroCtaShop: 'View the catalogue',
   heroTrust1: 'Evidence graded',
@@ -57,16 +57,16 @@ const en: ConversionCopy = {
   heroTrust3: 'South African fulfilment',
 
   launchOverline: 'THE LAUNCH BATCH',
-  launchTitle: 'Five products. All in stock.',
+  launchTitle: 'Four peptide research vials.',
   launchSub: 'Order any published catalogue product by secure EFT for delivery in South Africa. Experimental peptides are supplied as sealed research vials with evidence grades and study limits.',
   launchAdd: 'Add',
   launchAdded: 'Added ✓',
   launchDetails: 'DETAILS →',
   launchCitations: 'KEY EVIDENCE ({count})',
-  launchHplc: '≥99% HPLC',
+  launchHplc: 'REPORT SCOPE SHOWN',
   launchResearch: 'EVIDENCE GRADED',
   launchResearchStatus: 'RESEARCH MATERIAL · ANIMAL EVIDENCE GRADED',
-  launchNote: 'ALL FIVE PRODUCTS IN STOCK · SECURE EFT CHECKOUT · SEALED PEPTIDE RESEARCH VIALS · EVIDENCE LIMITS SHOWN',
+  launchNote: 'SECURE EFT CHECKOUT · SEALED PEPTIDE RESEARCH VIALS · EVIDENCE LIMITS SHOWN',
 
   qtOverline: '60-SECOND QUIZ',
   qtTitle: 'A clearer research starting point.',
@@ -87,7 +87,7 @@ const af: ConversionCopy = {
   heroOverline: 'PEPTIDES4PETS · SUID-AFRIKA',
   heroH1: 'Troeteldiernavorsing, duidelik gemaak.',
   heroSub:
-    'Al vyf gepubliseerde katalogusprodukte is in voorraad. Mobility Collagen is ’n voedingsaanvulling; eksperimentele peptiede is verseëlde navorsingsflessies met dierbewyse en studiebeperkings duidelik aangedui.',
+    'Verken vier bestaande verseëlde peptied-navorsingsflessies met dierbewyse en studiebeperkings duidelik aangedui.',
   heroCtaQuiz: 'Verken die navorsingskatalogus',
   heroCtaShop: 'Bekyk die katalogus',
   heroTrust1: 'Bewyse gegradeer',
@@ -95,18 +95,18 @@ const af: ConversionCopy = {
   heroTrust3: 'Suid-Afrikaanse vervulling',
 
   launchOverline: 'DIE BEKENDSTELLINGSLOT',
-  launchTitle: 'Vyf produkte. Almal in voorraad.',
+  launchTitle: 'Vier peptied-navorsingsflessies.',
   launchSub:
     'Bestel enige gepubliseerde katalogusproduk per veilige EFT vir aflewering in Suid-Afrika. Eksperimentele peptiede word as verseëlde navorsingsflessies met bewysgraderings en studiebeperkings verskaf.',
   launchAdd: 'Voeg by',
   launchAdded: 'Bygevoeg ✓',
   launchDetails: 'BESONDERHEDE →',
   launchCitations: 'SLEUTELBEWYSE ({count})',
-  launchHplc: '≥99% HPLC',
+  launchHplc: 'VERSLAGOMVANG GEWYS',
   launchResearch: 'BEWYSE GEGRADEER',
   launchResearchStatus: 'NAVORSINGSMATERIAAL · DIERBEWYSE GEGRADUEER',
   launchNote:
-    'AL VYF PRODUKTE IN VOORRAAD · VEILIGE EFT-BETALING · VERSEËLDE PEPTIED-NAVORSINGSFLESSIES · BEPERKINGS AANGEDUI',
+    'VEILIGE EFT-BETALING · VERSEËLDE PEPTIED-NAVORSINGSFLESSIES · BEPERKINGS AANGEDUI',
 
   qtOverline: '60-SEKONDE-QUIZ',
   qtTitle: '’n Duideliker navorsingsbeginpunt.',

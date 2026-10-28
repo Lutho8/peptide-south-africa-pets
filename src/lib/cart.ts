@@ -1,7 +1,7 @@
 /**
  * Peptides4Pets — "Launch Box" cart.
  *
- * The five published catalogue products are live and checkout-eligible through
+ * The four published catalogue products are live and checkout-eligible through
  * the secure EFT flow (see lib/eftCheckout.ts). Client totals are display-only;
  * the server recomputes every line in pets-eft-create-order.
  *
@@ -25,7 +25,6 @@ export const CHECKOUT_ELIGIBLE = new Set([
   'kpv',
   'recovery-blend',
   'immune-thymogen',
-  'mobility-collagen',
 ])
 
 /** True when a cart line may go through the live EFT checkout. */

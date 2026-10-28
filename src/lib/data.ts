@@ -17,7 +17,7 @@ export interface Product {
   firstToLaunch?: boolean
 }
 
-export const PRODUCTS: Product[] = [
+const HISTORICAL_PRODUCTS: Product[] = [
   {
     slug: 'bpc-157',
     name: 'BPC-157 Research Vial',
@@ -143,6 +143,9 @@ export const PRODUCTS: Product[] = [
     ],
   },
 ]
+
+// Retain historical definitions; only the four existing peptide vials are offered.
+export const PRODUCTS = HISTORICAL_PRODUCTS.filter(product => product.slug !== 'mobility-collagen')
 
 /** Legacy export retained for compatibility. Public counters come from Supabase. */
 export const TOTAL_WAITING = 0
@@ -419,7 +422,7 @@ export interface PetProduct {
   comingSoon?: boolean;
 }
 
-export const PET_PRODUCTS: PetProduct[] = [
+const HISTORICAL_PET_PRODUCTS: PetProduct[] = [
   {
     slug: 'bpc-157',
     name: 'BPC-157 Research Vial',
@@ -506,6 +509,8 @@ export const PET_PRODUCTS: PetProduct[] = [
     comingSoon: true,
   },
 ];
+
+export const PET_PRODUCTS = HISTORICAL_PET_PRODUCTS.filter(product => !product.comingSoon && product.slug !== 'mobility-collagen');
 
 export function formatZAR(n: number): string {
   return `R${n.toLocaleString('en-ZA').replace(/,/g, ',')}`;

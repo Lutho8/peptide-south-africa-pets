@@ -35,11 +35,11 @@ assert(checkout.includes('buildPetsCheckoutConsent'), 'Checkout must create a ve
 assert(checkout.includes('consent.marketing'), 'Marketing consent must remain separate and optional')
 assert(edge.includes('const PRODUCTS = new Map'), 'Pets multi-product price authority must live on the server')
 assert(edge.includes('["pets-bpc-157"'), 'BPC-157 must be server-priced before checkout')
-for (const slug of ['bpc-157', 'kpv', 'recovery-blend', 'immune-thymogen', 'mobility-collagen']) {
+for (const slug of ['bpc-157', 'kpv', 'recovery-blend', 'immune-thymogen']) {
   assert(cart.includes(`'${slug}'`), `${slug} must be checkout eligible`)
 }
-assert(consent.includes('pets-checkout-2026-09-13'), 'Checkout consent version must match the current policy')
-assert(edge.includes('pets-checkout-2026-09-13'), 'Server consent version must match the storefront')
+assert(consent.includes('pets-checkout-2026-10-28'), 'Checkout consent version must match the current policy')
+assert(edge.includes('pets-checkout-2026-10-28'), 'Server consent version must match the storefront')
 assert(edge.includes('selections: body.selections'), 'Pets EFT handoff must forward server-priceable cart selections')
 assert(edge.includes('requestId,'), 'Pets EFT handoff must forward the idempotency request ID')
 assert(edge.includes('orderId: order.id'), 'Pets EFT handoff must settle the existing Pets order rather than create a duplicate')

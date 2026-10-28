@@ -20,7 +20,7 @@ const staticRoutes = [
   ['/verify', 'monthly', '0.6'],
   ['/editorial-policy', 'monthly', '0.6'],
 ]
-const productSlugs = ['bpc-157', 'kpv', 'recovery-blend', 'immune-thymogen', 'mobility-collagen']
+const productSlugs = ['bpc-157', 'kpv', 'recovery-blend', 'immune-thymogen']
 
 const urlRows = [
   ...staticRoutes.map(([path, changefreq, priority]) => ({ path, changefreq, priority })),

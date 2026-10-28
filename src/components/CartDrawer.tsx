@@ -45,7 +45,7 @@ export default function CartDrawer() {
       </div>
       {!items.length ? <div className="py-10">
         <p>{af ? 'Jou mandjie is leeg.' : 'Your basket is empty.'}</p>
-        <Link onClick={closeCart} to="/product/mobility-collagen" className="mt-6 inline-block underline">{t('nav.shopNow')}</Link>
+        <Link onClick={closeCart} to="/product/bpc-157" className="mt-6 inline-block underline">{t('nav.shopNow')}</Link>
       </div> : <>
         <ul className="mt-8 space-y-6">{items.map(item => <li key={item.slug} className="border-b border-sand pb-5">
           <Link onClick={closeCart} to={`/product/${item.slug}`} className="font-serif text-xl underline">{getPetProduct(item.slug)?.name}</Link>

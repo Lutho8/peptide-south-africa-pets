@@ -6,10 +6,13 @@
   "cleanUrls": true,
   "redirects": [
     { "source": "/blog/senior-dog-bpc-157-tb-500-story", "destination": "/blog/bpc-157-dog-recovery-videos-south-africa", "permanent": true },
-    { "source": "/waitlist", "destination": "/product/mobility-collagen", "permanent": true },
+    { "source": "/waitlist", "destination": "/product/bpc-157", "permanent": true },
     { "source": "/pets", "destination": "/", "permanent": true }
   ],
   "rewrites": [
+    { "source": "/affiliate", "destination": "/" },
+    { "source": "/affiliate/:path*", "destination": "/" },
+    { "source": "/r/pets/:path*", "destination": "/" },
     { "source": "/queue", "destination": "/" },
     { "source": "/checkout", "destination": "/" },
     { "source": "/checkout/:path*", "destination": "/" },
@@ -17,6 +20,8 @@
     { "source": "/admin/:path*", "destination": "/" }
   ],
   "headers": [
+    { "source": "/affiliate/dashboard", "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" }, { "key": "Cache-Control", "value": "private, no-store" }] },
+    { "source": "/r/pets/:path*", "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }] },
     { "source": "/queue", "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" }] },
     { "source": "/checkout/:path*", "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" }] },
     { "source": "/account", "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" }] },

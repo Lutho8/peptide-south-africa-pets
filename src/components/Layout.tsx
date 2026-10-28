@@ -28,7 +28,7 @@ function DefaultMeta({ pathname }: { pathname: string }) {
         url: SITE_URL,
         logo: `${SITE_URL}/coa-stamp.svg`,
         description:
-          "An evidence-led South African pet research platform with Mobility Collagen as a clearly separated nutritional product.",
+          "An evidence-led South African pet research platform with sealed peptide vials and clear study limits.",
         contactPoint: { '@type': 'ContactPoint', contactType: 'customer service', areaServed: 'ZA' },
       },
       {

@@ -24,7 +24,7 @@ const en: Dict = {
   'nav.waitlist': 'Waitlist',
   'nav.shopNow': 'Shop now',
   'nav.marquee':
-    'MOBILITY COLLAGEN NOW LIVE — SECURE EFT CHECKOUT · EXPERIMENTAL PEPTIDES — RESEARCH INFORMATION ONLY · ',
+    'SEALED RESEARCH PEPTIDE VIALS · EFT CHECKOUT · RESEARCH INFORMATION ONLY · ',
   'nav.dismissAnnouncement': 'Dismiss announcement',
   'nav.waitingChip': '{count} SA PET OWNERS WAITING',
   'nav.waitlistOpen': 'FOUNDING WAITLIST OPEN',
@@ -641,7 +641,7 @@ Object.assign(en, {
   'pdp.outro.back': '← BACK TO CATALOG',
 
   /* ---------------- Footer ---------------- */
-  'foot.tagline': 'Evidence-led pet research, with nutrition and experimental research kept clearly separate. Cape Town, South Africa.',
+  'foot.tagline': 'Evidence-led pet research, sealed peptide vials and clear study limits. Cape Town, South Africa.',
   'foot.catalog': 'CATALOG',
   'foot.learn': 'LEARN',
   'foot.science': 'Science & evidence library',
@@ -713,7 +713,7 @@ const af: Dict = {
   'nav.waitlist': 'Waglys',
   'nav.shopNow': 'Koop nou',
   'nav.marquee':
-    'MOBILITY COLLAGEN NOU BESKIKBAAR — VEILIGE EFT-BETALING · EKSPERIMENTELE PEPTIEDE — SLEGS NAVORSINGSINLIGTING · ',
+    'VERSEËLDE NAVORSINGSPEPTIED-FLESSIES · EFT-BETALING · SLEGS NAVORSINGSINLIGTING · ',
   'nav.dismissAnnouncement': 'Verwyder aankondiging',
   'nav.waitingChip': '{count} SA-TROETELDIEREËNAARS WAG',
   'nav.waitlistOpen': 'STIGTERSWAGLYS OOP',
@@ -1332,7 +1332,7 @@ Object.assign(af, {
   'pdp.outro.back': '← TERUG NA KATALOGUS',
 
   /* ---------------- Footer ---------------- */
-  'foot.tagline': 'Bewysgerigte troeteldiernavorsing, met voeding en eksperimentele navorsing duidelik apart. Kaapstad, Suid-Afrika.',
+  'foot.tagline': 'Bewysgerigte troeteldiernavorsing, verseëlde peptiedflessies en duidelike studiebeperkings. Kaapstad, Suid-Afrika.',
   'foot.catalog': 'KATALOGUS',
   'foot.learn': 'LEER',
   'foot.science': 'Wetenskap- & bewysbiblioteek',

@@ -95,7 +95,7 @@ export default function Navbar() {
           <div className="hidden items-center gap-7 md:flex">
             {LINKS.map((l) => (
               <NavLink
-                key={l.to}
+                key={`${l.to}:${l.key ?? l.label}`}
                 to={l.to}
                 className={({ isActive }) =>
                   cn(
@@ -213,7 +213,7 @@ export default function Navbar() {
             <div className="mt-12 flex flex-col gap-6">
               {LINKS.map((l, i) => (
                 <motion.div
-                  key={l.to}
+                  key={`${l.to}:${l.key ?? l.label}`}
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.06 * i }}

@@ -19,10 +19,12 @@ const routes = [...staticRoutes, ...productRoutes, ...blogRoutes]
 // React 19 hoists document metadata out of the component tree during streaming,
 // so react-helmet-async can leave its server context empty. Capture those tags
 // from the rendered stream and move them into <head> before writing each page.
+// Inline JSON-LD is not hoisted by React. Keep it in the rendered tree so
+// hydration sees the same nodes; structured data is valid in the body too.
 function extractPrerenderHead(html) {
   const tags = []
   const body = html.replace(
-    /<title>.*?<\/title>|<meta\s[^>]*\/>|<link\s[^>]*\/>|<script\s+type="application\/ld\+json">[\s\S]*?<\/script>/gi,
+    /<title>.*?<\/title>|<meta\s[^>]*\/>|<link\s[^>]*\/>/gi,
     (tag) => {
       tags.push(tag)
       return ''

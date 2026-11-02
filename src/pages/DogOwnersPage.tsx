@@ -1,5 +1,6 @@
 import { Link } from 'react-router'
 import { ArrowRight, CheckCircle2, Eye, HeartPulse, Moon, Move, ShieldCheck } from 'lucide-react'
+import MoreGoodDays from '@/components/MoreGoodDays'
 import WhatsAppEnquiryLink from '@/components/WhatsAppEnquiryLink'
 import Seo, { SITE_URL } from '@/components/Seo'
 import { asset } from '@/lib/asset'
@@ -135,7 +136,7 @@ export default function DogOwnersPage() {
         </section>
 
         <section className="section-pad bg-clinical text-warmwhite">
-          <div className="psa-container grid gap-12 lg:grid-cols-2 lg:items-center">
+          <div className="psa-container max-w-4xl">
             <div>
               <p className="mono-label text-cream/70">THE QUESTION BEHIND THE RESEARCH</p>
               <h2 className="mt-4 font-serif text-5xl leading-tight">Could peptide research help create more healthy years?</h2>
@@ -145,13 +146,6 @@ export default function DogOwnersPage() {
               <Link to="/science" className="mt-8 inline-flex items-center gap-2 rounded-full border border-cream/50 px-6 py-3.5 font-semibold hover:bg-cream hover:text-clinical">
                 Review the evidence library <ArrowRight className="h-4 w-4" />
               </Link>
-            </div>
-            <div className="grid grid-cols-2 gap-3 text-center sm:grid-cols-4 lg:grid-cols-2">
-              {['more walks', 'more play', 'more fetch', 'more good days'].map((line) => (
-                <div key={line} className="flex aspect-square items-center justify-center rounded-full border border-cream/20 bg-cream/5 p-5 font-serif text-2xl sm:text-3xl">
-                  {line}
-                </div>
-              ))}
             </div>
           </div>
         </section>
@@ -179,6 +173,8 @@ export default function DogOwnersPage() {
             </div>
           </div>
         </section>
+
+        <MoreGoodDays />
 
         <section aria-labelledby="enquiry-heading" className="section-pad bg-clinical-tint">
           <div className="psa-container max-w-4xl">

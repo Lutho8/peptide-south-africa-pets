@@ -22,14 +22,6 @@ const LINKS: { to: string; key?: string; label?: string }[] = [
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
-  const [dismissed, setDismissed] = useState(() => {
-    if (typeof window === 'undefined') return false
-    try {
-      return window.sessionStorage.getItem('psa_pets_annbar') === 'off'
-    } catch {
-      return false
-    }
-  })
   const [drawer, setDrawer] = useState(false)
   const navigate = useNavigate()
   const boxCount = useCartCount()
@@ -43,34 +35,9 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  function dismissBar() {
-    sessionStorage.setItem('psa_pets_annbar', 'off')
-    setDismissed(true)
-  }
-
   return (
     <header className="sticky top-0 z-50">
-      {/* Section 1 — Announcement bar */}
-      {!dismissed && (
-        <div className="relative flex h-9 items-center overflow-hidden bg-espresso text-cream">
-          <div className="marquee-track">
-            {[0, 1].map((n) => (
-              <span key={n} className="mono-label whitespace-nowrap !text-[11px] text-cream">
-                {t('nav.marquee').repeat(4)}
-              </span>
-            ))}
-          </div>
-          <button
-            onClick={dismissBar}
-            aria-label={t('nav.dismissAnnouncement')}
-            className="mono-label absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer bg-espresso px-2 !text-[11px] text-cream/70 hover:text-cream"
-          >
-            ✕
-          </button>
-        </div>
-      )}
-
-      {/* Section 2 — Nav */}
+      {/* Main navigation */}
       <nav
         className={cn(
           'flex h-[72px] items-center transition-all duration-300',

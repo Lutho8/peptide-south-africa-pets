@@ -37,6 +37,9 @@ for (const width of [320, 390, 768, 1280, 1440]) {
       await expect(page.locator('head link[rel=canonical]')).toHaveAttribute('href', 'https://pets.peptide-south-africa.com/dog-owners')
       await expect(page.locator('#root script[type="application/ld+json"]')).toHaveCount(2)
     }
+    await expect(page.locator('header').first()).toHaveJSProperty('offsetHeight', 72)
+    await expect(page.locator('header .marquee-track')).toHaveCount(0)
+    await expect(page.getByRole('heading', { name: 'More walks. More play. More good days together.', level: 2 })).toHaveCount(1)
     const links = page.getByRole('link', { name: 'Ask us on WhatsApp', exact: true })
     await expect(links).toHaveCount(2)
     for (const link of await links.all()) {
@@ -78,4 +81,35 @@ test('no attribution persists or leaks into later journeys', async ({ page }) =>
   await expect(page.getByRole('link', { name: 'Ask us on WhatsApp' }).first()).not.toHaveAttribute('href', /Campaign/)
   await page.goto('/science?campaign=senior-dog-flyer-pilot')
   await expect(page.locator('nav').getByRole('link', { name: 'WhatsApp us', exact: true }).first()).not.toHaveAttribute('href', /Campaign|dog-owner/)
+})
+
+
+test('word cycle can be paused and resumed with the keyboard', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'no-preference' })
+  await page.goto('/dog-owners')
+  const pause = page.getByRole('button', { name: 'Pause word animation' })
+  await pause.scrollIntoViewIfNeeded()
+  await pause.focus()
+  await page.keyboard.press('Enter')
+  const play = page.getByRole('button', { name: 'Play word animation' })
+  await expect(play).toHaveAttribute('aria-pressed', 'true')
+  const words = page.locator('.more-good-days-words')
+  await expect(words).toHaveCSS('animation-play-state', 'paused')
+  const frozen = await words.evaluate(el => getComputedStyle(el).transform)
+  await page.waitForTimeout(150)
+  expect(await words.evaluate(el => getComputedStyle(el).transform)).toBe(frozen)
+  await page.keyboard.press('Enter')
+  await expect(words).toHaveCSS('animation-play-state', 'running')
+  await expect.poll(() => words.evaluate(el => getComputedStyle(el).transform)).not.toBe(frozen)
+  const audit = await new AxeBuilder({ page }).include('.more-good-days').analyze()
+  expect(audit.violations).toEqual([])
+})
+
+test('reduced motion shows static text without a redundant playback control', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+  await page.goto('/dog-owners')
+  await expect(page.locator('.more-good-days-words')).toHaveCSS('animation-name', 'none')
+  await expect(page.getByRole('button', { name: 'Pause word animation' })).toBeHidden()
+  await expect(page.getByRole('heading', { name: 'More walks. More play. More good days together.', level: 2 })).toHaveCount(1)
+  await expect(page.locator('.more-good-days [aria-live]')).toHaveCount(0)
 })

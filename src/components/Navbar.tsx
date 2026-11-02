@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ShoppingBag } from 'lucide-react'
-import { waLink } from '@/lib/data'
+import WhatsAppEnquiryLink from '@/components/WhatsAppEnquiryLink'
 import { useCartCount, openCart } from '@/lib/cart'
 import { useI18n, LanguageToggle } from '@/lib/i18n'
 import { cn } from '@/lib/utils'
@@ -79,19 +79,19 @@ export default function Navbar() {
             : 'border-b border-transparent bg-cream/60 backdrop-blur-sm md:bg-transparent',
         )}
       >
-        <div className="psa-container flex items-center justify-between gap-4">
+        <div className="psa-container flex items-center justify-between gap-2 lg:gap-4">
           <Link to="/" className="flex items-center gap-2.5" aria-label="Peptides4Pets">
             <img
               src={asset('/psa-logo-horizontal.png')}
               alt="Peptides4Pets"
-              className="h-8 w-auto"
+              className="h-auto w-20 shrink-0 min-[400px]:w-28 md:w-28 md:h-auto"
             />
-            <span className="mono-label rounded-full border border-amber px-2 py-0.5 !text-[10px] text-amber-deep">
+            <span className="mono-label hidden rounded-full border border-amber px-2 py-0.5 !text-[10px] text-amber-deep min-[400px]:inline">
               PETS
             </span>
           </Link>
 
-          <div className="hidden items-center gap-7 md:flex">
+          <div className="hidden items-center gap-4 xl:flex">
             {LINKS.map((l) => (
               <NavLink
                 key={l.to}
@@ -108,8 +108,8 @@ export default function Navbar() {
             ))}
           </div>
 
-          <div className="hidden items-center gap-3 md:flex">
-            <span className="mono-label rounded-full border border-amber px-3 py-1.5 !text-[10px] tabular-nums text-amber-deep">
+          <div className="hidden items-center gap-3 xl:flex">
+            <span className="mono-label hidden 2xl:inline rounded-full border border-amber px-3 py-1.5 !text-[10px] tabular-nums text-amber-deep">
               {t('badge.liveNow')}
             </span>
             <button
@@ -139,19 +139,20 @@ export default function Navbar() {
               {t('nav.shopNow')}
             </button>
             <LanguageToggle />
-            <a
-              href={waLink(t('nav.waMsg'))}
-              target="_blank"
-              rel="noreferrer"
-              aria-label={t('nav.waAria')}
+            <WhatsAppEnquiryLink
+              message={t('nav.waMsg')}
+              label={t('nav.waAria')}
               className="rounded-full border border-clinical/30 p-2 transition-colors hover:bg-clinical-tint"
             >
               <img src={asset('/icon-whatsapp.svg')} alt="" className="h-5 w-5" />
-            </a>
+            </WhatsAppEnquiryLink>
           </div>
 
           {/* mobile: cart + hamburger */}
-          <div className="flex items-center gap-1 md:hidden">
+          <div className="flex shrink-0 items-center gap-1 xl:hidden">
+            <WhatsAppEnquiryLink message={t('nav.waMsg')} label={t('nav.waAria')} className="text-clinical hover:bg-clinical-tint">
+              <img src={asset('/icon-whatsapp.svg')} alt="" className="h-5 w-5" />
+            </WhatsAppEnquiryLink>
             <button
               onClick={openCart}
               aria-label={t('nav.cartAria', { count: boxCount })}
@@ -185,7 +186,7 @@ export default function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[60] flex flex-col bg-cream p-6 md:hidden"
+            className="fixed inset-0 z-[60] flex flex-col overflow-y-auto bg-cream p-6 xl:hidden"
           >
             <div className="flex items-center justify-between">
               <span className="flex items-center gap-2">
@@ -227,7 +228,10 @@ export default function Navbar() {
                 </motion.div>
               ))}
             </div>
-            <div className="mt-auto space-y-4">
+            <div className="mt-auto space-y-4 pt-8">
+              <WhatsAppEnquiryLink message={t('nav.waMsg')} onClick={() => setDrawer(false)} className="w-full border border-clinical px-6 py-3 font-semibold text-clinical">
+                {t('nav.waAria')}
+              </WhatsAppEnquiryLink>
               <p className="mono-label !text-[11px] text-amber-deep">
                 {t('badge.liveNow')}
               </p>

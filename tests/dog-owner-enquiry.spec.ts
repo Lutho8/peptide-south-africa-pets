@@ -1,6 +1,21 @@
-import { test, expect } from '@playwright/test'
+import { test, expect, type Page } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
 import { dogOwnerEnquiryMessage, enquiryCampaign } from '../src/lib/enquiryCampaign'
+
+const pageErrors = new WeakMap<Page, string[]>()
+
+test.beforeEach(async ({ page }) => {
+  const errors: string[] = []
+  pageErrors.set(page, errors)
+  page.on('pageerror', error => errors.push(`${page.url()}: ${error.message}`))
+  page.on('console', message => {
+    if (message.type() === 'error' && /hydrat|server rendered/i.test(message.text())) errors.push(message.text())
+  })
+})
+
+test.afterEach(async ({ page }) => {
+  expect(pageErrors.get(page)).toEqual([])
+})
 
 test('accepts only a single known public campaign code', () => {
   expect(enquiryCampaign('?campaign=senior-dog-flyer-pilot')).toBe('senior-dog-flyer-pilot')
@@ -15,9 +30,17 @@ for (const width of [320, 390, 768, 1280, 1440]) {
   test(`education and enquiry work at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 844 })
     await page.goto('/dog-owners?campaign=senior-dog-flyer-pilot&email=private%40example.com')
+    if (process.env.ENQUIRY_PRERENDER) {
+      await expect(page.locator('#root')).toHaveAttribute('data-prerender-path', '/dog-owners')
+      await expect(page.locator('head title')).toHaveCount(1)
+      await expect(page.locator('head link[rel=canonical]')).toHaveCount(1)
+      await expect(page.locator('head link[rel=canonical]')).toHaveAttribute('href', 'https://pets.peptide-south-africa.com/dog-owners')
+      await expect(page.locator('#root script[type="application/ld+json"]')).toHaveCount(2)
+    }
     const links = page.getByRole('link', { name: 'Ask us on WhatsApp', exact: true })
     await expect(links).toHaveCount(2)
     for (const link of await links.all()) {
+      await expect(link).toHaveAttribute('href', /senior-dog-flyer-pilot/)
       const href = new URL((await link.getAttribute('href'))!)
       expect(href.origin + href.pathname).toBe('https://wa.me/27721242377')
       expect(href.searchParams.get('text')).toContain('Campaign reference: senior-dog-flyer-pilot')

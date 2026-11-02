@@ -1,7 +1,11 @@
-import type { ReactNode } from 'react'
+import { useSyncExternalStore, type ReactNode } from 'react'
 import { useLocation } from 'react-router'
 import { waLink } from '@/lib/data'
 import { dogOwnerEnquiryMessage } from '@/lib/enquiryCampaign'
+
+const subscribe = () => () => {}
+const clientSnapshot = () => true
+const serverSnapshot = () => false
 
 /** Plain link: no click telemetry, storage, account lookup or send action. */
 export default function WhatsAppEnquiryLink({
@@ -14,8 +18,11 @@ export default function WhatsAppEnquiryLink({
   onClick?: () => void
 }) {
   const { pathname, search } = useLocation()
+  // Match the generic prerendered link on the first hydration pass, then apply
+  // the current URL's public campaign code without persisting visitor state.
+  const hydrated = useSyncExternalStore(subscribe, clientSnapshot, serverSnapshot)
   const text = pathname === '/dog-owners'
-    ? dogOwnerEnquiryMessage(search)
+    ? dogOwnerEnquiryMessage(hydrated ? search : '')
     : message ?? 'Hi Peptides4Pets! I have a question about your pet products.'
 
   return (

@@ -1,5 +1,6 @@
 import { Link } from 'react-router'
 import { ArrowRight, CheckCircle2, Eye, HeartPulse, Moon, Move, ShieldCheck } from 'lucide-react'
+import WhatsAppEnquiryLink from '@/components/WhatsAppEnquiryLink'
 import Seo, { SITE_URL } from '@/components/Seo'
 import { asset } from '@/lib/asset'
 
@@ -94,9 +95,15 @@ export default function DogOwnersPage() {
               <p className="mt-7 max-w-xl text-lg leading-relaxed text-cream/85">
                 Aging changes every dog differently. Learn what to watch for, what to ask your veterinarian and how we separate nutritional support from experimental peptide research.
               </p>
-              <a href="#signs-of-aging" className="mt-9 inline-flex items-center gap-2 rounded-full bg-amber px-6 py-3.5 font-semibold text-warmwhite hover:bg-amber-deep">
-                Explore signs of aging <ArrowRight className="h-4 w-4" />
-              </a>
+              <div className="mt-9 flex flex-wrap items-center gap-3">
+                <a href="#signs-of-aging" className="inline-flex items-center gap-2 rounded-full bg-amber px-6 py-3.5 font-semibold text-warmwhite hover:bg-amber-deep">
+                  Explore signs of aging <ArrowRight className="h-4 w-4" />
+                </a>
+                <WhatsAppEnquiryLink className="border border-cream/70 px-6 py-3.5 font-semibold text-warmwhite hover:bg-espresso">
+                  Ask us on WhatsApp
+                </WhatsAppEnquiryLink>
+              </div>
+              <p className="mt-4 text-sm leading-relaxed text-cream/85">Opens WhatsApp with an editable draft. You choose whether to send. For health or treatment questions, speak to your veterinarian.</p>
             </div>
           </div>
         </section>
@@ -170,6 +177,18 @@ export default function DogOwnersPage() {
                 </article>
               ))}
             </div>
+          </div>
+        </section>
+
+        <section aria-labelledby="enquiry-heading" className="section-pad bg-clinical-tint">
+          <div className="psa-container max-w-4xl">
+            <p className="mono-label text-clinical">A QUESTION BEFORE YOUR NEXT STEP?</p>
+            <h2 id="enquiry-heading" className="mt-4 font-serif text-4xl">Let’s help you find clear information.</h2>
+            <p id="enquiry-boundaries" className="mt-5 max-w-2xl leading-relaxed text-espresso-70">Ask about our educational resources, product evidence or Mobility Collagen. We cannot diagnose, prescribe or advise on dosing. For changes in your dog’s health or treatment, contact your veterinarian.</p>
+            <WhatsAppEnquiryLink className="mt-7 bg-clinical px-6 py-3.5 font-semibold text-warmwhite hover:bg-espresso">
+              Ask us on WhatsApp
+            </WhatsAppEnquiryLink>
+            <p className="mt-4 text-sm leading-relaxed text-espresso-70">WhatsApp opens in a new tab or app with a draft you can edit. If you arrived using a recognised campaign link, the draft includes its public campaign reference. No message is sent until you send it. Please avoid sharing personal or medical records.</p>
           </div>
         </section>
 

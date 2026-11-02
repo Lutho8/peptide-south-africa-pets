@@ -20,12 +20,14 @@ const routes = [...staticRoutes, ...productRoutes, ...blogRoutes]
 // so react-helmet-async can leave its server context empty. Capture those tags
 // from the rendered stream and move them into <head> before writing each page.
 // Inline JSON-LD is not hoisted by React: keep it in the body so hydration
-// finds the same script nodes that the client component renders.
+// finds the same script nodes that the client component renders. Stylesheets
+// without React precedence also stay where their components render them.
 function extractPrerenderHead(html) {
   const tags = []
   const body = html.replace(
     /<title>.*?<\/title>|<meta\s[^>]*\/>|<link\s[^>]*\/>/gi,
     (tag) => {
+      if (/^<link\b/i.test(tag) && /\brel="stylesheet"/i.test(tag) && !/\bdata-precedence=/.test(tag)) return tag
       tags.push(tag)
       return ''
     },
